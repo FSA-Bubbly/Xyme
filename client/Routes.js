@@ -20,20 +20,21 @@ class Routes extends Component {
     const { isLoggedIn } = this.props;
 
     return (
-      <div>
+      <div className='p-4 flex-grow'>
         {isLoggedIn ? (
           <Switch>
             <Route exact path='/' component={Home} />
 
             <Route exact path='/wallet' component={Wallet} />
+
             <Route exact path='/wallet/add-pill' component={AddPillForm} />
             <Redirect to='/' />
           </Switch>
         ) : (
           <Switch>
             <Route exact path='/' component={Landing} />
-            <Route path='/login' component={Login} />
-            <Route path='/signup' component={Signup} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={Signup} />
           </Switch>
         )}
       </div>
