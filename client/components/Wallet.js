@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { fetchWallet } from "../store/wallet";
 
 const Wallet = () => {
-  const user = useSelector(state => state.auth);
+  const { auth: user, wallet: { data: pills } } = useSelector(s => s);
 
   const dispatch = useDispatch();
 
@@ -15,19 +15,27 @@ const Wallet = () => {
   }, []);
 
   return (
-    <div className='walletContainer'>
-      {console.log(user)}
-      <Link to='/wallet/add-pill'>
-        Add Pill
-      </Link>
-      <h1>currently taking</h1>
-      {user.pills.map((pill) => (
-        <div key={pill.id} className='furniture-item'>
-          <div class='m-9'></div>
-          <p>{pill.name}(50mg)</p>
-          <p>{pill.desciption} </p>
-        </div>
-      ))}
+    <div>
+      {
+        pills === undefined ? (
+          <h1>Loading...</h1>
+        ) : (
+          <div className='walletContainer'>
+            <Link to='/wallet/add-pill'>
+              Add Pill
+            </Link>
+            <h1>currently taking</h1>
+            {pills.map((pill) => (
+              <div key={pill.id} className='furniture-item'>
+                <div class='m-9'></div>
+                <p>{pill.name}(50mg)</p>
+                <p>{pill.description} </p>
+              </div>
+            ))}
+          </div>
+        )
+      }
+      {console.log(pills)}
     </div>
   );
 };
