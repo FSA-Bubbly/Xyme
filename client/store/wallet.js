@@ -3,6 +3,7 @@ import history from "../history";
 
 //action types
 const GET_WALLET = "GET_WALLET";
+const ADD_PILL_TO_WALLET = "ADD_PILL_TO_WALLET";
 
 //action creators
 const getWallet = (pills) => {
@@ -12,11 +13,17 @@ const getWallet = (pills) => {
   };
 };
 
+const _addPillToWallet = pill => {
+  return {
+    type: ADD_PILL_TO_WALLET,
+    pill
+  }
+};
+
 // thunks
 export const fetchWallet = (user) => {
   return async (dispatch) => {
     try {
-      console.log(user);
       const response = await axios.get(`/api/wallet`, user);
       dispatch(getWallet(response));
     } catch (error) {
@@ -25,12 +32,25 @@ export const fetchWallet = (user) => {
   }
 }
 
+export const addPillToWallet = (pill) => {
+  return async dispatch => {
+    try {
+      const { data } = await axios.post('/api/wallet/add-pill', pill);
+      dispatch(_addPillToWallet(data));
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 const initialState = [];
 
-export default function walletReducer(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case GET_WALLET:
       return action.pills;
+    case ADD_PILL_TO_WALLET:
+      return action.pill;
     default:
       return state;
   }

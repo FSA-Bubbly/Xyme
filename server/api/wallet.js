@@ -17,8 +17,20 @@ router.get("/", async (req, res, next) => {
 
 router.post("/add-pill", async (req, res, next) => {
   try {
-    const pillToAdd = req.params;
-    console.log(pillToAdd);
+    const { userId, pillName, dosage } = req.body;
+    const user = await User.findByPk(userId);
+    const [ databaseId ] = await Pill.findAll({
+      where: {
+        name: pillName
+      }
+    })
+    // console.log(databaseId === undefined);
+    if (databaseId === undefined) {
+      console.log('make API call to NIH here for pill info');
+    } else {
+      user.addPill(databaseId.dataValues.id);
+    }
+    res.json('pill added!')
   } catch (error) {
     next(error);
   }

@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPillToWallet } from '../store/wallet';
 
 const AddPillForm = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
+  const user = useSelector(s => s.auth)
+  const [pillName, setPillName] = useState('');
   const [dosage, setDosage] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    const pillToAdd = {name, dosage}
-    console.log(pillToAdd)
-    dispatch()
+    const pillToAdd = {userId: user.id, pillName, dosage}
+    dispatch(addPillToWallet(pillToAdd))
   }
 
   return (
@@ -21,11 +22,11 @@ const AddPillForm = () => {
       </Link>
       <h3>New Pill:</h3>
       <form id='add-pill' onSubmit={handleSubmit}>
-        <label htmlFor='name'>Pill Name:</label>
+        <label htmlFor='pill-name'>Pill Name:</label>
         <input
-          name='name'
-          value={name}
-          onChange={e => setName(e.target.value)}
+          name='pill-name'
+          value={pillName}
+          onChange={e => setPillName(e.target.value)}
           plateholder='Enter pill name here'
         />
         <br />
