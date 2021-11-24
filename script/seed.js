@@ -31,7 +31,6 @@ const drugNames = [
 	'Entyvio',
 	'Farxiga',
 	'Fentanyl',
-	'Fentanyl',
 	'Patch',
 	'Gabapentin',
 	'Gilenya',

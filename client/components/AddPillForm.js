@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPillToWallet } from '../store/wallet';
+import history from '../history';
 
 const AddPillForm = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const AddPillForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const pillToAdd = {userId: user.id, pillName, dosage}
-    dispatch(addPillToWallet(pillToAdd))
+    dispatch(addPillToWallet(pillToAdd, history))
   }
 
   return (

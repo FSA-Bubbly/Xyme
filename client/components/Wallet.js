@@ -5,15 +5,18 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchWallet } from "../store/wallet";
 
-const Wallet = (props) => {
-  const user = useSelector((state) => state.auth);
+const Wallet = () => {
+  const user = useSelector(state => state.auth);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchWallet(user));
   }, []);
+
   return (
     <div className='walletContainer'>
+      {console.log(user)}
       <Link to='/wallet/add-pill'>
         Add Pill
       </Link>
