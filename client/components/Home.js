@@ -9,11 +9,8 @@ export const Home = (props) => {
   const { email } = props;
 
   return (
-    <div>
+		<div>
       <h3>Welcome, {email}</h3>
-      <Link to='/wallet' className='menu-bars'>
-        wallet
-      </Link>
     </div>
   );
 };
