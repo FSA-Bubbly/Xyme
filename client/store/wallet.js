@@ -22,8 +22,9 @@ export const fetchWallet = (user) => {
     } catch (error) {
       console.error(error);
     }
-  };
-};
+  }
+}
+
 const initialState = [];
 
 export default function walletReducer(state = initialState, action) {
