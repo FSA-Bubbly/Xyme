@@ -16,21 +16,21 @@ const getWallet = (pills) => {
 export const fetchWallet = (user) => {
   return async (dispatch) => {
     try {
+      console.log(user);
       const response = await axios.get(`/api/wallet`, user);
       dispatch(getWallet(response));
     } catch (error) {
       console.error(error);
     }
   };
-
-  const initialState = [];
-
-  export default function walletReducer(state = initialState, action) {
-    switch (action.type) {
-      case GET_WALLET:
-        return [...state, ...action.pills];
-      default:
-        return state;
-    }
-  }
 };
+const initialState = [];
+
+export default function walletReducer(state = initialState, action) {
+  switch (action.type) {
+    case GET_WALLET:
+      return action.pills;
+    default:
+      return state;
+  }
+}

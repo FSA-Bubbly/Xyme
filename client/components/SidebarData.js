@@ -25,7 +25,7 @@ export const SidebarData = [
   },
   {
     title: "Wallet",
-    path: "/",
+    path: "/wallet",
     icon: <AiIcons.AiOutlineMedicineBox />,
     cName: "nav-text",
   },
