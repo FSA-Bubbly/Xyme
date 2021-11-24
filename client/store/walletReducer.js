@@ -21,7 +21,8 @@ export const fetchWallet = (user) => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }
+}
 
   const initialState = [];
 
@@ -33,4 +34,3 @@ export const fetchWallet = (user) => {
         return state;
     }
   }
-};
