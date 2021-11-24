@@ -14,3 +14,12 @@ router.get("/", async (req, res, next) => {
     next(error);
   }
 });
+
+router.post("/add-pill", async (req, res, next) => {
+  try {
+    const pillToAdd = req.params;
+    console.log(pillToAdd);
+  } catch (error) {
+    next(error);
+  }
+});

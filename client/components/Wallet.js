@@ -14,6 +14,9 @@ const Wallet = (props) => {
   }, []);
   return (
     <div className='walletContainer'>
+      <Link to='/wallet/add-pill'>
+        Add Pill
+      </Link>
       <h1>currently taking</h1>
       {user.pills.map((pill) => (
         <div key={pill.id} className='furniture-item'>

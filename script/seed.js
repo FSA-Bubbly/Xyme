@@ -80,7 +80,7 @@ const users = [
 		email: 'zack@gmail.com',
 		password: '123',
 		firstName: 'Zack',
-		lastName: 'Codeine',
+		lastName: 'Ward',
 		age: 23,
 		height: 72,
 		weight: 180,
@@ -135,9 +135,10 @@ async function seed() {
 
 	await Promise.all(users.map((user) => User.create(user)));
 
-	const cody = await User.findByPk(1);
-	const lucy = await User.findByPk(2);
-	const brody = await User.findByPk(3);
+	const zack = await User.findByPk(1);
+	const cj = await User.findByPk(2);
+	const jordan = await User.findByPk(3);
+	const sala = await User.findByPk(4);
 	// console.log(Object.keys(User.prototype));
 
 	const Adderall = await Pill.findByPk(2);
@@ -146,9 +147,10 @@ async function seed() {
 	const Melatonin = await Pill.findByPk(39);
 	const Xanax = await Pill.findByPk(66);
 
-	await cody.addPills([Adderall, Cymbalta]);
-	await lucy.addPills([Melatonin, Xanax]);
-	await brody.addPills([Brilinta, Adderall]);
+	await zack.addPills([Adderall, Cymbalta]);
+	await cj.addPills([Melatonin, Xanax]);
+	await jordan.addPills([Brilinta, Adderall]);
+	await sala.addPills([Adderall, Brilinta, Cymbalta, Melatonin, Xanax]);
 
 	const conflict1 = await PillConflict.create({
 		rxcui1: 13,
@@ -156,7 +158,7 @@ async function seed() {
 		conflictDescription: 'test',
 	});
 
-	await cody.addPillConflict(conflict1);
+	await zack.addPillConflict(conflict1);
 
 	console.log(`seeded ${drugNames.length} drugs and ${users.length} users`);
 	console.log(`seeded successfully`);
