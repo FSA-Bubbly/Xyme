@@ -5,6 +5,7 @@ import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import Landing from "./components/Landing";
 import Wallet from "./components/Wallet";
+import AddPillForm from "./components/AddPillForm";
 import { me } from "./store";
 
 /**
@@ -25,6 +26,9 @@ class Routes extends Component {
             <Route exact path='/' component={Home} />
 
             <Route exact path='/wallet' component={Wallet} />
+
+            <Route exact path='/wallet/add-pill' component={AddPillForm} />
+            <Redirect to='/' />
           </Switch>
         ) : (
           <Switch>
