@@ -8,16 +8,10 @@ module.exports = router;
 // found at /api/wallet
 router.get("/:id", async (req, res, next) => {
   try {
-    const pills = await Wallet.findAll({
-      where: {
-        userId: req.params.id
-      },
-      include: [Pill]
-    })
-    // pills.map()
-    console.log('pills: ', pills)
-
-    res.json(user);
+    const user = await User.findByPk(req.params.id)
+    const userPills = await user.getPills();
+    const pills = userPills.map(pill => pill.dataValues)
+    res.json(pills);
   } catch (error) {
     next(error);
   }
