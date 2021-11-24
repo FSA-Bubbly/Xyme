@@ -35,7 +35,6 @@ const Wallet = () => {
           </div>
         )
       }
-      {console.log(pills)}
     </div>
   );
 };
