@@ -10,13 +10,14 @@ const AuthForm = (props) => {
 
   return (
     <div>
+      {/* ---- form for sign up  ---- */}
       <div className='container max-w-full mx-auto md:py-24 px-6'>
         <div className='max-w-sm mx-auto px-6'>
           <div className='relative flex flex-wrap'>
             <div className='w-full relative'>
               <div className='md:mt-6'>
-                <div className='text-center font-semibold text-black'>
-                  Welcome to xyme
+                <div className=' text-center font-semibold text-black'>
+                  welcome
                 </div>
                 <div className='text-center font-base text-black'>subtitle</div>
               </div>
@@ -26,7 +27,7 @@ const AuthForm = (props) => {
       </div>
       {displayName === "Sign Up" ? (
         <form onSubmit={handleSubmit} name={name} className='mt-8'>
-          <div className=' md:container md:mx-auto max-w-sm p-10  flex-shrink'>
+          <div className=' mx-auto max-w-sm '>
             <div className='py-1'>
               <span className='px-1 text-sm text-gray-600'>First Name</span>
               <label htmlFor='firstName' />
@@ -35,7 +36,7 @@ const AuthForm = (props) => {
                 name='firstName'
                 type='text'
                 className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+     bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
               />
             </div>
 
@@ -47,7 +48,7 @@ const AuthForm = (props) => {
                 name='lastName'
                 type='text'
                 className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
               />
             </div>
             <div className='py-1'>
@@ -58,7 +59,7 @@ const AuthForm = (props) => {
                 name='age'
                 type='text'
                 className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
               />
             </div>
             <div className='py-1'>
@@ -69,7 +70,7 @@ const AuthForm = (props) => {
                 name='height'
                 type='text'
                 className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
               />
             </div>
             <div className='py-1'>
@@ -80,7 +81,7 @@ const AuthForm = (props) => {
                 name='weight'
                 type='text'
                 className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
               />
             </div>
             <div className='py-1'>
@@ -91,7 +92,7 @@ const AuthForm = (props) => {
                 name='email'
                 type='text'
                 className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
               />
             </div>
             <div className='py-1'>
@@ -103,7 +104,7 @@ const AuthForm = (props) => {
                 type='password'
                 x-model='password'
                 className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
               />
             </div>
             <button
@@ -117,6 +118,7 @@ const AuthForm = (props) => {
         </form>
       ) : (
         <form onSubmit={handleSubmit} name={name} className='mt-8'>
+          {/* ---- form for log in  ---- */}
           <div className='mx-auto max-w-sm '>
             <div className='py-1'>
               <span className='px-1 text-sm text-gray-600'>Email</span>
@@ -126,7 +128,7 @@ const AuthForm = (props) => {
                 name='email'
                 type='text'
                 className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
               />
             </div>
 
@@ -139,7 +141,7 @@ const AuthForm = (props) => {
                 type='password'
                 x-model='password'
                 className='text-md block px-3 py-2 rounded-lg w-full
-                bg-white border-2  placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
               />
             </div>
             <button
