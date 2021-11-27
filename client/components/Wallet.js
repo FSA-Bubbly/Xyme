@@ -5,13 +5,15 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchWallet } from "../store/wallet";
 
-const Wallet = (props) => {
-  const user = useSelector((state) => state.auth);
+const Wallet = () => {
+  const { auth: user, wallet: { data: pills } } = useSelector(s => s);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchWallet(user));
   }, []);
+
   return (
     <div>
       <body class='flex items-center justify-center'>
