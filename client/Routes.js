@@ -20,13 +20,12 @@ class Routes extends Component {
     const { isLoggedIn } = this.props;
 
     return (
-      <div className='p-4 flex-grow'>
+      <div className='p-4 flex-grow bg-nude font-mont text-black'>
         {isLoggedIn ? (
           <Switch>
             <Route exact path='/' component={Home} />
 
             <Route exact path='/wallet' component={Wallet} />
-
             <Route exact path='/wallet/add-pill' component={AddPillForm} />
             <Redirect to='/' />
           </Switch>

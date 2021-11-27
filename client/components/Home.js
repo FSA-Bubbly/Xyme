@@ -1,16 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Landing from "./Landing";
 
 /**
  * COMPONENT
  */
-export const Home = (props) => {
-  const { email } = props;
-
+export const Home = ({ isLoggedIn }) => {
+	
   return (
-		<div>
-      <h3>Welcome, {email}</h3>
+    <div>
+      {isLoggedIn ? (
+        <Landing />
+      ) : (
+        <Landing>
+          <h3>Welcome, {email}</h3>
+        </Landing>
+      )}
     </div>
   );
 };
@@ -21,6 +27,7 @@ export const Home = (props) => {
 const mapState = (state) => {
   return {
     email: state.auth.email,
+    isLoggedIn: !!state.auth.id,
   };
 };
 
