@@ -50,9 +50,9 @@ const Wallet = () => {
           </table>
         </div>
       </body>
-      <button className='bg-white hover:bg-blue-700 text-black py-2 px-4 rounded-full'>
+      <Link to='/wallet/add-pill' className='bg-white hover:bg-blue-700 text-black py-2 px-4 rounded-full'>
         add to wallet{" "}
-      </button>
+      </Link>
     </div>
   );
 };
