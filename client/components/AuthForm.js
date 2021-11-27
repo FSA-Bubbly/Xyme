@@ -28,89 +28,101 @@ const AuthForm = (props) => {
       {displayName === "Sign Up" ? (
         <form onSubmit={handleSubmit} name={name} className='mt-8'>
           <div className=' mx-auto max-w-sm '>
-            <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>First Name</span>
+            <div className='py-1 flex flex-col'>
+              <span className='px-1 text-xs text-gray-600 uppercase'>
+                First Name
+              </span>
               <label htmlFor='firstName' />
               <input
                 placeholder=''
                 name='firstName'
                 type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                className='flex self-center text-md block px-3 py-2  w-full
+     bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
               />
             </div>
 
             <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Surname</span>
+              <span className='px-1 text-xs text-gray-500 uppercase'>
+                Surname
+              </span>
               <label htmlFor='lastName' />
               <input
                 placeholder=''
                 name='lastName'
                 type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                className='flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
               />
             </div>
             <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Age</span>
+              <span className='px-1 text-xs text-gray-600 uppercase'>Age</span>
               <label htmlFor='age' />
               <input
                 placeholder=''
                 name='age'
                 type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                className='flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
               />
             </div>
             <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Height(ft)</span>
+              <span className='px-1 text-xs text-gray-600 uppercase'>
+                Height(ft)
+              </span>
               <label htmlFor='height' />
               <input
                 placeholder=''
                 name='height'
                 type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                className='flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
               />
             </div>
             <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Weight(lbs)</span>
+              <span className='px-1 text-xs text-gray-500 uppercase'>
+                Weight(lbs)
+              </span>
               <label htmlFor='weight' />
               <input
                 placeholder=''
                 name='weight'
                 type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                className='flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
               />
             </div>
             <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Email</span>
+              <span className='px-1 text-xs text-gray-500 uppercase'>
+                Email
+              </span>
               <label htmlFor='email' />
               <input
                 placeholder=''
                 name='email'
                 type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                className='flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white '
               />
             </div>
             <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Password</span>
+              <span className='px-1 text-xs text-gray-500 uppercase'>
+                Password
+              </span>
               <label htmlFor='password'></label>
               <input
                 name='password'
                 placeholder=''
                 type='password'
                 x-model='password'
-                className='text-md block px-3 py-2 rounded-lg w-full
-                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                className='flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
               />
             </div>
             <button
-              className='mt-3 text-md
-              bg-nude w-full text-black rounded-lg
-              px-6 py-3 block shadow-xl hover:text-black hover:bg-green'
+              className=' flex justify-center mt-3 text-md
+              bg-nude w-full text-black
+              px-6 py-3 shadow-xl hover:text-black hover:bg-green'
             >
               {displayName}
             </button>
@@ -121,32 +133,36 @@ const AuthForm = (props) => {
           {/* ---- form for log in  ---- */}
           <div className='mx-auto max-w-sm '>
             <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Email</span>
+              <span className='px-1 text-xs text-gray-600 uppercase'>
+                Email
+              </span>
               <label htmlFor='email' />
               <input
                 placeholder=''
                 name='email'
                 type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                className='flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white '
               />
             </div>
 
             <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Password</span>
+              <span className='px-1 text-xs text-gray-600 uppercase'>
+                Password
+              </span>
               <label htmlFor='password'></label>
               <input
                 name='password'
                 placeholder=''
                 type='password'
                 x-model='password'
-                className='text-md block px-3 py-2 rounded-lg w-full
-                bg-white  border-2 border-white placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
+                className='flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white '
               />
             </div>
             <button
               className='mt-3 text-md
-            bg-nude w-full text-black rounded-lg
+            bg-nude w-full text-black
             px-6 py-3 block shadow-xl hover:text-black hover:bg-green'
             >
               {displayName}

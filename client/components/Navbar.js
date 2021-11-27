@@ -3,6 +3,7 @@ import { FaBars } from "react-icons/fa";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
+import { useSpring } from "react-spring";
 
 import SideMenu from "./SideMenu";
 
@@ -32,7 +33,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
               <div className='hidden md:flex items-center space-x-1 mr-0'>
                 <Link
                   to='/wallet'
-                  className='py-5 px-3 text-black hover:text-gray-900 uppercase'
+                  className='py-5 px-3 text-black hover:text-gray-900 u'
                 >
                   wallet
                 </Link>
@@ -58,6 +59,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                 <Link
                   to='/'
                   className='py-5 px-3 text-black hover:text-gray-900'
+                  onClick={handleClick}
                 >
                   log out
                 </Link>
@@ -89,51 +91,39 @@ export function Navbar({ handleClick, isLoggedIn }) {
           </div>
         </nav>
       ) : (
-        <nav
-          className='bg-nude
-        '
-        >
+        <nav className='bg-nude'>
           {/* ---- if user is not logged in---- */}
           <div className='max-w-6xl mx-auto px-4'>
             <div className='flex justify-between'>
               <div className='flex space-x-4'>
                 <div>
-                  <Link to='/' className='font-bold block py-5 px-4 text-lg '>
+                  <Link to='/' className='font-bold block py-5 px-4 text-lg'>
                     xyme
-                  </Link>
-                </div>
-                <div className='hidden md:flex items-center space-x-1'>
-                  <Link
-                    to='/'
-                    className='py-5 px-3 text-black hover:text-gray-900'
-                  >
-                    <i class='fa fa-home'></i>
-                    HOME
-                  </Link>
-
-                  <Link
-                    to='/'
-                    className='py-5 px-3 text-black hover:text-gray-900'
-                  >
-                    ABOUT
                   </Link>
                 </div>
               </div>
 
               <div className='hidden md:flex items-center space-x-2 mr-0'>
-                <button className='bg-white font-bold rounded-full py-2 px-4 shadow-lg uppercase tracking-wider justify-center'>
-                  {" "}
-                  <Link className='navlink btn btn-one' to='/signup'>
-                    sign up
-                  </Link>
-                </button>
+                <Link
+                  className='hover:border-b-5 border-green py-5 px-3 text-black hover:text-gray-900'
+                  to='/signup'
+                >
+                  sign up
+                </Link>
+                <Link
+                  to='/'
+                  className='py-5 px-3 text-black hover:text-gray-900'
+                >
+                  <i className='fa fa-home'></i>
+                  home
+                </Link>
 
-                <button className='bg-white font-bold rounded-full py-2 px-4 shadow-lg uppercase tracking-wider justify-center'>
-                  {" "}
-                  <Link className='navlink btn btn-one' to='/login'>
-                    log in
-                  </Link>
-                </button>
+                <Link
+                  className='py-5 px-3 text-black hover:text-gray-900'
+                  to='/login'
+                >
+                  log in
+                </Link>
               </div>
               {/* ---- mobile menu button ---- */}
               <button
