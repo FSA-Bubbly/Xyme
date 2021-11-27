@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../store/user";
 
 const Profile = () => {
   const user = useSelector(s => s.auth);
@@ -15,9 +16,10 @@ const Profile = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const editedUser = {firstName, lastName, age, height, weight, email, password}
-    console.log(editedUser);
-    //dispatch editedUser to store then do put request
+    const id = user.id;
+    const editedUser = {id, firstName, lastName, age, height, weight, email, password}
+    dispatch(updateUser(editedUser));
+    window.location = '/profile';
   };
 
   return (
@@ -39,7 +41,7 @@ const Profile = () => {
             <p>Password: {user.password}</p> {/* need to solve this */}
           </div>
         ) : (
-          <form className='mt-8'>
+          <form className='mt-8' onSubmit={handleSubmit}>
           <div className=' md:container md:mx-auto max-w-sm p-10  flex-shrink'>
             <div className='py-1'>
               <span className='px-1 text-sm text-gray-600'>First Name</span>
@@ -138,7 +140,6 @@ const Profile = () => {
               px-6 py-3 block shadow-xl hover:text-black hover:bg-green'
               value='submit'
               type='submit'
-              onSubmit={handleSubmit}
             >
               Submit
             </button>
