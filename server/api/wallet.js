@@ -34,13 +34,19 @@ router.post("/add-pill", async (req, res, next) => {
     if (databaseId === undefined) {
       // console.log('make API call to NIH here for pill info');
       const response = await fetch(`${baseUrl}${pillName}`)
-      const parsedResponse = await response.json()
+      const parsedResponse = await response.json();
+      // make separate api call here to pull medication description?
       const rxcui = parsedResponse.idGroup.rxnormId;
+      if (rxcui === undefined) {
+        const error = Error('This medication does not exist!')
+        return res.status(401).send(error);
+      }
       const addedPill = await Pill.create({
         name: pillName,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        rxcui: rxcui
+        rxcui
       })
+      user.addPill(addedPill.id);
       return res.json(addedPill.id);
     }
     user.addPill(databaseId.dataValues.id);

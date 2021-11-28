@@ -37,7 +37,10 @@ const Wallet = () => {
                     ))}
                   </thead>
                   <tbody class='flex-1 sm:flex-none'>
-                    {pills.map((pill) => (
+                    {pills.sort((a, b) => (
+                      (a.name > b.name) ? 1 : -1
+                    ))
+                    .map(pill => (
                       <tr
                         key={pill.id}
                         class='flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0'
