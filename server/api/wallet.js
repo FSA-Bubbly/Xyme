@@ -1,4 +1,8 @@
 const router = require("express").Router();
+const fetch = require('node-fetch');
+
+const baseUrl = `https://rxnav.nlm.nih.gov/REST/rxcui.json?name=`
+
 const {
   models: { User, Pill },
 } = require("../db");
@@ -28,10 +32,18 @@ router.post("/add-pill", async (req, res, next) => {
       }
     })
     if (databaseId === undefined) {
-      console.log('make API call to NIH here for pill info');
-    } else {
-      user.addPill(databaseId.dataValues.id);
+      // console.log('make API call to NIH here for pill info');
+      const response = await fetch(`${baseUrl}${pillName}`)
+      const parsedResponse = await response.json()
+      const rxcui = parsedResponse.idGroup.rxnormId;
+      const addedPill = await Pill.create({
+        name: pillName,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        rxcui: rxcui
+      })
+      return res.json(addedPill.id);
     }
+    user.addPill(databaseId.dataValues.id);
     res.json(databaseId.dataValues.id)
   } catch (error) {
     next(error);
