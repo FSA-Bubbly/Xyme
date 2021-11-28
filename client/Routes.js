@@ -8,6 +8,7 @@ import Wallet from "./components/Wallet";
 import AddPillForm from "./components/AddPillForm";
 import Profile from "./components/Profile";
 import { me } from "./store";
+import PillCalendar from "./components/PillCalendar";
 
 /**
  * COMPONENT
@@ -28,6 +29,7 @@ class Routes extends Component {
             <Route exact path='/wallet' component={Wallet} />
             <Route exact path='/wallet/add-pill' component={AddPillForm} />
             <Route path='/profile' component={Profile} />
+            <Route path='/calendar' component={PillCalendar} />
             <Redirect to='/' />
           </Switch>
         ) : (
