@@ -42,7 +42,7 @@ const AddPillForm = () => {
         .signIn()
         .then(() => {
           var event = {
-            summary: "Take Advil",
+            summary: `Take ${pillName}`,
             location: "",
             description: "Do not Forget",
             start: {
