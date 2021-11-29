@@ -28,8 +28,8 @@ class Routes extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/wallet' component={Wallet} />
             <Route exact path='/wallet/add-pill' component={AddPillForm} />
-            <Route path='/profile' component={Profile} />
-            <Route path='/calendar' component={PillCalendar} />
+            <Route eaxct path='/profile' component={Profile} />
+            <Route exact path='/calendar' component={PillCalendar} />
 
             <Redirect to='/' />
           </Switch>

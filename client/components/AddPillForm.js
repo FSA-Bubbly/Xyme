@@ -5,10 +5,12 @@ import { addPillToWallet } from "../store/wallet";
 import history from "../history";
 
 const AddPillForm = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((s) => s.auth);
+  const [pillName, setPillName] = useState("");
+  const [dosage, setDosage] = useState("");
   var gapi = window.gapi;
-  /*
-    Update with your own Client Id and Api key
-  */
+
   var CLIENT_ID =
     "898667664539-tdobicpipnf8c3fc6pg9pqjhr0oee1d0.apps.googleusercontent.com";
   var API_KEY = "AIzaSyCw2s7BgKAA_tReIgazJGxFsWRfxEXVPIY";
@@ -17,6 +19,11 @@ const AddPillForm = () => {
   ];
   var SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const pillToAdd = { userId: user.id, pillName, dosage };
+    dispatch(addPillToWallet(pillToAdd, history));
+  };
   const handleClick = () => {
     gapi.load("client:auth2", () => {
       console.log("loaded client");
@@ -35,18 +42,18 @@ const AddPillForm = () => {
         .signIn()
         .then(() => {
           var event = {
-            summary: "Awesome Event!",
-            location: "800 Howard St., San Francisco, CA 94103",
-            description: "Really great refreshments",
+            summary: "Take Advil",
+            location: "",
+            description: "Do not Forget",
             start: {
               dateTime: "2021-12-02T09:00:00-07:00",
               timeZone: "America/Los_Angeles",
             },
             end: {
-              dateTime: "2020-06-28T17:00:00-07:00",
+              dateTime: "2021-12-15T17:00:00-07:00",
               timeZone: "America/Los_Angeles",
             },
-            recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
+            recurrence: ["RRULE:FREQ=WEEKLY;COUNT=2;BYDAY=TU;"],
             attendees: [
               { email: "lpage@example.com" },
               { email: "sbrin@example.com" },
@@ -67,7 +74,7 @@ const AddPillForm = () => {
 
           request.execute((event) => {
             console.log(event);
-            window.open(event.htmlLink);
+            // window.open(event.htmlLink);
           });
 
           /*
@@ -90,45 +97,8 @@ const AddPillForm = () => {
         });
     });
   };
-
-  const dispatch = useDispatch();
-  const user = useSelector((s) => s.auth);
-  const [pillName, setPillName] = useState("");
-  const [dosage, setDosage] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const pillToAdd = { userId: user.id, pillName, dosage };
-    dispatch(addPillToWallet(pillToAdd, history));
-  };
-
-  const showCal = () => {
-    var iframe = document.getElementById("calendarEmbed");
-    var blocker = document.getElementById("calendarEmbedBlocker");
-    if (user.email && /.+\@.+/.test(user.email)) {
-      iframe.src =
-        "https://calendar.google.com/calendar/embed?src=" +
-        encodeURI(user.email);
-      blocker.style.display = "none";
-    } else {
-      alert("That doesn't look like a valid email...");
-      blocker.style.display = "block";
-    }
-  };
-
   return (
     <div>
-      <button style={{ width: 100, height: 50 }} onClick={handleClick}>
-        Add Event
-      </button>
-      <button onClick={showCal}>Load</button>
-      <h3>Your calendar:</h3>
-      <div id='calendarEmbedWrapper' className={"w-80 min-h-300 relative ml-8"}>
-        <iframe
-          id='calendarEmbed'
-          className={"w-full h-full absolute"}
-        ></iframe>
-      </div>
       <Link to={"/wallet"}>Cancel</Link>
       <h3>New Pill:</h3>
       <form id='add-pill' onSubmit={handleSubmit}>
@@ -150,7 +120,7 @@ const AddPillForm = () => {
         />
         <br />
 
-        <button type='submit'>
+        <button type='submit' onClick={handleSubmit}>
           {" "}
           <Link
             to='/wallet'
@@ -158,6 +128,13 @@ const AddPillForm = () => {
           >
             add to wallet
           </Link>
+        </button>
+        <button
+          type='submit'
+          onClick={handleClick}
+          className='py-5 px-3 text-black hover:text-gray-900 u'
+        >
+          add to calender
         </button>
       </form>
     </div>
