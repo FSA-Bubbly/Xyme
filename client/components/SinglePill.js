@@ -15,12 +15,14 @@ const SinglePill = (props) => {
     setPill(singlePill);
   }, []);
 
-
   if (pill) {
-    return <h1> Drug Name: {singlePill.name}. Drug Concept:{singlePill.description}</h1>
-  }
-
-  else return <div>loading...</div>;
+    return (
+      <h1>
+        {" "}
+        Drug Name: {singlePill.name}. Drug Concept:{singlePill.description}
+      </h1>
+    );
+  } else return <div>loading...</div>;
 };
 
 export default SinglePill;
