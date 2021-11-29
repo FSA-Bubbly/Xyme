@@ -33,6 +33,7 @@
     "history": "^4.9.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
+    "node-fetch": "^2.6.1",
     "pg": "^8.5.1",
     "react-gsap": "^3.2.1",
     "react-icons": "^4.3.1",
