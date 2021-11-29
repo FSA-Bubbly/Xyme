@@ -39,7 +39,10 @@ export const addPillToWallet = (pill, history) => {
       dispatch(_addPillToWallet(data));
       history.push('/wallet');
     } catch (error) {
-      console.error(error)
+      console.error(error);
+      alert(
+        'This medication does not exist!'
+      )
     }
   }
 }
