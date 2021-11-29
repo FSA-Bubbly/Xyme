@@ -17,7 +17,13 @@ const Wallet = () => {
   let pillsToRemove = [];
 
   const handleCheck = e => {
-    pillsToRemove.push(e.target.value);
+    if (e.target.checked) {
+      pillsToRemove.push(e.target.value);
+    } else {
+      const idx = pillsToRemove.indexOf(e.target.value);
+      pillsToRemove.splice(idx, 1);
+    }
+    console.log(pillsToRemove)
   }
 
   const handleCancel = () => {
