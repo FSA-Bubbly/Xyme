@@ -30,7 +30,13 @@ export function Navbar({ handleClick, isLoggedIn }) {
                 </div>
               </div>
 
-              <div className='hidden md:flex items-center space-x-1 mr-0'>
+              <div className='hidden md:flex items-center space-x-1 mr-0 hover:border-b-6 hover:border-orange'>
+                <Link
+                  to='/calendar'
+                  className='py-5 px-3 text-black hover:text-gray-900 u'
+                >
+                  calendar
+                </Link>
                 <Link
                   to='/wallet'
                   className='py-5 px-3 text-black hover:text-gray-900 u'
@@ -39,26 +45,26 @@ export function Navbar({ handleClick, isLoggedIn }) {
                 </Link>
                 <Link
                   to='/'
-                  className='py-5 px-3 text-black hover:text-gray-900'
+                  className='py-5 px-3 text-black hover:text-gray-900 hover:border-b-6 hover:border-orange'
                 >
-                  <i class='fa fa-home'></i>
+                  <i className='fa fa-home'></i>
                   home
                 </Link>
                 <Link
                   to='/profile'
-                  className='py-5 px-3 text-black hover:text-gray-900'
+                  className='py-5 px-3 text-black hover:text-gray-900 hover:border-b-6 hover:border-orange'
                 >
                   profile
                 </Link>
                 <Link
                   to='/conflicts'
-                  className='py-5 px-3 text-black hover:text-gray-900'
+                  className='py-5 px-3 text-black hover:text-gray-900 hover:border-b-6 hover:border-orange'
                 >
                   conflicts
                 </Link>{" "}
                 <Link
                   to='/'
-                  className='py-5 px-3 text-black hover:text-gray-900'
+                  className='py-5 px-3 text-black hover:text-gray-900 hover:border-b-6 hover:border-orange'
                   onClick={handleClick}
                 >
                   log out
@@ -103,10 +109,10 @@ export function Navbar({ handleClick, isLoggedIn }) {
                 </div>
               </div>
 
-              <div className='hidden md:flex items-center space-x-2 mr-0'>
+              <div className=' hover:border-b-6 hover:border-orange  hidden md:flex items-center space-x-2 mr-0'>
                 <Link
-                  className='hover:border-b-5 border-green py-5 px-3 text-black hover:text-gray-900'
                   to='/signup'
+                  className=' hover:border-b-6 hover:border-orange border-green py-5 px-3 text-black hover:text-gray-900'
                 >
                   sign up
                 </Link>
