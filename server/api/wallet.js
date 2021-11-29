@@ -20,6 +20,16 @@ router.get("/:userId", async (req, res, next) => {
   }
 });
 
+// found at /api/wallet/select/pillId
+router.get("/select/:pillId", async (req, res, next) => {
+  try {
+    const singlePill = await Pill.findByPk(req.params.pillId);
+    res.send(singlePill);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // /api/wallet/add-pill
 router.post("/add-pill", async (req, res, next) => {
   try {
