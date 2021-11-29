@@ -18,7 +18,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
         <div className='menu menu--right ' style={style}>
           <nav className=' md:hidden menu-list menu-list--right'></nav>
           <div
-            className='mobile-menus left-0 fixed h-screen w-full sm:w-1/4 lg:hidden bg-white top-16 z-30'
+            className='mobile-menus right-0  h-auto rounded-l fixed h-screen w-full sm:w-1/2 lg:hidden bg-white top-16 z-30'
             style={style}
           >
             <ul className=' divide-y divide-light-blue-400 menu-list flex flex-col text-xs font-bold'>
@@ -78,7 +78,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
       ) : (
         <motion.div
           transition={{ duration: 1.0, ease: [0.04, 0.62, 0.23, 0.98] }}
-          className='mobile-menus left-0 fixed h-screen w-full sm:w-1/4 lg:hidden bg-white top-16 z-30'
+          className='mobile-menus right-0  h-auto rounded-l fixed h-screen w-full sm:w-1/2 lg:hidden bg-white top-16 z-30'
         >
           <ul className=' divide-y divide-light-blue-400 menu-list flex flex-col text-xs font-bold'>
             <li className='menu-list-item py-2 hover:bg-white hover:text-blue-700'>
