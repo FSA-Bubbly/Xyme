@@ -1,16 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWallet } from "../store/wallet";
+import { removePills } from "../store/wallet";
 
 const Wallet = () => {
-  const { auth: user, wallet: { data: pills } } = useSelector(s => s);
-
+  const { auth: user, wallet: pills } = useSelector(s => s);
+  const [editing, setEditing] = useState(false);
+  // const [pillsToRemove, setPillsToRemove] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchWallet(user));
   }, []);
+
+  let pillsToRemove = [];
+
+  const handleCheck = e => {
+    pillsToRemove.push(e.target.value);
+  }
+
+  const handleCancel = () => {
+    setEditing(!editing);
+    pillsToRemove = [];
+  }
+
+  const handleRemove = () => {
+    dispatch(removePills(user.id, pillsToRemove));
+    setEditing(!editing);
+  }
 
   return (
     <div>
@@ -19,39 +37,73 @@ const Wallet = () => {
           <h1>Loading...</h1>
         ) : (
           <div>
-            <body class='flex items-center justify-center'>
-              <div class='container'>
-                <table class='w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-auto sm:shadow-lg my-5'>
-                  <thead class='text-black'>
-                    {pills.map((pill) => (
+            <body className='flex items-center justify-center'>
+              <div className='container'>
+                <table className='w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-auto sm:shadow-lg my-5'>
+                  <thead className='text-black'>
+                    {pills.map(pill => (
                       <tr
                         key={pill.id}
-                        class=' bg-white flex flex-col flex-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0'
+                        className=' bg-white flex flex-col flex-nowrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0'
                       >
-                        <th class='p-3 text-left'>Name</th>
-                        <th class='p-3 text-left'>Description</th>
-                        <th class='p-3 text-left' width='110px'>
-                          Actions
-                        </th>
+                        <th className='p-3 text-left'>Name</th>
+                        <th className='p-3 text-left'>Description</th>
+                        {
+                          !editing ? (
+                            <th className='p-3 text-left' width='110px'>
+                              <button
+                                value='edit'
+                                type='button'
+                                onClick={() => setEditing(!editing)}
+                              >Edit</button>
+                            </th>
+                          ) : (
+                            <>
+                              <th className='p-3 text-left' width='110px'>
+                                <button
+                                  value='remove'
+                                  type='button'
+                                  onClick={handleRemove}
+                                >Remove</button>
+                                <button
+                                  value='remove'
+                                  type='button'
+                                  onClick={handleCancel}
+                                >Cancel</button>
+                              </th>
+                            </>
+                          )
+                        }
                       </tr>
                     ))}
                   </thead>
-                  <tbody class='flex-1 sm:flex-none'>
+                  <tbody className='flex-1 sm:flex-none'>
                     {pills.sort((a, b) => (
                       (a.name > b.name) ? 1 : -1
                     ))
                     .map(pill => (
                       <tr
                         key={pill.id}
-                        class='flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0'
+                        className='flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0'
                       >
-                        <td class=' border hover:bg-gray-100 p-3'>{pill.name}</td>
-                        <td class='border hover:bg-gray-100 p-3 truncate'>
+                        <td className=' border hover:bg-gray-100 p-3'>{pill.name}</td>
+                        <td className='border hover:bg-gray-100 p-3 truncate'>
                           {pill.description}
                         </td>
-                        <td class=' border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer'>
-                          Delete
-                        </td>
+                        {
+                          !editing ? (
+                            <td className=' border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer'>
+                            </td>
+                          ) : (
+                            <td className=' border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer'>
+                              <input
+                                type='checkbox'
+                                value={pill.id}
+                                onChange={handleCheck}>
+                              </input>
+                            </td>
+                          )
+                        }
                       </tr>
                     ))}
                   </tbody>

@@ -32,7 +32,6 @@ router.post("/add-pill", async (req, res, next) => {
       }
     })
     if (databaseId === undefined) {
-      // console.log('make API call to NIH here for pill info');
       const response = await fetch(`${baseUrl}${pillName}`)
       const parsedResponse = await response.json();
       // make separate api call here to pull medication description?
@@ -46,12 +45,24 @@ router.post("/add-pill", async (req, res, next) => {
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         rxcui
       })
+      console.log(addedPill);
       user.addPill(addedPill.id);
-      return res.json(addedPill.id);
+      return res.json(addedPill);
     }
     user.addPill(databaseId.dataValues.id);
-    res.json(databaseId.dataValues.id)
+    res.json(databaseId.dataValues)
   } catch (error) {
     next(error);
   }
 });
+
+router.delete(`/:userId/remove`, async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.userId);
+    const pills = req.body.pills;
+    await user.removePills(pills);
+    res.json(pills);
+  } catch (error) {
+    next(error);
+  }
+})
