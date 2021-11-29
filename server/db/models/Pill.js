@@ -10,7 +10,7 @@ const Pill = db.define('pill', {
 		},
 	},
 	description: {
-		type: Sequelize.STRING,
+		type: Sequelize.TEXT,
 	},
 	rxcui: {
 		type: Sequelize.INTEGER,
