@@ -32,8 +32,11 @@ const Wallet = () => {
   }
 
   const handleRemove = () => {
-    dispatch(removePills(user.id, pillsToRemove));
-    setEditing(!editing);
+    if (pillsToRemove.length > 0) {
+      dispatch(removePills(user.id, pillsToRemove));
+      setEditing(!editing);
+    }
+
   }
 
   return (
