@@ -30,6 +30,7 @@ class Routes extends Component {
             <Route exact path='/wallet/add-pill' component={AddPillForm} />
             <Route path='/profile' component={Profile} />
             <Route path='/calendar' component={PillCalendar} />
+
             <Redirect to='/' />
           </Switch>
         ) : (

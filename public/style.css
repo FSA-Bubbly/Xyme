@@ -6,6 +6,17 @@
 Document
 ========
 */
+#calendarEmbedWrapper {
+  width: 80%;
+  min-height: 300px;
+  margin-left: 10%;
+  position: relative;
+}
+#calendarEmbed,#calendarEmbedBlocker {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
 
 /**
 Use a better box model (opinionated).
