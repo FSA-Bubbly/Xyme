@@ -9,12 +9,9 @@ const _checkWithVision = (vision) => ({
 export const checkWithVision = (pill) => {
 	return async (dispatch) => {
 		try {
-			let formData = new FormData();
-			formData.append('pill', pill);
-			for (const value of formData.entries()) {
-				console.log(value);
-			}
-			const { data } = await axios.put(`/api/vision/`, formData);
+			console.log('check', pill);
+			const { data } = await axios.put(`/api/vision/`, { data: { pill } });
+
 			dispatch(_checkWithVision(data));
 		} catch (error) {
 			console.error(error);

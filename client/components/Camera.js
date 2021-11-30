@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkWithVision } from '../store/vision';
+import FileBase64 from 'react-file-base64';
 
 const Camera = (props) => {
 	const [selectedImage, setSelectedImage] = useState(null);
@@ -10,10 +11,11 @@ const Camera = (props) => {
 		<div>
 			{selectedImage && (
 				<div>
+					{console.log(selectedImage.file)}
 					<img
 						alt='No Image'
 						width={'250px'}
-						src={URL.createObjectURL(selectedImage)}
+						src={URL.createObjectURL(selectedImage.file)}
 					/>
 					<br />
 					<button onClick={() => setSelectedImage(null)}>Remove</button>
@@ -22,13 +24,14 @@ const Camera = (props) => {
 			<br />
 
 			<br />
-			<input
+			<FileBase64
+				multiple={true}
 				type='file'
 				accept='image/*'
 				capture='environment'
-				onChange={(event) => {
-					console.log(event.target.files[0]);
-					setSelectedImage(event.target.files[0]);
+				onDone={(event) => {
+					console.log(event[0]);
+					setSelectedImage(event[0]);
 				}}
 			/>
 
