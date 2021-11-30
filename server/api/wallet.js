@@ -82,6 +82,7 @@ router.post("/add-pill", async (req, res, next) => {
         expectedNextDate: expectedNextDate,
         frequencyPerDay: Number(frequencyPerDay),
         frequencyPerWeek: Number(frequencyPerWeek),
+        dailyDosage: Number(frequencyPerDay),
       });
 
       return res.json(walletItem);
@@ -101,6 +102,7 @@ router.post("/add-pill", async (req, res, next) => {
       expectedNextDate: expectedNextDate,
       frequencyPerDay: Number(frequencyPerDay),
       frequencyPerWeek: Number(frequencyPerWeek),
+      dailyDosage: Number(frequencyPerDay),
     });
     res.json(walletItem);
   } catch (error) {

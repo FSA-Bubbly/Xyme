@@ -18,24 +18,21 @@ const Wallet = db.define("wallet", {
     type: Sequelize.INTEGER,
     defaultValue: 0,
   },
-  isTaken: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
+  dailyDosage: { // daily dosage
+    type: Sequelize.INTEGER,
+    defaultValue: 1,
   },
 });
 // grab date, when date is 0000, isTaken gets reset to false.
-Wallet.prototype.pillTaken = async function () {
-  setTimeout(() => {
-    this.isTaken = false;
-  }, 24 * 60 * 60 * 60);
-};
+// Wallet.prototype.pillTaken = async function () {
+//   setTimeout(() => {
+//     this.isTaken = false;
+//   }, 24 * 60 * 60 * 60);
+// };
 
+// var d = new Date();
+// d.setHours(0,0,0,0);
 
-var d = new Date();
-d.setHours(0,0,0,0);
-
-// if date.now is equal to d, execute wallet.pillTaken()
-
-
+// // if date.now is equal to d, execute wallet.pillTaken()
 
 module.exports = Wallet;
