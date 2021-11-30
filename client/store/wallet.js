@@ -6,46 +6,44 @@ const GET_WALLET = "GET_WALLET";
 const ADD_PILL_TO_WALLET = "ADD_PILL_TO_WALLET";
 
 //action creators
-const getWallet = pills => {
+const getWallet = (pills) => {
   return {
     type: GET_WALLET,
     pills,
   };
 };
 
-const _addPillToWallet = pill => {
+const _addPillToWallet = (pill) => {
   return {
     type: ADD_PILL_TO_WALLET,
-    pill
-  }
+    pill,
+  };
 };
 
 // thunks
-export const fetchWallet = user => {
-  return async dispatch => {
+export const fetchWallet = (user) => {
+  return async (dispatch) => {
     try {
       const pills = await axios.get(`/api/wallet/${user.id}`);
       dispatch(getWallet(pills));
     } catch (error) {
       console.error(error);
     }
-  }
-}
+  };
+};
 
 export const addPillToWallet = (pill, history) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
-      const { data } = await axios.post('/api/wallet/add-pill', pill);
+      const { data } = await axios.post("/api/wallet/add-pill", pill);
       dispatch(_addPillToWallet(data));
-      history.push('/wallet');
+      history.push("/wallet");
     } catch (error) {
       console.error(error);
-      alert(
-        'This medication does not exist!'
-      )
+      alert("This medication does not exist!");
     }
-  }
-}
+  };
+};
 
 const initialState = [];
 

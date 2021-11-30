@@ -7,6 +7,7 @@ import Landing from "./components/Landing";
 import Wallet from "./components/Wallet";
 import AddPillForm from "./components/AddPillForm";
 import Profile from "./components/Profile";
+import SinglePill from './components/SinglePill'
 import { me } from "./store";
 import PillCalendar from "./components/PillCalendar";
 
@@ -28,6 +29,9 @@ class Routes extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/wallet' component={Wallet} />
             <Route exact path='/wallet/add-pill' component={AddPillForm} />
+
+            <Route exact path='/wallet/select/:pillId'
+            component={SinglePill} />
             <Route eaxct path='/profile' component={Profile} />
             <Route exact path='/calendar' component={PillCalendar} />
 
