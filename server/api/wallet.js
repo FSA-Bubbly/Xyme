@@ -5,6 +5,7 @@ const baseUrl = `https://rxnav.nlm.nih.gov/REST/rxcui.json?name=`;
 const {
   models: { User, Pill },
 } = require("../db");
+const Wallet = require("../db/models/Wallet");
 
 module.exports = router;
 
@@ -33,7 +34,7 @@ router.get("/select/:pillId", async (req, res, next) => {
 // /api/wallet/add-pill
 router.post("/add-pill", async (req, res, next) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const {
       userId,
       pillName,
@@ -73,8 +74,17 @@ router.post("/add-pill", async (req, res, next) => {
         description,
         rxcui,
       });
-      user.addPill(addedPill.id);
-      return res.json(addedPill);
+
+      const walletItem = await Wallet.create({
+        userId: userId,
+        pillId: addedPill.id,
+        startDate: startDate,
+        expectedNextDate: expectedNextDate,
+        frequencyPerDay: Number(frequencyPerDay),
+        frequencyPerWeek: Number(frequencyPerWeek),
+      });
+
+      return res.json(walletItem);
     }
     const userAlreadyHasPill = await user.hasPill(databaseId.dataValues.id);
     if (userAlreadyHasPill) {
@@ -83,8 +93,16 @@ router.post("/add-pill", async (req, res, next) => {
         .status(402)
         .json({ error: "This medication is already in your wallet!" });
     }
-    user.addPill(databaseId.dataValues.id);
-    res.json(databaseId.dataValues);
+
+    const walletItem = await Wallet.create({
+      userId: userId,
+      pillId: databaseId.dataValues.id,
+      startDate: startDate,
+      expectedNextDate: expectedNextDate,
+      frequencyPerDay: Number(frequencyPerDay),
+      frequencyPerWeek: Number(frequencyPerWeek),
+    });
+    res.json(walletItem);
   } catch (error) {
     console.log(error);
     next(error);
