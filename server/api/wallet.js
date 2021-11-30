@@ -35,27 +35,32 @@ router.post("/add-pill", async (req, res, next) => {
       const parsedResponse = await response.json();
       // make separate api call here to pull medication description
       const rxcui = parsedResponse.idGroup.rxnormId;
-      const descResponse = await fetch(
-        `https://connect.medlineplus.gov/service?mainSearchCriteria.v.cs=2.16.840.1.113883.6.88&mainSearchCriteria.v.c=${rxcui}&informationRecipient.languageCode.c=en&knowledgeResponseType=application/json`
-      );
-      const descJson = await descResponse.json();
-      const description = descJson.feed.entry[0].summary._value;
+      // const descResponse = await fetch(
+      //   `https://connect.medlineplus.gov/service?mainSearchCriteria.v.cs=2.16.840.1.113883.6.88&mainSearchCriteria.v.c=${rxcui}&informationRecipient.languageCode.c=en&knowledgeResponseType=application/json`
+      // );
+      // const descJson = await descResponse.json();
+      // const description = descJson.feed.entry[0].summary._value;
       if (rxcui === undefined) {
-        const error = Error("This medication does not exist!");
-        return res.status(401).send(error);
+        // const error = new Error("This medication does not exist!");
+        return res.status(401).json({error: "This medication does not exist!"});
       }
       const addedPill = await Pill.create({
         name: pillName,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         rxcui
       })
-      console.log(addedPill);
       user.addPill(addedPill.id);
       return res.json(addedPill);
+    }
+    const userAlreadyHasPill = await user.hasPill(databaseId.dataValues.id);
+    if (userAlreadyHasPill) {
+      // const error = new Error("This medication is already in your wallet!");
+      return res.status(402).json({error: "This medication is already in your wallet!"});
     }
     user.addPill(databaseId.dataValues.id);
     res.json(databaseId.dataValues)
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });

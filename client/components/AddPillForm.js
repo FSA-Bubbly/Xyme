@@ -12,7 +12,7 @@ const AddPillForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const pillToAdd = {userId: user.id, pillName, dosage}
+    const pillToAdd = {userId: user.id, pillName: `${pillName[0].toUpperCase()}${pillName.slice(1).toLowerCase()}`, dosage}
     dispatch(addPillToWallet(pillToAdd, history))
   }
 
