@@ -7,7 +7,6 @@ import { removePills } from "../store/wallet";
 const Wallet = () => {
   const { auth: user, wallet: pills } = useSelector(s => s);
   const [editing, setEditing] = useState(false);
-  // const [pillsToRemove, setPillsToRemove] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +22,6 @@ const Wallet = () => {
       const idx = pillsToRemove.indexOf(e.target.value);
       pillsToRemove.splice(idx, 1);
     }
-    console.log(pillsToRemove)
   }
 
   const handleCancel = () => {
