@@ -57,10 +57,10 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   profile
                 </Link>
                 <Link
-                  to='/conflicts'
+                  to='/interactions'
                   className='py-5 px-3 text-black hover:text-gray-900 hover:border-b-6 hover:border-orange'
                 >
-                  conflicts
+                  interactions
                 </Link>{" "}
                 <Link
                   to='/'
