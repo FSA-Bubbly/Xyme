@@ -30,23 +30,26 @@ router.post("/add-pill", async (req, res, next) => {
         name: pillName,
       },
     });
+    // if pill not in our Pill table
     if (databaseId === undefined) {
+      // initial API call for RXCUI
       const response = await fetch(`${baseUrl}${pillName}`)
       const parsedResponse = await response.json();
-      // make separate api call here to pull medication description
       const rxcui = parsedResponse.idGroup.rxnormId;
-      // const descResponse = await fetch(
-      //   `https://connect.medlineplus.gov/service?mainSearchCriteria.v.cs=2.16.840.1.113883.6.88&mainSearchCriteria.v.c=${rxcui}&informationRecipient.languageCode.c=en&knowledgeResponseType=application/json`
-      // );
-      // const descJson = await descResponse.json();
-      // const description = descJson.feed.entry[0].summary._value;
+      // if name of pill user entered returns nothing from NIH API call
       if (rxcui === undefined) {
         // const error = new Error("This medication does not exist!");
         return res.status(401).json({error: "This medication does not exist!"});
       }
+      // API call for medication description
+      const descResponse = await fetch(
+        `https://connect.medlineplus.gov/service?mainSearchCriteria.v.cs=2.16.840.1.113883.6.88&mainSearchCriteria.v.c=${rxcui}&informationRecipient.languageCode.c=en&knowledgeResponseType=application/json`
+      );
+      const descJson = await descResponse.json();
+      const description = descJson.feed.entry[0].summary._value;
       const addedPill = await Pill.create({
         name: pillName,
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        description,
         rxcui
       })
       user.addPill(addedPill.id);
