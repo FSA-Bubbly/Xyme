@@ -112,9 +112,15 @@ const Wallet = () => {
                           </div>
                         </div>
                       </td>
-                      <td className=' border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'>
-                        <p className='text-gray-900 '>{pill.name}</p>
-                      </td>
+                      <Link
+                        to={`/wallet/select/${pill.id}`}
+                        key={pill.id}
+                        pill={pill}
+                      >
+                        <td className=' border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'>
+                          <p className='text-gray-900 '>{pill.name}</p>
+                        </td>
+                      </Link>
                       <td className='px-5 py-5  border-b border-gray-200 bg-white text-sm'>
                         <p className='text-gray-900 whitespace-no-wrap'>
                           Monday 2pm
