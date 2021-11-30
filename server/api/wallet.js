@@ -33,7 +33,16 @@ router.get("/select/:pillId", async (req, res, next) => {
 // /api/wallet/add-pill
 router.post("/add-pill", async (req, res, next) => {
   try {
-    const { userId, pillName, dosage } = req.body;
+    console.log(req.body);
+    const {
+      userId,
+      pillName,
+      dosage,
+      startDate,
+      expectedNextDate,
+      frequencyPerDay,
+      frequencyPerWeek,
+    } = req.body;
     const user = await User.findByPk(userId);
     const [databaseId] = await Pill.findAll({
       where: {
@@ -43,13 +52,15 @@ router.post("/add-pill", async (req, res, next) => {
     // if pill not in our Pill table
     if (databaseId === undefined) {
       // initial API call for RXCUI
-      const response = await fetch(`${baseUrl}${pillName}`)
+      const response = await fetch(`${baseUrl}${pillName}`);
       const parsedResponse = await response.json();
       const rxcui = parsedResponse.idGroup.rxnormId;
       // if name of pill user entered returns nothing from NIH API call
       if (rxcui === undefined) {
         // const error = new Error("This medication does not exist!");
-        return res.status(401).json({error: "This medication does not exist!"});
+        return res
+          .status(401)
+          .json({ error: "This medication does not exist!" });
       }
       // API call for medication description
       const descResponse = await fetch(
@@ -60,18 +71,20 @@ router.post("/add-pill", async (req, res, next) => {
       const addedPill = await Pill.create({
         name: pillName,
         description,
-        rxcui
-      })
+        rxcui,
+      });
       user.addPill(addedPill.id);
       return res.json(addedPill);
     }
     const userAlreadyHasPill = await user.hasPill(databaseId.dataValues.id);
     if (userAlreadyHasPill) {
       // const error = new Error("This medication is already in your wallet!");
-      return res.status(402).json({error: "This medication is already in your wallet!"});
+      return res
+        .status(402)
+        .json({ error: "This medication is already in your wallet!" });
     }
     user.addPill(databaseId.dataValues.id);
-    res.json(databaseId.dataValues)
+    res.json(databaseId.dataValues);
   } catch (error) {
     console.log(error);
     next(error);
@@ -87,4 +100,4 @@ router.delete(`/:userId/remove`, async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-})
+});
