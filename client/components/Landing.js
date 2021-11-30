@@ -27,7 +27,6 @@ export const Landing = () => {
         },
       });
     }
-    console.log(inView);
     if (!inView) {
       animation.start({
         opacity: 0,

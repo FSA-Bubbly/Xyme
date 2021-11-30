@@ -1,19 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWallet } from "../store/wallet";
+import { removePills } from "../store/wallet";
 
 const Wallet = () => {
-  const {
-    auth: user,
-    wallet: { data: pills },
-  } = useSelector((s) => s);
-
+  const { auth: user, wallet: pills } = useSelector(s => s);
+  const [editing, setEditing] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchWallet(user));
   }, []);
+
+  let pillsToRemove = [];
+
+  const handleCheck = e => {
+    if (e.target.checked) {
+      pillsToRemove.push(e.target.value);
+    } else {
+      const idx = pillsToRemove.indexOf(e.target.value);
+      pillsToRemove.splice(idx, 1);
+    }
+  }
+
+  const handleCancel = () => {
+    setEditing(!editing);
+    pillsToRemove = [];
+  }
+
+  const handleRemove = () => {
+    if (pillsToRemove.length > 0) {
+      dispatch(removePills(user.id, pillsToRemove));
+      setEditing(!editing);
+    }
+
+  }
 
   return (
     <div className='flex flex-col'>
@@ -39,9 +61,32 @@ const Wallet = () => {
                     <th className='px-5 py-3 border-b-2 border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider'>
                       Time Taken
                     </th>
-                    <th className='px-5 py-3 border-b-2 border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider'>
-                      Remove
-                    </th>
+                    {
+                      !editing ? (
+                        <th className='p-3 text-left' width='110px'>
+                          <button
+                            value='edit'
+                            type='button'
+                            onClick={() => setEditing(!editing)}
+                          >Edit</button>
+                        </th>
+                      ) : (
+                        <>
+                          <th className='p-3 text-left' width='110px'>
+                            <button
+                              value='remove'
+                              type='button'
+                              onClick={handleRemove}
+                            >Remove</button>
+                            <button
+                              value='remove'
+                              type='button'
+                              onClick={handleCancel}
+                            >Cancel</button>
+                          </th>
+                        </>
+                      )
+                    }
                   </tr>
                 </thead>
                 <tbody className=' border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
@@ -67,29 +112,47 @@ const Wallet = () => {
                           </div>
                         </div>
                       </td>
-                      <Link
-                        to={`/wallet/select/${pill.id}`}
-                        key={pill.id}
-                        pill={pill}
-                      >
                         <td className=' border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'>
-                          <p className='text-gray-900 '>{pill.name}</p>
+                          <Link
+                            to={`/wallet/select/${pill.id}`}
+                            key={pill.id}
+                            pill={pill}
+                          >
+                            <p className='text-gray-900 '>{pill.name}</p>
+                          </Link>
                         </td>
-                      </Link>
                       <td className='px-5 py-5  border-b border-gray-200 bg-white text-sm'>
                         <p className='text-gray-900 whitespace-no-wrap'>
                           Monday 2pm
                         </p>
                       </td>
-                      <td className='px-5 py-5  border-gray-200 bg-white text-sm'>
-                        <span className='relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
-                          <span
-                            aria-hidden
-                            className='absolute inset-0 bg-green-200  rounded-full'
-                          ></span>
-                          <span className='relative'>x</span>
-                        </span>
-                      </td>
+                      {
+                        !editing ? (
+                          <td className='px-5 py-5  border-gray-200 bg-white text-sm'>
+                            <span className='relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
+                            <span
+                              aria-hidden
+                              className='absolute inset-0 bg-green-200  rounded-full'
+                            ></span>
+                            </span>
+                          </td>
+                        ) : (
+                        <td className='px-5 py-5  border-gray-200 bg-white text-sm'>
+                          <span className='relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
+                            <span
+                              aria-hidden
+                              className='absolute inset-0 bg-green-200  rounded-full'
+                            ></span>
+                            <span className='relative'>
+                              <input
+                                type='checkbox'
+                                value={pill.id}
+                                onChange={handleCheck}>
+                              </input>
+                            </span>
+                          </span>
+                        </td>
+                      )}
                     </tr>
                   ))}
                 </tbody>
@@ -111,7 +174,7 @@ const Wallet = () => {
         </>
         )
       }
-      </div>
+    </div>
   );
 };
 
