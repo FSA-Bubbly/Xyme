@@ -40,7 +40,7 @@ import { fetchWallet } from "../store/wallet";
 
 const DailyPillView = () => {
   const { wallet: pills } = useSelector((s) => s);
-  const currentUser = useSelector((state) => state.auth)
+  const currentUser = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
@@ -49,10 +49,9 @@ const DailyPillView = () => {
 
   const filtered = pills.filter((eachpill) => {
     const expDateinMs = Date.parse(eachpill.wallet.expectedNextDate);
-    console.log("current time", dateNum);
-    console.log("    exp time", expDateinMs);
+    // console.log("current time", dateNum);
+    // console.log("    exp time", expDateinMs);
     if (dateNum >= expDateinMs && eachpill.wallet.dailyDosage > 0) {
-      console.log("hello");
       return eachpill.wallet;
     }
   });
@@ -60,12 +59,9 @@ const DailyPillView = () => {
   useEffect(() => {
     dispatch(fetchWallet(currentUser));
   }, []);
-  {
-    console.log(filtered);
-  }
+
   let pillsToUpdate = [];
-  // call the thunk for decrease pills in store
-  const handleTakenPills = (currentUser) => {
+  const handleTakenPills = () => {
     dispatch(decreaseDosage(currentUser.id, pillsToUpdate));
   };
 
@@ -89,7 +85,7 @@ const DailyPillView = () => {
               <br />
               <img src="/pill2.svg" alt="Monitoring" />
             </div>
-            <h2>THIS IS THE DAILY PILL VIEW </h2>
+            <h1>PILLS YOU NEED TO TAKE TODAY </h1>
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
               <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
                 <table className="min-w-full leading-normal">
@@ -102,17 +98,17 @@ const DailyPillView = () => {
                         Name
                       </th>
                       <th className="px-5 py-3 border-b-2 border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Pills Left
+                        Pills Left For Today
                       </th>
                       <th className="p-3 text-left" width="110px">
                         <button value="edit" type="button">
-                          Take pill
+                          Taken?
                         </button>
                       </th>
                     </tr>
                   </thead>
                   <tbody className=" border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm">
-                    {pills
+                    {filtered
                       .sort((a, b) => (a.name > b.name ? 1 : -1))
                       .map((pill) => (
                         <tr
@@ -139,7 +135,7 @@ const DailyPillView = () => {
                               key={pill.id}
                               pill={pill}
                             >
-                              <p className="text-gray-900 ">{pill.name}</p>
+                              <p className="text-gray-900 ">{pill.name}, take {pill.wallet.frequencyPerDay} per day.</p>
                             </Link>
                           </td>
                           <td className="px-5 py-5  border-b border-gray-200 bg-white text-sm">
@@ -171,7 +167,7 @@ const DailyPillView = () => {
                   <div className="inline-flex mt-2 xs:mt-0">
                     <button
                       className="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded"
-                      onClick={handleTakenPills(currentUser)}
+                      onClick={handleTakenPills}
                     >
                       Submit Taken Pills
                     </button>

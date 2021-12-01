@@ -8,19 +8,18 @@ module.exports = router;
 // found at /api/dailypill
 router.put("/", async (req, res, next) => {
   try {
-    console.log(req.body)
-    const walletItem = await Wallet.findOne({
+    const walletPillsToDecrement = await Wallet.findAll({
       where: {
         userId: req.body.data.userId,
         pillId: req.body.data.pills,
       },
     });
-    console.log(walletItem)
-    await walletItem.update({
-      dailyDosage: walletItem.dailyDosage - 1,
+    const decreaseDosage = await walletPillsToDecrement.map((singlePill) => {
+      return singlePill.decrement({
+        dailyDosage: 1,
+      });
     });
-
-    res.send(walletItem);
+    res.send(decreaseDosage);
   } catch (error) {
     next(error);
   }
