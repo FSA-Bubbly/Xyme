@@ -4,57 +4,83 @@ import history from "../history";
 //action types
 const GET_WALLET = "GET_WALLET";
 const ADD_PILL_TO_WALLET = "ADD_PILL_TO_WALLET";
+const REMOVE_PILLS = 'REMOVE_PILL';
 
 //action creators
-const getWallet = pills => {
+const getWallet = (pills) => {
   return {
     type: GET_WALLET,
     pills,
   };
 };
 
-const _addPillToWallet = pill => {
+const _addPillToWallet = (pill) => {
   return {
     type: ADD_PILL_TO_WALLET,
-    pill
+    pill,
+  };
+};
+
+const _removePills = pills => {
+  return {
+    type: REMOVE_PILLS,
+    pills
   }
 };
 
 // thunks
-export const fetchWallet = user => {
-  return async dispatch => {
+export const fetchWallet = (user) => {
+  return async (dispatch) => {
     try {
-      const pills = await axios.get(`/api/wallet/${user.id}`);
+      const { data: pills } = await axios.get(`/api/wallet/${user.id}`);
       dispatch(getWallet(pills));
     } catch (error) {
       console.error(error);
     }
-  }
-}
+  };
+};
 
 export const addPillToWallet = (pill, history) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post("/api/wallet/add-pill", pill);
+      dispatch(_addPillToWallet(data));
+      history.push("/wallet");
+    } catch (error) {
+      const errMsg = error.response.data.error;
+      console.error(error);
+      alert(errMsg);
+    }
+  };
+};
+
+export const removePills = (userId, pills) => {
   return async dispatch => {
     try {
-      const { data } = await axios.post('/api/wallet/add-pill', pill);
-      dispatch(_addPillToWallet(data));
-      history.push('/wallet');
+      const { data: removedPills } = await axios.delete(
+        `/api/wallet/${userId}/remove`,
+      {
+        // headers for authorization here,
+        data: {
+          pills
+        }
+      });
+      const asNums = removedPills.map(pillId => parseInt(pillId));
+      dispatch(_removePills(asNums));
     } catch (error) {
       console.error(error);
-      alert(
-        'This medication does not exist!'
-      )
     }
   }
 }
 
-const initialState = [];
-
-export default function (state = initialState, action) {
+export default function (state = [], action) {
   switch (action.type) {
     case GET_WALLET:
       return action.pills;
     case ADD_PILL_TO_WALLET:
-      return action.pill;
+      return [...state, action.pill]
+    case REMOVE_PILLS:
+      return state.filter(pill => !action.pills.includes(pill.id))
     default:
       return state;
   }

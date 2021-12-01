@@ -9,9 +9,12 @@ const _checkWithVision = (vision) => ({
 export const checkWithVision = (pill) => {
 	return async (dispatch) => {
 		try {
-			console.log('check', pill);
-			const { data } = await axios.put(`/api/vision/`, { data: { pill } });
-
+			const formData = new FormData();
+			formData.append('file', pill);
+			// axios
+			// 	.post('https://httpbin.org/anything', formData)
+			// 	.then((res) => console.log(res));
+			const { data } = await axios.post(`/api/vision/`, formData);
 			dispatch(_checkWithVision(data));
 		} catch (error) {
 			console.error(error);
