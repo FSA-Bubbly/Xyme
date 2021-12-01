@@ -2,12 +2,10 @@ const router = require("express").Router();
 const fetch = require("node-fetch");
 
 const {
-  models: { User, Pill },
+  models: { User, Pill, Interaction },
 } = require("../db");
 
 const baseUrl = 'https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=';
-// RXCUIs provided come after the '=' above, separated by +s
-const format = '207106+152923+656659';
 
 module.exports = router;
 
@@ -19,13 +17,47 @@ router.get("/:userId", async (req, res, next) => {
         {model: Pill}
       ]
     });
+    const pills = user.pills.map(pill => pill.dataValues)
     const rxcuiString = user.pills.map(pill => pill.dataValues.rxcui)
       .join('+');
     const response = await fetch(`${baseUrl}${rxcuiString}`)
     const parsedResponse = await response.json();
-    const interactionPairs = parsedResponse.fullInteractionTypeGroup.map(x => x.fullInteractionType).flat().map(obj => obj.interactionPair).flat();
+    const interactionsArr = parsedResponse.fullInteractionTypeGroup
+    .map(obj => obj.fullInteractionType).flat().map(obj => (
+      {
+        med1: {
+          rxcui: obj.minConcept[0].rxcui,
+          name: obj.minConcept[0].name
+        },
+        med2: {
+          rxcui: obj.minConcept[1].rxcui,
+          name: obj.minConcept[1].name
+        },
+        interactionDesc: obj.interactionPair[0].description
+      }
+    ));
 
-    console.log(interactionPairs);
+    const interactionsObjs = interactionsArr.map(obj => {
+      let description = obj.interactionDesc;
+      let userId = user.id;
+      let med1Id, med2Id;
+      pills.map(pill => {
+        if (pill.rxcui === parseInt(obj.med1.rxcui)) {
+          med1Id = pill.id
+        }
+        if (pill.rxcui === parseInt(obj.med2.rxcui)) {
+          med2Id = pill.id
+        }
+    })
+      return {
+        interactionDesc: description,
+        userId,
+        med1Id,
+        med2Id
+      }
+    })
+    const intRes = await Interaction.bulkCreate(interactionsObjs);
+    res.json(intRes);
   } catch (error) {
     next(error);
   }

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchInteractions } from '../store/interactions';
 
 const Interactions = () => {
-  const { auth: user } = useSelector(s => s);
+  const { auth: user, interactions } = useSelector(s => s);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -12,8 +12,14 @@ const Interactions = () => {
 
   return (
     <div>
-      <h1>{user.firstName}</h1>
-      <h1>{user.id}</h1>
+      {console.log('component', interactions)}
+      {
+        interactions.length < 1 ? (
+          <h1>Loading...</h1>
+          ) : (
+          <h1>ayo</h1>
+        )
+      }
     </div>
   )
 }

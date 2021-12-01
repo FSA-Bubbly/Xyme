@@ -2,7 +2,7 @@
 
 const {
 	db,
-	models: { Pill, User, Wallet, PillConflict },
+	models: { Pill, User, Wallet, Interaction },
 } = require('../server/db');
 
 const drugNames = [
@@ -138,7 +138,6 @@ async function seed() {
 	const cj = await User.findByPk(2);
 	const jordan = await User.findByPk(3);
 	const sala = await User.findByPk(4);
-	// console.log(Object.keys(User.prototype));
 
 	const Adderall = await Pill.findByPk(2);
 	const Brilinta = await Pill.findByPk(10);
@@ -151,13 +150,14 @@ async function seed() {
 	await jordan.addPills([Brilinta, Adderall]);
 	await sala.addPills([Adderall, Brilinta, Cymbalta, Melatonin, Xanax]);
 
-	const conflict1 = await PillConflict.create({
-		rxcui1: 13,
-		rxcui2: 12,
-		conflictDescription: 'test',
+	const interaction1 = await Interaction.create({
+		interactionDesc: 'test'
 	});
 
-	await zack.addPillConflict(conflict1);
+	await interaction1.setMed1(Adderall);
+	await interaction1.setMed2(Brilinta);
+
+	await zack.addInteraction(interaction1);
 
 	console.log(`seeded ${drugNames.length} drugs and ${users.length} users`);
 	console.log(`seeded successfully`);
