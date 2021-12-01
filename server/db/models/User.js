@@ -1,66 +1,69 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
-const Pill = require('./Pill');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const Sequelize = require("sequelize");
+const db = require("../db");
+const Pill = require("./Pill");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+// const Wallet = require("./Wallet");
+
+var cron = require("node-cron");
 
 const SALT_ROUNDS = 5;
 
-const User = db.define('user', {
-	email: {
-		type: Sequelize.STRING,
-		unique: true,
-		allowNull: false,
-		validate: {
-			isEmail: true,
-		},
-	},
-	password: {
-		type: Sequelize.STRING,
-	},
-	firstName: {
-		type: Sequelize.STRING,
-		validate: {
-			properCase(name) {
-				if (
-					name[0] !== name[0].toUpperCase() &&
-					name.slice(1, name[name.length - 1]) !==
-						name.slice(1, name[name.length - 1]).toLowerCase()
-				) {
-					throw new Error('First name must be proper-case!');
-				}
-			},
-		},
-	},
-	lastName: {
-		type: Sequelize.STRING,
-		validate: {
-			properCase(name) {
-				if (
-					name[0] !== name[0].toUpperCase() &&
-					name.slice(1, name[name.length - 1]) !==
-						name.slice(1, name[name.length - 1]).toLowerCase()
-				) {
-					throw new Error('Last name must be proper-case!');
-				}
-			},
-		},
-	},
-	age: {
-		type: Sequelize.INTEGER,
-	},
-	height: {
-		type: Sequelize.INTEGER,
-	},
-	weight: {
-		type: Sequelize.INTEGER,
-	},
-	imageUrl: {
-		type: Sequelize.STRING,
-		validate: {
-			isUrl: true,
-		},
-	},
+const User = db.define("user", {
+  email: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false,
+    validate: {
+      isEmail: true,
+    },
+  },
+  password: {
+    type: Sequelize.STRING,
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    validate: {
+      properCase(name) {
+        if (
+          name[0] !== name[0].toUpperCase() &&
+          name.slice(1, name[name.length - 1]) !==
+            name.slice(1, name[name.length - 1]).toLowerCase()
+        ) {
+          throw new Error("First name must be proper-case!");
+        }
+      },
+    },
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    validate: {
+      properCase(name) {
+        if (
+          name[0] !== name[0].toUpperCase() &&
+          name.slice(1, name[name.length - 1]) !==
+            name.slice(1, name[name.length - 1]).toLowerCase()
+        ) {
+          throw new Error("Last name must be proper-case!");
+        }
+      },
+    },
+  },
+  age: {
+    type: Sequelize.INTEGER,
+  },
+  height: {
+    type: Sequelize.INTEGER,
+  },
+  weight: {
+    type: Sequelize.INTEGER,
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    validate: {
+      isUrl: true,
+    },
+  },
 });
 
 module.exports = User;
@@ -69,59 +72,79 @@ module.exports = User;
  * instanceMethods
  */
 User.prototype.correctPassword = function (candidatePwd) {
-	//we need to compare the plain version to an encrypted version of the password
-	return bcrypt.compare(candidatePwd, this.password);
+  //we need to compare the plain version to an encrypted version of the password
+  return bcrypt.compare(candidatePwd, this.password);
 };
 
 User.prototype.generateToken = function () {
-	return jwt.sign({ id: this.id }, process.env.JWT);
+  return jwt.sign({ id: this.id }, process.env.JWT);
 };
 
 /**
  * classMethods
  */
 User.authenticate = async function ({ email, password }) {
-	const user = await this.findOne({
-		where: { email },
-		include: { model: Pill },
-	});
-	if (!user || !(await user.correctPassword(password))) {
-		const error = Error('Incorrect userEmail/password');
-		error.status = 401;
-		throw error;
-	}
-	return user.generateToken();
+  const user = await this.findOne({
+    where: { email },
+    include: { model: Pill },
+  });
+  if (!user || !(await user.correctPassword(password))) {
+    const error = Error("Incorrect userEmail/password");
+    error.status = 401;
+    throw error;
+  }
+  return user.generateToken();
 };
 
 User.findByToken = async function (token) {
-	try {
-		const { id } = await jwt.verify(token, process.env.JWT);
-		const user = User.findOne({ where: { id: id }, include: { model: Pill } });
-		if (!user) {
-			throw 'nooo';
-		}
-		return user;
-	} catch (ex) {
-		const error = Error('bad token');
-		error.status = 401;
-		throw error;
-	}
+  try {
+    const { id } = await jwt.verify(token, process.env.JWT);
+    const user = User.findOne({ where: { id: id }, include: { model: Pill } });
+    if (!user) {
+      throw "nooo";
+    }
+    return user;
+  } catch (ex) {
+    const error = Error("bad token");
+    error.status = 401;
+    throw error;
+  }
 };
 
 /**
  * hooks
  */
 const hashPassword = async (user) => {
-	//in case the password has been changed, we want to encrypt it with bcrypt
-	if (user.changed('password')) {
-		user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
-	}
+  //in case the password has been changed, we want to encrypt it with bcrypt
+  if (user.changed("password")) {
+    user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
+  }
+};
+
+const task = cron.schedule(
+  " 0 0 * * *",
+  () => {
+    console.log(User);
+    // const wallet = User.wallet
+    // { dailyDosage = FrequencyPerDay }
+  },
+  {}
+);
+
+const callCronTask = () => {
+  task.start();
+  console.log("this is the userrrr", User.id);
 };
 
 User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
+User.afterCreate(callCronTask);
 User.beforeBulkCreate((users) => Promise.all(users.map(hashPassword)));
 
+// const helloworld = () => {
+//   console.log("hello");
+//   return "hello";
+// };
 
-
-
+// const result = helloworld();
+// console.log("this is the result", result);

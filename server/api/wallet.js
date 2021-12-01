@@ -9,8 +9,6 @@ const Wallet = require("../db/models/Wallet");
 
 module.exports = router;
 
-
-
 // found at /api/wallet/userId
 router.get("/:userId", async (req, res, next) => {
   try {
