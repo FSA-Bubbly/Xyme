@@ -15,9 +15,6 @@ const AddPillForm = () => {
 	const [frequencyPerDay, setFrequencyPerDay] = useState(0);
 	const [frequencyPerWeek, setFrequencyPerWeek] = useState(0);
 
-	console.log(frequencyPerDay);
-	console.log(frequencyPerWeek);
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const pillToAdd = {

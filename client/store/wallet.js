@@ -4,7 +4,8 @@ import history from "../history";
 //action types
 const GET_WALLET = "GET_WALLET";
 const ADD_PILL_TO_WALLET = "ADD_PILL_TO_WALLET";
-const REMOVE_PILLS = 'REMOVE_PILL';
+const REMOVE_PILLS = "REMOVE_PILL";
+const DECREASE_DOSAGE = "DECREASE_DOSAGE";
 
 //action creators
 const getWallet = (pills) => {
@@ -21,13 +22,19 @@ const _addPillToWallet = (pill) => {
   };
 };
 
-const _removePills = pills => {
+const _removePills = (pills) => {
   return {
     type: REMOVE_PILLS,
-    pills
-  }
+    pills,
+  };
 };
 
+const _decreaseDosage = (pills) => {
+  return {
+    type: DECREASE_DOSAGE,
+    pills,
+  };
+};
 // thunks
 export const fetchWallet = (user) => {
   return async (dispatch) => {
@@ -55,32 +62,50 @@ export const addPillToWallet = (pill, history) => {
 };
 
 export const removePills = (userId, pills) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       const { data: removedPills } = await axios.delete(
         `/api/wallet/${userId}/remove`,
-      {
-        // headers for authorization here,
-        data: {
-          pills
+        {
+          // headers for authorization here,
+          data: {
+            pills,
+          },
         }
-      });
-      const asNums = removedPills.map(pillId => parseInt(pillId));
+      );
+      const asNums = removedPills.map((pillId) => parseInt(pillId));
       dispatch(_removePills(asNums));
     } catch (error) {
       console.error(error);
     }
-  }
-}
+  };
+};
+
+export const decreaseDosage = (userId, pills) => {
+  return async (dispatch) => {
+    try {
+      const { data: updatedPills } = await axios.put("/api/dailypill", {
+        data: {
+          pills,
+          userId,
+        },
+      });
+      const asNums = updatedPills.map((pillId) => parseInt(pillId));
+      dispatch(_decreaseDosage(asNums));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
 
 export default function (state = [], action) {
   switch (action.type) {
     case GET_WALLET:
       return action.pills;
     case ADD_PILL_TO_WALLET:
-      return [...state, action.pill]
+      return [...state, action.pill];
     case REMOVE_PILLS:
-      return state.filter(pill => !action.pills.includes(pill.id))
+      return state.filter((pill) => !action.pills.includes(pill.id));
     default:
       return state;
   }

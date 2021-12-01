@@ -1,8 +1,10 @@
 const router = require('express').Router();
 module.exports = router;
 
-router.use('/users', require('./users'));
-router.use('/wallet', require('./wallet'));
+router.use("/users", require("./users"));
+router.use("/wallet", require("./wallet"));
+router.use("/interactions", require("./interactions"));
+router.use('/dailypill', require('./dailypill'))
 router.use('/vision', require('./vision'));
 
 router.use((req, res, next) => {
