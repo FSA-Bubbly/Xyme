@@ -57,7 +57,6 @@ router.get("/:userId", async (req, res, next) => {
       }
     })
     const intRes = await Interaction.bulkCreate(interactionsObjs);
-    console.log(intRes);
     res.json(intRes);
   } catch (error) {
     next(error);
