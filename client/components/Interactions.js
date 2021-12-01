@@ -17,7 +17,32 @@ const Interactions = () => {
         interactions.length < 1 ? (
           <h1>Loading...</h1>
           ) : (
-          <h1>ayo</h1>
+          <table>
+            <tr>
+              <th>Medication 1</th>
+              <th>Medication 2</th>
+              <th>Description</th>
+            </tr>
+            {
+              interactions.map(interaction => (
+                <tr key={interaction.id} >
+                  <td>
+                    {
+                    user.pills.map(pill => {
+                      if (pill.id === interaction.med1Id) return pill.name
+                    })}
+                  </td>
+                  <td>
+                    {
+                    user.pills.map(pill => {
+                      if (pill.id === interaction.med2Id) return pill.name
+                    })}
+                  </td>
+                  <td>{interaction.interactionDesc}</td>
+                </tr>
+              ))
+            }
+          </table>
         )
       }
     </div>
