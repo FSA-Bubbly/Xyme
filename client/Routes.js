@@ -11,6 +11,7 @@ import SinglePill from './components/SinglePill'
 import Interactions from "./components/Interactions";
 import { me } from "./store";
 import PillCalendar from "./components/PillCalendar";
+import DailyPillView from "./components/DailyPillView";
 
 /**
  * COMPONENT
@@ -36,6 +37,8 @@ class Routes extends Component {
             <Route exact path='/profile' component={Profile} />
             <Route exact path='/calendar' component={PillCalendar} />
             <Route exact path='/interactions' component={Interactions} />
+            <Route exact path='/dailypill' component={DailyPillView} />
+
 
             <Redirect to='/' />
           </Switch>

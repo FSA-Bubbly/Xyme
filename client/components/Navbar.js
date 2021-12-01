@@ -32,6 +32,12 @@ export function Navbar({ handleClick, isLoggedIn }) {
 
               <div className='hidden md:flex items-center space-x-1 mr-0 hover:border-b-6 hover:border-orange'>
                 <Link
+                  to='/dailypill'
+                  className='py-5 px-3 text-black hover:text-gray-900 u'
+                >
+                  daily pill
+                </Link>
+                <Link
                   to='/calendar'
                   className='py-5 px-3 text-black hover:text-gray-900 u'
                 >
