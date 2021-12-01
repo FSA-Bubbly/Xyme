@@ -41,6 +41,7 @@ import { fetchWallet } from "../store/wallet";
 const DailyPillView = () => {
   const { wallet: pills } = useSelector((s) => s);
   const currentUser = useSelector((state) => state.auth);
+  const [isChecked, setCheckbox] = useState(false)
 
   const dispatch = useDispatch();
 
@@ -62,7 +63,9 @@ const DailyPillView = () => {
 
   let pillsToUpdate = [];
   const handleTakenPills = () => {
-    dispatch(decreaseDosage(currentUser.id, pillsToUpdate));
+    dispatch(decreaseDosage(currentUser.id, pillsToUpdate))
+    dispatch(fetchWallet(currentUser))
+    document.getElementById('checkbox1').map((singlecheck) => singlecheck.checked = false);
   };
 
   const handlePillCheck = (evt) => {
@@ -152,6 +155,7 @@ const DailyPillView = () => {
                               ></span>
                               <span className="relative">
                                 <input
+                                  id='checkbox1'
                                   type="checkbox"
                                   value={pill.id}
                                   onChange={handlePillCheck}
