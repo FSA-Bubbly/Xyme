@@ -14,7 +14,10 @@ router.get("/:userId", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId);
     const userPills = await user.getPills();
+
+    //pills
     const pills = userPills.map((pill) => pill.dataValues);
+
     res.json(pills);
   } catch (error) {
     next(error);
