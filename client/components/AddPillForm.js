@@ -41,6 +41,7 @@ const AddPillForm = () => {
 				<input
 					name='pill-name'
 					value={pillName}
+					ref='pillName'
 					onChange={(e) => setPillName(e.target.value)}
 					placeholder='Enter pill name here'
 				/>
