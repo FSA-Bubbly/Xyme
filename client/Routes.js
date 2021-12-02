@@ -1,18 +1,20 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Signup } from './components/AuthForm';
-import Home from './components/Home';
-import Landing from './components/Landing';
-import Wallet from './components/Wallet';
-import AddPillForm from './components/AddPillForm';
-import Profile from './components/Profile';
-import SinglePill from './components/SinglePill';
-import Interactions from './components/Interactions';
-import { me } from './store';
-import PillCalendar from './components/PillCalendar';
-import DailyPillView from './components/DailyPillView';
-import Camera from './components/Camera';
+
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Login, Signup } from "./components/AuthForm";
+import Home from "./components/Home";
+import Landing from "./components/Landing";
+import Wallet from "./components/Wallet";
+import AddPillForm from "./components/AddPillForm";
+import Profile from "./components/Profile";
+import ProfileEdit from "./components/ProfileEdit";
+import SinglePill from "./components/SinglePill";
+import Interactions from "./components/Interactions";
+import { me } from "./store";
+
+import DailyPillView from "./components/DailyPillView";
+
 
 /**
  * COMPONENT
@@ -33,25 +35,26 @@ class Routes extends Component {
 						<Route exact path='/wallet' component={Wallet} />
 						<Route exact path='/wallet/add-pill' component={AddPillForm} />
 
-						<Route exact path='/wallet/select/:pillId' component={SinglePill} />
-						<Route exact path='/profile' component={Profile} />
-						<Route exact path='/calendar' component={PillCalendar} />
-						<Route exact path='/interactions' component={Interactions} />
-						<Route exact path='/dailypill' component={DailyPillView} />
-						<Route exact path='/camera' component={Camera} />
 
-						<Redirect to='/' />
-					</Switch>
-				) : (
-					<Switch>
-						<Route exact path='/' component={Landing} />
-						<Route exact path='/login' component={Login} />
-						<Route exact path='/signup' component={Signup} />
-					</Switch>
-				)}
-			</div>
-		);
-	}
+            <Route exact path='/wallet/select/:pillId' component={SinglePill} />
+            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/profile/edit' component={ProfileEdit} />
+            <Route exact path='/interactions' component={Interactions} />
+            <Route exact path='/dailypill' component={DailyPillView} />
+
+            <Redirect to='/' />
+          </Switch>
+        ) : (
+          <Switch>
+            <Route exact path='/' component={Landing} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={Signup} />
+          </Switch>
+        )}
+      </div>
+    );
+  }
+
 }
 
 /**

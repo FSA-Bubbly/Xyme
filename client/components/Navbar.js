@@ -30,50 +30,73 @@ export function Navbar({ handleClick, isLoggedIn }) {
                 </div>
               </div>
 
-              <div className='hidden md:flex items-center space-x-1 mr-0 hover:border-b-6 hover:border-orange'>
+              <div className='flex hidden md:flex items-center space-x-3 mr-0 hover:border-b-6 hover:border-orange'>
                 <Link
                   to='/dailypill'
-                  className='py-5 px-3 text-black hover:text-gray-900 u'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
                 >
-                  daily pill
-                </Link>
-                <Link
-                  to='/calendar'
-                  className='py-5 px-3 text-black hover:text-gray-900 u'
-                >
-                  calendar
+                  daily pills
+                  <img
+                    src='/dailypills.svg'
+                    alt='Monitoring'
+                    className=' mb-1 w-6 self-center'
+                  />
                 </Link>
                 <Link
                   to='/wallet'
-                  className='py-5 px-3 text-black hover:text-gray-900 u'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
                 >
                   wallet
-                </Link>
-                <Link
-                  to='/'
-                  className='py-5 px-3 text-black hover:text-gray-900 hover:border-b-6 hover:border-orange'
-                >
-                  <i className='fa fa-home'></i>
-                  home
+                  <img
+                    src='/walleticon.svg'
+                    alt='Monitoring'
+                    className=' mb-1 w-6 self-center'
+                  />
                 </Link>
                 <Link
                   to='/profile'
-                  className='py-5 px-3 text-black hover:text-gray-900 hover:border-b-6 hover:border-orange'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
                 >
                   profile
+                  <img
+                    src='/profile.svg'
+                    alt='Monitoring'
+                    className=' mb-1 w-6 self-center'
+                  />
                 </Link>
                 <Link
                   to='/interactions'
-                  className='py-5 px-3 text-black hover:text-gray-900 hover:border-b-6 hover:border-orange'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
                 >
                   interactions
+                  <img
+                    src='/pills-pill.svg'
+                    alt='Monitoring'
+                    className=' mb-1 w-6 self-center'
+                  />
                 </Link>{" "}
                 <Link
                   to='/'
-                  className='py-5 px-3 text-black hover:text-gray-900 hover:border-b-6 hover:border-orange'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
+                >
+                  home
+                  <img
+                    src='/home-.svg'
+                    alt='Monitoring'
+                    className=' mb-1 w-6 self-center'
+                  />
+                </Link>
+                <Link
+                  to='/'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
                   onClick={handleClick}
                 >
                   log out
+                  <img
+                    src='/logout.svg'
+                    alt='Monitoring'
+                    className=' mb-1 w-6 self-center'
+                  />
                 </Link>
               </div>
               {/* ---- mobile menu button ---- */}
@@ -118,23 +141,26 @@ export function Navbar({ handleClick, isLoggedIn }) {
               <div className=' hover:border-b-6 hover:border-orange  hidden md:flex items-center space-x-2 mr-0'>
                 <Link
                   to='/signup'
-                  className=' hover:border-b-6 hover:border-orange border-green py-5 px-3 text-black hover:text-gray-900'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
                 >
                   sign up
                 </Link>
-                <Link
-                  to='/'
-                  className='py-5 px-3 text-black hover:text-gray-900'
-                >
-                  <i className='fa fa-home'></i>
-                  home
-                </Link>
 
                 <Link
-                  className='py-5 px-3 text-black hover:text-gray-900'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
                   to='/login'
                 >
                   log in
+                </Link>
+                <Link
+                  to='/'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
+                >
+                  <img
+                    src='/home-.svg'
+                    alt='Monitoring'
+                    className=' mb-1 w-6 self-center'
+                  />
                 </Link>
               </div>
               {/* ---- mobile menu button ---- */}
