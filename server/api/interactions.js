@@ -23,19 +23,20 @@ router.get("/:userId", async (req, res, next) => {
     const response = await fetch(`${baseUrl}${rxcuiString}`)
     const parsedResponse = await response.json();
     const interactionsArr = parsedResponse.fullInteractionTypeGroup
-    .map(obj => obj.fullInteractionType).flat().map(obj => (
-      {
-        med1: {
-          rxcui: obj.minConcept[0].rxcui,
-          name: obj.minConcept[0].name
-        },
-        med2: {
-          rxcui: obj.minConcept[1].rxcui,
-          name: obj.minConcept[1].name
-        },
-        interactionDesc: obj.interactionPair[0].description
-      }
-    ));
+      .map(obj => obj.fullInteractionType).flat().map(obj => (
+        {
+          med1: {
+            rxcui: obj.minConcept[0].rxcui,
+            name: obj.minConcept[0].name
+          },
+          med2: {
+            rxcui: obj.minConcept[1].rxcui,
+            name: obj.minConcept[1].name
+          },
+          interactionDesc: obj.interactionPair[0].description
+        }
+      )
+    );
 
     const interactionsObjs = interactionsArr.map(obj => {
       let description = obj.interactionDesc;
@@ -56,7 +57,22 @@ router.get("/:userId", async (req, res, next) => {
         med2Id
       }
     })
-    const intRes = await Interaction.bulkCreate(interactionsObjs);
+    const checkInDb = await Promise.all (interactionsObjs
+      .map(async obj => {
+        let inDb = await Interaction.findOne({
+          where: {
+            interactionDesc: obj.interactionDesc,
+            userId: obj.userId,
+            med1Id: obj.med1Id,
+            med2Id: obj.med2Id
+          }
+      })
+      if (inDb === null) return obj;
+    }));
+
+    const addToDb = checkInDb.filter(ele => ele !== undefined);
+    const intRes = await Interaction.bulkCreate(addToDb);
+
     res.json(intRes);
   } catch (error) {
     next(error);

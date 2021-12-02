@@ -8,11 +8,12 @@ const Interactions = () => {
 
   useEffect(() => {
     dispatch(fetchInteractions(user));
-  }, []);
+  }, [...user.pills]);
 
   return (
     <div>
-      {console.log('component', interactions)}
+      {console.log('component', interactions.flat())}
+      {console.log('pills', user.pills)}
       {
         interactions.length < 1 ? (
           <h1>Loading...</h1>
@@ -24,7 +25,7 @@ const Interactions = () => {
               <th>Description</th>
             </tr>
             {
-              interactions.map(interaction => (
+              interactions.flat().map(interaction => (
                 <tr key={interaction.id} >
                   <td>
                     {
