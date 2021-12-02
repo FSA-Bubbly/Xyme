@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPillToWallet } from '../store/wallet';
@@ -13,6 +13,7 @@ const AddPillForm = () => {
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
 	const [frequencyPerDay, setFrequencyPerDay] = useState(0);
+	const nameRef = useRef();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -29,9 +30,14 @@ const AddPillForm = () => {
 		dispatch(addPillToWallet(pillToAdd, history));
 	};
 
+	const retrieveName = (visionPill) => {
+		setPillName(visionPill);
+		nameRef.current.focus();
+	};
+
 	return (
 		<div>
-			<Camera />
+			<Camera walletCallBack={retrieveName} />
 			<Link to={'/wallet'}>Cancel</Link>
 			<h3>New Pill:</h3>
 			<form id='add-pill' onSubmit={handleSubmit}>
@@ -41,6 +47,7 @@ const AddPillForm = () => {
 					value={pillName}
 					onChange={(e) => setPillName(e.target.value)}
 					placeholder='Enter pill name here'
+					ref={nameRef}
 				/>
 				<br />
 				<label htmlFor=''>Doseage:</label>
