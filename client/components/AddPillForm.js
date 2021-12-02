@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addPillToWallet } from "../store/wallet";
-import history from "../history";
-import DatePicker from "react-datepicker";
-
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPillToWallet } from '../store/wallet';
+import history from '../history';
+import DatePicker from 'react-datepicker';
+import Camera from './Camera';
 const AddPillForm = () => {
   const dispatch = useDispatch();
   const user = useSelector((s) => s.auth);
@@ -81,6 +81,7 @@ const AddPillForm = () => {
       </form>
     </div>
   );
+
 };
 
 export default AddPillForm;
