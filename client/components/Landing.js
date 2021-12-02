@@ -55,7 +55,7 @@ export const Landing = () => {
           <h1 className=' font-mont h-full my-4 text-3xl md:text-5xl text-black font-bold leading-tight text-center md:text-center slide-in-bottom-h1'>
             Xyme
           </h1>
-          <p className=' leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle '>
+          <p className=' mt-20 hidden leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle '>
             Your personalized medication and supplementation tracker.
           </p>
 
