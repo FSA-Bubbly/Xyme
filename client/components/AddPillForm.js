@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPillToWallet } from '../store/wallet';
+import { addInteractions } from '../store/interactions';
 import history from '../history';
 import DatePicker from 'react-datepicker';
 import Camera from './Camera';
+
 const AddPillForm = () => {
 	const dispatch = useDispatch();
-	const user = useSelector((s) => s.auth);
+	const { auth: user } = useSelector((s) => s);
 	const [pillName, setPillName] = useState('');
 	const [dosage, setDosage] = useState('');
 	const [startDate, setStartDate] = useState(new Date());
@@ -26,7 +28,11 @@ const AddPillForm = () => {
 			endDate,
 			frequencyPerDay,
 		};
-		dispatch(addPillToWallet(pillToAdd, history));
+		const addPillandInteraction = async () => {
+      await dispatch(addPillToWallet(pillToAdd, history));
+      dispatch(addInteractions(user));
+    }
+    addPillandInteraction();
 	};
 
 	return (

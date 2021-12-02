@@ -41,10 +41,13 @@ router.post("/", async (req, res, next) => {
         {model: Pill}
       ]
     });
-    console.log('pills', user.pills);
+    if (user.pills.length < 2) {
+      return res.json([])
+    }
+    // console.log('pills', user.pills);
     const rxcuiString = user.pills.map(pill => pill.dataValues.rxcui)
       .join('+');
-    console.log('API', rxcuiString)
+    // console.log('API', rxcuiString)
     const response = await fetch(`${baseUrl}${rxcuiString}`)
     const parsedResponse = await response.json();
     const interactionsArr = parsedResponse.fullInteractionTypeGroup

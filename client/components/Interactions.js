@@ -12,6 +12,7 @@ const Interactions = () => {
 
   return (
     <div className='flex flex-col'>
+      {console.log('user', user)}
       {console.log("component", interactions)}
       {interactions.length < 1 ? (
         <div className=' my-40 self-center text-center'>
