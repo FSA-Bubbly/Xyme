@@ -26,11 +26,12 @@ export const updateUser = (user, history) => {
   };
 };
 
-export const fetchUpdateUser = (userId) => {
+export const fetchUpdateUser = (userId,history) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`/api/users/${userId}`);
       dispatch(_fetchUpdateUser(data));
+      history.push("/profile");
     } catch (error) {
       console.error(error);
     }

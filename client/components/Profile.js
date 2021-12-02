@@ -3,19 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUpdateUser } from "../store/user";
 import history from "../history";
 import { Link } from "react-router-dom";
+import { useForceUpdate } from "react-spring/node_modules/@react-spring/shared";
 
 const Profile = () => {
   const user = useSelector((state) => state.auth);
-
+  const updatedUser = useSelector((state) => state.user);
+  console.log(updatedUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUpdateUser(user.id));
+    dispatch(fetchUpdateUser(user.id, history));
+    console.log("hellolo");
   }, []);
 
   return (
     <div>
-      <div classNameName='flex flex-col'>
+      <div className='flex flex-col'>
         {/* <p>Password: {user.password}</p> need to solve this */}
         <div className='flex self-center fadeIn w-full sm:full md:w-full p-20 sm:p-20 md:p-20 overflow-scroll '>
           <h1 className=' w-full self-center font-sans uppercase fadeIn p-2 md:text-2xl text-xl font-bold text-center text-gray-800 '>
@@ -25,16 +28,16 @@ const Profile = () => {
         <div className='flex items-center justify-center'>
           <div className='bg-white w-full  xs:1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 mt-10 rounded-lg'>
             <div className='flex items-center justify-center pt-10 flex-col'>
-              <img src={user.avatar} className=' w-32' />
+              <img src={updatedUser.avatar} className=' w-32' />
               <h1 className='text-gray-800 font-semibold text-xl mt-5'>
-                {user.firstName} {user.lastName}
+                {updatedUser.firstName} {updatedUser.lastName}
               </h1>
               <h1 className='text-gray-500 text-sm'></h1>
               <h1 className='text-gray-500 text-sm p-4 text-left'>
-                <p>Age: {user.age}</p>
-                <p>Height: {user.height}</p>
-                <p>Weight: {user.weight}</p>
-                <p>Email: {user.email}</p>
+                <p>Age: {updatedUser.age}</p>
+                <p>Height: {updatedUser.height}</p>
+                <p>Weight: {updatedUser.weight}</p>
+                <p>Email: {updatedUser.email}</p>
               </h1>
             </div>
             <div className='flex justify-center p-4'>
