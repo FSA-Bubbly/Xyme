@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { authenticate } from "../store";
 import { Link } from "react-router-dom";
 
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
+  const [userAvatar, setUserAvatar] = useState("/user1.svg");
 
   return (
     <div>
       {/* ---- form for sign up  ---- */}
-      <div className='container max-w-full mx-auto md:py-24 px-6'>
+      <div className='container max-w-full mx-auto md:py-20 px-6'>
         <div className='max-w-sm mx-auto px-6'>
           <div className='relative flex flex-wrap'>
             <div className='w-full relative'>
@@ -17,7 +18,6 @@ const AuthForm = (props) => {
                 <div className=' text-center font-semibold text-black'>
                   welcome
                 </div>
-                <div className='text-center font-base text-black'>subtitle</div>
               </div>
             </div>
           </div>
@@ -27,6 +27,28 @@ const AuthForm = (props) => {
         <form onSubmit={handleSubmit} name={name} className='mt-8'>
           <div className=' mx-auto max-w-sm '>
             <div className='py-1 flex flex-col'>
+              <label
+                className='px-30 mb-5 self-center text-xs text-gray-600 uppercase'
+                htmlFor=''
+              >
+                Select your Avatar:
+              </label>
+              <img src={userAvatar} className=' self-center w-32' />
+              <select
+                onChange={(e) => setUserAvatar(e.target.value)}
+                name='avatar'
+                id='avatar'
+                className=' self-end w-10'
+              >
+                <option value='/user1.svg'>1</option>
+                <option value='/user2.svg'>2</option>
+                <option value='/user3.svg'>3</option>
+                <option value='/user4.svg'>4</option>
+                <option value='/user5.svg'>5</option>
+                <option value='/user6.svg'>6</option>
+                <option value='/user7.svg'>7</option>
+                <option value='/user8.svg'>8</option>
+              </select>{" "}
               <span className='px-1 text-xs text-gray-600 uppercase'>
                 First Name
               </span>
@@ -119,7 +141,7 @@ const AuthForm = (props) => {
             </div>
             <button
               className=' flex justify-center mt-3 text-md
-              bg-nude w-full text-black
+              bg-nude w-full text-black rounded-3/4
               px-6 py-3 shadow-xl hover:text-black hover:bg-green'
             >
               {displayName}
@@ -209,6 +231,7 @@ const mapDispatch = (dispatch) => {
         const weight = evt.target.weight.value;
         const email = evt.target.email.value;
         const password = evt.target.password.value;
+        const avatar = evt.target.avatar.value;
         dispatch(
           authenticate(
             first,
@@ -218,6 +241,7 @@ const mapDispatch = (dispatch) => {
             weight,
             email,
             password,
+            avatar,
             formName
           )
         );
@@ -226,7 +250,17 @@ const mapDispatch = (dispatch) => {
         const email = evt.target.email.value;
         const password = evt.target.password.value;
         dispatch(
-          authenticate(null, null, null, null, null, email, password, formName)
+          authenticate(
+            null,
+            null,
+            null,
+            null,
+            null,
+            email,
+            password,
+            null,
+            formName
+          )
         );
       }
     },

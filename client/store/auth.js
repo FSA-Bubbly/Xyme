@@ -29,7 +29,7 @@ export const me = () => async (dispatch) => {
 };
 
 export const authenticate =
-  (first, last, age, height, weight, email, password, method) =>
+  (first, last, age, height, weight, email, password, avatar, method) =>
   async (dispatch) => {
     try {
       const res = await axios.post(`/auth/${method}`, {
@@ -40,6 +40,7 @@ export const authenticate =
         weight,
         email,
         password,
+        avatar,
       });
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());

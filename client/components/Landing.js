@@ -69,7 +69,7 @@ export const Landing = () => {
 
         <section
           ref={ref}
-          className=' mt-20 bg-nude  container mx-auto px-6 p-10 rounded-t'
+          className=' mt-20 bg-nude bg-opacity-20 container mx-auto px-6 p-10 rounded-t'
         >
           <h2 className=' font-serif fadeIn p-2 md:text-3xl  pt-5 md:pt-28 text-2xl font-bold text-center text-gray-800 mb-8 b'>
             Features

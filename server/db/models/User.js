@@ -58,11 +58,9 @@ const User = db.define("user", {
   weight: {
     type: Sequelize.INTEGER,
   },
-  imageUrl: {
+  avatar: {
     type: Sequelize.STRING,
-    validate: {
-      isUrl: true,
-    },
+    defaultValue: "/user1.svg",
   },
 });
 

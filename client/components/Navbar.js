@@ -35,13 +35,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   to='/dailypill'
                   className='py-5 px-3 text-black hover:text-gray-900 u'
                 >
-                  daily pill
-                </Link>
-                <Link
-                  to='/calendar'
-                  className='py-5 px-3 text-black hover:text-gray-900 u'
-                >
-                  calendar
+                  daily pills
                 </Link>
                 <Link
                   to='/wallet'
