@@ -6,38 +6,6 @@ import history from "../history";
 import DatePicker from "react-datepicker";
 import { fetchWallet } from "../store/wallet";
 
-//filter over that array and check if the date.now is greater than or equal  after the start date &&
-//
-
-//if the frequency on state is greater than 0
-//than we will render
-
-//daily pills state
-
-// we want to grab and render the pills depending on their frequency being 1 or 2, and the elapsed time from the date.now and the expected next time. At the end of the day we want to counter the expencted next time by 24 hours and restart the cycle.
-
-// backend has to adjust the expected next date when we've completed a full cycle.
-
-// backend also has to decipher which pills in wallet have frequency of 1 or 2.
-// if frequency of 1 - 0900
-// if frequency of 2 = 0900 and 2100
-
-// if date.now is before time slot 1, render pills with both frequency of 1 and 2
-
-// time slot 1 0900
-
-// if date.now is after time slot 1 but before time slot 2, render pills with only with frequency of 2
-
-//time slot 2 2100
-
-// if date.now is after both time slot 1 and after time slot 2, render neither pills with frequency of 1 or 2 (you've taken all pills for today)
-
-// when date.now is equal to 24 hours past the expected next date, expected next date gets increased by 24 hours and cycle restarts.
-
-// when the pill has been taken, we want to mark it off and adjust the pill in db to be taken/not taken, wallet view will reflect taken/not taken
-
-// every rest in cycle will reset the taken field to false
-
 const DailyPillView = () => {
   const { wallet: pills } = useSelector((s) => s);
   const currentUser = useSelector((state) => state.auth);
@@ -45,14 +13,15 @@ const DailyPillView = () => {
 
   const dispatch = useDispatch();
 
-  const date = new Date();
-  const dateNum = Date.parse(date);
+
+  const dateNum = Date.now();
 
   const filtered = pills.filter((eachpill) => {
-    const expDateinMs = Date.parse(eachpill.wallet.expectedNextDate);
+    const start = Date.parse(eachpill.wallet.startDate);
+    const end = Date.parse(eachpill.wallet.endDate)
     // console.log("current time", dateNum);
     // console.log("    exp time", expDateinMs);
-    if (dateNum >= expDateinMs && eachpill.wallet.dailyDosage > 0) {
+    if (dateNum >= start && eachpill.wallet.dailyDosage > 0 && dateNum <= end) {
       return eachpill.wallet;
     }
   });
