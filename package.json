@@ -3,6 +3,9 @@
   "version": "2.0.0",
   "description": "Welcome to Xyme! Your personalized medication and supplementation tracker.",
   "main": "index.js",
+  "engines": {
+    "node": "17.x"
+  },
   "scripts": {
     "build": "webpack",
     "build-css": "tailwindcss build src/styles.css -o public/style.css",

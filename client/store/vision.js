@@ -1,5 +1,8 @@
 import axios from 'axios';
 const USE_VISION = 'USE_VISION';
+import { getToken } from './auth';
+
+const token = getToken();
 
 export const _checkWithVision = (vision) => ({
 	type: USE_VISION,
@@ -11,7 +14,9 @@ export const checkWithVision = (pill) => {
 		try {
 			const formData = new FormData();
 			formData.append('file', pill);
-			const { data } = await axios.post(`/api/vision/`, formData);
+			const { data } = await axios.post(`/api/vision/`, formData, {
+				headers: { authorization: token },
+			});
 			dispatch(_checkWithVision(data));
 		} catch (error) {
 			console.error(error);
