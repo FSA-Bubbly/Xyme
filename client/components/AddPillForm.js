@@ -11,9 +11,8 @@ const AddPillForm = () => {
 	const [pillName, setPillName] = useState('');
 	const [dosage, setDosage] = useState('');
 	const [startDate, setStartDate] = useState(new Date());
-	const [expectedNextDate, setExpectedNextDate] = useState(new Date());
+	const [endDate, setEndDate] = useState(new Date());
 	const [frequencyPerDay, setFrequencyPerDay] = useState(0);
-	const [frequencyPerWeek, setFrequencyPerWeek] = useState(0);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -24,9 +23,8 @@ const AddPillForm = () => {
 				.toLowerCase()}`,
 			dosage,
 			startDate,
-			expectedNextDate,
+			endDate,
 			frequencyPerDay,
-			frequencyPerWeek,
 		};
 		dispatch(addPillToWallet(pillToAdd, history));
 	};
@@ -41,7 +39,6 @@ const AddPillForm = () => {
 				<input
 					name='pill-name'
 					value={pillName}
-					ref='pillName'
 					onChange={(e) => setPillName(e.target.value)}
 					placeholder='Enter pill name here'
 				/>
@@ -61,12 +58,12 @@ const AddPillForm = () => {
 					onChange={(date) => setStartDate(date)}
 				/>
 				<br />
-				<label htmlFor=''> When will you be taking the pill next:</label>
+				<label htmlFor=''> End Date:</label>
 				<DatePicker
-					selected={expectedNextDate}
+					selected={endDate}
 					placeholder='Enter date'
-					name='expectedNextDate'
-					onChange={(date) => setExpectedNextDate(date)}
+					name='endDate'
+					onChange={(date) => setEndDate(date)}
 				/>
 				<br />
 				<label htmlFor=''>Frequency Per Day:</label>
@@ -79,20 +76,6 @@ const AddPillForm = () => {
 					<option value='3'>3</option>
 					<option value='4'>4</option>
 				</select>{' '}
-				<br />
-				<label htmlFor=''>Frequency Per Week:</label>
-				<select
-					onChange={(e) => setFrequencyPerWeek(e.target.value)}
-					name='frequencyPerWeek'
-					id='frequencyPerWeek'>
-					<option value='1'>1</option>
-					<option value='2'>2</option>
-					<option value='3'>3</option>
-					<option value='4'>4</option>
-					<option value='5'>5</option>
-					<option value='6'>6</option>
-					<option value='7'>7</option>
-				</select>
 				<br />
 				<button type='submit'>Add to Wallet</button>
 			</form>

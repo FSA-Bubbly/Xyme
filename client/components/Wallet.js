@@ -123,7 +123,7 @@ const Wallet = () => {
                         </td>
                       <td className='px-5 py-5  border-b border-gray-200 bg-white text-sm'>
                         <p className='text-gray-900 whitespace-no-wrap'>
-                          Monday 2pm
+                          {pill.wallet.frequencyPerDay === 2 ? (<td>both morning and night</td>) : (<td>morning</td>)}
                         </p>
                       </td>
                       {
