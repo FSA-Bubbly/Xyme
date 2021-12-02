@@ -43,9 +43,8 @@ router.post("/add-pill", async (req, res, next) => {
       pillName,
       dosage,
       startDate,
-      expectedNextDate,
+      endDate,
       frequencyPerDay,
-      frequencyPerWeek,
     } = req.body;
     const user = await User.findByPk(userId);
     const [databaseId] = await Pill.findAll({
@@ -82,9 +81,8 @@ router.post("/add-pill", async (req, res, next) => {
         userId: userId,
         pillId: addedPill.id,
         startDate: startDate,
-        expectedNextDate: expectedNextDate,
+        endDate: endDate,
         frequencyPerDay: Number(frequencyPerDay),
-        frequencyPerWeek: Number(frequencyPerWeek),
         dailyDosage: Number(frequencyPerDay),
       });
 
@@ -102,9 +100,8 @@ router.post("/add-pill", async (req, res, next) => {
       userId: userId,
       pillId: databaseId.dataValues.id,
       startDate: startDate,
-      expectedNextDate: expectedNextDate,
+      endDate: endDate,
       frequencyPerDay: Number(frequencyPerDay),
-      frequencyPerWeek: Number(frequencyPerWeek),
       dailyDosage: Number(frequencyPerDay),
     });
     res.json(walletItem);
