@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addPillToWallet } from "../store/wallet";
+import { addInteractions } from "../store/interactions";
 import history from "../history";
 import DatePicker from "react-datepicker";
 
@@ -15,7 +16,7 @@ const AddPillForm = () => {
   const [frequencyPerDay, setFrequencyPerDay] = useState(0);
   const [frequencyPerWeek, setFrequencyPerWeek] = useState(0);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const pillToAdd = {
       userId: user.id,
@@ -29,6 +30,8 @@ const AddPillForm = () => {
       frequencyPerWeek,
     };
     dispatch(addPillToWallet(pillToAdd, history));
+    if (user.pills.includes(pillToAdd))
+    dispatch(addInteractions(user));
   };
 
   return (

@@ -8,41 +8,37 @@ const Interactions = () => {
 
   useEffect(() => {
     dispatch(fetchInteractions(user));
-  }, [...user.pills]);
+  }, []);
 
   return (
     <div>
-      {console.log('component', interactions.flat())}
+      {console.log('interactions', interactions)}
       {console.log('pills', user.pills)}
       {
         interactions.length < 1 ? (
           <h1>Loading...</h1>
           ) : (
           <table>
-            <tr>
-              <th>Medication 1</th>
-              <th>Medication 2</th>
-              <th>Description</th>
-            </tr>
-            {
-              interactions.flat().map(interaction => (
-                <tr key={interaction.id} >
-                  <td>
-                    {
-                    user.pills.map(pill => {
-                      if (pill.id === interaction.med1Id) return pill.name
-                    })}
-                  </td>
-                  <td>
-                    {
-                    user.pills.map(pill => {
-                      if (pill.id === interaction.med2Id) return pill.name
-                    })}
-                  </td>
-                  <td>{interaction.interactionDesc}</td>
-                </tr>
-              ))
-            }
+            <tbody>
+              <tr>
+                <th>Medication 1</th>
+                <th>Medication 2</th>
+                <th>Description</th>
+              </tr>
+              {/* {
+                interactions.flat().map(interaction => (
+                  <tr key={interaction.id} >
+                    <td>
+                      {interaction.med1.name}
+                    </td>
+                    <td>
+                      {interaction.med2.name}
+                    </td>
+                    <td>{interaction.interactionDesc}</td>
+                  </tr>
+                ))
+              } */}
+            </tbody>
           </table>
         )
       }
