@@ -94,6 +94,7 @@ const Wallet = () => {
                           </Link>
                         </td>
 
+
                         <td className=' text-center px-3 py-3  border-gray-200 bg-white text-sm'>
                           <span className='relative'>
                             <input
@@ -101,6 +102,7 @@ const Wallet = () => {
                               value={pill.id}
                               onChange={handleCheck}
                             ></input>
+
                           </span>
                         </td>
                       </tr>

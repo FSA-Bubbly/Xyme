@@ -94,6 +94,10 @@ User.authenticate = async function ({ email, password }) {
   return user.generateToken();
 };
 
+User.nodeReset = async function () {
+  console.log(this);
+};
+
 User.findByToken = async function (token) {
   try {
     const { id } = await jwt.verify(token, process.env.JWT);
@@ -119,21 +123,25 @@ const hashPassword = async (user) => {
   }
 };
 
-const task = cron.schedule(
-  " 0 0 * * *",
-  () => {
-    console.log(User);
-    // const wallet = User.wallet
-    // { dailyDosage = FrequencyPerDay }
-  },
-  {}
-);
-
-const callCronTask = () => {
+const callCronTask = (user) => {
+  const task = cron.schedule(
+    "0 0 0 * * *",
+    async () => {
+      try {
+        const userPills = await user.getPills();
+        userPills.map((pill) => {
+          const updateDosage = pill.wallet
+           updateDosage.update({ dailyDosage: updateDosage.frequencyPerDay });
+          return pill.dataValues;
+        });
+      } catch (error) {
+        next(error);
+      }
+    },
+    {}
+  );
   task.start();
-  console.log("this is the userrrr", User.id);
 };
-
 User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
 User.afterCreate(callCronTask);

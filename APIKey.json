@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bubbly-vision-333005",
+  "private_key_id": "e4399ac84d69b01ec9c22a165e6710f691a26714",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQCzZaIJcpz5rp5f\n6xjFSVku5CkdKgwGOQ1cGc5RcWHZ8AI4hphb36lY+nVS9y4+AnOCeqIGs57Cilnx\niB29yzk6WzE9O1b1saZe/m6DL1Rdbf62kz0Zu/rEh+v6ihzMZHubgnsgwKdv5ym2\nqeS9c7ChUPfCUFC3Gr0Nl9nQa9G/4k/2Pz29/LyOTHLYRvED9YFWPF9cia9oihLA\nX1NI3d9xviWSpWiw+6eHYFpOkoo6ulmpmQ9b4EXh2gdfLb8DzrxiLoUB6rKBm8Wa\nOXGkxqYdWgAsXUUJmZByY50gLCcHs7/6W64qI3pdbO06YtUOgGK1v9YNgAW+fIXw\nHn4asCRNAgMBAAECgf8n8XkioWJSNY8NzEq3op0405RT6gjDWfCfkR9fAt/GpqnX\n7CAAVMxgA2QcFO024VTWuHdbBqNSrXtZS/VTTOxxEdzkxVGXYvaoL/5rNx6RruwH\nusDf+frbx2fDYP0IhVcASQ0hPcQKJm4jPbCwfhHV2TFREpDmNA3j+OuGfHs3Pcvo\n2E0hMp6lCmfMyiEPMp7mTQV4wheeZCKtolxX8eJuOccks5Fp0qasQYUMD+9KV1Ub\nmVswSzilt50gxVpbCwnXw2S49ATn5+KXLNPt0Ay1yeZLon0y/mcH0+KpVN7UrXkC\nf4u/w4kVosy16ZMM87oKVxIuzlGBIIlGZhw4H50CgYEA+3Ej7jsYMLZmm3lrPBWJ\nUB4BM7NfhSbPipD2W0vBv90UlC7c7bBgdyKP9eUJA8Wf8KtL0uiLdOT/xtTJ6o32\n3dS6R8Wi544er93cXsMR28E+hW+Q26G2KR+Bur6mbtnyviw8+Rh3Ifpa0t02I1rj\nrVFrivn6aHxzzuNasoTAwrcCgYEAtqYn1ly4wnIgAIHpf7cPUDiVWZgwnVYDfuQX\n85juL9wG8ooNJSdFkPlxNiOOGRWMYnxdHfcmECEO+WA9vW+SuyKOIBtI9AFMnrwX\n04l+/egPwjgnNEHKPsscpcxWaxlT2snCYx3BhfsAqIbjjfAf9E2Sq4jYslH/jNKr\nm+W6PRsCgYBKCCXsHrognZPYcwd/yVeEn1D7R/T331V8FvJyLvv84bsNZj7mPOgq\nK6L3Y1gkJCvTUJwinRVydXpZsI1C4kmtRtUSDL7KLq4aWdhojkbTzTH7V73u7M4V\njZFEyp12RfWSyLOrI+jvuCbFrxwhjME8ZpyjbrarzPjMEWTC6xNWQQKBgCiFvJjm\ngWdCgq8aI3/eUVtu8lOqXD7L8oKYgGffKhkcK75runbfu6NqdB+ay8/s4/SFuvMG\n/j7d1sClBY2dz2QNSpL8+raIA0PEX1TjUHVsovJoGuqRHhnIXla6ewHP4LbNxH7Q\n/zqGcaLyKlI3UB+Xhk7gUZNedd/8bW5tDWC5AoGAHojLcfBY2zmPY3lsxW8v4QeZ\nWrNyKfxpr3dTrxEWq+0VDhWfstLaR5JiLIPKKt27l63IWHvL4XckSdpkz7xE1IXn\nV+tPdGBrembml0XstRERmol/SsD3ByYBF4xQHTYeVlPYTGmxNA5HTu2gwzmzz5hc\nZ0T54eKThuSYpUbHcxw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "bubble-vision@bubbly-vision-333005.iam.gserviceaccount.com",
+  "client_id": "110445831261786833903",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bubble-vision%40bubbly-vision-333005.iam.gserviceaccount.com"
+}
