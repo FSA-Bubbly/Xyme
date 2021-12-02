@@ -84,15 +84,12 @@ export const removePills = (userId, pills) => {
 export const decreaseDosage = (userId, pills) => {
   return async (dispatch) => {
     try {
-      const { data: updatedPills } = await axios.put(
-        `api/dailypill`,
-        {
-          data: {
-            pills,
-            userId
-          },
+      const { data: updatedPills } = await axios.put("/api/dailypill", {
+        data: {
+          pills,
+          userId,
         },
-      );
+      });
       const asNums = updatedPills.map((pillId) => parseInt(pillId));
       dispatch(_decreaseDosage(asNums));
     } catch (error) {

@@ -1,9 +1,10 @@
-const router = require("express").Router();
-const fetch = require("node-fetch");
+const router = require('express').Router();
+const fetch = require('node-fetch');
+const requireToken = require('./auth');
 
 const {
-  models: { User, Pill, Interaction },
-} = require("../db");
+	models: { User, Pill, Interaction },
+} = require('../db');
 
 module.exports = router;
 

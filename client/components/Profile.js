@@ -1,164 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from "../store/user";
+import { fetchUpdateUser } from "../store/user";
+import history from "../history";
+import { Link } from "react-router-dom";
+import { useForceUpdate } from "react-spring/node_modules/@react-spring/shared";
 
 const Profile = () => {
-  const user = useSelector(s => s.auth);
-  const [editing, setEditing] = useState(false);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [age, setAge] = useState('');
-  const [height, setHeight] = useState('');
-  const [weight, setWeight] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const user = useSelector((state) => state.auth);
+  const updatedUser = useSelector((state) => state.user);
+  console.log(updatedUser);
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const id = user.id;
-    const editedUser = {id, firstName, lastName, age, height, weight, email, password}
-    dispatch(updateUser(editedUser));
-    window.location = '/profile';
-  };
+  useEffect(() => {
+    dispatch(fetchUpdateUser(user.id, history));
+    console.log("hellolo");
+  }, []);
 
   return (
     <div>
-      {
-        !editing ? (
-          <div className='profile'>
-            <button
-              value='edit'
-              type='button'
-              onClick={() => setEditing(!editing)}
-            >Edit Profile</button>
-            <p>First Name: {user.firstName}</p>
-            <p>Last Name: {user.lastName}</p>
-            <p>Age: {user.age}</p>
-            <p>Height: {user.height}</p>
-            <p>Weight: {user.weight}</p>
-            <p>Email: {user.email}</p>
-            <p>Password: {user.password}</p> {/* need to solve this */}
+      <div className='flex flex-col'>
+        {/* <p>Password: {user.password}</p> need to solve this */}
+        <div className='flex self-center fadeIn w-full sm:full md:w-full p-20 sm:p-20 md:p-20 overflow-scroll '>
+          <h1 className=' w-full self-center font-sans uppercase fadeIn p-2 md:text-2xl text-xl font-bold text-center text-gray-800 '>
+            profile
+          </h1>
+        </div>
+        <div className='flex items-center justify-center'>
+          <div className='bg-white w-full  xs:1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 mt-10 rounded-lg'>
+            <div className='flex items-center justify-center pt-10 flex-col'>
+              <img src={updatedUser.avatar} className=' w-32' />
+              <h1 className='text-gray-800 font-semibold text-xl mt-5'>
+                {updatedUser.firstName} {updatedUser.lastName}
+              </h1>
+              <h1 className='text-gray-500 text-sm'></h1>
+              <h1 className='text-gray-500 text-sm p-4 text-left'>
+                <p>Age: {updatedUser.age}</p>
+                <p>Height: {updatedUser.height}</p>
+                <p>Weight: {updatedUser.weight}</p>
+                <p>Email: {updatedUser.email}</p>
+              </h1>
+            </div>
+            <div className='flex justify-center p-4'>
+              <div>
+                <Link
+                  to={`/profile/edit`}
+                  className='text-xs text-green-300 border-2 py-1 px-2 border-green-300'
+                >
+                  Edit Profile
+                </Link>
+              </div>
+            </div>
+            <div className='flex items-center justify-center mt-3 mb-6 flex-col'>
+              <h1 className='text-xs text-gray-500'>...</h1>
+              <div className='flex mt-2'>
+                <hr></hr>
+              </div>
+            </div>
           </div>
-        ) : (
-          <form className='mt-8' onSubmit={handleSubmit}>
-          <div className=' md:container md:mx-auto max-w-sm p-10  flex-shrink'>
-            <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>First Name</span>
-              <label htmlFor='firstName' />
-              <input
-                placeholder=''
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
-                name='firstName'
-                type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
-              />
-            </div>
-
-            <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Last Name</span>
-              <label htmlFor='lastName' />
-              <input
-                placeholder=''
-                value={lastName}
-                onChange={e => setLastName(e.target.value)}
-                name='lastName'
-                type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
-              />
-            </div>
-            <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Age</span>
-              <label htmlFor='age' />
-              <input
-                placeholder=''
-                value={age}
-                onChange={e => setAge(e.target.value)}
-                name='age'
-                type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
-              />
-            </div>
-            <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Height(ft)</span>
-              <label htmlFor='height' />
-              <input
-                placeholder=''
-                value={height}
-                onChange={e => setHeight(e.target.value)}
-                name='height'
-                type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
-              />
-            </div>
-            <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Weight(lbs)</span>
-              <label htmlFor='weight' />
-              <input
-                placeholder=''
-                value={weight}
-                onChange={e => setWeight(e.target.value)}
-                name='weight'
-                type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
-              />
-            </div>
-            <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Email</span>
-              <label htmlFor='email' />
-              <input
-                placeholder=''
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                name='email'
-                type='text'
-                className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
-              />
-            </div>
-            <div className='py-1'>
-              <span className='px-1 text-sm text-gray-600'>Password</span>
-              <label htmlFor='password'></label>
-              <input
-                name='password'
-                placeholder=''
-                type='password'
-                x-model='password'
-                className='text-md block px-3 py-2 rounded-lg w-full
-     bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none'
-              />
-            </div>
-            <button
-              className='mt-3 text-md
-              bg-nude w-full text-black rounded-lg
-              px-6 py-3 block shadow-xl hover:text-black hover:bg-green'
-              value='submit'
-              type='submit'
-            >
-              Submit
-            </button>
-            <button
-              className='mt-3 text-md
-              bg-nude w-full text-black rounded-lg
-              px-6 py-3 block shadow-xl hover:text-black hover:bg-green'
-              value='cancel'
-              type='button'
-              onClick={() => setEditing(!editing)}
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-        )
-      }
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Profile;
