@@ -17,7 +17,9 @@ router.get('/:userId', requireToken, async (req, res, next) => {
 		const userPills = await user.getPills();
 
 		//pills
-		const pills = userPills.map((pill) => pill.dataValues);
+		const pills = userPills.map((pill) => {
+			return pill.dataValues;
+		});
 
 		res.json(pills);
 	} catch (error) {
