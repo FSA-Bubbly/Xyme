@@ -21,6 +21,13 @@ const Interactions = () => {
         </div>
       ) : (
         <table>
+          <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-20 md:p-20 overflow-scroll '>
+            <h1 className=' font-sans uppercase fadeIn p-2 md:text-2xl pt-3 md:pt-28 text-xl font-bold text-center text-gray-800 '>
+              personal wallet
+            </h1>
+
+            <img src='/wallet.svg' alt='Monitoring' />
+          </div>
           <tr>
             <th>Medication 1</th>
             <th>Medication 2</th>

@@ -6,7 +6,7 @@ import { removePills } from "../store/wallet";
 
 const Wallet = () => {
   const { auth: user, wallet: pills } = useSelector((s) => s);
-  const [editing, setEditing] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,15 +24,9 @@ const Wallet = () => {
     }
   };
 
-  const handleCancel = () => {
-    setEditing(!editing);
-    pillsToRemove = [];
-  };
-
   const handleRemove = () => {
     if (pillsToRemove.length > 0) {
       dispatch(removePills(user.id, pillsToRemove));
-      setEditing(!editing);
     }
   };
 
@@ -42,7 +36,11 @@ const Wallet = () => {
         <h1>Loading...</h1>
       ) : (
         <>
-          <div className='flex self-center fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-20 md:p-20 overflow-scroll '>
+          <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-20 md:p-20 overflow-scroll '>
+            <h1 className=' font-sans uppercase fadeIn p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 '>
+              personal wallet
+            </h1>
+
             <img src='/wallet.svg' alt='Monitoring' />
           </div>
           <div className='flex -mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-scroll'>
@@ -68,7 +66,7 @@ const Wallet = () => {
                     .map((pill) => (
                       <tr
                         key={pill.id}
-                        className=' border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'
+                        className='shadow rounded-full border-b-10 border-t-8 border-nude  space-y-6 mt-30 px-5 py-5 bg-white text-sm'
                       >
                         <td className=' border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                           <div className='flex justify-center'>

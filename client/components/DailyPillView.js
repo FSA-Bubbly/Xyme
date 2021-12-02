@@ -82,10 +82,17 @@ const DailyPillView = () => {
     <div>
       <div className='flex flex-col'>
         {pills === undefined ? (
-          <h1>Loading...</h1>
+          <div className=' my-40 self-center text-center'>
+            {" "}
+            <img src='/loading.svg' className=' w-32' />
+            <h1>Loading...</h1>
+          </div>
         ) : (
           <>
-            <div className='flex self-center fadeIn w-full sm:1/2 md:w-1/3 overflow-scroll '>
+            <div className='flex flex-col self-center fadeIn w-full sm:1/2 md:w-1/3 overflow-scroll '>
+              <h1 className=' font-sans uppercase fadeIn p-2 md:text-2xl pt-3 md:pt-28 text-xl font-bold text-center text-gray-800 '>
+                medication for today
+              </h1>
               <img
                 className='p-20  md:p-30 lg:p-10'
                 src='/pill2.svg'
@@ -118,7 +125,7 @@ const DailyPillView = () => {
                       .map((pill) => (
                         <tr
                           key={pill.id}
-                          className=' border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'
+                          className=' shadow rounded-full border-b-10 border-t-8 border-nude   space-y-6 mt-30 px-5 py-5 bg-white text-sm'
                         >
                           <td className='border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                             <div className='text-center'>

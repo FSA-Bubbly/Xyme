@@ -10,13 +10,13 @@ const AuthForm = (props) => {
   return (
     <div>
       {/* ---- form for sign up  ---- */}
-      <div className='container max-w-full mx-auto md:py-20 px-6'>
+      <div className='container max-w-full mx-auto md:py-10 px-6'>
         <div className='max-w-sm mx-auto px-6'>
           <div className='relative flex flex-wrap'>
             <div className='w-full relative'>
               <div className='md:mt-6'>
                 <div className=' text-center font-semibold text-black'>
-                  welcome
+                  create an account
                 </div>
               </div>
             </div>

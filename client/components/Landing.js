@@ -35,7 +35,7 @@ export const Landing = () => {
   }, [inView]);
 
   return (
-    <div className='max-w-6xl mx-auto '>
+    <div className=' mx-auto '>
       <div className='rounded-lg overflow-auto container bg-nude pt-15 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center'>
         <div className='flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden lg:self-center'>
           <div className='self-center w-1/2 p-10 sm:p-20 md:p-30 '>
@@ -52,18 +52,18 @@ export const Landing = () => {
               alt='Syncing'
             />
           </div>
-          <h1 className=' font-mont h-full my-4 text-3xl md:text-5xl text-black font-bold leading-tight text-center md:text-center slide-in-bottom-h1'>
-            Xyme
+          <h1 className=' font-mont h-full my-5 text-3xl md:text-5xl text-black font-bold leading-tight text-center md:text-center slide-in-bottom-h1'>
+            xyme
           </h1>
-          <p className=' mt-20 hidden leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle '>
+          <p className=' mt-10 opacity-0 xl:opacity-1 leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle '>
             Your personalized medication and supplementation tracker.
           </p>
 
           <Link
             to='/login'
-            className='self-center w-10 h-full text-3xl md:text-5xl text-black'
+            className='m-8 self-center w-10 h-full text-3xl md:text-5xl text-black'
           >
-            <img src='https://cdn-icons-png.flaticon.com/512/481/481127.png'></img>
+            <img src='/starticon.svg'></img>
           </Link>
         </div>
 
