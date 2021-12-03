@@ -34,7 +34,6 @@ export const updateUser = (user, history) => {
 export const fetchUpdateUser = (userId, history) => {
 	return async (dispatch) => {
 		try {
-			console.log(TOKEN);
 			const { data } = await axios.get(`/api/users/${userId}`, {
 				headers: { authorization: token },
 			});

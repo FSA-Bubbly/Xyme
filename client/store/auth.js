@@ -1,7 +1,7 @@
 import axios from 'axios';
 import history from '../history';
 
-const TOKEN_NAME = 'token';
+const TOKEN = 'token';
 
 /**
  * ACTION TYPES
@@ -17,7 +17,8 @@ const setAuth = (auth) => ({ type: SET_AUTH, auth });
  * THUNK CREATORS
  */
 export const me = () => async (dispatch) => {
-	const token = window.localStorage.getItem(TOKEN_NAME);
+	const token = window.localStorage.getItem(TOKEN);
+	console.log('me', token);
 	if (token) {
 		const res = await axios.get('/auth/me', {
 			headers: {
@@ -42,7 +43,9 @@ export const authenticate =
 				password,
 				avatar,
 			});
-			window.localStorage.setItem(TOKEN_NAME, res.data.token);
+			console.log('authenticate', res.data.token);
+			window.localStorage.setItem(TOKEN, res.data.token);
+
 			dispatch(me());
 			history.push('/');
 		} catch (authError) {
@@ -51,7 +54,7 @@ export const authenticate =
 	};
 
 export const logout = () => {
-	window.localStorage.removeItem(TOKEN_NAME);
+	window.localStorage.removeItem(TOKEN);
 	history.push('/login');
 	return {
 		type: SET_AUTH,
@@ -60,8 +63,8 @@ export const logout = () => {
 };
 
 export let getToken = () => {
-	console.log(window.localStorage.getItem('token'));
-	return window.localStorage.getItem(TOKEN_NAME);
+	const token = window.localStorage.getItem(TOKEN);
+	return token;
 };
 
 /**
