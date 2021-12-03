@@ -12,6 +12,7 @@ module.exports = router;
 const upload = multer();
 router.post(
 	'/',
+	requireToken
 	upload.single('file'),
 	async (req, res, next) => {
 		try {
