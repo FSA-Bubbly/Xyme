@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width initial-scale=1.0" />
@@ -19,33 +19,28 @@
       href="https://cdn.jsdelivr.net/npm/@zach.codes/react-calendar/dist/calendar-tailwind-no-reset.css"
       rel="stylesheet"
     />
-    <script src="https://apis.google.com/js/api.js" type="text/javascript"></script> 
+    <script
+      src="https://apis.google.com/js/api.js"
+      type="text/javascript"
+    ></script>
   </head>
-  <body className="text-grey-400 ">
+  <body class="dark:bg-gray-800 dark:text-gray-200 bg-nude">
     <div id="app"></div>
-    <style>
-      html,
-      body {
-        height: 100%;
-      }
 
-      @media (min-width: 640px) {
-        table {
-          display: inline-table !important;
-        }
+    <!-- <script>
+      const checkbox = document.querySelector("#checkbox");
+      const html = document.querySelector("html");
 
-        thead tr:not(:first-child) {
-          display: none;
-        }
-      }
+      const toggleDarkMode = function () {
+        console.log(checkbox);
+        // checkbox.checked
+        // ? html.classList.add("dark")
+        // : html.classList.remove("dark");
+      };
 
-      td:not(:last-child) {
-        border-bottom: 0;
-      }
+      toggleDarkMode();
 
-      th:not(:last-child) {
-        border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-      }
-    </style>
+      // checkbox.addEventListener("click", toggleDarkMode);
+    </script> -->
   </body>
 </html>
