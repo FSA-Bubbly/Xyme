@@ -105,20 +105,29 @@ router.post("/", async (req, res, next) => {
 
 router.delete(`/remove`, async (req, res, next) => {
   try {
-    const destroyed = [];
-    const yeet = Promise.all(req.body.pills.map(async int => {
-      const interactions = await Interaction.findAll({
+    const interactions = await Promise.all(req.body.pills.map(int => {
+      const interaction = Interaction.findAll({
         where: {
           [Op.or]: [
-            { pillId1: int },
-            { pillId2: int }
+            { med1Id: int },
+            { med2Id: int }
           ],
           userId: req.body.userId
         }
       })
+      return interaction;
     }))
-    // pull interaction ids from yeet somehow then delete them
-    res.json(yeet);
+
+    const intIds = interactions.flat().map(int => int.dataValues.id);
+
+    const destroyInts = await Promise.all(intIds.map(intId => {
+      const destroyedInt = Interaction.destroy({
+        where: {
+          id: intId
+        }
+      })
+    }))
+    res.json(intIds)
   } catch (error) {
     next(error);
   }

@@ -70,8 +70,7 @@ export default function (state = [], action) {
     case ADD_INTERACTIONS:
       return state
     case REMOVE_INTERACTIONS:
-      return state.filter((interaction) =>
-      (!action.interaction.includes(interaction.id)));
+      return state
     default:
       return state;
   }
