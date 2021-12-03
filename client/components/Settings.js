@@ -11,19 +11,35 @@ const Settings = () => {
   const html = document.querySelector("html");
 
   const toggleDarkMode = function () {
-    checkbox[0].checked
-      ? html.classList.add("dark")
-      : html.classList.remove("dark");
+    if (checkbox[0].checked) {
+      window.localStorage.setItem("theme", "dark");
+      const theme = window.localStorage.getItem("theme");
+      html.classList.add("dark");
+      console.log(theme);
+    } else {
+      window.localStorage.setItem("theme", "light");
+      const theme = window.localStorage.getItem("theme");
+      html.classList.remove("dark");
+      console.log(theme);
+    }
+  };
+  const toggleNotification = function () {
+    if (checkbox[0].checked) {
+      //turn off notification
+    } else {
+      //turn on notification
+    }
   };
 
-  // toggleDarkMode();
+  //   ? html.classList.add("dark")
+  //   : html.classList.add("light");
 
   return (
     <div>
       <div className='flex flex-col'>
         {/* <p>Password: {user.password}</p> need to solve this */}
         <div className='flex self-center fadeIn w-full sm:full md:w-full p-20 sm:p-20 md:p-20 overflow-scroll '>
-          <h1 className=' w-full self-center font-sans uppercase fadeIn p-2 md:text-2xl text-xl font-bold text-center text-gray-800 '>
+          <h1 className=' w-full self-center font-sans uppercase fadeIn p-2 md:text-2xl text-xl font-bold text-center dark:text-gray-200 text-gray-800 '>
             Settings
           </h1>
 
@@ -32,13 +48,8 @@ const Settings = () => {
         <div className='flex items-center justify-center'>
           <div className='bg-white w-full  xs:1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 mt-10 rounded-lg dark:bg-gray-200'>
             <div className='flex items-center justify-center pt-10 flex-col'>
-              <img src={updatedUser.avatar} className=' w-32' />
-              <h1 className='text-gray-800 font-semibold text-xl mt-5'>
-                {updatedUser.firstName} {updatedUser.lastName}
-              </h1>
-              <h1 className='text-gray-500 text-sm'></h1>
-              <h1 className='text-gray-500 text-sm p-4 text-left'></h1>
-              <div>
+              <h1 className='text-gray-500 text-sm'>Theme</h1>
+              <div className='flex flex-col'>
                 {/*  this is the light dark theme/*/}
                 <input
                   type='checkbox'
@@ -47,29 +58,46 @@ const Settings = () => {
                   className='checkbox hidden'
                   onClick={toggleDarkMode}
                 />
-                <label htmlFor='checkbox' className='cursor-pointer'>
+                <label htmlFor='checkbox' className='cursor-pointer flex py-5'>
+                  <div className='text-xs text-gray-500 uppercase dark:text-gray-400 mx-2'>
+                    light
+                  </div>
                   <div className='w-11 h-4 flex items-center bg-gray-300 rounded-full p2 dark:bg-gray-300'>
                     <div className='switch-ball w-5 h-4 bg-white dark:bg-gray-500 rounded-full shadow'></div>
+                  </div>
+                  <div className='text-xs text-gray-500 uppercase dark:text-gray-400 mx-2'>
+                    dark
+                  </div>
+                </label>
+              </div>
+              <h1 className='text-gray-500 text-sm'>SMS Notifications</h1>
+              <div className='flex flex-col'>
+                {/*  this is the notification change/*/}
+                <input
+                  type='checkbox'
+                  name=''
+                  id='nofitication'
+                  className='nofitication hidden'
+                  onClick={toggleNotification}
+                />
+                <label
+                  htmlFor='nofitication'
+                  className='cursor-pointer flex py-5'
+                >
+                  <div className='text-xs text-gray-500 uppercase dark:text-gray-400 mx-2'>
+                    on
+                  </div>
+                  <div className='w-11 h-4 flex items-center bg-gray-300 rounded-full p2 dark:bg-gray-300'>
+                    <div className='nofitication w-5 h-4 bg-white dark:bg-gray-500 rounded-full shadow'></div>
+                  </div>
+                  <div className='text-xs text-gray-500 uppercase dark:text-gray-400 mx-2'>
+                    off
                   </div>
                 </label>
               </div>
             </div>
-            <div className='flex justify-center p-4'>
-              <div>
-                <Link
-                  to={`/profile/edit`}
-                  className='text-xs text-green-300 border-2 py-1 px-2 border-green-300'
-                >
-                  Edit Profile
-                </Link> 
-              </div>
-            </div>
-            <div className='flex items-center justify-center mt-3 mb-6 flex-col'>
-              <h1 className='text-xs text-gray-500'>...</h1>
-              <div className='flex mt-2'>
-                <hr></hr>
-              </div>
-            </div>
+
+            <div className='flex items-center justify-center mt-3 mb-6 flex-col'></div>
           </div>
         </div>
       </div>

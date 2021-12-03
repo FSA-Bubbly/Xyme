@@ -14,7 +14,7 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
 	try {
-		const { first, last, age, height, weight, email, password, avatar } =
+		const { first, last, age, height, weight, email, phone, morningReminder, nighttimeReminder, password, avatar } =
 			req.body;
 
 		const user = await User.create({
@@ -24,6 +24,9 @@ router.post('/signup', async (req, res, next) => {
 			weight: weight,
 			height: height,
 			email,
+			phone,
+			morningReminder,
+			nighttimeReminder,
 			password,
 			avatar: avatar,
 		});
