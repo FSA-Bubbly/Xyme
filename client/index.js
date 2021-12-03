@@ -9,7 +9,7 @@ import App from "./App";
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <App className='font-mont' />
+      <App className='font-mont ' />
     </Router>
   </Provider>,
   document.getElementById("app")

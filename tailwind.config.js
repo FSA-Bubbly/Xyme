@@ -1,10 +1,9 @@
 const colors = require("tailwindcss/colors");
 
-
 module.exports = {
   purge: [],
   presets: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     screens: {
       sm: "640px",
@@ -253,7 +252,7 @@ module.exports = {
       DEFAULT: "1",
     },
     fontFamily: {
-      mont: ['Montserrat'],
+      mont: ["Montserrat"],
 
       serif: [
         "ui-serif",
