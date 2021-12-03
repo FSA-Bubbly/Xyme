@@ -16,7 +16,7 @@ const AuthForm = (props) => {
             <div className='w-full relative'>
               <div className='md:mt-6'>
                 <div className=' text-center font-semibold text-black'>
-                  create an account
+                  {displayName === "Sign Up" ? "create an account" : "login"}
                 </div>
               </div>
             </div>
@@ -139,13 +139,15 @@ const AuthForm = (props) => {
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
               />
             </div>
-            <button
-              className=' flex justify-center mt-3 text-md
-              bg-nude w-full text-black rounded-3/4
-              px-6 py-3 shadow-xl hover:text-black hover:bg-green'
-            >
-              {displayName}
-            </button>
+            <div className='py-1 flex flex-col '>
+              <button
+                className=' self-center px-1 text-xs text-gray-500 uppercase  justify-center mt-3 text-md
+              bg-nude w-1/2 text-black rounded-full border-2 border-gray-500
+              px-6 py-3 shadow-xl hover:text-black hover:bg-white'
+              >
+                {displayName}
+              </button>
+            </div>
           </div>
         </form>
       ) : (
@@ -180,13 +182,15 @@ const AuthForm = (props) => {
                 bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white '
               />
             </div>
-            <button
-              className='mt-3 text-md
-            bg-nude w-full text-black
-            px-6 py-3 block shadow-xl hover:text-black hover:bg-green'
-            >
-              {displayName}
-            </button>
+            <div className='py-1 flex flex-col '>
+              <button
+                className=' self-center px-1 text-xs text-gray-500 uppercase  justify-center mt-3 text-md
+              bg-nude w-1/2 text-black rounded-full border-2 border-gray-500
+              px-6 py-3 shadow-xl hover:text-black hover:bg-white'
+              >
+                {displayName}
+              </button>
+            </div>
           </div>
         </form>
       )}{" "}

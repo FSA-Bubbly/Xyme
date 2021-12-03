@@ -87,6 +87,17 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   />
                 </Link>
                 <Link
+                  to='/settings'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
+                >
+                  settings
+                  <img
+                    src='/settings.svg'
+                    alt='Monitoring'
+                    className=' mb-1 w-6 self-center'
+                  />
+                </Link>
+                <Link
                   to='/'
                   className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
                   onClick={handleClick}
