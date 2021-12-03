@@ -1,8 +1,8 @@
 const router = require('express').Router();
+process.env.GOOGLE_APPLICATION_CREDENTIALS = 'APIKey.json';
 const fs = require('fs').promises;
 const axios = require('axios');
-const dotenv = require("dotenv").config();
-const key = process.env.GOOGLE_KEY;
+const key = 'AIzaSyC45clx_xZgEuF5gCSn9_ZQ8lhtRm0_R74';
 const multer = require('multer');
 const fetch = require('node-fetch');
 const requireToken = require('./auth');
@@ -12,7 +12,6 @@ module.exports = router;
 const upload = multer();
 router.post(
 	'/',
-	requireToken,
 	upload.single('file'),
 	async (req, res, next) => {
 		try {
@@ -50,6 +49,7 @@ router.post(
 				}
 				return accumulator;
 			}, []);
+			console.log(filteredDetections);
 			// Gets the rxnormId
 			for (const value of filteredDetections) {
 				const response = await fetch(`${rxUrl}${value}`);
@@ -59,6 +59,7 @@ router.post(
 				}
 			}
 
+			console.log(pills);
 			res.json(pills);
 		} catch (err) {
 			next(err);

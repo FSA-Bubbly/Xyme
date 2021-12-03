@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { getToken } from './auth';
 
+const token = getToken();
 const GET_INTERACTIONS = 'GET_INTERACTIONS';
 const ADD_INTERACTIONS = 'ADD_INTERACTIONS';
 const REMOVE_INTERACTIONS = 'REMOVE_INTERACTIONS';
@@ -29,7 +30,6 @@ const _removeInteractions = (interactions) => {
 export const fetchInteractions = (user) => {
 	return async (dispatch) => {
 		try {
-      const token = window.localStorage.getItem('token');
 			const { data } = await axios.get(`/api/interactions/${user.id}`, {
 				headers: { authorization: token },
 			});
@@ -43,10 +43,7 @@ export const fetchInteractions = (user) => {
 export const addInteractions = (user) => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem('token');
-      const { data } = await axios.post(`/api/interactions`, user, {
-        headers: { authorization: token }
-      });
+      const { data } = await axios.post(`/api/interactions`, user);
       dispatch(_addInteractions(data));
     } catch (error) {
       console.error(error);
@@ -57,9 +54,8 @@ export const addInteractions = (user) => {
 export const removeInteractions = (userId, pills) => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem('token');
+      console.log('user: ', userId, 'pills: ', pills)
       const { data } = await axios.delete(`/api/interactions/remove`, {
-        headers: { authorization: token },
         data: {
           userId,
           pills
