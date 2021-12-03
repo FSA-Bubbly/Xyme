@@ -1,12 +1,12 @@
-import axios from 'axios';
-import history from '../history';
+import axios from "axios";
+import history from "../history";
 
 const TOKEN_NAME = 'token';
 
 /**
  * ACTION TYPES
  */
-const SET_AUTH = 'SET_AUTH';
+const SET_AUTH = "SET_AUTH";
 
 /**
  * ACTION CREATORS
@@ -71,10 +71,10 @@ export let getToken = () => {
  * REDUCER
  */
 export default function (state = {}, action) {
-	switch (action.type) {
-		case SET_AUTH:
-			return action.auth;
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case SET_AUTH:
+      return action.auth;
+    default:
+      return state;
+  }
 }
