@@ -61,7 +61,7 @@ const Settings = () => {
                   className='text-xs text-green-300 border-2 py-1 px-2 border-green-300'
                 >
                   Edit Profile
-                </Link>
+                </Link> 
               </div>
             </div>
             <div className='flex items-center justify-center mt-3 mb-6 flex-col'>
