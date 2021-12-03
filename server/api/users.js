@@ -37,6 +37,9 @@ router.put('/:id', async (req, res, next) => {
 		const user = await User.findByPk(req.params.id);
 		res.send(await user.update(req.body));
 	} catch (error) {
-		next(error);
+		console.log('error', error);
+		// const errMsg = error[0].message;
+		// res.status(405).json(errMsg);
+		// next(error);
 	}
 });

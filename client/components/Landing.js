@@ -36,7 +36,7 @@ export const Landing = () => {
 
   return (
     <div className=' mx-auto '>
-      <div className='rounded-lg overflow-auto container bg-nude pt-15 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center'>
+      <div className='rounded-lg overflow-auto container pt-15 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center'>
         <div className='flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden lg:self-center'>
           <div className='self-center w-1/2 p-10 sm:p-20 md:p-30 '>
             <motion.img
@@ -52,7 +52,7 @@ export const Landing = () => {
               alt='Syncing'
             />
           </div>
-          <h1 className=' font-mont h-full my-5 text-3xl md:text-5xl text-black font-bold leading-tight text-center md:text-center slide-in-bottom-h1'>
+          <h1 className=' font-mont h-full my-5 text-3xl md:text-5xl  font-bold leading-tight text-center md:text-center slide-in-bottom-h1 '>
             xyme
           </h1>
           <p className=' mt-10 opacity-0 xl:opacity-1 leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle '>
@@ -69,9 +69,9 @@ export const Landing = () => {
 
         <section
           ref={ref}
-          className=' mt-20 bg-nude bg-opacity-20 container mx-auto px-6 p-10 rounded-t'
+          className=' mt-20  bg-opacity-20 container mx-auto px-6 p-10 rounded-t'
         >
-          <h2 className=' font-serif fadeIn p-2 md:text-3xl  pt-5 md:pt-28 text-2xl font-bold text-center text-gray-800 mb-8 b'>
+          <h2 className=' font-serif fadeIn p-2 md:text-3xl  pt-5 md:pt-28 text-2xl font-bold text-center text-gray-800 mb-8 b dark:text-gray-200'>
             Features
           </h2>
 
@@ -81,7 +81,7 @@ export const Landing = () => {
               animate={animation}
               className='w-full md:w-1/2'
             >
-              <h4 className='fadeIn mt-20 text-lg md:text-3xl font-bold leading-tight  md:text-left text-gray-800 mb-8'>
+              <h4 className='fadeIn mt-20 text-lg md:text-3xl font-bold leading-tight  md:text-left text-gray-800 mb-8 dark:text-gray-400'>
                 Check interactions
               </h4>
               <p className=' fadeIn text-gray-600 mb-8'>
@@ -105,7 +105,7 @@ export const Landing = () => {
               animate={animation}
               className='w-full md:w-1/2'
             >
-              <h4 className='text-lg md:text-3xl font-bold leading-tight  md:text-left text-gray-800 mb-8'>
+              <h4 className=' text-lg md:text-3xl font-bold leading-tight  md:text-left text-gray-800 mb-8 dark:text-gray-400'>
                 Manage your pills
               </h4>
               <p className='text-gray-600 mb-8'>
@@ -122,7 +122,7 @@ export const Landing = () => {
               animate={animation}
               className='w-full md:w-1/2 '
             >
-              <h4 className='text-lg md:text-3xl font-bold leading-tight  md:text-left text-gray-800 mb-8'>
+              <h4 className='text-lg md:text-3xl font-bold leading-tight  md:text-left text-gray-800 mb-8 dark:text-gray-400'>
                 Scan your pills
               </h4>
               <p className='text-gray-600 mb-8'>

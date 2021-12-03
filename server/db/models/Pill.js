@@ -14,10 +14,6 @@ const Pill = db.define('pill', {
 	},
 	rxcui: {
 		type: Sequelize.INTEGER,
-		// allowNull: false,
-		// validate: {
-		// 	notEmpty: true,
-		// },
 	},
 });
 
