@@ -11,7 +11,7 @@ const Wallet = require('../db/models/Wallet');
 module.exports = router;
 
 // found at /api/wallet/userId
-router.get('/:userId', requireToken async (req, res, next) => {
+router.get('/:userId', requireToken, async (req, res, next) => {
 	try {
 		const user = await User.findByPk(req.params.userId);
 		const userPills = await user.getPills();
@@ -28,7 +28,7 @@ router.get('/:userId', requireToken async (req, res, next) => {
 });
 
 // found at /api/wallet/select/pillId
-router.get('/select/:pillId', requireToken async (req, res, next) => {
+router.get('/select/:pillId', requireToken, async (req, res, next) => {
 	try {
 		const singlePill = await Pill.findByPk(req.params.pillId);
 		res.send(singlePill);
@@ -38,11 +38,10 @@ router.get('/select/:pillId', requireToken async (req, res, next) => {
 });
 
 // /api/wallet/add-pill
-router.post('/add-pill', requireToken async (req, res, next) => {
+router.post('/add-pill', requireToken, async (req, res, next) => {
 	try {
 		// console.log(req.body);
-		const { userId, pillName, startDate, endDate, frequencyPerDay } =
-			req.body;
+		const { userId, pillName, startDate, endDate, frequencyPerDay } = req.body;
 		const user = await User.findByPk(userId);
 		const [databaseId] = await Pill.findAll({
 			where: {
@@ -108,7 +107,7 @@ router.post('/add-pill', requireToken async (req, res, next) => {
 	}
 });
 
-router.delete(`/:userId/remove`, requireToken async (req, res, next) => {
+router.delete(`/:userId/remove`, requireToken, async (req, res, next) => {
 	try {
 		const user = await User.findByPk(req.params.userId);
 		const pills = req.body.pills;
