@@ -36,12 +36,12 @@ export const Landing = () => {
 
   return (
     <div className=' mx-auto '>
-      <div className='rounded-lg overflow-auto container pt-15 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center'>
-        <div className='flex flex-col w-1/2 xl:w-full justify-center lg:items-start overflow-y-hidden lg:self-center'>
-          <div className='self-center p-10 sm:p-20 md:p-30 '>
+      <div className='rounded-lg justify-center overflow-auto container pt-15 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center xl:mt-20 xl:pt-0'>
+        <div className='flex flex-col w-1/2 xl:w-full self-center lg:items-start overflow-y-hidden lg:self-center'>
+          <div className='self-center xs:mt- p-10 sm:p-20 md:p-20  xl:pt-0  '>
             <motion.img
-              className=' img rounded-full shadow-sm bg-nude'
-              initial={{ y: -100 }}
+              className='object-scale-down img rounded-full shadow-sm bg-nude'
+              initial={{ y: -80 }}
               animate={{
                 type: "bounce",
                 duration: 8,
