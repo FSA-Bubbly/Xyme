@@ -49,6 +49,7 @@ const DailyPillView = () => {
 
   return (
     <div>
+      {console.log('pills', pills)}
       <div className='flex flex-col'>
         {pills === undefined ? (
           <div className=' my-40 self-center text-center'>
