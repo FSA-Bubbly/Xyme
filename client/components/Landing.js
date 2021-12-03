@@ -37,8 +37,8 @@ export const Landing = () => {
   return (
     <div className=' mx-auto '>
       <div className='rounded-lg overflow-auto container pt-15 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center'>
-        <div className='flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden lg:self-center'>
-          <div className='self-center w-1/2 p-10 sm:p-20 md:p-30 '>
+        <div className='flex flex-col w-1/2 xl:w-full justify-center lg:items-start overflow-y-hidden lg:self-center'>
+          <div className='self-center p-10 sm:p-20 md:p-30 '>
             <motion.img
               className=' img rounded-full shadow-sm bg-nude'
               initial={{ y: -100 }}
@@ -52,10 +52,10 @@ export const Landing = () => {
               alt='Syncing'
             />
           </div>
-          <h1 className=' font-mont h-full my-5 text-3xl md:text-5xl  font-bold leading-tight text-center md:text-center slide-in-bottom-h1 '>
+          <h1 className='self-center font-mont h-full my-5 text-3xl md:text-5xl  font-bold leading-tight text-center md:text-center slide-in-bottom-h1 '>
             xyme
           </h1>
-          <p className=' mt-10 opacity-0 xl:opacity-1 leading-normal text-base md:text-2xl mb-8 text-center md:text-left slide-in-bottom-subtitle '>
+          <p className=' self-center mt-10 opacity-0 xl:opacity-1 leading-normal text-base md:text-2xl mb-8 text-center md:text-center slide-in-bottom-subtitle '>
             Your personalized medication and supplementation tracker.
           </p>
 
@@ -75,7 +75,7 @@ export const Landing = () => {
             Features
           </h2>
 
-          <div className='flex items-center flex-wrap mb-20 border-t-2 border-black'>
+          <div className='flex items-center flex-wrap mb-20 border-t-2 border-black dark:border-t-2 dark:border-gray-200'>
             <motion.div
               ref={ref}
               animate={animation}
@@ -116,7 +116,7 @@ export const Landing = () => {
             </motion.div>
           </div>
 
-          <div className='flex items-center flex-wrap mb-20 border-b-4 border-nude'>
+          <div className='flex items-center flex-wrap mb-20 border-b-2 border-black dark:border-b-2 dark:border-gray-200'>
             <motion.div
               ref={ref}
               animate={animation}
@@ -147,11 +147,8 @@ export const Landing = () => {
               alt='Syncing'
             />
           </div>
-          <h1 className=' font-serif h-full my-4 text-3xl md:text-5xl text-black font-bold leading-tight text-center md:text-center slide-in-bottom-h1'>
-            Xyme
-          </h1>
         </div>
-        <div className=' border-t-2 border-black w-full pt-16 pb-6 text-sm text-center md:text-left fade-in'>
+        <div className=' border-t-2 border-black w-full pt-16 pb-6 text-sm text-center md:text-left fade-in dark:border-t-2 dark:border-gray-200'>
           <a
             className=' text-gray-500 no-underline hover:no-underline'
             href='#'

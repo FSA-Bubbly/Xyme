@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width initial-scale=1.0" />
     <title>xyme</title>
-    <link rel="stylesheet" href="/style.css" />
+    <link id="mystylesheet" rel="stylesheet" href="/style.css" />
 
     <script defer src="/bundle.js"></script>
     <link
@@ -27,20 +27,14 @@
   <body class="dark:bg-gray-800 dark:text-gray-200 bg-nude">
     <div id="app"></div>
 
-    <!-- <script>
-      const checkbox = document.querySelector("#checkbox");
-      const html = document.querySelector("html");
-
-      const toggleDarkMode = function () {
-        console.log(checkbox);
-        // checkbox.checked
-        // ? html.classList.add("dark")
-        // : html.classList.remove("dark");
-      };
-
-      toggleDarkMode();
-
-      // checkbox.addEventListener("click", toggleDarkMode);
-    </script> -->
   </body>
+  <script>
+    const theme = window.localStorage.getItem("theme");
+    const html = document.querySelector("html");
+    if (theme === "dark") {
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+    }
+  </script>
 </html>

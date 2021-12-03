@@ -15,7 +15,7 @@ const AuthForm = (props) => {
           <div className='relative flex flex-wrap'>
             <div className='w-full relative'>
               <div className='md:mt-6'>
-                <div className=' text-center font-semibold text-black'>
+                <div className=' text-center font-semibold '>
                   {displayName === "Sign Up" ? "create an account" : "login"}
                 </div>
               </div>
@@ -38,7 +38,7 @@ const AuthForm = (props) => {
                 onChange={(e) => setUserAvatar(e.target.value)}
                 name='avatar'
                 id='avatar'
-                className=' self-end w-10'
+                className=' bg-nude self-end w-10 dark:bg-gray-200 dark:text-gray-800'
               >
                 <option value='/user1.svg'>1</option>
                 <option value='/user2.svg'>2</option>
@@ -57,8 +57,8 @@ const AuthForm = (props) => {
                 placeholder=''
                 name='firstName'
                 type='text'
-                className='flex self-center text-md block px-3 py-2  w-full
-     bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
               />
             </div>
 
@@ -71,8 +71,8 @@ const AuthForm = (props) => {
                 placeholder=''
                 name='lastName'
                 type='text'
-                className='flex self-center text-md block px-3 py-2  w-full
-                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
               />
             </div>
             <div className='py-1'>
@@ -82,8 +82,8 @@ const AuthForm = (props) => {
                 placeholder=''
                 name='age'
                 type='text'
-                className='flex self-center text-md block px-3 py-2  w-full
-                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
               />
             </div>
             <div className='py-1'>
@@ -95,8 +95,8 @@ const AuthForm = (props) => {
                 placeholder=''
                 name='height'
                 type='text'
-                className='flex self-center text-md block px-3 py-2  w-full
-                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
               />
             </div>
             <div className='py-1'>
@@ -108,8 +108,8 @@ const AuthForm = (props) => {
                 placeholder=''
                 name='weight'
                 type='text'
-                className='flex self-center text-md block px-3 py-2  w-full
-                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
               />
             </div>
             <div className='py-1'>
@@ -121,8 +121,8 @@ const AuthForm = (props) => {
                 placeholder=''
                 name='email'
                 type='text'
-                className='flex self-center text-md block px-3 py-2  w-full
-                bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white '
+                className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
               />
             </div>
             <div className='py-1'>
@@ -135,8 +135,8 @@ const AuthForm = (props) => {
                 placeholder=''
                 type='password'
                 x-model='password'
-                className='flex self-center text-md block px-3 py-2  w-full
-                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
               />
             </div>
             <div className='py-1 flex flex-col '>
@@ -163,8 +163,8 @@ const AuthForm = (props) => {
                 placeholder=''
                 name='email'
                 type='text'
-                className='flex self-center text-md block px-3 py-2  w-full
-                bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white '
+                className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
               />
             </div>
 
@@ -178,8 +178,8 @@ const AuthForm = (props) => {
                 placeholder=''
                 type='password'
                 x-model='password'
-                className='flex self-center text-md block px-3 py-2  w-full
-                bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white '
+                className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
               />
             </div>
             <div className='py-1 flex flex-col '>

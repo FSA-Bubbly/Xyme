@@ -12,12 +12,11 @@ const DailyPillView = () => {
 
   const dispatch = useDispatch();
 
-
   const dateNum = Date.now();
 
   const filtered = pills.filter((eachpill) => {
     const start = Date.parse(eachpill.wallet.startDate);
-    const end = Date.parse(eachpill.wallet.endDate)
+    const end = Date.parse(eachpill.wallet.endDate);
     // console.log("current time", dateNum);
     // console.log("    exp time", expDateinMs);
     if (dateNum >= start && eachpill.wallet.dailyDosage > 0 && dateNum <= end) {
@@ -59,7 +58,7 @@ const DailyPillView = () => {
         ) : (
           <>
             <div className='flex flex-col self-center fadeIn w-full sm:1/2 md:w-1/3 overflow-scroll '>
-              <h1 className=' font-sans uppercase fadeIn p-2 md:text-2xl pt-3 md:pt-28 text-xl font-bold text-center text-gray-800 '>
+              <h1 className=' font-sans uppercase fadeIn p-2 md:text-2xl pt-3 md:pt-28 text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800'>
                 medication for today
               </h1>
               <img
@@ -74,17 +73,17 @@ const DailyPillView = () => {
                 <table className='min-w-full leading-normal'>
                   <thead>
                     <tr className=''>
-                      <th className=' text-center px-5 py-3 border-b-2 border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider '>
+                      <th className='  dark:bg-gray-500 text-center px-5 py-3 border-b-2 border-gray-200 bg-nude dark:border-gray-800 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
                         Pill
                       </th>
-                      <th className=' text-center px-5 py-3 border-b-2 border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider'>
+                      <th className='  dark:bg-gray-500 text-center px-5 py-3 border-b-2 border-gray-200 bg-nude dark:border-gray-800 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
                         Name
                       </th>
-                      <th className='text-center px-5 py-3 border-b-2 border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider'>
+                      <th className='  dark:bg-gray-500 text-center px-5 py-3 border-b-2 border-gray-200 bg-nude dark:border-gray-800 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
                         Pills Left For Today
                       </th>
-                      <th className='text-center px-5 py-3 border-b-2 border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider'>
-                        Taken?
+                      <th className='  dark:bg-gray-500 text-center px-5 py-3 border-b-2 border-gray-200 bg-nude dark:border-gray-800 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
+                        Take pill
                       </th>
                     </tr>
                   </thead>
@@ -94,9 +93,9 @@ const DailyPillView = () => {
                       .map((pill) => (
                         <tr
                           key={pill.id}
-                          className=' shadow rounded-full border-b-10 border-t-8 border-nude   space-y-6 mt-30 px-5 py-5 bg-white text-sm'
+                          className=' dark:bg-gray-200 shadow rounded-full border-b-10 border-t-8 border-nude dark:border-gray-800  space-y-6 mt-30 px-5 py-5 bg-white text-sm'
                         >
-                          <td className='border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
+                          <td className='  dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                             <div className='text-center'>
                               <div className=' flex justify-center flex-shrink-0 w-10 h-10'>
                                 <img
@@ -116,19 +115,19 @@ const DailyPillView = () => {
                               key={pill.id}
                               pill={pill}
                             >
-                              <p className=' text-center text-gray-900 '>
+                              <p className='dark:bg-gray-200 text-center text-gray-900 '>
                                 {pill.name}, take {pill.wallet.frequencyPerDay}{" "}
                                 per day.
                               </p>
                             </Link>
                           </td>
-                          <td className=' text-center px-5 py-5  border-b border-gray-200 bg-white text-sm'>
+                          <td className=' text-center dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                             <p className=' text-center text-gray-900 whitespace-no-wrap'>
                               {pill.wallet.dailyDosage}
                             </p>
                           </td>
 
-                          <td className=' text-center px-5 py-5  border-gray-200 bg-white text-sm'>
+                          <td className=' text-center dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                             <span className=' text-center relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
                               <span
                                 aria-hidden
@@ -136,6 +135,7 @@ const DailyPillView = () => {
                               ></span>
                               <span className='relative'>
                                 <input
+                                  className=' dark:border-2 dark:border-gray-200 text-center'
                                   id='checkbox1'
                                   type='checkbox'
                                   value={pill.id}
