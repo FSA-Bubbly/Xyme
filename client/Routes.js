@@ -28,7 +28,7 @@ class Routes extends Component {
     const { isLoggedIn } = this.props;
 
     return (
-      <div className='p-4 flex-grow bg-nude font-mont text-black'>
+      <div className=' dark:bg-gray-800 dark:text-gray-100 p-4 flex-grow bg-nude font-mont text-black'>
         {isLoggedIn ? (
           <Switch>
             <Route exact path='/' component={Home} />
