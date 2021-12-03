@@ -42,6 +42,7 @@ const _decreaseDosage = (pills) => {
 export const fetchWallet = (user) => {
 	return async (dispatch) => {
 		try {
+			console.log(token);
 			const { data: pills } = await axios.get(`/api/wallet/${user.id}`, {
 				headers: { authorization: token },
 			});
