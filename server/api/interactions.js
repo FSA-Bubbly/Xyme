@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const fetch = require('node-fetch');
 const requireToken = require('./auth');
+const { Op } = require("sequelize");
 
 const {
 	models: { User, Pill, Interaction },
@@ -44,10 +45,8 @@ router.post("/", async (req, res, next) => {
     if (user.pills.length < 2) {
       return res.json([])
     }
-    // console.log('pills', user.pills);
     const rxcuiString = user.pills.map(pill => pill.dataValues.rxcui)
       .join('+');
-    // console.log('API', rxcuiString)
     const response = await fetch(`${baseUrl}${rxcuiString}`)
     const parsedResponse = await response.json();
     const interactionsArr = parsedResponse.fullInteractionTypeGroup
@@ -66,7 +65,6 @@ router.post("/", async (req, res, next) => {
         }
       )
     );
-    console.log('intObjs', interactionsArr);
     const interactionsObjs = interactionsArr.map(obj => {
       let description = obj.interactionDesc;
       let userId = user.id;
@@ -86,8 +84,41 @@ router.post("/", async (req, res, next) => {
         med2Id
       }
     })
-    const interactions = await Interaction.bulkCreate(interactionsObjs)
+
+    const interactions = Promise.all(interactionsObjs.map(async obj => {
+      const exists = await Interaction.findOne({
+        where: {
+          interactionDesc: obj.interactionDesc,
+          userId: obj.userId,
+          med1Id: obj.med1Id,
+          med2Id: obj.med2Id
+        }
+      })
+      if (exists === null) return await user.createInteraction(obj)
+    }))
+
     res.json(interactions);
+  } catch (error) {
+    next(error);
+  }
+})
+
+router.delete(`/remove`, async (req, res, next) => {
+  try {
+    const destroyed = [];
+    const yeet = Promise.all(req.body.pills.map(async int => {
+      const interactions = await Interaction.findAll({
+        where: {
+          [Op.or]: [
+            { pillId1: int },
+            { pillId2: int }
+          ],
+          userId: req.body.userId
+        }
+      })
+    }))
+    // pull interaction ids from yeet somehow then delete them
+    res.json(yeet);
   } catch (error) {
     next(error);
   }

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const GET_INTERACTIONS = 'GET_INTERACTIONS';
 const ADD_INTERACTIONS = 'ADD_INTERACTIONS';
+const REMOVE_INTERACTIONS = 'REMOVE_INTERACTIONS';
 
 const getInteractions = (interactions) => {
   return {
@@ -13,6 +14,13 @@ const getInteractions = (interactions) => {
 const _addInteractions = (interactions) => {
   return {
     type: ADD_INTERACTIONS,
+    interactions
+  }
+}
+
+const _removeInteractions = (interactions) => {
+  return {
+    type: REMOVE_INTERACTIONS,
     interactions
   }
 }
@@ -39,12 +47,31 @@ export const addInteractions = (user) => {
   }
 }
 
+export const removeInteractions = (userId, pills) => {
+  return async (dispatch) => {
+    try {
+      console.log('user: ', userId, 'pills: ', pills)
+      const { data } = await axios.delete(`/api/interactions/remove`, {
+        data: {
+          userId,
+          pills
+        }
+      })
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
 export default function (state = [], action) {
   switch (action.type) {
     case GET_INTERACTIONS:
       return action.interactions
     case ADD_INTERACTIONS:
-      return [...state, action.interactions]
+      return state
+    case REMOVE_INTERACTIONS:
+      return state.filter((interaction) =>
+      (!action.interaction.includes(interaction.id)));
     default:
       return state;
   }

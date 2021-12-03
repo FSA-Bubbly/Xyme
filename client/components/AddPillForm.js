@@ -28,11 +28,11 @@ const AddPillForm = () => {
 			endDate,
 			frequencyPerDay,
 		};
-		const addPillandInteraction = async () => {
+		const removePillandInteraction = async () => {
       await dispatch(addPillToWallet(pillToAdd, history));
       dispatch(addInteractions(user));
     }
-    addPillandInteraction();
+    removePillandInteraction();
 	};
 
 	return (
