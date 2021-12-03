@@ -29,7 +29,6 @@ const Camera = ({ walletCallBack }) => {
 				capture='environment'
 				ref={ref}
 				onChange={(event) => {
-					console.log(event.target.files[0]);
 					setSelectedImage(event.target.files[0]);
 					dispatch(checkWithVision(event.target.files[0]));
 					toggleModal();

@@ -60,7 +60,6 @@ export const logout = () => {
 };
 
 export let getToken = () => {
-	console.log(window.localStorage.getItem('token'));
 	return window.localStorage.getItem(TOKEN_NAME);
 };
 

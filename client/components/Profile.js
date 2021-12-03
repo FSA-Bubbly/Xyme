@@ -8,12 +8,10 @@ import { useForceUpdate } from "react-spring/node_modules/@react-spring/shared";
 const Profile = () => {
   const user = useSelector((state) => state.auth);
   const updatedUser = useSelector((state) => state.user);
-  console.log(updatedUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUpdateUser(user.id, history));
-    console.log("hellolo");
   }, []);
 
   return (
