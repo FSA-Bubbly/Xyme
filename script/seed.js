@@ -5,75 +5,6 @@ const {
 	models: { Pill, User, Wallet, Interaction },
 } = require('../server/db');
 
-const drugNames = [
-	'Acetaminophen',
-	'Adderall',
-	'Amitriptyline',
-	'Amlodipine',
-	'Amoxicillin',
-	'Ativan',
-	'Atorvastatin',
-	'Azithromycin',
-	'Benzonatate',
-	'Brilinta',
-	'Bunavail',
-	'Buprenorphine',
-	'Cephalexin',
-	'Ciprofloxacin',
-	'Citalopram',
-	'Clindamycin',
-	'Clonazepam',
-	'Cyclobenzaprine',
-	'Cymbalta',
-	'Doxycycline',
-	'Dupixent',
-	'Entresto',
-	'Entyvio',
-	'Farxiga',
-	'Fentanyl',
-	'Patch',
-	'Gabapentin',
-	'Gilenya',
-	'Humira',
-	'Hydrochlorothiazide',
-	'Hydroxychloroquine',
-	'Ibuprofen',
-	'Imbruvica',
-	'Invokana',
-	'Januvia',
-	'Jardiance',
-	'Kevzara',
-	'Lexapro',
-	'Lisinopril',
-	'Lofexidine',
-	'Loratadine',
-	'Lyrica',
-	'Melatonin',
-	'Meloxicam',
-	'Metformin',
-	'Methadone',
-	'Methotrexate',
-	'Metoprolol',
-	'Naloxone',
-	'Naltrexone',
-	'Naproxen',
-	'Omeprazole',
-	'Onpattro',
-	'Otezla',
-	'Ozempic',
-	'Pantoprazole',
-	'Prednisone',
-	'Probuphine',
-	'Rybelsus',
-	'Sublocade',
-	'Tramadol',
-	'Trazodone',
-	'Viagra',
-	'Wellbutrin',
-	'Xanax',
-	'Zubsolv',
-];
-
 const users = [
 	{
 		email: 'zack@gmail.com',
@@ -90,7 +21,7 @@ const users = [
 		email: 'cj@gmail.com',
 		password: '123',
 		firstName: 'Cj',
-		lastName: 'Lullaby',
+		lastName: 'Fung',
 		age: 30,
 		height: 66,
 		weight: 120,
@@ -100,7 +31,6 @@ const users = [
 		password: '123',
 		firstName: 'Jordan',
 		lastName: 'Broderson',
-		phone: '8457968027',
 		age: 28,
 		height: 60,
 		weight: 150,
@@ -109,8 +39,7 @@ const users = [
 		email: 'sala@gmail.com',
 		password: '123',
 		firstName: 'Sala',
-		lastName: 'Broderson',
-		phone: '8015541353',
+		lastName: 'Yoshida',
 		age: 28,
 		height: 60,
 		weight: 150,
@@ -125,15 +54,6 @@ async function seed() {
 	await db.sync({ force: true }); // clears db and matches models to tables
 	console.log('db synced!');
 
-	await Promise.all(
-		drugNames.map((drugName) =>
-			Pill.create({
-				name: drugName,
-				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-			})
-		)
-	);
-
 	await Promise.all(users.map((user) => User.create(user)));
 
 	const zack = await User.findByPk(1);
@@ -141,27 +61,7 @@ async function seed() {
 	const jordan = await User.findByPk(3);
 	const sala = await User.findByPk(4);
 
-	const Adderall = await Pill.findByPk(2);
-	const Brilinta = await Pill.findByPk(10);
-	const Cymbalta = await Pill.findByPk(19);
-	const Melatonin = await Pill.findByPk(39);
-	const Xanax = await Pill.findByPk(66);
-
-	await zack.addPills([Adderall, Cymbalta]);
-	await cj.addPills([Melatonin, Xanax]);
-	await jordan.addPills([Brilinta, Adderall]);
-	await sala.addPills([Adderall, Brilinta, Cymbalta, Melatonin, Xanax]);
-
-	const interaction1 = await Interaction.create({
-		interactionDesc: 'test'
-	});
-
-	await interaction1.setMed1(Adderall);
-	await interaction1.setMed2(Brilinta);
-
-	await zack.addInteraction(interaction1);
-
-	console.log(`seeded ${drugNames.length} drugs and ${users.length} users`);
+	console.log(`seeded ${users.length} users`);
 	console.log(`seeded successfully`);
 	// return {
 	//   users: {

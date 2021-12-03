@@ -15,11 +15,11 @@ export function Navbar({ handleClick, isLoggedIn }) {
   };
 
   return (
-    <header className='navbar font-mont'>
+    <header className=' navbar font-mont'>
       <div className='navbar font-mont'></div>
       {/* ---- if user is logged in ---- */}
       {isLoggedIn ? (
-        <nav className='bg-nude'>
+        <nav className=''>
           <div className='max-w-6xl mx-auto px-4'>
             <div className='flex justify-between'>
               <div className='flex space-x-4'>
@@ -33,7 +33,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
               <div className='flex hidden md:flex items-center space-x-3 mr-0 hover:border-b-6 hover:border-orange'>
                 <Link
                   to='/dailypill'
-                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase dark:text-gray-400'
                 >
                   daily pills
                   <img
@@ -44,7 +44,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                 </Link>
                 <Link
                   to='/wallet'
-                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase dark:text-gray-400'
                 >
                   wallet
                   <img
@@ -55,7 +55,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                 </Link>
                 <Link
                   to='/profile'
-                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase dark:text-gray-400'
                 >
                   profile
                   <img
@@ -66,7 +66,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                 </Link>
                 <Link
                   to='/interactions'
-                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase dark:text-gray-400'
                 >
                   interactions
                   <img
@@ -77,7 +77,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                 </Link>{" "}
                 <Link
                   to='/'
-                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase dark:text-gray-400'
                 >
                   home
                   <img
@@ -87,8 +87,19 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   />
                 </Link>
                 <Link
+                  to='/settings'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase dark:text-gray-400'
+                >
+                  settings
+                  <img
+                    src='/settings.svg'
+                    alt='Monitoring'
+                    className=' mb-1 w-6 self-center'
+                  />
+                </Link>
+                <Link
                   to='/'
-                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase dark:text-gray-400'
                   onClick={handleClick}
                 >
                   log out

@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPillToWallet } from '../store/wallet';
+import { addInteractions } from '../store/interactions';
 import history from '../history';
 import DatePicker from 'react-datepicker';
 import Camera from './Camera';
+
 const AddPillForm = () => {
 	const dispatch = useDispatch();
-	const user = useSelector((s) => s.auth);
+	const { auth: user } = useSelector((s) => s);
 	const [pillName, setPillName] = useState('');
 	const [dosage, setDosage] = useState('');
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
 	const [frequencyPerDay, setFrequencyPerDay] = useState(0);
+	const nameRef = useRef();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -26,12 +29,21 @@ const AddPillForm = () => {
 			endDate,
 			frequencyPerDay,
 		};
-		dispatch(addPillToWallet(pillToAdd, history));
+		const removePillandInteraction = async () => {
+      await dispatch(addPillToWallet(pillToAdd, history));
+      dispatch(addInteractions(user));
+    }
+    removePillandInteraction();
+	};
+
+	const retrieveName = (visionPill) => {
+		setPillName(visionPill);
+		nameRef.current.focus();
 	};
 
 	return (
 		<div>
-			<Camera />
+			<Camera walletCallBack={retrieveName} />
 			<Link to={'/wallet'}>Cancel</Link>
 			<h3>New Pill:</h3>
 			<form id='add-pill' onSubmit={handleSubmit}>
@@ -41,6 +53,7 @@ const AddPillForm = () => {
 					value={pillName}
 					onChange={(e) => setPillName(e.target.value)}
 					placeholder='Enter pill name here'
+					ref={nameRef}
 				/>
 				<br />
 				<label htmlFor=''>Doseage:</label>

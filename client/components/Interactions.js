@@ -12,7 +12,6 @@ const Interactions = () => {
 
   return (
     <div className='flex flex-col'>
-      {console.log("component", interactions)}
       {interactions.length < 1 ? (
         <div className=' my-40 self-center text-center'>
           {" "}
@@ -36,14 +35,10 @@ const Interactions = () => {
           {interactions.map((interaction) => (
             <tr key={interaction.id}>
               <td>
-                {user.pills.map((pill) => {
-                  if (pill.id === interaction.med1Id) return pill.name;
-                })}
+                {interaction.med1.name}
               </td>
               <td>
-                {user.pills.map((pill) => {
-                  if (pill.id === interaction.med2Id) return pill.name;
-                })}
+                {interaction.med2.name}
               </td>
               <td>{interaction.interactionDesc}</td>
             </tr>
