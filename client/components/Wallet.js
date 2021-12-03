@@ -5,8 +5,10 @@ import { fetchWallet } from "../store/wallet";
 import { removePills } from "../store/wallet";
 import { removeInteractions } from "../store/interactions";
 
-	const { auth: user, wallet: pills } = useSelector((s) => s);
-	const dispatch = useDispatch();
+const Wallet = () => {
+  const { auth: user, wallet: pills } = useSelector((s) => s);
+  console.log(user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchWallet(user));
