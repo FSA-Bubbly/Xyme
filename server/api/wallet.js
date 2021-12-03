@@ -41,7 +41,8 @@ router.get('/select/:pillId', requireToken, async (req, res, next) => {
 router.post('/add-pill', requireToken, async (req, res, next) => {
 	try {
 		// console.log(req.body);
-		const { userId, pillName, startDate, endDate, frequencyPerDay } = req.body;
+		const { userId, pillName, dosage, startDate, endDate, frequencyPerDay } =
+			req.body;
 		const user = await User.findByPk(userId);
 		const [databaseId] = await Pill.findAll({
 			where: {
