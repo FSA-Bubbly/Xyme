@@ -1,8 +1,8 @@
 import axios from 'axios';
 import history from '../history';
 import { getToken } from './auth';
-
 const token = getToken();
+
 const UPDATE_USER = 'UPDATE_USER';
 const FETCH_UPDATE_USER = 'FETCH_UPDATE_USER';
 
