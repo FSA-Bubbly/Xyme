@@ -1,6 +1,7 @@
 import axios from 'axios';
 import history from '../history';
 import { getToken } from './auth';
+const token = getToken();
 
 const UPDATE_USER = 'UPDATE_USER';
 const FETCH_UPDATE_USER = 'FETCH_UPDATE_USER';
@@ -18,10 +19,10 @@ const _fetchUpdateUser = (user) => ({
 export const updateUser = (user, history) => {
 	return async (dispatch) => {
 		try {
-      const token = window.localStorage.getItem('token');
 			const { data } = await axios.put(`/api/users/${user.id}`, user, {
 				headers: { authorization: token },
 			});
+			console.log('user route', data);
 			dispatch(_updateUser(data));
 			history.push('/profile');
 		} catch (error) {
@@ -33,7 +34,7 @@ export const updateUser = (user, history) => {
 export const fetchUpdateUser = (userId, history) => {
 	return async (dispatch) => {
 		try {
-			const token = window.localStorage.getItem('token');
+			console.log(TOKEN);
 			const { data } = await axios.get(`/api/users/${userId}`, {
 				headers: { authorization: token },
 			});

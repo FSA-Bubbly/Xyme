@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { getToken } from './auth';
 
+const token = getToken();
 const GET_SINGLE_PILL = 'GET_SINGLE_PILL';
 
 const _getPill = (pill) => {
@@ -13,7 +14,6 @@ const _getPill = (pill) => {
 export const fetchSinglePill = (pillId) => {
 	return async (dispatch) => {
 		try {
-      const token = window.localStorage.getItem('token');
 			const response = await axios.get(`/api/wallet/select/${pillId}`, {
 				headers: { authorization: token },
 			});
