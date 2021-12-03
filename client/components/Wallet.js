@@ -25,12 +25,6 @@ const Wallet = () => {
 		}
 	};
 
-	const handleRemove = () => {
-		if (pillsToRemove.length > 0) {
-			dispatch(removePills(user.id, pillsToRemove));
-		}
-	};
-
   const handleRemove = () => {
     if (pillsToRemove.length > 0) {
       dispatch(removePills(user.id, pillsToRemove));
