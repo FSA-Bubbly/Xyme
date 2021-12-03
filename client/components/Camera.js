@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkWithVision } from '../store/vision';
 import Modal from 'react-modal';
 
-const Camera = (props) => {
+const Camera = ({ walletCallBack }) => {
 	const [selectedImage, setSelectedImage] = useState(null);
 	const [showModal, setShowModal] = useState(false);
 	let visionImage = useSelector((state) => state.vision);
@@ -58,6 +58,7 @@ const Camera = (props) => {
 					<button
 						onClick={() => {
 							reset();
+							walletCallBack(imageDetails);
 						}}>
 						Yes
 					</button>
