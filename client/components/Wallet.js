@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchWallet } from '../store/wallet';
-import { removePills } from '../store/wallet';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchWallet } from "../store/wallet";
+import { removePills } from "../store/wallet";
+import { removeInteractions } from "../store/interactions";
 
 const Wallet = () => {
 	const { auth: user, wallet: pills } = useSelector((s) => s);
@@ -24,11 +25,17 @@ const Wallet = () => {
 		}
 	};
 
-	const handleRemove = () => {
-		if (pillsToRemove.length > 0) {
-			dispatch(removePills(user.id, pillsToRemove));
-		}
-	};
+  const handleRemove = () => {
+    if (pillsToRemove.length > 0) {
+      dispatch(removePills(user.id, pillsToRemove));
+    }
+
+    const removePillsandInteractions = async () => {
+      await dispatch(removeInteractions(user.id, pillsToRemove));
+      dispatch(removePills(user.id, pillsToRemove));
+    }
+    removePillsandInteractions();
+  };
 
 	return (
 		<div className='flex flex-col'>
@@ -40,7 +47,6 @@ const Wallet = () => {
 						<h1 className=' font-sans uppercase fadeIn p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 '>
 							personal wallet
 						</h1>
-
 						<img src='/wallet.svg' alt='Monitoring' />
 					</div>
 					<div className='flex -mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-scroll'>
