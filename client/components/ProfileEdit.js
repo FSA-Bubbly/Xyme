@@ -12,6 +12,9 @@ const ProfileEdit = () => {
   const [height, setHeight] = useState(`${user.height}`);
   const [weight, setWeight] = useState(`${user.weight}`);
   const [email, setEmail] = useState(`${user.email}`);
+  const [phone, setPhone] = useState(`${user.phone}`)
+  const [morningReminder, setMorningReminder] = useState(`${user.morningReminder}`)
+  const [nighttimeReminder, setNighttimeReminder] = useState(`${user.nighttimeReminder}`)
   const [password, setPassword] = useState(`${user.password}`);
   const [avatar, setAvatar] = useState(`${user.avatar}`);
   const dispatch = useDispatch();
@@ -27,6 +30,9 @@ const ProfileEdit = () => {
       height,
       weight,
       email,
+      phone,
+      morningReminder,
+      nighttimeReminder,
       password,
       avatar,
     };
@@ -165,6 +171,51 @@ const ProfileEdit = () => {
                         bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
                     />
                   </div>
+                  <div className='py-1'>
+                    <span className='px-1 text-xs text-gray-500 uppercase'>
+                      Phone
+                    </span>
+                    <label htmlFor='phone' />
+                    <input
+                      placeholder=''
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      name='phone'
+                      type='text'
+                      className='flex self-center text-md block px-3 py-2  w-full
+                        bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                    />
+                  </div>
+                  <div className="py-1">
+              <span className="px-1 text-xs text-gray-500 uppercase">
+                MORNING REMINDER: (optional)
+              </span>
+              <label htmlFor="morningReminder" />
+              <input
+                // defaultValue="09:00"
+                value={morningReminder}
+                onChange={(e) => setMorningReminder(e.target.value)}
+                name="morningReminder"
+                type="time"
+                className="flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white "
+              />
+            </div>
+
+            <div className="py-1">
+              <span className="px-1 text-xs text-gray-500 uppercase">
+                NIGHTTIME REMINDER: (optional)
+              </span>
+              <label htmlFor="nighttimeReminder" />
+              <input
+                value={nighttimeReminder}
+                onChange={(e) => setNighttimeReminder(e.target.value)}
+                name="nighttimeReminder"
+                type="time"
+                className="flex self-center text-md block px-3 py-2  w-full
+                bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white "
+              />
+            </div>
                   <div className='py-1'>
                     <span className='px-1 text-xs text-gray-500 uppercase'>
                       Password

@@ -50,13 +50,13 @@ router.post('/add-pill', requireToken, async (req, res, next) => {
 			},
 		});
 		// if pill not in our Pill table
-		if (databaseId === undefined) {
+		if (databaseId === undefined ) {
 			// initial API call for RXCUI
 			const response = await fetch(`${baseUrl}${pillName}`);
 			const parsedResponse = await response.json();
 			const rxcui = parsedResponse.idGroup.rxnormId;
 			// if name of pill user entered returns nothing from NIH API call
-			if (rxcui === undefined) {
+			if (rxcui === null) {
 				// const error = new Error("This medication does not exist!");
 				return res
 					.status(401)
