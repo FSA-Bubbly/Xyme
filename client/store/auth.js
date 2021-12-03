@@ -29,7 +29,7 @@ export const me = () => async (dispatch) => {
 };
 
 export const authenticate =
-	(first, last, age, height, weight, email, phone, morningReminder, nighttimeReminder, password, avatar, method) =>
+	(first, last, age, height, weight, email, password, avatar, method) =>
 	async (dispatch) => {
 		try {
 			const res = await axios.post(`/auth/${method}`, {
@@ -39,9 +39,6 @@ export const authenticate =
 				height,
 				weight,
 				email,
-				phone,
-				morningReminder,
-				nighttimeReminder,
 				password,
 				avatar,
 			});

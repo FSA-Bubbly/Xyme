@@ -18,9 +18,8 @@ const DailyPillView = () => {
   const filtered = pills.filter((eachpill) => {
     const start = Date.parse(eachpill.wallet.startDate);
     const end = Date.parse(eachpill.wallet.endDate)
-    console.log("current time", dateNum);
-    console.log("start", start);
-    console.log('end', end)
+    // console.log("current time", dateNum);
+    // console.log("    exp time", expDateinMs);
     if (dateNum >= start && eachpill.wallet.dailyDosage > 0 && dateNum <= end) {
       return eachpill.wallet;
     }
