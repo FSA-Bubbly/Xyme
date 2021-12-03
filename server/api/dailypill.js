@@ -9,7 +9,7 @@ const requireToken = require('./auth');
 module.exports = router;
 
 // found at /api/dailypill
-router.put('/', requireToken, async (req, res, next) => {
+router.put('/', requireToken async (req, res, next) => {
 	try {
 		const walletPillsToDecrement = await Wallet.findAll({
 			where: {
