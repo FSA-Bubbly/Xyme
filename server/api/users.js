@@ -1,10 +1,12 @@
 const router = require('express').Router();
+const requireToken = require('./auth');
+
 const {
 	models: { User },
 } = require('../db');
 module.exports = router;
 
-router.get('/', async (req, res, next) => {
+router.get('/', requireToken, async (req, res, next) => {
 	try {
 		const users = await User.findAll({
 			// explicitly select only the id and username fields - even though
@@ -18,7 +20,7 @@ router.get('/', async (req, res, next) => {
 	}
 });
 //api/users/profile/:id
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', requireToken, async (req, res, next) => {
 	try {
 		const user = await User.findByPk(
 			req.params.id
@@ -32,7 +34,7 @@ router.get('/:id', async (req, res, next) => {
 	}
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', requireToken, async (req, res, next) => {
 	try {
 		const user = await User.findByPk(req.params.id);
 		res.send(await user.update(req.body));
