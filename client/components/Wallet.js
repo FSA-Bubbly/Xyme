@@ -77,9 +77,9 @@ const Wallet = () => {
                     .map((pill) => (
                       <tr
                         key={pill.id}
-                        className=' dark:bg-gray-200 shadow rounded-full border-b-10 border-t-8 border-nude dark:border-gray-800  space-y-6 mt-30 px-5 py-5 bg-white text-sm'
+                        className=' dark:bg-gray-200 shadow rounded-full border-b-10 border-t-8 border-nude dark:border-gray-800 space-y-6 mt-30 px-5 py-5 bg-white text-sm'
                       >
-                        <td className='  dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
+                        <td className='  rounded-l-lg dark:bg-gray-200 border-green mt-30 px-5 py-5 bg-white text-sm'>
                           <div className='flex justify-center'>
                             <div className='flex w-10 h-10'>
                               <img
@@ -105,7 +105,7 @@ const Wallet = () => {
                           </Link>
                         </td>
 
-                        <td className=' text-center dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
+                        <td className=' rounded-r-lg text-center dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                           <span className='relative'>
                             <input
                               type='checkbox'
@@ -120,21 +120,19 @@ const Wallet = () => {
                   <tr></tr>
                 </tbody>
               </table>
-              <div className=' flex flex-row mt-2 border-t-40 border-nude dark:border-gray-800 px-5 py-5 border-t justify-around overflow-scroll min-w-20 '>
-                <div>
-                  <button className='text-xs text-orange border-2 py-2 px-4 border-orange   mx-5  rounded-full w-full self-center text-xs border-2 py-1 px-2  dark:text-gray-500 dark:border-orange hover:bg-orange hover:border-orange hover:text-white text-gray-800 '>
-                    <Link to='/wallet/add-pill' className='dark:text-grey-100'>
-                      Add to Wallet
-                    </Link>
+              <div className='  py-5  border-t flex flex-row xs:flex-row justify-center xs:justify-between   dark:border-gray-800 p-5 border-t  min-w-20 '>
+                <div className='inline-flex mt-2 xs:mt-0'>
+                  <button className='text-xs text-green-300 border-2  border-orange   text-orange mx-2  rounded-full w-full self-center text-xs text-green-300 border-2 py-1  px-1 xs:px-3 sm:px-4 md:px-5 dark:text-gray-500 dark:border-orange hover:bg-orange hover:border-orange hover:text-white text-gray-800 '>
+                    <Link to='/wallet/add-pill'>Add to Wallet</Link>
                   </button>
                 </div>
-                <div>
+                <div className='inline-flex mt-2 xs:mt-0  '>
                   {" "}
                   <button
                     value='remove'
                     type='button'
                     onClick={handleRemove}
-                    className='text-xs text-green-300 border-2 py-2 px-4 border-orange   text-orange mx-5  rounded-full w-full self-center text-xs text-green-300 border-2 py-1 px-2  dark:text-gray-500 dark:border-orange hover:bg-orange hover:border-orange hover:text-white text-gray-800 '
+                    className='text-xs text-green-300 border-2  border-orange   text-orange mx-2  rounded-full w-full self-center text-xs text-green-300 border-2 py-1 px-1 xs:px-3 sm:px-4 md:px-5 dark:text-gray-500 dark:border-orange hover:bg-orange hover:border-orange hover:text-white text-gray-800 '
                   >
                     Remove from Wallet
                   </button>

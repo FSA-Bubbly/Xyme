@@ -86,20 +86,18 @@ export const Landing = ({ isLoggedIn }) => {
             Features
           </h2>
 
-          <div className='flex items-center flex-wrap mb-20 border-t-2 border-black dark:border-t-2 dark:border-gray-200'>
+          <div className='flex items-center flex-wrap mb-20 border-t-2 border-black dark:border-t-1 dark:border-gray-200'>
             <motion.div
               ref={ref}
               animate={animation}
               className='w-full md:w-1/2'
             >
               <h4 className='fadeIn mt-20 text-lg md:text-3xl font-bold leading-tight  md:text-left text-gray-800 mb-8 dark:text-gray-400'>
-                Check interactions
+                Check Interactions
               </h4>
               <p className=' fadeIn text-gray-600 mb-8'>
-                Use xyme to scan your pills to a free hour, when our power of
-                choice is untrammelled and when nothing prevents our being able
-                to do what we like best, every pleasure is to be welcomed and
-                every pain avoided.
+                Use xyme to read about vital drug interactions to understand
+                which medications should not be taken together(US only).
               </p>
             </motion.div>
             <div className=' flex justify-center fadeIn w-full xs:w-1/2 md:w-1/2 p-10 sm:p-20 md:p-30 ml-30 '>
@@ -117,12 +115,13 @@ export const Landing = ({ isLoggedIn }) => {
               className='w-full md:w-1/2'
             >
               <h4 className=' text-lg md:text-3xl font-bold leading-tight  md:text-left text-gray-800 mb-8 dark:text-gray-400'>
-                Manage your pills
+                Manage your Medication
               </h4>
               <p className='text-gray-600 mb-8'>
-                Our certain circumstances and owing to the claims of duty or the
-                obligations of business it will frequently occur that pleasures
-                have to be repudiated and annoyances accepted.
+                Keeping track of all your meds can be difficult. Our user
+                friendly app will kindly send you SMS notifcations straight to
+                your phone morning and night. This way you never ever forget to
+                take your daily pills .
               </p>
             </motion.div>
           </div>
@@ -137,11 +136,8 @@ export const Landing = ({ isLoggedIn }) => {
                 Scan your pills
               </h4>
               <p className='text-gray-600 mb-8'>
-                Our Smart Health Monitoring Wristwatch allows you to sync data
-                across all your mobile devices circumstances and owing to the
-                claims of duty or the obligations of business it will frequently
-                occur that pleasures have to be repudiated and annoyances
-                accepted.
+                Simply take a photo of your pill bottle, and add your medication
+                to your personal wallet.
               </p>
             </motion.div>
             <div className=' flex justify-center w-full md:w-1/2 p-10 sm:p-20 md:p-30'>
@@ -164,6 +160,15 @@ export const Landing = ({ isLoggedIn }) => {
             className=' text-gray-500 no-underline hover:no-underline'
             href='#'
           >
+            {" "}
+            <p className='text-center text-xs'>
+              This product uses publicly available data from the U.S. National
+              Library of Medicine (NLM), National Institutes of Health,
+              Department of Health and Human Services; NLM is not responsible
+              for the product and does not endorse or recommend this or any
+              other product.
+            </p>
+            <br />
             &copy; xyme
           </a>
         </div>

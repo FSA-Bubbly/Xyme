@@ -20,7 +20,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
       {/* ---- if user is logged in ---- */}
       {isLoggedIn ? (
         <nav className=''>
-          <div className='max-w-6xl mx-auto px-4'>
+          <div className=' mx-auto px-4'>
             <div className='flex justify-between'>
               <div className='flex space-x-4'>
                 <div>
@@ -38,7 +38,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   daily pills
                   <img
                     src='/dailypills.svg'
-                    alt='Monitoring'
+
                     className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
@@ -49,7 +49,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   wallet
                   <img
                     src='/walleticon.svg'
-                    alt='Monitoring'
+
                     className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
@@ -60,7 +60,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   profile
                   <img
                     src='/profile.svg'
-                    alt='Monitoring'
+
                     className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
@@ -71,7 +71,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   interactions
                   <img
                     src='/interactionsicon.svg'
-                    alt='Monitoring'
+
                     className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>{" "}
@@ -82,7 +82,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   home
                   <img
                     src='/homeicon.svg'
-                    alt='Monitoring'
+
                     className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
@@ -93,7 +93,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   settings
                   <img
                     src='/settings.svg'
-                    alt='Monitoring'
+
                     className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>

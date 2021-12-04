@@ -75,16 +75,16 @@ const DailyPillView = () => {
                 <table className='min-w-full leading-normal'>
                   <thead>
                     <tr className=''>
-                      <th className='  dark:bg-gray-500 text-center px-5 py-3 border-b-2 border-gray-200 bg-nude dark:border-gray-800 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
+                      <th className=' dark:bg-gray-500 text-center px-5 py-3   bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
                         Pill
                       </th>
-                      <th className='  dark:bg-gray-500 text-center px-5 py-3 border-b-2 border-gray-200 bg-nude dark:border-gray-800 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
+                      <th className='  dark:bg-gray-500 text-center px-5 py-3   bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
                         Name
                       </th>
-                      <th className='  dark:bg-gray-500 text-center px-5 py-3 border-b-2 border-gray-200 bg-nude dark:border-gray-800 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
+                      <th className=' dark:bg-gray-500 text-center px-5 py-3  bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
                         Pills Left For Today
                       </th>
-                      <th className='  dark:bg-gray-500 text-center px-5 py-3 border-b-2 border-gray-200 bg-nude dark:border-gray-800 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
+                      <th className='  dark:bg-gray-500 text-center px-5 py-3 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
                         Take pill
                       </th>
                     </tr>
@@ -150,13 +150,13 @@ const DailyPillView = () => {
                       ))}
                   </tbody>
                 </table>
-                <div className='px-5 py-5  border-t flex flex-col xs:flex-row items-center xs:justify-between          '>
+                <div className='px-5 py-5  border-t flex flex-col xs:flex-row items-center xs:justify-between   '>
                   <div className='inline-flex mt-2 xs:mt-0'>
                     <button
-                      className='text-sm bg-white hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded'
+                      className='text-xs text-green-300 border-2  border-orange   text-orange mx-5  rounded-full w-full self-center text-xs text-green-300 border-2 py-1 px-2  dark:text-gray-500 dark:border-orange hover:bg-orange hover:border-orange hover:text-white text-gray-800 '
                       onClick={handleTakenPills}
                     >
-                      Submit Taken Pills
+                      Confirm
                     </button>
                   </div>
                 </div>

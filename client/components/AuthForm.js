@@ -183,7 +183,7 @@ const AuthForm = (props) => {
             </div>
 
             <div className='mt-10 py-1 flex flex-col '>
-              <button className='rounded-full w-1/3 self-center text-xs text-green-300 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800 '>
+              <button className='rounded-full w-1/3 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800 '>
                 {displayName}
               </button>
             </div>
@@ -223,7 +223,7 @@ const AuthForm = (props) => {
             </div>
 
             <div className=' mt-20  py-1 flex flex-col '>
-              <button className=' rounded-full w-1/3 self-center text-xs text-green-300 border-2 py-1 px-2  dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800 '>
+              <button className='rounded-full w-1/3 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
                 {displayName}
               </button>
             </div>
