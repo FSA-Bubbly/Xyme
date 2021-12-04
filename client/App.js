@@ -5,6 +5,7 @@ import Routes from "./Routes";
 import Footer from "./components/Footer";
 
 const App = () => {
+  
   return (
     <div className=' flex flex-col h-screen'>
       <Navbar className='dark:bg-gray-800 dark:text-gray-200 p-4 z-20' />

@@ -31,7 +31,7 @@ class Routes extends Component {
       <div className=' dark:bg-gray-800 dark:text-gray-100 p-4 flex-grow bg-nude font-mont text-black'>
         {isLoggedIn ? (
           <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' component={Landing} />
             <Route exact path='/wallet' component={Wallet} />
             <Route exact path='/wallet/add-pill' component={AddPillForm} />
 

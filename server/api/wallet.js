@@ -11,7 +11,7 @@ const Wallet = require('../db/models/Wallet');
 module.exports = router;
 
 // found at /api/wallet/userId
-router.get('/:userId', requireToken, async (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
 	try {
 		const user = await User.findByPk(req.params.userId);
 		const userPills = await user.getPills();
@@ -28,7 +28,7 @@ router.get('/:userId', requireToken, async (req, res, next) => {
 });
 
 // found at /api/wallet/select/pillId
-router.get('/select/:pillId', requireToken, async (req, res, next) => {
+router.get('/select/:pillId', async (req, res, next) => {
 	try {
 		const singlePill = await Pill.findByPk(req.params.pillId);
 		res.send(singlePill);
@@ -38,7 +38,7 @@ router.get('/select/:pillId', requireToken, async (req, res, next) => {
 });
 
 // /api/wallet/add-pill
-router.post('/add-pill', requireToken, async (req, res, next) => {
+router.post('/add-pill', async (req, res, next) => {
 	try {
 		// console.log(req.body);
 		const { userId, pillName, startDate, endDate, frequencyPerDay } =
@@ -50,13 +50,13 @@ router.post('/add-pill', requireToken, async (req, res, next) => {
 			},
 		});
 		// if pill not in our Pill table
-		if (databaseId === undefined) {
+		if (databaseId === undefined ) {
 			// initial API call for RXCUI
 			const response = await fetch(`${baseUrl}${pillName}`);
 			const parsedResponse = await response.json();
 			const rxcui = parsedResponse.idGroup.rxnormId;
 			// if name of pill user entered returns nothing from NIH API call
-			if (rxcui === undefined) {
+			if (rxcui === null) {
 				// const error = new Error("This medication does not exist!");
 				return res
 					.status(401)
@@ -108,7 +108,7 @@ router.post('/add-pill', requireToken, async (req, res, next) => {
 	}
 });
 
-router.delete(`/:userId/remove`, requireToken, async (req, res, next) => {
+router.delete(`/:userId/remove`, async (req, res, next) => {
 	try {
 		const user = await User.findByPk(req.params.userId);
 		const pills = req.body.pills;

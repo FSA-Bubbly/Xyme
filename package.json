@@ -52,7 +52,8 @@
     "react-intersection-observer": "^8.32.5",
     "react-modal": "^3.14.4",
     "react-spring": "^9.3.2",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "twilio": "^3.71.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
