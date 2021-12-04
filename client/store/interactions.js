@@ -44,7 +44,9 @@ export const addInteractions = (user) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem('token');
-      const { data } = await axios.post(`/api/interactions`, user);
+      const { data } = await axios.post(`/api/interactions`, user, {
+        headers: { authorization: token }
+      });
       dispatch(_addInteractions(data));
     } catch (error) {
       console.error(error);
@@ -60,8 +62,9 @@ export const removeInteractions = (userId, pills) => {
         data: {
           userId,
           pills
-        }
+        }, headers: { authorization: token }
       })
+      dispatch(removeInteractions(data));
     } catch (error) {
       console.error(error);
     }

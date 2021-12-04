@@ -120,8 +120,8 @@ router.delete(`/remove`, requireToken, async (req, res, next) => {
 
     const intIds = interactions.flat().map(int => int.dataValues.id);
 
-    const destroyInts = await Promise.all(intIds.map(intId => {
-      const destroyedInt = Interaction.destroy({
+    await Promise.all(intIds.map(intId => {
+      Interaction.destroy({
         where: {
           id: intId
         }
