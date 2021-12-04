@@ -30,7 +30,7 @@ const users = [
 		email: 'jordan@gmail.com',
 		password: '123',
 		firstName: 'Jordan',
-		lastName: 'Laguio',
+		lastName: 'Broderson',
 		age: 28,
 		height: 60,
 		weight: 150,
