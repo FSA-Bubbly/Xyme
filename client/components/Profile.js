@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUpdateUser } from "../store/user";
 import history from "../history";
 import { Link } from "react-router-dom";
-import { useForceUpdate } from "react-spring/node_modules/@react-spring/shared";
+
 
 const Profile = () => {
   const user = useSelector((state) => state.auth);

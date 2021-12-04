@@ -16,10 +16,10 @@ const DailyPillView = () => {
 
   const filtered = pills.filter((eachpill) => {
     const start = Date.parse(eachpill.wallet.startDate);
-    const end = Date.parse(eachpill.wallet.endDate)
+    const end = Date.parse(eachpill.wallet.endDate);
     console.log("current time", dateNum);
     console.log("start", start);
-    console.log('end', end)
+    console.log("end", end);
     if (dateNum >= start && eachpill.wallet.dailyDosage > 0 && dateNum <= end) {
       return eachpill.wallet;
     }
@@ -49,7 +49,7 @@ const DailyPillView = () => {
 
   return (
     <div>
-      {console.log('pills', pills)}
+      {console.log("pills", pills)}
       <div className='flex flex-col'>
         {pills === undefined ? (
           <div className=' my-40 self-center text-center'>
@@ -64,7 +64,7 @@ const DailyPillView = () => {
                 medication for today
               </h1>
               <img
-                className='p-20  md:p-30 lg:p-10'
+                className=' object-scale-down p-20  md:p-30 lg:p-10 '
                 src='/pill2.svg'
                 alt='Monitoring'
               />

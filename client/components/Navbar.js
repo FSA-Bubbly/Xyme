@@ -39,18 +39,18 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   <img
                     src='/dailypills.svg'
                     alt='Monitoring'
-                    className=' mb-1 w-6 self-center'
+                    className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
                 <Link
                   to='/wallet'
-                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase dark:text-gray-400'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase dark:text-gray-400  '
                 >
                   wallet
                   <img
                     src='/walleticon.svg'
                     alt='Monitoring'
-                    className=' mb-1 w-6 self-center'
+                    className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
                 <Link
@@ -61,7 +61,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   <img
                     src='/profile.svg'
                     alt='Monitoring'
-                    className=' mb-1 w-6 self-center'
+                    className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
                 <Link
@@ -70,9 +70,9 @@ export function Navbar({ handleClick, isLoggedIn }) {
                 >
                   interactions
                   <img
-                    src='/pills-pill.svg'
+                    src='/interactionsicon.svg'
                     alt='Monitoring'
-                    className=' mb-1 w-6 self-center'
+                    className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>{" "}
                 <Link
@@ -81,9 +81,9 @@ export function Navbar({ handleClick, isLoggedIn }) {
                 >
                   home
                   <img
-                    src='/home-.svg'
+                    src='/homeicon.svg'
                     alt='Monitoring'
-                    className=' mb-1 w-6 self-center'
+                    className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
                 <Link
@@ -94,19 +94,19 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   <img
                     src='/settings.svg'
                     alt='Monitoring'
-                    className=' mb-1 w-6 self-center'
+                    className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
                 <Link
                   to='/'
-                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase dark:text-gray-400'
+                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase dark:text-gray-400 '
                   onClick={handleClick}
                 >
                   log out
                   <img
                     src='/logout.svg'
                     alt='Monitoring'
-                    className=' mb-1 w-6 self-center'
+                    className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
               </div>
@@ -152,13 +152,13 @@ export function Navbar({ handleClick, isLoggedIn }) {
               <div className=' hover:border-b-6 hover:border-orange  hidden md:flex items-center space-x-2 mr-0'>
                 <Link
                   to='/signup'
-                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
+                  className=' p-20 flex flex-col px-1 text-xs text-gray-500 uppercase rounded-full  self-center text-xs text-green-300  py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'
                 >
                   sign up
                 </Link>
 
                 <Link
-                  className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
+                  className=' p-20 flex flex-col px-1 text-xs text-gray-500 uppercase rounded-full  self-center text-xs text-green-300  py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'
                   to='/login'
                 >
                   log in
@@ -168,7 +168,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   className=' flex flex-col px-1 text-xs text-gray-500 uppercase'
                 >
                   <img
-                    src='/home-.svg'
+                    src='/homeicon.svg'
                     alt='Monitoring'
                     className=' mb-1 w-6 self-center'
                   />

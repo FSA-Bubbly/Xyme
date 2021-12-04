@@ -23,6 +23,13 @@ const Settings = () => {
       console.log(theme);
     }
   };
+  const theme = window.localStorage.getItem("theme");
+  if (theme === "dark") {
+    checkbox.checked = false;
+  } else {
+    checkbox.checked = true;
+  }
+
   const toggleNotification = function () {
     if (checkbox[0].checked) {
       //turn off notification

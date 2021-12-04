@@ -43,14 +43,18 @@ const Wallet = () => {
         <h1>Loading...</h1>
       ) : (
         <>
-          <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-20 md:p-20 overflow-scroll '>
+          <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-scroll '>
             <h1 className=' font-sans uppercase fadeIn p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
               personal wallet
             </h1>
 
-            <img src='/wallet.svg' alt='Monitoring' />
+            <img
+              src='/wallet.svg'
+              alt='Monitoring'
+              className='object-scale-down'
+            />
           </div>
-          <div className='flex -mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-scroll'>
+          <div className='flex  sm:-mx-8 px-4 sm:px-8 py-4 overflow-scroll'>
             <div className='inline-block min-w-full shadow rounded-lg overflow-scroll'>
               <table className='min-w-full leading-normal'>
                 <thead>
@@ -116,17 +120,21 @@ const Wallet = () => {
                   <tr></tr>
                 </tbody>
               </table>
-              <div className=' mt-2 border-t-40 border-nude dark:border-gray-800  dark:bg-gray-200 px-5 py-5 border-t flex flex-col  items-center xs:justify-between overflow-scroll min-w-20 flex-shrink'>
-                <div className='flex flex-row flex-shrink'>
-                  <button className='text-xs text-green-300 border-2 py-2 px-4 border-green-300 dark:text-gray-500 dark:border-gray-300 text-gray-800 mx-5'>
-                    <Link to='/wallet/add-pill'>Add to Wallet</Link>
+              <div className=' flex flex-row mt-2 border-t-40 border-nude dark:border-gray-800 px-5 py-5 border-t justify-around overflow-scroll min-w-20 '>
+                <div>
+                  <button className='text-xs text-orange border-2 py-2 px-4 border-orange   mx-5  rounded-full w-full self-center text-xs border-2 py-1 px-2  dark:text-gray-500 dark:border-orange hover:bg-orange hover:border-orange hover:text-white text-gray-800 '>
+                    <Link to='/wallet/add-pill' className='dark:text-grey-100'>
+                      Add to Wallet
+                    </Link>
                   </button>
-
+                </div>
+                <div>
+                  {" "}
                   <button
                     value='remove'
                     type='button'
                     onClick={handleRemove}
-                    className='text-xs text-green-300 border-2 py-2 px-4 border-green-300 dark:text-gray-500 dark:border-gray-300 text-gray-800 mx-5'
+                    className='text-xs text-green-300 border-2 py-2 px-4 border-orange   text-orange mx-5  rounded-full w-full self-center text-xs text-green-300 border-2 py-1 px-2  dark:text-gray-500 dark:border-orange hover:bg-orange hover:border-orange hover:text-white text-gray-800 '
                   >
                     Remove from Wallet
                   </button>

@@ -12,7 +12,7 @@ import { useAnimation } from "framer-motion";
  * COMPONENT
  */
 
-export const Landing = () => {
+export const Landing = ({ isLoggedIn }) => {
   const { ref, inView } = useInView({
     threshold: 0.2,
   });
@@ -58,13 +58,24 @@ export const Landing = () => {
           <p className=' self-center mt-10 opacity-0 xl:opacity-1 leading-normal text-base md:text-2xl mb-8 text-center md:text-center slide-in-bottom-subtitle '>
             Your personalized medication and supplementation tracker.
           </p>
-
-          <Link
-            to='/login'
-            className='m-8 self-center w-10 h-full text-3xl md:text-5xl text-black'
-          >
-            <img src='/starticon.svg'></img>
-          </Link>
+          {isLoggedIn ? (
+            <Link
+              to='/login'
+              className='hidden m-8 self-center w-10 h-full text-3xl md:text-5xl text-black'
+            >
+              <img
+                src='/starticon.svg'
+                className='hidden m-8 self-center w-10 h-full text-3xl md:text-5xl text-black'
+              ></img>
+            </Link>
+          ) : (
+            <Link
+              to='/login'
+              className='m-8 self-center w-10 h-full text-3xl md:text-5xl text-black'
+            >
+              <img src='/starticon.svg'></img>
+            </Link>
+          )}
         </div>
 
         <section
@@ -91,7 +102,7 @@ export const Landing = () => {
                 every pain avoided.
               </p>
             </motion.div>
-            <div className=' flex justify-center fadeIn w-full md:w-1/2 p-10 sm:p-20 md:p-30 ml-30 '>
+            <div className=' flex justify-center fadeIn w-full xs:w-1/2 md:w-1/2 p-10 sm:p-20 md:p-30 ml-30 '>
               <img src='/pills-1.svg' alt='Monitoring' />
             </div>
           </div>
