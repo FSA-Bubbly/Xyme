@@ -6,6 +6,12 @@
   transition: transform 0.3s linear;
 }
 
+#nofitication:checked + label .nofitication {
+  background-color: bg-gray-500;
+  transform: translateX(24px);
+  transition: transform 0.3s linear;
+}
+
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 

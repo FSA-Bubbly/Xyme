@@ -15,7 +15,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
   };
 
   return (
-    <header className=' navbar font-mont'>
+    <header className='  navbar font-mont'>
       <div className='navbar font-mont'></div>
       {/* ---- if user is logged in ---- */}
       {isLoggedIn ? (
@@ -137,7 +137,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
           </div>
         </nav>
       ) : (
-        <nav className='bg-nude'>
+        <nav className=''>
           {/* ---- if user is not logged in---- */}
           <div className='max-w-6xl mx-auto px-4'>
             <div className='flex justify-between'>
