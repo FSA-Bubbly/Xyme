@@ -24,6 +24,10 @@ const User = db.define("user", {
       isEmail: true,
     },
   },
+  sms: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   phone: {
     type: Sequelize.STRING,
     unique: false,
@@ -194,7 +198,7 @@ const sendText = async (user) => {
         }
       }
     );
-    if (userPhone !== undefined || userPhone !== null) {
+    if (userPhone !== undefined || user.sms === true) {
       message.start();
     }
   }
@@ -217,7 +221,7 @@ const sendText = async (user) => {
         }
       }
     );
-    if (userPhone !== undefined || userPhone !== null) {
+    if (userPhone !== undefined && user.sms === true) {
       message.start();
     }
   }

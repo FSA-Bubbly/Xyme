@@ -125,6 +125,24 @@ const AuthForm = (props) => {
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
               />
             </div>
+
+            <div className='py-1'>
+                    <span className='px-1 text-xs text-gray-500 uppercase'>
+                      Do you wish to receive SMS reminders?
+                    </span>
+                    <label htmlFor='sms' />
+                    <input
+                      placeholder=''
+                      name='sms'
+                      type='checkbox'
+                      id='sms'
+                      // value = {toggleNotification}
+                      //  onClick={toggleNotification}
+                      className='sms flex self-center text-md block px-3 py-2  w-full
+                        bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                    />
+                  </div>
+
             <div className="py-1">
               <span className="px-1 text-xs text-gray-500 uppercase">
                 Phone (optional)
@@ -268,6 +286,7 @@ const mapSignup = (state) => {
 };
 
 const mapDispatch = (dispatch) => {
+  const checkbox = document.getElementsByClassName("sms");
   return {
     handleSubmit(evt) {
       evt.preventDefault();
@@ -277,6 +296,7 @@ const mapDispatch = (dispatch) => {
         const first = evt.target.firstName.value;
         const last = evt.target.lastName.value;
         const age = evt.target.age.value;
+        const sms = checkbox[0].checked;
         const phone = evt.target.phone.value;
         const morningReminder = evt.target.morningReminder.value;
         const nighttimeReminder = evt.target.nighttimeReminder.value;
@@ -293,6 +313,7 @@ const mapDispatch = (dispatch) => {
             height,
             weight,
             email,
+            sms,
             phone,
             morningReminder,
             nighttimeReminder,
@@ -313,6 +334,7 @@ const mapDispatch = (dispatch) => {
             null,
             null,
             email,
+            null,
             null,
             null,
             null,

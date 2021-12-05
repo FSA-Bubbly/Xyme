@@ -16,14 +16,16 @@ const DailyPillView = () => {
 
   const filtered = pills.filter((eachpill) => {
     const start = Date.parse(eachpill.wallet.startDate);
-    const end = Date.parse(eachpill.wallet.endDate)
-    console.log("current time", dateNum);
-    console.log("start", start);
+    const end = Date.parse(eachpill.wallet.endDate)+(8.64e+7)
+    console.log('now',dateNum);
+    console.log('start', start)
     console.log('end', end)
+    console.log('dose', eachpill.wallet.dailyDosage)
     if (dateNum >= start && eachpill.wallet.dailyDosage > 0 && dateNum <= end) {
-      return eachpill;
+      return eachpill.wallet;
     }
   });
+  console.log('filtered', filtered)
 
   useEffect(() => {
     dispatch(fetchWallet(currentUser));

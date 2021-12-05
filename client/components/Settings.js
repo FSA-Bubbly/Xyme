@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Settings = () => {
   const user = useSelector((state) => state.auth);
-  const updatedUser = useSelector((state) => state.user);
+  // const updatedUser = useSelector((state) => state.user);
   const checkbox = document.getElementsByClassName("checkbox");
   const html = document.querySelector("html");
 
@@ -24,10 +24,13 @@ const Settings = () => {
     }
   };
   const toggleNotification = function () {
+    const status = 
     if (checkbox[0].checked) {
-      //turn off notification
+      user.sms = false
+      ///needs to trigger a response to save the user's sms as fale
     } else {
       //turn on notification
+      user.sms = true
     }
   };
 
@@ -77,7 +80,7 @@ const Settings = () => {
                   type='checkbox'
                   name=''
                   id='nofitication'
-                  className='nofitication hidden'
+                   className='nofitication hidden'
                   onClick={toggleNotification}
                 />
                 <label
