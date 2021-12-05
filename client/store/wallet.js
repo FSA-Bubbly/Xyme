@@ -62,8 +62,6 @@ export const addPillToWallet = (pill, history) => {
 			history.push('/wallet');
 		} catch (error) {
 			const errMsg = error.response.data.error;
-			console.error(error);
-			console.dir(error);
 			alert(errMsg);
 		}
 	};
