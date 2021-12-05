@@ -6,12 +6,15 @@ import { removePills } from "../store/wallet";
 import { removeInteractions } from "../store/interactions";
 
 const Wallet = () => {
-  const { auth: user, wallet: pills } = useSelector((s) => s);
-  const dispatch = useDispatch();
-  const [isLoading, setLoading] = useState(true);
 
-  const loading = async () =>
-    new Promise((resolve) => setTimeout(() => resolve(), 1500));
+	const { auth: user, wallet: pills } = useSelector((s) => s);
+	const dispatch = useDispatch();
+	const [isLoading, setLoading] = useState(true);
+
+
+  const loading = async () => (
+    new Promise(resolve => setTimeout(() => resolve(), 1500))
+  )
 
   useEffect(() => {
     (async () => {
@@ -34,14 +37,12 @@ const Wallet = () => {
 
   const handleRemove = () => {
     if (pillsToRemove.length > 0) {
-      dispatch(removePills(user.id, pillsToRemove));
-    }
-
-    const removePillsandInteractions = async () => {
-      await dispatch(removeInteractions(user.id, pillsToRemove));
-      dispatch(removePills(user.id, pillsToRemove));
-    };
-    removePillsandInteractions();
+			const removePillsandInteractions = async () => {
+				await dispatch(removeInteractions(user.id, pillsToRemove));
+				dispatch(removePills(user.id, pillsToRemove));
+			}
+			removePillsandInteractions();
+		}
   };
 
   return (

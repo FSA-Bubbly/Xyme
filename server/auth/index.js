@@ -92,11 +92,9 @@ router.put("/reset/:id", async (req, res, next) => {
     if (thisRequest) {
       const user = await User.hasAccount({ email: thisRequest.email });
 
-      let password = await bcrypt.hash(req.body.password, SALT_ROUNDS);
+      user.update({ password: req.body.password });
+      console.log(user.password);
 
-      user.update({ password: password });
-      // console.log(user);
-      console.log(password);
       res.status(204).json();
     } else {
       res.status(204).json();

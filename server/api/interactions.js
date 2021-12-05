@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const fetch = require('node-fetch');
+const fetch = require('node-fetch-retry');
 const requireToken = require('./auth');
 const { Op } = require("sequelize");
 
@@ -10,7 +10,7 @@ const {
 module.exports = router;
 
 // GET /api/interactions/${user.id}
-router.get("/:userId", async (req, res, next) => {
+router.get("/:userId", requireToken, async (req, res, next) => {
   try {
     const allInteractions = await Interaction.findAll({
       where: {
@@ -34,7 +34,7 @@ router.get("/:userId", async (req, res, next) => {
 })
 
 // POST /api/interactions/
-router.post("/", async (req, res, next) => {
+router.post("/", requireToken, async (req, res, next) => {
   try {
     const baseUrl = 'https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=';
     const user = await User.findByPk(req.body.id, {
@@ -103,25 +103,38 @@ router.post("/", async (req, res, next) => {
   }
 })
 
-router.delete(`/remove`, async (req, res, next) => {
+router.delete(`/remove`, requireToken, async (req, res, next) => {
   try {
-    const interactions = await Promise.all(req.body.pills.map(int => {
-      const interaction = Interaction.findAll({
+    let interactions;
+    if (req.body.pills > 1) {
+      interactions = await Promise.all(req.body.pills.map(int => {
+        const interaction = Interaction.findAll({
+          where: {
+            [Op.or]: [
+              { med1Id: int },
+              { med2Id: int }
+            ],
+            userId: req.body.userId
+          }
+        })
+        return interaction;
+      }))
+    } else {
+      console.log(req.body.userId)
+      interactions = await Interaction.findAll({
         where: {
           [Op.or]: [
-            { med1Id: int },
-            { med2Id: int }
+            { med1Id: req.body.pills },
+            { med2Id: req.body.pills }
           ],
           userId: req.body.userId
         }
       })
-      return interaction;
-    }))
-
+    }
     const intIds = interactions.flat().map(int => int.dataValues.id);
 
-    const destroyInts = await Promise.all(intIds.map(intId => {
-      const destroyedInt = Interaction.destroy({
+    await Promise.all(intIds.map(intId => {
+      Interaction.destroy({
         where: {
           id: intId
         }
