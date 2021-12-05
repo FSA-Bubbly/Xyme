@@ -11,10 +11,12 @@ const Wallet = require("../db/models/Wallet");
 module.exports = router;
 
 // found at /api/wallet/userId
+
 router.get("/:userId", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId);
     const userPills = await user.getPills();
+
 
     //pills
     const pills = userPills.map((pill) => {
@@ -27,48 +29,54 @@ router.get("/:userId", async (req, res, next) => {
   }
 });
 
-// found at /api/wallet/select/pillId
-router.get("/select/:pillId", async (req, res, next) => {
-  try {
-    const singlePill = await Pill.findByPk(req.params.pillId);
-    res.send(singlePill);
-  } catch (error) {
-    next(error);
-  }
+
+router.get('/select/:pillId', requireToken, async (req, res, next) => {
+	try {
+		const singlePill = await Pill.findByPk(req.params.pillId);
+		res.send(singlePill);
+	} catch (error) {
+		next(error);
+	}
 });
 
 // /api/wallet/add-pill
-router.post("/add-pill", async (req, res, next) => {
-  try {
-    // console.log(req.body);
-    const { userId, pillName, startDate, endDate, frequencyPerDay } = req.body;
-    const user = await User.findByPk(userId);
-    const [databaseId] = await Pill.findAll({
-      where: {
-        name: pillName,
-      },
-    });
-    // if pill not in our Pill table
-    if (databaseId === undefined) {
-      // initial API call for RXCUI
-      const response = await fetch(`${baseUrl}${pillName}`);
-      const parsedResponse = await response.json();
-      const rxcui = parsedResponse.idGroup.rxnormId;
-      // if name of pill user entered returns nothing from NIH API call
-      if (rxcui === null) {
-        // const error = new Error("This medication does not exist!");
-        return res
-          .status(401)
-          .json({ error: "This medication does not exist!" });
-      }
-      // API call for medication description
-      const descResponse = await fetch(
-        `https://connect.medlineplus.gov/service?mainSearchCriteria.v.cs=2.16.840.1.113883.6.88&mainSearchCriteria.v.c=${rxcui}&informationRecipient.languageCode.c=en&knowledgeResponseType=application/json`
-      );
-      const descJson = await descResponse.json();
-      const description = descJson.feed.entry[0].summary._value;
-      const conceptName = descJson.feed.entry[0].title._value;
+router.post('/add-pill', requireToken, async (req, res, next) => {
+	try {
+		// console.log(req.body);
+		const { userId, pillName, startDate, endDate, frequencyPerDay } =
+			req.body;
+		const user = await User.findByPk(userId);
+		const [databaseId] = await Pill.findAll({
+			where: {
+				name: pillName,
+			},
+		});
+		// if pill not in our Pill table
+		if (databaseId === undefined) {
+			// initial API call for RXCUI
+			const response = await fetch(`${baseUrl}${pillName}`);
+			const parsedResponse = await response.json();
+			const rxcui = parsedResponse.idGroup.rxnormId;
+			// if name of pill user entered returns nothing from NIH API call
+			if (rxcui === undefined) {
+				// const error = new Error("This medication does not exist!");
+				return res
+					.status(401)
+					.json({ error: 'This medication does not exist!' });
+			}
+			// API call for medication description
+			const descResponse = await fetch(
+				`https://connect.medlineplus.gov/service?mainSearchCriteria.v.cs=2.16.840.1.113883.6.88&mainSearchCriteria.v.c=${rxcui}&informationRecipient.languageCode.c=en&knowledgeResponseType=application/json`
+			);
+			const descJson = await descResponse.json();
+			const description = descJson.feed.entry[0].summary._value;
+			//const addedPill = await Pill.create({
+			//	name: pillName,
+			//	description,
+			//	rxcui,
+			//});
 
+      const conceptName = descJson.feed.entry[0].title._value;
       //API call for medication image
       const imageResponse = await fetch(
         `https://rximage.nlm.nih.gov/api/rximage/1/rxbase?name=${conceptName}`
@@ -121,13 +129,14 @@ router.post("/add-pill", async (req, res, next) => {
   }
 });
 
-router.delete(`/:userId/remove`, async (req, res, next) => {
-  try {
-    const user = await User.findByPk(req.params.userId);
-    const pills = req.body.pills;
-    await user.removePills(pills);
-    res.json(pills);
-  } catch (error) {
-    next(error);
-  }
+
+router.delete(`/:userId/remove`, requireToken, async (req, res, next) => {
+	try {
+		const user = await User.findByPk(req.params.userId);
+		const pills = req.body.pills;
+		await user.removePills(pills);
+		res.json(pills);
+	} catch (error) {
+		next(error);
+	}
 });
