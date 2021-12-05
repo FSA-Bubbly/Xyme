@@ -1,24 +1,33 @@
 import axios from 'axios';
 import history from '../history';
 
-const TOKEN = 'token';
+const TOKEN_NAME = 'token';
 
 /**
  * ACTION TYPES
  */
 const SET_AUTH = 'SET_AUTH';
+const SEND_RESET_LINK = 'SEND_RESET_LINK';
+const SAVE_NEW_PASSWORD = 'SAVE_NEW_PASSWORD';
 
 /**
  * ACTION CREATORS
  */
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
+const _sendResetLink = (reset) => ({
+	type: SEND_RESET_LINK,
+	reset,
+});
+const _saveNewPassword = (reset) => ({
+	type: SAVE_NEW_PASSWORD,
+	reset,
+});
 
 /**
  * THUNK CREATORS
  */
 export const me = () => async (dispatch) => {
-	const token = window.localStorage.getItem(TOKEN);
-	console.log('me', token);
+	const token = window.localStorage.getItem(TOKEN_NAME);
 	if (token) {
 		const res = await axios.get('/auth/me', {
 			headers: {
@@ -59,19 +68,16 @@ export const authenticate =
 				password,
 				avatar,
 			});
-			console.log('authenticate', res.data.token);
-			window.localStorage.setItem(TOKEN, res.data.token);
-
+			window.localStorage.setItem(TOKEN_NAME, res.data.token);
 			dispatch(me());
 			history.push('/');
 		} catch (authError) {
-			alert('Incorrect email or password');
 			return dispatch(setAuth({ error: authError }));
 		}
 	};
 
 export const logout = () => {
-	window.localStorage.removeItem(TOKEN);
+	window.localStorage.removeItem(TOKEN_NAME);
 	history.push('/login');
 	return {
 		type: SET_AUTH,
@@ -80,8 +86,31 @@ export const logout = () => {
 };
 
 export let getToken = () => {
-	const token = window.localStorage.getItem(TOKEN);
-	return token;
+	console.log(window.localStorage.getItem('token'));
+	return window.localStorage.getItem(TOKEN_NAME);
+};
+
+export const sendResetLink = (body) => {
+	return async (dispatch) => {
+		try {
+			const { data } = await axios.post(`/auth/forgot`, body);
+			dispatch(_sendResetLink(data));
+		} catch (error) {
+			console.error(error);
+		}
+	};
+};
+
+export const saveNewPassword = (body, history) => {
+	return async (dispatch) => {
+		try {
+			const { data } = await axios.put(`/auth/reset/${body.id}`, body);
+			dispatch(_saveNewPassword(data));
+			history.push('/login');
+		} catch (error) {
+			console.error(error);
+		}
+	};
 };
 
 /**

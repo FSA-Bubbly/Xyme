@@ -4,6 +4,7 @@ const requireToken = require('./auth');
 const {
 	models: { User },
 } = require('../db');
+
 module.exports = router;
 
 router.get('/', requireToken, async (req, res, next) => {

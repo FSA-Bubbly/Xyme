@@ -71,22 +71,15 @@ const User = db.define('user', {
 	age: {
 		type: Sequelize.INTEGER,
 		validate: {
-			isNumeric: true,
 			min: 5,
 			max: 110,
 		},
 	},
 	height: {
 		type: Sequelize.INTEGER,
-		validate: {
-			isNumeric: true,
-		},
 	},
 	weight: {
 		type: Sequelize.INTEGER,
-		validate: {
-			isNumeric: true,
-		},
 	},
 	avatar: {
 		type: Sequelize.STRING,
@@ -122,6 +115,18 @@ User.authenticate = async function ({ email, password }) {
 		throw error;
 	}
 	return user.generateToken();
+};
+
+User.hasAccount = async function ({ email }) {
+	const user = await this.findOne({
+		where: { email },
+	});
+	if (!user) {
+		const error = Error('An account with this email was not found');
+		error.status = 401;
+		throw error;
+	}
+	return user;
 };
 
 User.findByToken = async function (token) {

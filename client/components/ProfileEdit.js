@@ -117,7 +117,7 @@ const ProfileEdit = () => {
 											name='firstName'
 											type='text'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                        bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
 									</div>
 									<div className='py-1'>
@@ -132,7 +132,7 @@ const ProfileEdit = () => {
 											name='lastName'
 											type='text'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
 									</div>
 									<div className='py-1'>
@@ -147,7 +147,7 @@ const ProfileEdit = () => {
 											name='age'
 											type='text'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
 									</div>
 									<div className='py-1'>
@@ -162,7 +162,7 @@ const ProfileEdit = () => {
 											name='height'
 											type='text'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
 									</div>
 									<div className='py-1'>
@@ -177,7 +177,7 @@ const ProfileEdit = () => {
 											name='weight'
 											type='text'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
 									</div>
 									<div className='py-1'>
@@ -192,7 +192,7 @@ const ProfileEdit = () => {
 											name='email'
 											type='text'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
 									</div>
 									<div className='py-1'>
@@ -208,8 +208,8 @@ const ProfileEdit = () => {
 											}
 											name='phone'
 											type='text'
-											className='flex self-center text-md block px-3 py-2  w-full
-                        bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
 									</div>
 									<div className='py-1'>
@@ -223,14 +223,14 @@ const ProfileEdit = () => {
 											onChange={(e) => setMorningReminder(e.target.value)}
 											name='morningReminder'
 											type='time'
-											className='flex self-center text-md block px-3 py-2  w-full
-                bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white '
+											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
 									</div>
 
 									<div className='py-1'>
 										<span className='px-1 text-xs text-gray-500 uppercase'>
-											NIGHTTIME REMINDER: (optional)
+											Evening REMINDER: (optional)
 										</span>
 										<label htmlFor='nighttimeReminder' />
 										<input
@@ -238,8 +238,8 @@ const ProfileEdit = () => {
 											onChange={(e) => setNighttimeReminder(e.target.value)}
 											name='nighttimeReminder'
 											type='time'
-											className='flex self-center text-md block px-3 py-2  w-full
-                bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white '
+											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
 									</div>
 									<div className='py-1'>
@@ -248,12 +248,13 @@ const ProfileEdit = () => {
 										</span>
 										<label htmlFor='password'></label>
 										<input
+											onChange={(e) => setPassword(e.target.value)}
+											value={password}
 											name='password'
-											placeholder=''
+											placeholder='  '
 											type='password'
-											x-model='password'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
 									</div>
 									<div className='flex justify-evenly py-4'>
@@ -265,7 +266,8 @@ const ProfileEdit = () => {
 										<button
 											className='text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 dark:border-gray-300 text-gray-800'
 											value='submit'
-											type='submit'>
+											type='submit'
+											onClick={handleSubmit}>
 											Save Changes
 										</button>
 									</div>

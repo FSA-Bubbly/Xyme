@@ -1,3 +1,15 @@
-<?xml version="1.0" ?><svg id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
-	.st0{fill:#231F20;}
-</style><g><path class="st0" d="M288.5,299H266v-22.5c0-5.5-4.5-10-10-10s-10,4.5-10,10V299h-22.5c-5.5,0-10,4.5-10,10s4.5,10,10,10H246v22.5   c0,5.5,4.5,10,10,10s10-4.5,10-10V319h22.5c5.5,0,10-4.5,10-10S294,299,288.5,299z"/><path class="st0" d="M383.8,155c5.5,0,10-4.5,10-10V94.5c0-16.5-13.5-30-30-30H148.2c-16.5,0-30,13.5-30,30V145c0,5.5,4.5,10,10,10   H145v27.2h-16.8c-5.5,0-10,4.5-10,10v225.3c0,16.5,13.5,30,30,30h215.7c16.5,0,30-13.5,30-30V192.2c0-5.5-4.5-10-10-10H367V155   H383.8z M138.2,94.5c0-5.5,4.5-10,10-10h215.7c5.5,0,10,4.5,10,10V135H357H155h-16.8V94.5z M373.8,417.5c0,5.5-4.5,10-10,10H148.2   c-5.5,0-10-4.5-10-10V202.2H155h202h16.8V417.5z M347,182.2H165V155h182V182.2z"/></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#828282;}
+	.st1{fill:none;}
+</style>
+<path id="pill--bottle--01" class="st0" d="M24,31.4H8c-0.2,0-0.4-0.2-0.4-0.4V7.4H6C5.8,7.4,5.6,7.2,5.6,7V1c0-0.2,0.2-0.4,0.4-0.4
+	h20c0.2,0,0.4,0.2,0.4,0.4v6c0,0.2-0.2,0.4-0.4,0.4h-1.6V31C24.4,31.2,24.2,31.4,24,31.4z M8.4,30.6h15.3v-4.3H8.4V30.6z M8.4,25.6
+	h15.3V12.4H8.4V25.6z M8.4,11.6h15.3V7.4H8.4V11.6z M24,6.6h1.6V1.4h-1.3V5h-0.7V1.4h-3.3V5h-0.7V1.4h-3.3V5h-0.7V1.4h-3.3V5h-0.7
+	V1.4H8.4V5H7.6V1.4H6.4v5.3C6.4,6.6,24,6.6,24,6.6z M21,20.4H11v-0.7h10V20.4z M21,18.4H11v-0.7h10V18.4z M16,15.4h-5v-0.7h5V15.4z"
+	/>
+<rect id="_Transparent_Rectangle" class="st1" width="32" height="32"/>
+</svg>

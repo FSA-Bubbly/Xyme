@@ -26,11 +26,11 @@
   </head>
   <body class="dark:bg-gray-800 dark:text-gray-200 bg-nude">
     <div id="app"></div>
-
   </body>
   <script>
     const theme = window.localStorage.getItem("theme");
     const html = document.querySelector("html");
+    const checkbox = document.getElementsByClassName("checkbox");
     if (theme === "dark") {
       html.classList.add("dark");
     } else {

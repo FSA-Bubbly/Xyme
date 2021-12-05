@@ -15,6 +15,8 @@ import Camera from './components/Camera';
 import Settings from './components/Settings';
 
 import DailyPillView from './components/DailyPillView';
+import ResetPassword from './components/ResetPassword';
+import ForgotPassword from './components/ForgotPassword';
 
 /**
  * COMPONENT
@@ -49,6 +51,8 @@ class Routes extends Component {
 						<Route exact path='/' component={Landing} />
 						<Route exact path='/login' component={Login} />
 						<Route exact path='/signup' component={Signup} />
+						<Route exact path='/forgot' component={ForgotPassword} />
+						<Route exact path='/reset/:id' component={ResetPassword} />
 					</Switch>
 				)}
 			</div>

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Profile = () => {
   const user = useSelector((state) => state.auth);
   const updatedUser = useSelector((state) => state.user);
-  console.log(updatedUser);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,6 +38,10 @@ const Profile = () => {
                 <p>Height: {updatedUser.height}</p>
                 <p>Weight: {updatedUser.weight}</p>
                 <p>Email: {updatedUser.email}</p>
+                {/* <p>
+                  Morning Reminder: {updatedUser.morningReminder} am
+                </p>
+                <p>Evening Reminder: {parseFloat(updatedUser.nighttimeReminder )- 12.0} pm</p> */}
               </h1>
             </div>
             <div className='flex justify-center p-6'>
