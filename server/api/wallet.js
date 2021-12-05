@@ -1,6 +1,6 @@
-const router = require("express").Router();
-const fetch = require("node-fetch");
-const requireToken = require("./auth");
+const router = require('express').Router();
+const fetch = require('node-fetch-retry');
+const requireToken = require('./auth');
 
 const baseUrl = `https://rxnav.nlm.nih.gov/REST/rxcui.json?name=`;
 const {
@@ -57,24 +57,20 @@ router.post('/add-pill', requireToken, async (req, res, next) => {
 			const response = await fetch(`${baseUrl}${pillName}`);
 			const parsedResponse = await response.json();
 			const rxcui = parsedResponse.idGroup.rxnormId;
-			// if name of pill user entered returns nothing from NIH API call
-			if (rxcui === undefined) {
-				// const error = new Error("This medication does not exist!");
-				return res
-					.status(401)
-					.json({ error: 'This medication does not exist!' });
-			}
+			if (rxcui === undefined)
+				throw new Error('Not Found');
+
 			// API call for medication description
-			const descResponse = await fetch(
-				`https://connect.medlineplus.gov/service?mainSearchCriteria.v.cs=2.16.840.1.113883.6.88&mainSearchCriteria.v.c=${rxcui}&informationRecipient.languageCode.c=en&knowledgeResponseType=application/json`
-			);
+			let descResponse;
+			try {
+				descResponse = await fetch(
+					`https://connect.medlineplus.gov/service?mainSearchCriteria.v.cs=2.16.840.1.113883.6.88&mainSearchCriteria.v.c=${rxcui}&informationRecipient.languageCode.c=en&knowledgeResponseType=application/json`
+				);
+			} catch (error) {
+
+			}
 			const descJson = await descResponse.json();
 			const description = descJson.feed.entry[0].summary._value;
-			//const addedPill = await Pill.create({
-			//	name: pillName,
-			//	description,
-			//	rxcui,
-			//});
 
       const conceptName = descJson.feed.entry[0].title._value;
       //API call for medication image
@@ -106,13 +102,9 @@ router.post('/add-pill', requireToken, async (req, res, next) => {
 
       return res.json(walletItem);
     }
-    const userAlreadyHasPill = await user.hasPill(databaseId.dataValues.id);
-    if (userAlreadyHasPill) {
-      // const error = new Error("This medication is already in your wallet!");
-      return res
-        .status(402)
-        .json({ error: "This medication is already in your wallet!" });
-    }
+		const userAlreadyHasPill = await user.hasPill(databaseId.dataValues.id);
+		if (userAlreadyHasPill)
+			throw new Error('Duplicate')
 
     const walletItem = await Wallet.create({
       userId: userId,
@@ -123,10 +115,17 @@ router.post('/add-pill', requireToken, async (req, res, next) => {
       dailyDosage: Number(frequencyPerDay),
     });
     res.json(walletItem);
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
+	} catch (error) {
+		if (error.message === 'Not Found')
+			return res
+				.status(401)
+				.json({ error: 'This medication does not exist!' });
+		if (error.message === 'Duplicate')
+			return res
+				.status(402)
+				.json({ error: 'This medication is already in your wallet!' });
+		next(error);
+	}
 });
 
 
