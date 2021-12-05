@@ -7,7 +7,7 @@ import { removeInteractions } from "../store/interactions";
 
 const Wallet = () => {
   const { auth: user, wallet: pills } = useSelector((s) => s);
-  console.log(user);
+  //console.log(user);
   const dispatch = useDispatch();
 
   useEffect(() => {
