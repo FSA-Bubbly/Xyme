@@ -17,10 +17,15 @@ const SinglePill = (props) => {
 
   if (pill) {
     return (
-      <h1>
+      <><h1>
         {" "}
-        Drug Name: {singlePill.name}. Drug Concept:{singlePill.description}
-      </h1>
+        Drug Name: {singlePill.name}
+      </h1><h2>
+          Drug Concept: {singlePill.description}
+        </h2>
+      <h2>It may look like this...</h2>
+      <img src={singlePill.image} />
+      </>
     );
   } else return <div>loading...</div>;
 };
