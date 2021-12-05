@@ -7,18 +7,8 @@ import Landing from './Landing';
  * COMPONENT
  */
 export const Home = ({ isLoggedIn }) => {
-	return (
-		<div>
-			{isLoggedIn ? (
-				<Landing />
-			) : (
-				<Landing>
-					<h3>Welcome, {email}</h3>
-				</Landing>
-			)}
-			<Link to='/camera'>Camera</Link>
-		</div>
-	);
+	console.log('Home', isLoggedIn);
+	return <div>{isLoggedIn ? <h1>Welcome</h1> : <Landing />}</div>;
 };
 
 /**
