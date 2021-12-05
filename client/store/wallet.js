@@ -1,5 +1,4 @@
 import axios from "axios";
-import history from "../history";
 import { getToken } from "./auth";
 
 //action types
@@ -51,7 +50,7 @@ export const fetchWallet = (user) => {
 	};
 };
 
-export const addPillToWallet = (pill, history) => {
+export const addPillToWallet = (pill) => {
 	return async (dispatch) => {
 		try {
 			const token = window.localStorage.getItem('token');
@@ -59,7 +58,6 @@ export const addPillToWallet = (pill, history) => {
 				headers: { authorization: token },
 			});
 			dispatch(_addPillToWallet(data));
-			history.push('/wallet');
 		} catch (error) {
 			const errMsg = error.response.data.error;
 			alert(errMsg);

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchInteractions } from "../store/interactions";
 
 const Interactions = () => {
   const { auth: user, interactions } = useSelector((s) => s);
-  const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
 
   const loading = async () =>
@@ -15,7 +13,6 @@ const Interactions = () => {
       await loading();
       setLoading(!isLoading);
     })();
-    dispatch(fetchInteractions(user));
   }, []);
 
   return (

@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWallet } from "../store/wallet";
 import { removePills } from "../store/wallet";
+import { fetchInteractions } from "../store/interactions";
 import { removeInteractions } from "../store/interactions";
+
 
 const Wallet = () => {
   const { auth: user, wallet: pills } = useSelector((s) => s);
@@ -15,10 +17,11 @@ const Wallet = () => {
 
   useEffect(() => {
     (async () => {
-      await loading();
+			await loading();
       setLoading(!isLoading);
     })();
-    dispatch(fetchWallet(user));
+		dispatch(fetchWallet(user));
+		dispatch(fetchInteractions(user));
   }, []);
 
   let pillsToRemove = [];
