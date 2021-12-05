@@ -1,9 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="95.279" height="93.741" viewBox="0 0 95.279 93.741">
-  <g id="Group_15" data-name="Group 15" transform="translate(-1173.361 -867.688)">
-    <g id="power-start-button-svgrepo-com" transform="translate(1135.415 867.688)">
-      <path id="Path_149" data-name="Path 149" d="M133.224,231.949c0,22.049-21.329,39.923-47.639,39.923S37.946,254,37.946,231.949v-13.9h95.278v13.9Z" transform="translate(0 -178.131)" fill="#abc4a2"/>
-      <path id="Path_161" data-name="Path 161" d="M47.639,0c26.31,0,47.639,17.874,47.639,39.923S73.949,79.845,47.639,79.845,0,61.971,0,39.923,21.329,0,47.639,0Z" transform="translate(37.947 0)" fill="#adcba3"/>
-    </g>
-    <path id="Path_162" data-name="Path 162" d="M53.169,34.435,36.035,17.3,18.9,34.435l-2.607-2.607L36.035,12.086,55.777,31.828Z" transform="translate(1184.965 880.124)" fill="#fcfaf7"/>
-  </g>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Uploaded to SVGRepo https://www.svgrepo.com -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+<g id="export--01">
+	<polygon id="export--01_1_" points="16.36,24 15.64,24 15.64,2.869 10.254,8.254 9.746,7.746 16,1.491 22.255,7.746 21.745,8.254 
+		16.36,2.869 	"/>
+</g>
+<rect id="_Transparent_Rectangle" style="fill:none;" width="32" height="32"/>
 </svg>

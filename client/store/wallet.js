@@ -1,40 +1,40 @@
-import axios from 'axios';
-import history from '../history';
-import { getToken } from './auth';
+import axios from "axios";
+import history from "../history";
+import { getToken } from "./auth";
 
 //action types
-const GET_WALLET = 'GET_WALLET';
-const ADD_PILL_TO_WALLET = 'ADD_PILL_TO_WALLET';
-const REMOVE_PILLS = 'REMOVE_PILL';
-const DECREASE_DOSAGE = 'DECREASE_DOSAGE';
+const GET_WALLET = "GET_WALLET";
+const ADD_PILL_TO_WALLET = "ADD_PILL_TO_WALLET";
+const REMOVE_PILLS = "REMOVE_PILL";
+const DECREASE_DOSAGE = "DECREASE_DOSAGE";
 
 //action creators
 const getWallet = (pills) => {
-	return {
-		type: GET_WALLET,
-		pills,
-	};
+  return {
+    type: GET_WALLET,
+    pills,
+  };
 };
 
 const _addPillToWallet = (pill) => {
-	return {
-		type: ADD_PILL_TO_WALLET,
-		pill,
-	};
+  return {
+    type: ADD_PILL_TO_WALLET,
+    pill,
+  };
 };
 
 const _removePills = (pills) => {
-	return {
-		type: REMOVE_PILLS,
-		pills,
-	};
+  return {
+    type: REMOVE_PILLS,
+    pills,
+  };
 };
 
 const _decreaseDosage = (pills) => {
-	return {
-		type: DECREASE_DOSAGE,
-		pills,
-	};
+  return {
+    type: DECREASE_DOSAGE,
+    pills,
+  };
 };
 // thunks
 export const fetchWallet = (user) => {
@@ -62,7 +62,6 @@ export const addPillToWallet = (pill, history) => {
 			history.push('/wallet');
 		} catch (error) {
 			const errMsg = error.response.data.error;
-			console.error(error);
 			alert(errMsg);
 		}
 	};
@@ -109,14 +108,14 @@ export const decreaseDosage = (userId, pills) => {
 };
 
 export default function (state = [], action) {
-	switch (action.type) {
-		case GET_WALLET:
-			return action.pills;
-		case ADD_PILL_TO_WALLET:
-			return [...state, action.pill];
-		case REMOVE_PILLS:
-			return state.filter((pill) => !action.pills.includes(pill.id));
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case GET_WALLET:
+      return action.pills;
+    case ADD_PILL_TO_WALLET:
+      return [...state, action.pill];
+    case REMOVE_PILLS:
+      return state.filter((pill) => !action.pills.includes(pill.id));
+    default:
+      return state;
+  }
 }

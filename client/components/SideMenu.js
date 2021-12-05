@@ -22,28 +22,44 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
             style={style}
           >
             <ul className=' divide-y divide-light-blue-400 menu-list flex flex-col text-xs font-bold'>
-              <li className='menu-list-item py-2 hover:bg-white hover:text-blue-700'>
+            <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange'>
                 {" "}
-                <Link
-                  to='/wallet'
-                  className='text-center w-30 block py-2 px-4 text-sm hover:bg-gray-200'
-                  onClick={hide}
-                >
-                  wallet
-                </Link>
-              </li>
-              <li className='menu-list-item py-2 hover:bg-white hover:text-blue-700'>
-                {" "}
+                <img
+                  src='/dailypills.svg'
+                  alt='Monitoring'
+                  className=' mx-4 w-6 self-center transform transition duration-500 hover:scale-125'
+                />
                 <Link
                   to='/dailypill'
-                  className='text-center w-30 block py-2 px-4 text-sm hover:bg-gray-200'
+                  className='text-center w-30 block py-2 px-4 text-sm '
                   onClick={hide}
                 >
                   daily pills
                 </Link>
               </li>
-              <li className='menu-list-item py-2 hover:bg-white hover:text-blue-700'>
+              <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange'>
                 {" "}
+                <img
+                  src='/walleticon.svg'
+                  alt='Monitoring'
+                  className=' mx-4 w-6 self-center transform transition duration-500 hover:scale-125'
+                />
+                <Link
+                  to='/wallet'
+                  className='text-center w-30 block py-2 px-4 text-sm '
+                  onClick={hide}
+                >
+                  wallet
+                </Link>
+              </li>
+
+              <li className=' flex menu-list-item py-2 hover:bg-white hover:text-orange'>
+                {" "}
+                <img
+                  src='/interactionsicon.svg'
+                  alt='Monitoring'
+                  className=' mx-4 w-6 self-center transform transition duration-500 hover:scale-125'
+                />
                 <Link
                   to='/interactions'
                   className='text-center w-30 block ml-30  py-2 px-4 text-sm'
@@ -53,8 +69,13 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 </Link>
               </li>
 
-              <li className='menu-list-item py-2 hover:bg-white hover:text-blue-700'>
+              <li className=' flex menu-list-item py-2 hover:bg-white hover:text-orange'>
                 {" "}
+                <img
+                  src='/profile.svg'
+                  alt='Monitoring'
+                  className=' mx-4 w-6 self-center transform transition duration-500 hover:scale-125'
+                />
                 <Link
                   to='/profile'
                   className='text-center w-30 block ml-30  py-2 px-4 text-sm'
@@ -63,18 +84,28 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                   profile
                 </Link>
               </li>
-              <li className='menu-list-item py-2 hover:bg-white hover:text-blue-700'>
+              <li className=' flex flex-row menu-list-item py-2 hover:bg-white hover:text-orange'>
                 {" "}
+                <img
+                  src='/homeicon.svg'
+                  alt='Monitoring'
+                  className=' mx-4 w-6 self-center transform transition duration-500 hover:scale-125'
+                />
                 <Link
                   to='/'
-                  className='text-center w-30 block ml-30  py-2 px-4 text-sm'
+                  className=' text-center w-30 block ml-30  py-2 px-4 text-sm'
                   onClick={hide}
                 >
                   home
                 </Link>
               </li>
-              <li className='menu-list-item py-2 hover:bg-white hover:text-blue-700'>
+              <li className=' flex menu-list-item py-2 hover:bg-white hover:text-orange'>
                 {" "}
+                <img
+                  src='/logout.svg'
+                  alt='Monitoring'
+                  className=' mx-4 w-6 self-center transform transition duration-500 hover:scale-125'
+                />
                 <Link
                   to='/'
                   className='text-center w-30 block ml-30  py-2 px-4 text-sm'
@@ -92,8 +123,13 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
           className='mobile-menus right-0  h-auto rounded-l fixed h-screen w-full sm:w-1/2 lg:hidden bg-white top-16 z-30'
         >
           <ul className=' divide-y divide-light-blue-400 menu-list flex flex-col text-xs font-bold'>
-            <li className='menu-list-item py-2 hover:bg-white hover:text-blue-700'>
+            <li className='flex menu-list-item py-2 hover:bg-white hover:text-blue-700'>
               {" "}
+              <img
+                src='/logout.svg'
+                alt='Monitoring'
+                className=' mx-4 w-6 self-center transform transition duration-500 hover:scale-125'
+              />
               <Link
                 to='/signup'
                 className='text-center w-30 block py-2 px-4 text-sm hover:bg-gray-200'
@@ -102,8 +138,13 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 sign up
               </Link>
             </li>
-            <li className='menu-list-item py-2 hover:bg-white hover:text-blue-700'>
+            <li className='flex menu-list-item py-2 hover:bg-white hover:text-blue-700'>
               {" "}
+              <img
+                src='/logout.svg'
+                alt='Monitoring'
+                className=' mx-4 w-6 self-center transform transition duration-500 hover:scale-125'
+              />
               <Link
                 to='/login'
                 className='text-center w-30 block ml-30  py-2 px-4 text-sm'
