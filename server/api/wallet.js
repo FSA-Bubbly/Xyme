@@ -1,33 +1,35 @@
-const router = require('express').Router();
-const fetch = require('node-fetch');
-const requireToken = require('./auth');
+const router = require("express").Router();
+const fetch = require("node-fetch");
+const requireToken = require("./auth");
 
 const baseUrl = `https://rxnav.nlm.nih.gov/REST/rxcui.json?name=`;
 const {
-	models: { User, Pill },
-} = require('../db');
-const Wallet = require('../db/models/Wallet');
+  models: { User, Pill },
+} = require("../db");
+const Wallet = require("../db/models/Wallet");
 
 module.exports = router;
 
 // found at /api/wallet/userId
-router.get('/:userId', requireToken, async (req, res, next) => {
-	try {
-		const user = await User.findByPk(req.params.userId);
-		const userPills = await user.getPills();
 
-		//pills
-		const pills = userPills.map((pill) => {
-			return pill.dataValues;
-		});
+router.get("/:userId", async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.userId);
+    const userPills = await user.getPills();
 
-		res.json(pills);
-	} catch (error) {
-		next(error);
-	}
+
+    //pills
+    const pills = userPills.map((pill) => {
+      return pill.dataValues;
+    });
+
+    res.json(pills);
+  } catch (error) {
+    next(error);
+  }
 });
 
-// found at /api/wallet/select/pillId
+
 router.get('/select/:pillId', requireToken, async (req, res, next) => {
 	try {
 		const singlePill = await Pill.findByPk(req.params.pillId);
@@ -68,45 +70,65 @@ router.post('/add-pill', requireToken, async (req, res, next) => {
 			);
 			const descJson = await descResponse.json();
 			const description = descJson.feed.entry[0].summary._value;
-			const addedPill = await Pill.create({
-				name: pillName,
-				description,
-				rxcui,
-			});
+			//const addedPill = await Pill.create({
+			//	name: pillName,
+			//	description,
+			//	rxcui,
+			//});
 
-			const walletItem = await Wallet.create({
-				userId: userId,
-				pillId: addedPill.id,
-				startDate: startDate,
-				endDate: endDate,
-				frequencyPerDay: Number(frequencyPerDay),
-				dailyDosage: Number(frequencyPerDay),
-			});
+      const conceptName = descJson.feed.entry[0].title._value;
+      //API call for medication image
+      const imageResponse = await fetch(
+        `https://rximage.nlm.nih.gov/api/rximage/1/rxbase?name=${conceptName}`
+      );
+      const imageJson = await imageResponse.json();
+      var image = "/pill2.svg";
 
-			return res.json(walletItem);
-		}
-		const userAlreadyHasPill = await user.hasPill(databaseId.dataValues.id);
-		if (userAlreadyHasPill) {
-			// const error = new Error("This medication is already in your wallet!");
-			return res
-				.status(402)
-				.json({ error: 'This medication is already in your wallet!' });
-		}
+      if (imageJson.nlmRxImages.length !== 0) {
+        image = imageJson.nlmRxImages[0].imageUrl;
+      }
 
-		const walletItem = await Wallet.create({
-			userId: userId,
-			pillId: databaseId.dataValues.id,
-			startDate: startDate,
-			endDate: endDate,
-			frequencyPerDay: Number(frequencyPerDay),
-			dailyDosage: Number(frequencyPerDay),
-		});
-		res.json(walletItem);
-	} catch (error) {
-		console.log(error);
-		next(error);
-	}
+      const addedPill = await Pill.create({
+        name: pillName,
+        description,
+        image,
+        rxcui,
+      });
+
+      const walletItem = await Wallet.create({
+        userId: userId,
+        pillId: addedPill.id,
+        startDate: startDate,
+        endDate: endDate,
+        frequencyPerDay: Number(frequencyPerDay),
+        dailyDosage: Number(frequencyPerDay),
+      });
+
+      return res.json(walletItem);
+    }
+    const userAlreadyHasPill = await user.hasPill(databaseId.dataValues.id);
+    if (userAlreadyHasPill) {
+      // const error = new Error("This medication is already in your wallet!");
+      return res
+        .status(402)
+        .json({ error: "This medication is already in your wallet!" });
+    }
+
+    const walletItem = await Wallet.create({
+      userId: userId,
+      pillId: databaseId.dataValues.id,
+      startDate: startDate,
+      endDate: endDate,
+      frequencyPerDay: Number(frequencyPerDay),
+      dailyDosage: Number(frequencyPerDay),
+    });
+    res.json(walletItem);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
 });
+
 
 router.delete(`/:userId/remove`, requireToken, async (req, res, next) => {
 	try {

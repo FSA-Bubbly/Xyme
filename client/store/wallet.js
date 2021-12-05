@@ -2,8 +2,6 @@ import axios from "axios";
 import history from "../history";
 import { getToken } from "./auth";
 
-const token = getToken();
-
 //action types
 const GET_WALLET = "GET_WALLET";
 const ADD_PILL_TO_WALLET = "ADD_PILL_TO_WALLET";
@@ -40,72 +38,76 @@ const _decreaseDosage = (pills) => {
 };
 // thunks
 export const fetchWallet = (user) => {
-  return async (dispatch) => {
-    try {
-      console.log(token);
-      const { data: pills } = await axios.get(`/api/wallet/${user.id}`, {
-        headers: { authorization: token },
-      });
-      dispatch(getWallet(pills));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
+	return async (dispatch) => {
+		try {
+			const token = window.localStorage.getItem('token');
+			const { data: pills } = await axios.get(`/api/wallet/${user.id}`, {
+				headers: { authorization: token },
+			});
+			dispatch(getWallet(pills));
+		} catch (error) {
+			console.error(error);
+		}
+	};
 };
 
 export const addPillToWallet = (pill, history) => {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.post("/api/wallet/add-pill", pill, {
-        headers: { authorization: token },
-      });
-      dispatch(_addPillToWallet(data));
-      history.push("/wallet");
-    } catch (error) {
-      const errMsg = error.response.data.error;
-      console.error(error);
-      alert(errMsg);
-    }
-  };
+	return async (dispatch) => {
+		try {
+			const token = window.localStorage.getItem('token');
+			const { data } = await axios.post('/api/wallet/add-pill', pill, {
+				headers: { authorization: token },
+			});
+			dispatch(_addPillToWallet(data));
+			history.push('/wallet');
+		} catch (error) {
+			const errMsg = error.response.data.error;
+			console.error(error);
+			alert(errMsg);
+		}
+	};
 };
 
 export const removePills = (userId, pills) => {
-  return async (dispatch) => {
-    try {
-      const { data: removedPills } = await axios.delete(
-        `/api/wallet/${userId}/remove`,
-        {
-          // headers for authorization here,
-          headers: { authorization: token },
-          data: {
-            pills,
-          },
-        }
-      );
-      const asNums = removedPills.map((pillId) => parseInt(pillId));
-      dispatch(_removePills(asNums));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	return async (dispatch) => {
+		try {
+			const token = window.localStorage.getItem('token');
+			const { data: removedPills } = await axios.delete(
+				`/api/wallet/${userId}/remove`,
+				{
+					headers: { authorization: token },
+					data: {
+						pills,
+					},
+				}
+			);
+			const asNums = removedPills.map((pillId) => parseInt(pillId));
+			dispatch(_removePills(asNums));
+		} catch (error) {
+			console.error(error);
+		}
+	};
 };
 
 export const decreaseDosage = (userId, pills) => {
-  return async (dispatch) => {
-    try {
-      const { data: updatedPills } = await axios.put("/api/dailypill", {
-        headers: { authorization: token },
-        data: {
-          pills,
-          userId,
-        },
-      });
-      const asNums = updatedPills.map((pillId) => parseInt(pillId));
-      dispatch(_decreaseDosage(asNums));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	return async (dispatch) => {
+		try {
+			const token = window.localStorage.getItem('token');
+			const { data: updatedPills } = await axios.put('/api/dailypill', {
+				headers: { authorization: token },
+				data: {
+					pills,
+					userId,
+				},
+			});
+			const asNums = updatedPills.map((pillId) => parseInt(pillId));
+			dispatch(_decreaseDosage(asNums));
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 };
 
 export default function (state = [], action) {
