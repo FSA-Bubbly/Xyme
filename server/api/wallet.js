@@ -76,7 +76,7 @@ router.post('/add-pill', requireToken, async (req, res, next) => {
 			//	rxcui,
 			//});
 
-
+      const conceptName = descJson.feed.entry[0].title._value;
       //API call for medication image
       const imageResponse = await fetch(
         `https://rximage.nlm.nih.gov/api/rximage/1/rxbase?name=${conceptName}`
