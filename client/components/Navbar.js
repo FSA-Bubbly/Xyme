@@ -38,7 +38,6 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   daily pills
                   <img
                     src='/dailypills.svg'
-
                     className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
@@ -49,7 +48,6 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   wallet
                   <img
                     src='/walleticon.svg'
-
                     className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
@@ -60,7 +58,6 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   profile
                   <img
                     src='/profile.svg'
-
                     className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
@@ -71,7 +68,6 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   interactions
                   <img
                     src='/interactionsicon.svg'
-
                     className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>{" "}
@@ -82,7 +78,6 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   home
                   <img
                     src='/homeicon.svg'
-
                     className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>
@@ -93,7 +88,6 @@ export function Navbar({ handleClick, isLoggedIn }) {
                   settings
                   <img
                     src='/settings.svg'
-
                     className=' mb-1 w-6 self-center transform transition duration-500 hover:scale-125'
                   />
                 </Link>

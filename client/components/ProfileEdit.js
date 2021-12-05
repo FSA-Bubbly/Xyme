@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const ProfileEdit = () => {
   const user = useSelector((s) => s.auth);
-  const [editing, setEditing] = useState(false);
   const [firstName, setFirstName] = useState(`${user.firstName}`);
   const [lastName, setLastName] = useState(`${user.lastName}`);
   const [age, setAge] = useState(`${user.age}`);
@@ -20,10 +19,11 @@ const ProfileEdit = () => {
   const [nighttimeReminder, setNighttimeReminder] = useState(
     `${user.nighttimeReminder}`
   );
-  const [password, setPassword] = useState(`${user.password}`);
+  const [password, setPassword] = useState(``);
   const [avatar, setAvatar] = useState(`${user.avatar}`);
   const dispatch = useDispatch();
 
+  console.log(password);
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = user.id;
@@ -209,7 +209,7 @@ const ProfileEdit = () => {
 
                   <div className='py-1'>
                     <span className='px-1 text-xs text-gray-500 uppercase'>
-                      NIGHTTIME REMINDER: (optional)
+                      Evening REMINDER: (optional)
                     </span>
                     <label htmlFor='nighttimeReminder' />
                     <input
@@ -227,10 +227,11 @@ const ProfileEdit = () => {
                     </span>
                     <label htmlFor='password'></label>
                     <input
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
                       name='password'
-                      placeholder=''
+                      placeholder='  '
                       type='password'
-                      x-model='password'
                       className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                       bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
                     />

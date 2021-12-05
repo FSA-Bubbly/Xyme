@@ -7,6 +7,8 @@ const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
   const [userAvatar, setUserAvatar] = useState("/user1.svg");
 
+  const forgotPassword = () => {};
+
   return (
     <div>
       {/* ---- form for sign up  ---- */}
@@ -223,8 +225,13 @@ const AuthForm = (props) => {
             </div>
 
             <div className=' mt-20  py-1 flex flex-col '>
-              <button className='rounded-full w-1/3 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
+              <button className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gr ay-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
                 {displayName}
+              </button>
+            </div>
+            <div className=' mt-5  py-1 flex flex-col '>
+              <button className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
+                <Link to={`/forgot`}> Forgot Password</Link>
               </button>
             </div>
           </div>
