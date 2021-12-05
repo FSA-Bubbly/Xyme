@@ -26,6 +26,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@zach.codes/react-calendar": "^0.3.1",
+    "aws-sdk": "^2.1043.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "compression": "^1.7.3",
@@ -54,7 +55,8 @@
     "react-modal": "^3.14.4",
     "react-spring": "^9.3.2",
     "sequelize": "^6.3.5",
-    "twilio": "^3.71.3"
+    "twilio": "^3.71.3",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

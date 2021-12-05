@@ -6,20 +6,24 @@ import { Link } from "react-router-dom";
 
 const ProfileEdit = () => {
   const user = useSelector((s) => s.auth);
-  const [editing, setEditing] = useState(false);
   const [firstName, setFirstName] = useState(`${user.firstName}`);
   const [lastName, setLastName] = useState(`${user.lastName}`);
   const [age, setAge] = useState(`${user.age}`);
   const [height, setHeight] = useState(`${user.height}`);
   const [weight, setWeight] = useState(`${user.weight}`);
   const [email, setEmail] = useState(`${user.email}`);
-  const [phone, setPhone] = useState(`${user.phone}`)
-  const [morningReminder, setMorningReminder] = useState(`${user.morningReminder}`)
-  const [nighttimeReminder, setNighttimeReminder] = useState(`${user.nighttimeReminder}`)
-  const [password, setPassword] = useState(`${user.password}`);
+  const [phone, setPhone] = useState(`${user.phone}`);
+  const [morningReminder, setMorningReminder] = useState(
+    `${user.morningReminder}`
+  );
+  const [nighttimeReminder, setNighttimeReminder] = useState(
+    `${user.nighttimeReminder}`
+  );
+  const [password, setPassword] = useState(``);
   const [avatar, setAvatar] = useState(`${user.avatar}`);
   const dispatch = useDispatch();
 
+  console.log(password);
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = user.id;
@@ -38,7 +42,6 @@ const ProfileEdit = () => {
       avatar,
     };
     dispatch(updateUser(editedUser, history));
-    history.push("/");
   };
 
   return (
@@ -46,7 +49,7 @@ const ProfileEdit = () => {
       <form classNameName='mt-8' onSubmit={handleSubmit}>
         <div classNameName='flex flex-col'>
           {/* <p>Password: {user.password}</p> need to solve this */}
-          <div className='flex self-center fadeIn w-full sm:full md:w-full p-20 sm:p-20 md:p-20 overflow-scroll '>
+          <div className='flex self-center fadeIn w-full sm:full md:w-full lg:w-full xl:w-full p-20 sm:p-20 md:p-20 overflow-scroll '>
             <h1 className=' w-full self-center font-sans uppercase fadeIn p-2 md:text-2xl pt-3  text-xl font-bold text-center text-gray-800  dark:text-gray-200 text-gray-800'>
               Edit Profile
             </h1>
@@ -95,7 +98,7 @@ const ProfileEdit = () => {
                       name='firstName'
                       type='text'
                       className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                        bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
                     />
                   </div>
                   <div className='py-1'>
@@ -110,7 +113,7 @@ const ProfileEdit = () => {
                       name='lastName'
                       type='text'
                       className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
                     />
                   </div>
                   <div className='py-1'>
@@ -125,7 +128,7 @@ const ProfileEdit = () => {
                       name='age'
                       type='text'
                       className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
                     />
                   </div>
                   <div className='py-1'>
@@ -140,7 +143,7 @@ const ProfileEdit = () => {
                       name='height'
                       type='text'
                       className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
                     />
                   </div>
                   <div className='py-1'>
@@ -155,7 +158,7 @@ const ProfileEdit = () => {
                       name='weight'
                       type='text'
                       className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
                     />
                   </div>
                   <div className='py-1'>
@@ -170,7 +173,7 @@ const ProfileEdit = () => {
                       name='email'
                       type='text'
                       className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
                     />
                   </div>
                   <div className='py-1'>
@@ -184,52 +187,53 @@ const ProfileEdit = () => {
                       onChange={(e) => setPhone(e.target.value)}
                       name='phone'
                       type='text'
-                      className='flex self-center text-md block px-3 py-2  w-full
-                        bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
+                      className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
                     />
                   </div>
-                  <div className="py-1">
-              <span className="px-1 text-xs text-gray-500 uppercase">
-                MORNING REMINDER: (optional)
-              </span>
-              <label htmlFor="morningReminder" />
-              <input
-                // defaultValue="09:00"
-                value={morningReminder}
-                onChange={(e) => setMorningReminder(e.target.value)}
-                name="morningReminder"
-                type="time"
-                className="flex self-center text-md block px-3 py-2  w-full
-                bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white "
-              />
-            </div>
+                  <div className='py-1'>
+                    <span className='px-1 text-xs text-gray-500 uppercase'>
+                      MORNING REMINDER: (optional)
+                    </span>
+                    <label htmlFor='morningReminder' />
+                    <input
+                      // defaultValue="09:00"
+                      value={morningReminder}
+                      onChange={(e) => setMorningReminder(e.target.value)}
+                      name='morningReminder'
+                      type='time'
+                      className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
+                    />
+                  </div>
 
-            <div className="py-1">
-              <span className="px-1 text-xs text-gray-500 uppercase">
-                NIGHTTIME REMINDER: (optional)
-              </span>
-              <label htmlFor="nighttimeReminder" />
-              <input
-                value={nighttimeReminder}
-                onChange={(e) => setNighttimeReminder(e.target.value)}
-                name="nighttimeReminder"
-                type="time"
-                className="flex self-center text-md block px-3 py-2  w-full
-                bg-transparent border-b-2 border-gray-600 focus:border-gray-600 focus:bg-white "
-              />
-            </div>
+                  <div className='py-1'>
+                    <span className='px-1 text-xs text-gray-500 uppercase'>
+                      Evening REMINDER: (optional)
+                    </span>
+                    <label htmlFor='nighttimeReminder' />
+                    <input
+                      value={nighttimeReminder}
+                      onChange={(e) => setNighttimeReminder(e.target.value)}
+                      name='nighttimeReminder'
+                      type='time'
+                      className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
+                    />
+                  </div>
                   <div className='py-1'>
                     <span className='px-1 text-xs text-gray-500 uppercase'>
                       Password
                     </span>
                     <label htmlFor='password'></label>
                     <input
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
                       name='password'
-                      placeholder=''
+                      placeholder='  '
                       type='password'
-                      x-model='password'
                       className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
-                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white'
+                      bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
                     />
                   </div>
                   <div className='flex justify-evenly py-4'>
@@ -243,6 +247,7 @@ const ProfileEdit = () => {
                       className='text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 dark:border-gray-300 text-gray-800'
                       value='submit'
                       type='submit'
+                      onClick={handleSubmit}
                     >
                       Save Changes
                     </button>
