@@ -21,7 +21,7 @@ const DailyPillView = () => {
     console.log("start", start);
     console.log('end', end)
     if (dateNum >= start && eachpill.wallet.dailyDosage > 0 && dateNum <= end) {
-      return eachpill.wallet;
+      return eachpill;
     }
   });
 

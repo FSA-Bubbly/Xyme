@@ -20,9 +20,12 @@ const SinglePill = (props) => {
       <><h1>
         {" "}
         Drug Name: {singlePill.name}
-      </h1><h2>
-          Drug Concept: {singlePill.description}
+      </h1>
+      <br/>
+      <h2>
+          Generic Drug Concept (may not refer to drug by brand name): {singlePill.description}
         </h2>
+        <br/>
       <h2>It may look like this...</h2>
       <img src={singlePill.image} />
       </>
