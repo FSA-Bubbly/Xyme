@@ -44,3 +44,16 @@ router.put("/:id", async (req, res, next) => {
     // next(error);
   }
 });
+
+router.put("/:id/updatesms", async (req, res, next) => {
+  try {
+     console.log(req.body.status);
+    const user = await User.findByPk(req.body.userId);
+    await user.update({
+      sms: req.body.status,
+    });
+    res.send(user);
+  } catch (error) {
+    console.error(error);
+  }
+});

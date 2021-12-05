@@ -39,42 +39,30 @@ export const me = () => async (dispatch) => {
 };
 
 export const authenticate =
-  (
-    first,
-    last,
-    age,
-    height,
-    weight,
-    email,
-    phone,
-    morningReminder,
-    nighttimeReminder,
-    password,
-    avatar,
-    method
-  ) =>
-  async (dispatch) => {
-    try {
-      const res = await axios.post(`/auth/${method}`, {
-        first,
-        last,
-        age,
-        height,
-        weight,
-        email,
-        phone,
-        morningReminder,
-        nighttimeReminder,
-        password,
-        avatar,
-      });
-      window.localStorage.setItem(TOKEN_NAME, res.data.token);
-      dispatch(me());
-      history.push("/");
-    } catch (authError) {
-      return dispatch(setAuth({ error: authError }));
-    }
-  };
+	(first, last, age, height, weight, email,sms, phone, morningReminder, nighttimeReminder, password, avatar, method) =>
+	async (dispatch) => {
+		try {
+			const res = await axios.post(`/auth/${method}`, {
+				first,
+				last,
+				age,
+				height,
+				weight,
+				email,
+				sms,
+				phone,
+				morningReminder,
+				nighttimeReminder,
+				password,
+				avatar,
+			});
+			window.localStorage.setItem(TOKEN_NAME, res.data.token);
+			dispatch(me());
+			history.push('/');
+		} catch (authError) {
+			return dispatch(setAuth({ error: authError }));
+		}
+	};
 
 export const logout = () => {
   window.localStorage.removeItem(TOKEN_NAME);
