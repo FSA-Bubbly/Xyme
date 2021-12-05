@@ -15,6 +15,9 @@ const Pill = db.define('pill', {
 	rxcui: {
 		type: Sequelize.INTEGER,
 	},
+	image: {
+		type: Sequelize.STRING,
+	}
 });
 
 module.exports = Pill;

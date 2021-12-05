@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 const axios = require('axios');
 const key = 'AIzaSyC45clx_xZgEuF5gCSn9_ZQ8lhtRm0_R74';
 const multer = require('multer');
-const fetch = require('node-fetch');
+const fetch = require('node-fetch-retry');
 const requireToken = require('./auth');
 
 module.exports = router;
@@ -50,7 +50,6 @@ router.post(
 				}
 				return accumulator;
 			}, []);
-			console.log(filteredDetections);
 			// Gets the rxnormId
 			for (const value of filteredDetections) {
 				const response = await fetch(`${rxUrl}${value}`);
@@ -59,8 +58,6 @@ router.post(
 					pills.push(parseResponse.idGroup);
 				}
 			}
-
-			console.log(pills);
 			res.json(pills);
 		} catch (err) {
 			next(err);

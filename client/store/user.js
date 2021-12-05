@@ -22,10 +22,14 @@ export const updateUser = (user, history) => {
 			const { data } = await axios.put(`/api/users/${user.id}`, user, {
 				headers: { authorization: token },
 			});
+
 			dispatch(_updateUser(data));
 			history.push('/profile');
 		} catch (error) {
+			console.log(error.response);
+			alert(error.response.data);
 			console.error(error);
+			// console.error('updated', error.message);
 		}
 	};
 };

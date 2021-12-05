@@ -39,9 +39,9 @@ router.put('/:id', requireToken, async (req, res, next) => {
 		const user = await User.findByPk(req.params.id);
 		res.send(await user.update(req.body));
 	} catch (error) {
-		console.log('error', error);
-		// const errMsg = error[0].message;
-		// res.status(405).json(errMsg);
+		next(error);
+		// errorObj.forEach((err) => console.log(err));
+		// console.dir(Object.entries(error));
 		// next(error);
 	}
 });

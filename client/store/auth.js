@@ -1,12 +1,12 @@
-import axios from "axios";
-import history from "../history";
+import axios from 'axios';
+import history from '../history';
 
 const TOKEN = 'token';
 
 /**
  * ACTION TYPES
  */
-const SET_AUTH = "SET_AUTH";
+const SET_AUTH = 'SET_AUTH';
 
 /**
  * ACTION CREATORS
@@ -30,7 +30,20 @@ export const me = () => async (dispatch) => {
 };
 
 export const authenticate =
-	(first, last, age, height, weight, email, phone, morningReminder, nighttimeReminder, password, avatar, method) =>
+	(
+		first,
+		last,
+		age,
+		height,
+		weight,
+		email,
+		phone,
+		morningReminder,
+		nighttimeReminder,
+		password,
+		avatar,
+		method
+	) =>
 	async (dispatch) => {
 		try {
 			const res = await axios.post(`/auth/${method}`, {
@@ -52,6 +65,7 @@ export const authenticate =
 			dispatch(me());
 			history.push('/');
 		} catch (authError) {
+			alert('Incorrect email or password');
 			return dispatch(setAuth({ error: authError }));
 		}
 	};
@@ -74,10 +88,10 @@ export let getToken = () => {
  * REDUCER
  */
 export default function (state = {}, action) {
-  switch (action.type) {
-    case SET_AUTH:
-      return action.auth;
-    default:
-      return state;
-  }
+	switch (action.type) {
+		case SET_AUTH:
+			return action.auth;
+		default:
+			return state;
+	}
 }
