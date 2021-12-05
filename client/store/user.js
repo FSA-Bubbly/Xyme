@@ -5,6 +5,7 @@ const token = getToken();
 
 const UPDATE_USER = 'UPDATE_USER';
 const FETCH_UPDATE_USER = 'FETCH_UPDATE_USER';
+const UPDATE_SMS = 'UPDATE_SMS';
 
 const _updateUser = (user) => ({
 	type: UPDATE_USER,
@@ -16,6 +17,11 @@ const _fetchUpdateUser = (user) => ({
 	user,
 });
 
+const _updateSms = (status) => ({
+	type: UPDATE_SMS,
+	status,
+});
+
 export const updateUser = (user, history) => {
 	return async (dispatch) => {
 		try {
@@ -23,14 +29,31 @@ export const updateUser = (user, history) => {
 			const { data } = await axios.put(`/api/users/${user.id}`, user, {
 				headers: { authorization: token },
 			});
-
+			console.log('user route', data);
 			dispatch(_updateUser(data));
 			history.push('/profile');
 		} catch (error) {
 			console.log(error.response);
 			alert(error.response.data);
 			console.error(error);
-			// console.error('updated', error.message);
+		}
+	};
+};
+
+export const updateSms = (statusObj) => {
+	return async (dispatch) => {
+		try {
+			console.log(statusObj);
+			const { data } = await axios.put(
+				`/api/users/${statusObj.userId}/updatesms`,
+				statusObj,
+				{
+					headers: { authorization: token },
+				}
+			);
+			dispatch(_updateSms(data));
+		} catch (error) {
+			console.error(error);
 		}
 	};
 };

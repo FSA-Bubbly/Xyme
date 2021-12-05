@@ -14,77 +14,81 @@ const client = require('twilio')(accountSid, authToken);
 
 const SALT_ROUNDS = 5;
 
-const User = db.define('user', {
-	email: {
-		type: Sequelize.STRING,
-		unique: true,
-		allowNull: false,
-		validate: {
-			isEmail: true,
-		},
+const User = db.define("user", {
+  email: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false,
+    validate: {
+      isEmail: true,
+    },
+  },
+  sms: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  phone: {
+	type: Sequelize.STRING,
+	unique: false,
+	defaultValue: '',
+	validation: {
+		len: [12],
 	},
-	phone: {
-		type: Sequelize.STRING,
-		unique: false,
-		defaultValue: '',
-		validation: {
-			len: [12],
-		},
+},
+  morningReminder: {
+    type: Sequelize.STRING,
+  },
+  nighttimeReminder: {
+    type: Sequelize.STRING,
+  },
+  password: {
+    type: Sequelize.STRING,
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    validate: {
+      properCase(name) {
+        if (
+          name[0] !== name[0].toUpperCase() &&
+          name.slice(1, name[name.length - 1]) !==
+            name.slice(1, name[name.length - 1]).toLowerCase()
+        ) {
+          throw new Error("First name must be proper-case!");
+        }
+      },
+    },
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    validate: {
+      properCase(name) {
+        if (
+          name[0] !== name[0].toUpperCase() &&
+          name.slice(1, name[name.length - 1]) !==
+            name.slice(1, name[name.length - 1]).toLowerCase()
+        ) {
+          throw new Error("Last name must be proper-case!");
+        }
+      },
+    },
+  },
+  age: {
+	type: Sequelize.INTEGER,
+	validate: {
+		min: 5,
+		max: 110,
 	},
-	morningReminder: {
-		type: Sequelize.STRING,
-	},
-	nighttimeReminder: {
-		type: Sequelize.STRING,
-	},
-	password: {
-		type: Sequelize.STRING,
-	},
-	firstName: {
-		type: Sequelize.STRING,
-		validate: {
-			properCase(name) {
-				if (
-					name[0] !== name[0].toUpperCase() &&
-					name.slice(1, name[name.length - 1]) !==
-						name.slice(1, name[name.length - 1]).toLowerCase()
-				) {
-					throw new Error('First name must be proper-case!');
-				}
-			},
-		},
-	},
-	lastName: {
-		type: Sequelize.STRING,
-		validate: {
-			properCase(name) {
-				if (
-					name[0] !== name[0].toUpperCase() &&
-					name.slice(1, name[name.length - 1]) !==
-						name.slice(1, name[name.length - 1]).toLowerCase()
-				) {
-					throw new Error('Last name must be proper-case!');
-				}
-			},
-		},
-	},
-	age: {
-		type: Sequelize.INTEGER,
-		validate: {
-			min: 5,
-			max: 110,
-		},
-	},
-	height: {
-		type: Sequelize.INTEGER,
-	},
-	weight: {
-		type: Sequelize.INTEGER,
-	},
-	avatar: {
-		type: Sequelize.STRING,
-		defaultValue: '/user1.svg',
-	},
+},
+  height: {
+    type: Sequelize.INTEGER,
+  },
+  weight: {
+    type: Sequelize.INTEGER,
+  },
+  avatar: {
+    type: Sequelize.STRING,
+    defaultValue: "/user1.svg",
+  },
 });
 
 module.exports = User;
@@ -171,6 +175,7 @@ const callCronTask = (user) => {
 };
 
 const sendText = async (user) => {
+<<<<<<< HEAD
 	const userName = await user.firstName;
 	const userPhone = await user.phone;
 	const userPills = await user.getPills();
@@ -237,6 +242,74 @@ const sendText = async (user) => {
 			message.start();
 		}
 	}
+=======
+  const userName = await user.firstName;
+  const userPhone = await user.phone;
+  const userPills = await user.getPills();
+  const pillNamesMorning = userPills
+    .filter((pill) => {
+      if (
+        pill.wallet.frequencyPerDay === 1 ||
+        pill.wallet.frequencyPerDay === 2
+      ) {
+        return pill;
+      }
+    })
+    .map((pill) => pill.name);
+  const pillNamesNight = userPills
+    .filter((pill) => {
+      if (pill.wallet.frequencyPerDay === 2) {
+        return pill;
+      }
+    })
+    .map((pill) => pill.name);
+  if (user.morningReminder !== null) {
+    const userMorning = user.morningReminder.split(":");
+    const message = cron.schedule(
+      `${userMorning[1]} ${userMorning[0]} * * * `,
+      () => {
+        try {
+          client.messages
+            .create({
+              body: `Hi ${userName}, here are your morning pills for today: ${pillNamesMorning}`,
+              from: "+14325276394",
+              to: `+1${userPhone}`,
+            })
+            .then((message) => console.log(message.body))
+            .catch((err) => console.log(err));
+        } catch (error) {
+          next(error);
+        }
+      }
+    );
+    if (userPhone !== undefined || user.sms === true) {
+      message.start();
+    }
+  }
+  if (user.nighttimeReminder !== null) {
+    const userNight = await user.nighttimeReminder.split(":");
+    const message = cron.schedule(
+      `${userNight[1]} ${userNight[0]} * * * `,
+      () => {
+        try {
+          client.messages
+            .create({
+              body: `Hi ${userName}, here are your night pills for today: ${pillNamesNight}`,
+              from: "+14325276394",
+              to: `+1${userPhone}`,
+            })
+            .then((message) => console.log(message.body))
+            .catch((err) => console.log(err));
+        } catch (error) {
+          next(error);
+        }
+      }
+    );
+    if (userPhone !== undefined && user.sms === true) {
+      message.start();
+    }
+  }
+>>>>>>> 22cdc8893d7fbb02173730cf04d2f7d8ee5ac4b8
 };
 
 User.beforeCreate(hashPassword);
