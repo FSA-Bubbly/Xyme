@@ -63,6 +63,7 @@ export const addPillToWallet = (pill, history) => {
 		} catch (error) {
 			const errMsg = error.response.data.error;
 			console.error(error);
+			console.dir(error);
 			alert(errMsg);
 		}
 	};

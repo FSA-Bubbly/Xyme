@@ -35,14 +35,12 @@ const Wallet = () => {
 
   const handleRemove = () => {
     if (pillsToRemove.length > 0) {
-      dispatch(removePills(user.id, pillsToRemove));
-    }
-
-    const removePillsandInteractions = async () => {
-      await dispatch(removeInteractions(user.id, pillsToRemove));
-      dispatch(removePills(user.id, pillsToRemove));
-    }
-    removePillsandInteractions();
+			const removePillsandInteractions = async () => {
+				await dispatch(removeInteractions(user.id, pillsToRemove));
+				dispatch(removePills(user.id, pillsToRemove));
+			}
+			removePillsandInteractions();
+		}
   };
 
 	return (

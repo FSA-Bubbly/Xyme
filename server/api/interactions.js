@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const fetch = require('node-fetch');
+const fetch = require('node-fetch-retry');
 const requireToken = require('./auth');
 const { Op } = require("sequelize");
 
@@ -105,19 +105,32 @@ router.post("/", requireToken, async (req, res, next) => {
 
 router.delete(`/remove`, requireToken, async (req, res, next) => {
   try {
-    const interactions = await Promise.all(req.body.pills.map(int => {
-      const interaction = Interaction.findAll({
+    let interactions;
+    if (req.body.pills > 1) {
+      interactions = await Promise.all(req.body.pills.map(int => {
+        const interaction = Interaction.findAll({
+          where: {
+            [Op.or]: [
+              { med1Id: int },
+              { med2Id: int }
+            ],
+            userId: req.body.userId
+          }
+        })
+        return interaction;
+      }))
+    } else {
+      console.log(req.body.userId)
+      interactions = await Interaction.findAll({
         where: {
           [Op.or]: [
-            { med1Id: int },
-            { med2Id: int }
+            { med1Id: req.body.pills },
+            { med2Id: req.body.pills }
           ],
           userId: req.body.userId
         }
       })
-      return interaction;
-    }))
-
+    }
     const intIds = interactions.flat().map(int => int.dataValues.id);
 
     await Promise.all(intIds.map(intId => {
