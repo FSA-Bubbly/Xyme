@@ -11,7 +11,7 @@ const Wallet = () => {
   const { auth: user, interactions, wallet: pills } = useSelector((s) => s);
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const loading = async () =>
     new Promise((resolve) => setTimeout(() => resolve(), 1500));
