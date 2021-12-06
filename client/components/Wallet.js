@@ -63,8 +63,8 @@ const Wallet = () => {
         <div className=' my-40 self-center text-center'>
           {" "}
           <img
-            src='/loading.svg'
-            className=' self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
+            src='/XYME.png'
+            className=' animate-bounce self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
           />
           <h1>Loading...</h1>
         </div>
@@ -87,8 +87,9 @@ const Wallet = () => {
               onClick={toggleModal}
               src='/medical.svg'
               alt='Monitoring'
-              className=' object-scale-down w-10 sm:w-10 md:w-10 lg:w-10 xl:w-10 hover:scale-125 cursor-pointer'
-            />
+              className=' animate-pulse object-scale-down w-10 sm:w-10 md:w-10 lg:w-10 xl:w-10 hover:scale-125 cursor-pointer'
+              />
+              
           </div>
           {showModal ? (
             <Modal

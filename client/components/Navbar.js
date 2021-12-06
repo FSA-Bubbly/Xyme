@@ -20,11 +20,14 @@ export function Navbar({ handleClick, isLoggedIn }) {
       {/* ---- if user is logged in ---- */}
       {isLoggedIn ? (
         <nav className=''>
-          <div className=' mx-auto px-4'>
+          <div className=' mx-auto px-4 py-4'>
             <div className='flex justify-between'>
               <div className='flex space-x-4'>
                 <div>
-                  <Link to='/' className='font-bold text-lg block py-5 px-4 '>
+                  <Link
+                    to='/'
+                    className=' self font-sans  fadeIn p-2 md:text-2xl  text-xl text-center text-gray-800 dark:text-gray-200 text-gray-800  tracking-wider'
+                  >
                     xyme
                   </Link>
                 </div>
@@ -133,11 +136,14 @@ export function Navbar({ handleClick, isLoggedIn }) {
       ) : (
         <nav className=''>
           {/* ---- if user is not logged in---- */}
-          <div className='max-w-6xl mx-auto px-4'>
+          <div className='max-w-6xl mx-auto px-4 py-4'>
             <div className='flex justify-between'>
               <div className='flex space-x-4'>
                 <div>
-                  <Link to='/' className='font-bold block py-5 px-4 text-lg'>
+                  <Link
+                    to='/'
+                    className=' self font-sans  fadeIn p-2 md:text-2xl  text-xl text-center text-gray-800 dark:text-gray-200 text-gray-800  tracking-wider'
+                  >
                     xyme
                   </Link>
                 </div>

@@ -28,6 +28,9 @@ const Settings = () => {
   const theme = window.localStorage.getItem("theme");
   if (theme === "dark") {
     checkbox.checked = false;
+    const switchball = document.getElementsByClassName("switchball");
+    switchball.className = "transform translate-x-4 ";
+    // transition: transform 0.3s linear;
   } else {
     checkbox.checked = true;
   }
