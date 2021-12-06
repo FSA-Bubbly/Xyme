@@ -45,11 +45,11 @@ const Wallet = () => {
     }
   };
 
-	const interactionIds = [...new Set(interactions.map(int => [int.med1Id, int.med2Id]).flat())];
+	const interactionNames = [...new Set(interactions.map(int => [int.med1.name, int.med2.name]).flat())];
 
   return (
     <div className='flex flex-col'>
-			{console.log(interactionIds)}
+			{console.log(interactionNames)}
       {isLoading ? (
         <div className=' my-40 self-center text-center'>
           {" "}
@@ -152,11 +152,11 @@ const Wallet = () => {
                               <p className='dark:bg-gray-200 text-center text-gray-900 '>
                                 {pill.name}
 																{
-																	interactionIds.includes(pill.id) ? (
+																	interactionNames.includes(pill.name) ? (
 																		<Link
 																		to={{
 																			pathname: `/interactions`,
-																			state: { pillId: pill.id}
+																			state: { pillName: pill.name}
 																		}}>
 																			!!!
 																		</Link>

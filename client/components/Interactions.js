@@ -6,7 +6,7 @@ const Interactions = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [pillFilter, setPillFilter] = useState(
     props.location.state === undefined ?
-    null : props.location.state.pillId);
+    'all' : props.location.state.pillName);
 
   const loading = async () =>
     new Promise((resolve) => setTimeout(() => resolve(), 1500));
@@ -18,12 +18,14 @@ const Interactions = (props) => {
     })();
   }, []);
 
-  const filterPill = props.location.state === undefined ?
-  null : props.location.state.pillId
+  const filteredInteractions = interactions.filter(int => {
+    if (pillFilter === 'all') return int
+    return int.med1.name === pillFilter || int.med2.name === pillFilter
+  })
+
 
   return (
     <div className='flex flex-col'>
-      {console.log('umm hello', pillFilter)}
       {isLoading ? (
         <div className=' my-40 self-center text-center'>
           {" "}
@@ -40,14 +42,15 @@ const Interactions = (props) => {
           </div>
           <div className='flex -mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-scroll'>
             <div className='inline-block min-w-full shadow rounded-lg overflow-scroll'>
+            <div className='filter'>
               <form>
-                <div className='filter'>
-                  <label htmlFor='medName'>medication name</label>
+                  <label htmlFor='medName'>interactions with:</label>
                   <select
                     name='pillName'
                     value={pillFilter}
-                    // onChange here
+                    onChange={e => setPillFilter(e.target.value)}
                   >
+                    <option value='all'>All</option>
                     {
                       pills.map(pill => (
                         <option
@@ -58,8 +61,8 @@ const Interactions = (props) => {
                       ))
                     }
                   </select>
-                </div>
               </form>
+            </div>
               <table className='min-w-full leading-normal'>
                 <thead>
                   <tr className=''>
@@ -75,7 +78,7 @@ const Interactions = (props) => {
                   </tr>
                 </thead>
                 <tbody className=' border-green space-y-6 mt-30 px-5 py-8 bg-white text-sm'>
-                  {interactions.length < 1 ? (
+                  {filteredInteractions.length < 1 ? (
                     <tr className='shadow rounded-full border-b-10 border-t-8 border-nude  space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                       <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'></td>
                       <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'>
@@ -84,7 +87,7 @@ const Interactions = (props) => {
                       <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'></td>
                     </tr>
                   ) : (
-                    interactions.map((interaction) => (
+                    filteredInteractions.map((interaction) => (
                       <tr
                         key={interaction.id}
                         className='shadow rounded-full border-b-10 border-t-8 border-nude  space-y-6 mt-30 px-5 py-5 bg-white text-sm'
