@@ -5,26 +5,6 @@ import history from "../history";
 import { Link } from "react-router-dom";
 
 const ProfileEdit = () => {
-<<<<<<< HEAD
-  const user = useSelector((s) => s.user);
-  const [firstName, setFirstName] = useState(`${user.firstName}`);
-  const [lastName, setLastName] = useState(`${user.lastName}`);
-  const [age, setAge] = useState(`${user.age}`);
-  const [height, setHeight] = useState(`${user.height}`);
-  const [weight, setWeight] = useState(`${user.weight}`);
-  const [email, setEmail] = useState(`${user.email}`);
-  const [sms, setSms] = useState(`${user.sms}`);
-  const [phone, setPhone] = useState(`${user.phone}`);
-  const [morningReminder, setMorningReminder] = useState(
-    `${user.morningReminder}`
-  );
-  const [nighttimeReminder, setNighttimeReminder] = useState(
-    `${user.nighttimeReminder}`
-  );
-  const [password, setPassword] = useState(`${user.password}`);
-  const [avatar, setAvatar] = useState(`${user.avatar}`);
-  const dispatch = useDispatch();
-=======
 	const { user } = useSelector((s) => s);
 	const [firstName, setFirstName] = useState(`${user.firstName}`);
 	const [lastName, setLastName] = useState(`${user.lastName}`);
@@ -43,7 +23,6 @@ const ProfileEdit = () => {
 	const [password, setPassword] = useState(`${user.password}`);
 	const [avatar, setAvatar] = useState(`${user.avatar}`);
 	const dispatch = useDispatch();
->>>>>>> 98f0019051589210b43f8a98c7769150b40143ba
 
   console.log(password);
   const handleSubmit = (e) => {
