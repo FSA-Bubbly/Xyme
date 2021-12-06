@@ -216,6 +216,9 @@ const sendText = async (user) => {
 				} catch (error) {
 					next(error);
 				}
+			},
+			{
+				scheduled: false,
 			}
 		);
 		if (userPhone !== undefined || user.sms === true) {
@@ -239,6 +242,9 @@ const sendText = async (user) => {
 				} catch (error) {
 					next(error);
 				}
+			},
+			{
+				scheduled: false,
 			}
 		);
 		if (userPhone !== undefined && user.sms === true) {
