@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const Interactions = () => {
+const Interactions = (props) => {
   const { auth: user, interactions } = useSelector((s) => s);
   const [isLoading, setLoading] = useState(true);
 
@@ -15,8 +15,12 @@ const Interactions = () => {
     })();
   }, []);
 
+  const filterPill = props.location.state === undefined ?
+  null : props.location.state.pillId
+
   return (
     <div className='flex flex-col'>
+      {console.log('umm hello', filterPill)}
       {isLoading ? (
         <div className=' my-40 self-center text-center'>
           {" "}

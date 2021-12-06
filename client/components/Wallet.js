@@ -8,7 +8,7 @@ import { removeInteractions } from "../store/interactions";
 
 
 const Wallet = () => {
-  const { auth: user, wallet: pills } = useSelector((s) => s);
+  const { auth: user, interactions, wallet: pills } = useSelector((s) => s);
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
 
@@ -45,8 +45,11 @@ const Wallet = () => {
     }
   };
 
+	const interactionIds = interactions.map(int => [int.med1Id, int.med2Id]).flat();
+
   return (
     <div className='flex flex-col'>
+			{console.log(interactionIds)}
       {isLoading ? (
         <div className=' my-40 self-center text-center'>
           {" "}
@@ -148,6 +151,19 @@ const Wallet = () => {
                             >
                               <p className='dark:bg-gray-200 text-center text-gray-900 '>
                                 {pill.name}
+																{
+																	interactionIds.includes(pill.id) ? (
+																		<Link
+																		to={{
+																			pathname: `/interactions`,
+																			state: { pillId: pill.id}
+																		}}>
+																			!!!
+																		</Link>
+																	) : (
+																		null
+																	)
+																}
                               </p>
                             </Link>
                           </td>
