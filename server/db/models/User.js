@@ -150,8 +150,9 @@ User.findByToken = async function (token) {
 const infoFormat = (user) => {
 	user.email = user.email.toLowerCase();
 	user.firstName =
-		user.firstName[0].toUpperCase() + user.firstName.substring(1);
-	user.lastName = user.lastName[0].toUpperCase() + user.lastName.substring(1);
+		user.firstName[0].toUpperCase() + user.firstName.substring(1).toLowerCase();
+	user.lastName =
+		user.lastName[0].toUpperCase() + user.lastName.substring(1).toLowerCase();
 };
 
 const hashPassword = async (user) => {
