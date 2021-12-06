@@ -5,6 +5,7 @@ import history from "../history";
 import { Link } from "react-router-dom";
 
 const ProfileEdit = () => {
+<<<<<<< HEAD
   const user = useSelector((s) => s.user);
   const [firstName, setFirstName] = useState(`${user.firstName}`);
   const [lastName, setLastName] = useState(`${user.lastName}`);
@@ -23,6 +24,26 @@ const ProfileEdit = () => {
   const [password, setPassword] = useState(`${user.password}`);
   const [avatar, setAvatar] = useState(`${user.avatar}`);
   const dispatch = useDispatch();
+=======
+	const { user } = useSelector((s) => s);
+	const [firstName, setFirstName] = useState(`${user.firstName}`);
+	const [lastName, setLastName] = useState(`${user.lastName}`);
+	const [age, setAge] = useState(`${user.age}`);
+	const [height, setHeight] = useState(`${user.height}`);
+	const [weight, setWeight] = useState(`${user.weight}`);
+	const [email, setEmail] = useState(`${user.email}`);
+	const [sms, setSms] = useState(`${user.sms}`);
+	const [phone, setPhone] = useState(`${user.phone}`);
+	const [morningReminder, setMorningReminder] = useState(
+		`${user.morningReminder}`
+	);
+	const [nighttimeReminder, setNighttimeReminder] = useState(
+		`${user.nighttimeReminder}`
+	);
+	const [password, setPassword] = useState(`${user.password}`);
+	const [avatar, setAvatar] = useState(`${user.avatar}`);
+	const dispatch = useDispatch();
+>>>>>>> 98f0019051589210b43f8a98c7769150b40143ba
 
   console.log(password);
   const handleSubmit = (e) => {
@@ -259,20 +280,20 @@ const ProfileEdit = () => {
                       type='time'
                       className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                       bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
-                    />
-                  </div>
-                  <div className='py-1'>
-                    <span className='px-1 text-xs text-gray-500 uppercase'>
-                      Password
-                    </span>
-                    <label htmlFor='password'></label>
-                    <input
-                      onChange={(e) => setPassword(e.target.value)}
-                      value={password}
-                      name='password'
-                      placeholder='  '
-                      type='password'
-                      className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+										/>
+									</div>
+									<div className='py-1'>
+										<span className='px-1 text-xs text-gray-500 uppercase'>
+											Password
+										</span>
+										<label htmlFor='password'></label>
+										<input
+											onChange={(e) => setPassword(e.target.value)}
+											value=''
+											name='password'
+											placeholder='  '
+											type='password'
+											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                       bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
                     />
                   </div>
