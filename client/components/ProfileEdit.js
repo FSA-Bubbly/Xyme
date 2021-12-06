@@ -5,7 +5,7 @@ import history from '../history';
 import { Link } from 'react-router-dom';
 
 const ProfileEdit = () => {
-	const user = useSelector((s) => s.user);
+	const { user } = useSelector((s) => s);
 	const [firstName, setFirstName] = useState(`${user.firstName}`);
 	const [lastName, setLastName] = useState(`${user.lastName}`);
 	const [age, setAge] = useState(`${user.age}`);

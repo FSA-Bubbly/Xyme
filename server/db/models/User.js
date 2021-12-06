@@ -179,72 +179,76 @@ const callCronTask = (user) => {
 };
 
 const sendText = async (user) => {
-	const userName = await user.firstName;
-	const userPhone = await user.phone;
-	const userPills = await user.getPills();
-	const pillNamesMorning = userPills
-		.filter((pill) => {
-			if (
-				pill.wallet.frequencyPerDay === 1 ||
-				pill.wallet.frequencyPerDay === 2
-			) {
-				return pill;
-			}
-		})
-		.map((pill) => pill.name);
-	const pillNamesNight = userPills
-		.filter((pill) => {
-			if (pill.wallet.frequencyPerDay === 2) {
-				return pill;
-			}
-		})
-		.map((pill) => pill.name);
-	if (user.morningReminder !== null) {
-		const userMorning = user.morningReminder.split(':');
-		const message = cron.schedule(
-			`${userMorning[1]} ${userMorning[0]} * * * `,
-			() => {
-				try {
-					client.messages
-						.create({
-							body: `Hi ${userName}, here are your morning pills for today: ${pillNamesMorning}`,
-							from: '+14325276394',
-							to: `+1${userPhone}`,
-						})
-						.then((message) => console.log(message.body))
-						.catch((err) => console.log(err));
-				} catch (error) {
-					next(error);
-				}
-			}
-		);
-		if (userPhone !== undefined || user.sms === true) {
-			message.start();
-		}
-	}
-	if (user.nighttimeReminder !== null) {
-		const userNight = await user.nighttimeReminder.split(':');
-		const message = cron.schedule(
-			`${userNight[1]} ${userNight[0]} * * * `,
-			() => {
-				try {
-					client.messages
-						.create({
-							body: `Hi ${userName}, here are your night pills for today: ${pillNamesNight}`,
-							from: '+14325276394',
-							to: `+1${userPhone}`,
-						})
-						.then((message) => console.log(message.body))
-						.catch((err) => console.log(err));
-				} catch (error) {
-					next(error);
-				}
-			}
-		);
-		if (userPhone !== undefined && user.sms === true) {
-			message.start();
-		}
-	}
+  const userName = await user.firstName;
+  const userPhone = await user.phone;
+  const userPills = await user.getPills();
+  const pillNamesMorning = userPills
+    .filter((pill) => {
+      if (
+        pill.wallet.frequencyPerDay === 1 ||
+        pill.wallet.frequencyPerDay === 2
+      ) {
+        return pill;
+      }
+    })
+    .map((pill) => pill.name);
+  const pillNamesNight = userPills
+    .filter((pill) => {
+      if (pill.wallet.frequencyPerDay === 2) {
+        return pill;
+      }
+    })
+    .map((pill) => pill.name);
+  if (user.morningReminder !== null) {
+    const userMorning = user.morningReminder.split(":");
+    const message = cron.schedule(
+      `${userMorning[1]} ${userMorning[0]} * * * `,
+      () => {
+        try {
+          client.messages
+            .create({
+              body: `Hi ${userName}, here are your morning pills for today: ${pillNamesMorning}`,
+              from: "+14325276394",
+              to: `+1${userPhone}`,
+            })
+            .then((message) => console.log(message.body))
+            .catch((err) => console.log(err));
+        } catch (error) {
+          next(error);
+        }
+      }, {
+        scheduled: false
+      }
+    );
+    if (userPhone !== undefined || user.sms === true) {
+      message.start();
+    }
+  }
+  if (user.nighttimeReminder !== null) {
+    const userNight = await user.nighttimeReminder.split(":");
+    const message = cron.schedule(
+      `${userNight[1]} ${userNight[0]} * * * `,
+      () => {
+        try {
+          client.messages
+            .create({
+              body: `Hi ${userName}, here are your night pills for today: ${pillNamesNight}`,
+              from: "+14325276394",
+              to: `+1${userPhone}`,
+            })
+            .then((message) => console.log(message.body))
+            .catch((err) => console.log(err));
+        } catch (error) {
+          next(error);
+        }
+      }, {
+        scheduled: false
+      }
+    );
+    if (userPhone !== undefined && user.sms === true) {
+      message.start();
+    }
+  }
 };
 User.beforeCreate(infoFormat);
 User.beforeUpdate(infoFormat);
