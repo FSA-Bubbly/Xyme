@@ -8,16 +8,37 @@ const Settings = () => {
   const user = useSelector((state) => state.auth);
   // const updatedUser = useSelector((state) => state.user);
   const checkbox = document.getElementsByClassName("checkbox");
-
+  const theme = window.localStorage.getItem("theme");
   const html = document.querySelector("html");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const theme = window.localStorage.getItem("theme");
+    if (theme === "dark") {
+      checkbox[0].checked = true;
+    } else {
+      checkbox[0].checked = false;
+    }
+  }, [theme]);
+
+  useEffect(() => {
+    if (user.sms) {
+      console.log("user sms is true");
+      const notif = document.getElementsByClassName("notification");
+      notif[0].checked = true;
+    } else {
+      console.log("user sms is false");
+      const notif = document.getElementsByClassName("notification");
+      notif[0].checked = false;
+    }
+  }, [user]);
 
   const toggleDarkMode = function () {
     if (checkbox[0].checked) {
       window.localStorage.setItem("theme", "dark");
       const theme = window.localStorage.getItem("theme");
       html.classList.add("dark");
-      console.log(theme);
+      const switchball = document.getElementsByClassName("switch-ball");
     } else {
       window.localStorage.setItem("theme", "light");
       const theme = window.localStorage.getItem("theme");
@@ -25,36 +46,15 @@ const Settings = () => {
       console.log(theme);
     }
   };
-  const theme = window.localStorage.getItem("theme");
-  if (theme === "dark") {
-    checkbox.checked = false;
-    const switchball = document.getElementsByClassName("switchball");
-    switchball.className = "transform translate-x-4 ";
-    // transition: transform 0.3s linear;
-  } else {
-    checkbox.checked = true;
-  }
 
   const toggleNotification = function () {
     const notif = document.getElementsByClassName("notification");
-    console.log(notif[0].checked);
     const statusObj = {
       status: notif[0].checked,
       userId: user.id,
     };
     dispatch(updateSms(statusObj));
   };
-
-  // if (status) {
-  //   checkbox[0].checked = true
-  //   ///needs to trigger a response to save the user's sms as fale
-  // } else {
-  //   //turn on notification
-  //   checkbox[0].checked = false
-  // }
-
-  //   ? html.classList.add("dark")
-  //   : html.classList.add("light");
 
   return (
     <div>
@@ -110,7 +110,7 @@ const Settings = () => {
                     off
                   </div>
                   <div className='w-11 h-4 flex items-center bg-gray-300 rounded-full p2 dark:bg-gray-300'>
-                    <div className='nofitication w-5 h-4 bg-white dark:bg-gray-500 rounded-full shadow'></div>
+                    <div className='notification  notificationball w-5 h-4 bg-white dark:bg-gray-500 rounded-full shadow'></div>
                   </div>
                   <div className='text-xs text-gray-500 uppercase dark:text-gray-400 mx-2'>
                     on

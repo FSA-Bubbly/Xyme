@@ -48,7 +48,7 @@ export const Landing = ({ isLoggedIn }) => {
           <h1 className='self-center font-mont h-full my-5 text-3xl md:text-5xl  font-bold leading-tight text-center md:text-center slide-in-bottom-h1 '>
             xyme
           </h1>
-          <p className=' self-center mt-10 opacity-0 xl:opacity-1 leading-normal text-base md:text-2xl mb-8 text-center md:text-center slide-in-bottom-subtitle '>
+          <p className=' self-center mt-20 opacity-0 xl:opacity-1 leading-normal text-base md:text-2xl mb-8 text-center md:text-center slide-in-bottom-subtitle '>
             Your personalized medication and supplementation tracker.
           </p>
           {isLoggedIn ? (
@@ -140,9 +140,9 @@ export const Landing = ({ isLoggedIn }) => {
         </section>
         <section className='bg-white bg-opacity-40 container my-20 p-10 rounded-lg '>
           <div className='container mx-auto px-6 py-20'>
-            <h2 className=' font-mont fadeIn p-2 md:text-3xl text-2xl font-bold text-center text-gray-800 mb-8 b dark:text-gray-200'>
+            <p className=' font-sans fadeIn p-2 md:text-3xl text-2xl text-center text-gray-800 mb-8 b dark:text-gray-200'>
               Meet the Team
-            </h2>
+            </p>
             <div className='flex flex-wrap'>
               <div className='w-full md:w-1/4 px-2 mb-4'>
                 <div className='  transform transition duration-500 hover:scale-125  flex flex-col rounded py-2'>
