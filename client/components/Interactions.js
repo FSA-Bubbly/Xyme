@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Interactions = (props) => {
-  const { auth: user, interactions } = useSelector((s) => s);
+  const { auth: user, interactions, wallet: pills } = useSelector((s) => s);
   const [isLoading, setLoading] = useState(true);
+  const [pillFilter, setPillFilter] = useState(
+    props.location.state === undefined ?
+    null : props.location.state.pillId);
 
   const loading = async () =>
     new Promise((resolve) => setTimeout(() => resolve(), 1500));
@@ -20,7 +23,7 @@ const Interactions = (props) => {
 
   return (
     <div className='flex flex-col'>
-      {console.log('umm hello', filterPill)}
+      {console.log('umm hello', pillFilter)}
       {isLoading ? (
         <div className=' my-40 self-center text-center'>
           {" "}
@@ -37,6 +40,26 @@ const Interactions = (props) => {
           </div>
           <div className='flex -mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-scroll'>
             <div className='inline-block min-w-full shadow rounded-lg overflow-scroll'>
+              <form>
+                <div className='filter'>
+                  <label htmlFor='medName'>medication name</label>
+                  <select
+                    name='pillName'
+                    value={pillFilter}
+                    // onChange here
+                  >
+                    {
+                      pills.map(pill => (
+                        <option
+                        value={pill.name}
+                        key={pill.id}>
+                          {pill.name}
+                        </option>
+                      ))
+                    }
+                  </select>
+                </div>
+              </form>
               <table className='min-w-full leading-normal'>
                 <thead>
                   <tr className=''>

@@ -45,7 +45,7 @@ const Wallet = () => {
     }
   };
 
-	const interactionIds = interactions.map(int => [int.med1Id, int.med2Id]).flat();
+	const interactionIds = [...new Set(interactions.map(int => [int.med1Id, int.med2Id]).flat())];
 
   return (
     <div className='flex flex-col'>
