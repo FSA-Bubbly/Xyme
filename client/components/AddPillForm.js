@@ -29,11 +29,11 @@ const AddPillForm = () => {
       endDate,
       frequencyPerDay,
     };
-    const removePillandInteraction = async () => {
-      await dispatch(addPillToWallet(pillToAdd, history));
-      dispatch(addInteractions(user));
+    const addPillandInteraction = async () => {
+      await dispatch(addPillToWallet(pillToAdd));
+      dispatch(addInteractions(user, history));
     };
-    removePillandInteraction();
+    addPillandInteraction();
   };
 
   const retrieveName = (visionPill) => {
@@ -44,7 +44,7 @@ const AddPillForm = () => {
   return (
     <div>
       <form id='add-pill m-t-8' onSubmit={handleSubmit}>
-        <div classNameName='flex flex-col'>
+        <div className='flex flex-col'>
           {/* <p>Password: {user.password}</p> need to solve this */}
           <div className='flex self-center fadeIn w-full sm:full md:w-full lg:w-full xl:w-full p-20 sm:p-20 md:p-20 overflow-scroll '>
             <h1 className=' w-full self-center font-sans uppercase fadeIn p-2 md:text-2xl pt-3  text-xl font-bold text-center text-gray-800  dark:text-gray-200 text-gray-800'>

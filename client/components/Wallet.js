@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWallet } from "../store/wallet";
 import { removePills } from "../store/wallet";
+import { fetchInteractions } from "../store/interactions";
 import { removeInteractions } from "../store/interactions";
 
+
 const Wallet = () => {
-  const { auth: user, wallet: pills } = useSelector((s) => s);
+  const { auth: user, interactions, wallet: pills } = useSelector((s) => s);
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
 
@@ -15,10 +17,11 @@ const Wallet = () => {
 
   useEffect(() => {
     (async () => {
-      await loading();
+			await loading();
       setLoading(!isLoading);
     })();
-    dispatch(fetchWallet(user));
+		dispatch(fetchWallet(user));
+		dispatch(fetchInteractions(user));
   }, []);
 
   let pillsToRemove = [];
@@ -41,6 +44,8 @@ const Wallet = () => {
       removePillsandInteractions();
     }
   };
+
+	const interactionNames = [...new Set(interactions.map(int => [int.med1.name, int.med2.name]).flat())];
 
   return (
     <div className='flex flex-col'>
@@ -148,6 +153,19 @@ const Wallet = () => {
                             >
                               <p className='dark:bg-gray-200 text-center text-gray-900 '>
                                 {pill.name}
+																{
+																	interactionNames.includes(pill.name) ? (
+																		<Link
+																		to={{
+																			pathname: `/interactions`,
+																			state: { pillName: pill.name}
+																		}}>
+																			!!!
+																		</Link>
+																	) : (
+																		null
+																	)
+																}
                               </p>
                             </Link>
                           </td>

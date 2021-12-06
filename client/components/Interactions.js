@@ -1,22 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchWallet } from "../store/wallet";
 import { fetchInteractions } from "../store/interactions";
 
-const Interactions = () => {
-  const { auth: user, interactions } = useSelector((s) => s);
+const Interactions = (props) => {
+  const { auth: user, interactions, wallet: pills } = useSelector((s) => s);
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
+  const [pillFilter, setPillFilter] = useState(
+    props.location.state === undefined ?
+    'all' : props.location.state.pillName);
 
-  const loading = async () =>
-    new Promise((resolve) => setTimeout(() => resolve(), 1500));
+	const loading = async () =>
+		new Promise((resolve) => setTimeout(() => resolve(), 1500));
 
   useEffect(() => {
     (async () => {
       await loading();
       setLoading(!isLoading);
     })();
-    dispatch(fetchInteractions(user));
+    if (props.location.state === undefined) {
+      dispatch(fetchWallet(user));
+		  dispatch(fetchInteractions(user));
+    }
   }, []);
+
+  const filteredInteractions = interactions.filter(int => {
+    if (pillFilter === 'all') return int
+    return int.med1.name === pillFilter || int.med2.name === pillFilter
+  })
+
 
   return (
     <div className='flex flex-col'>
@@ -43,6 +56,27 @@ const Interactions = () => {
           </div>
           <div className='flex -mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-hidden'>
             <div className='inline-block min-w-full shadow rounded-lg overflow-scroll'>
+            <div className='filter'>
+              <form>
+                  <label htmlFor='medName'>interactions with:</label>
+                  <select
+                    name='pillName'
+                    value={pillFilter}
+                    onChange={e => setPillFilter(e.target.value)}
+                  >
+                    <option value='all'>All</option>
+                    {
+                      pills.map(pill => (
+                        <option
+                        value={pill.name}
+                        key={pill.id}>
+                          {pill.name}
+                        </option>
+                      ))
+                    }
+                  </select>
+              </form>
+            </div>
               <table className='min-w-full leading-normal'>
                 <thead>
                   <tr className=''>
@@ -58,7 +92,7 @@ const Interactions = () => {
                   </tr>
                 </thead>
                 <tbody className=' border-green space-y-6 mt-30 px-5 py-8 bg-white text-sm'>
-                  {interactions.length < 1 ? (
+                  {filteredInteractions.length < 1 ? (
                     <tr className='shadow rounded-full border-b-10 border-t-8 border-nude  space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                       <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'></td>
                       <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'>
@@ -67,7 +101,7 @@ const Interactions = () => {
                       <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'></td>
                     </tr>
                   ) : (
-                    interactions.map((interaction) => (
+                    filteredInteractions.map((interaction) => (
                       <tr
                         key={interaction.id}
                         className='shadow rounded-full border-b-10 border-t-8 border-nude  space-y-6 mt-30 px-5 py-5 bg-white text-sm'
