@@ -21,8 +21,8 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
             className='mobile-menus right-0  h-auto rounded-l fixed h-screen w-full sm:w-full lg:hidden bg-white top-16 z-30'
             style={style}
           >
-            <ul className=' divide-y divide-light-blue-400 menu-list flex flex-col text-xs font-bold'>
-            <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange'>
+            <ul className='divide-y divide-light-blue-400 menu-list flex flex-col text-xs font-bold'>
+              <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange'>
                 {" "}
                 <img
                   src='/dailypills.svg'
@@ -99,6 +99,21 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                   home
                 </Link>
               </li>
+              <li className=' flex flex-row menu-list-item py-2 hover:bg-white hover:text-orange'>
+                {" "}
+                <img
+                  src='/settings.svg'
+                  alt='Monitoring'
+                  className=' mx-4 w-6 self-center transform transition duration-500 hover:scale-125'
+                />
+                <Link
+                  to='/settings'
+                  className=' text-center w-30 block ml-30  py-2 px-4 text-sm'
+                  onClick={hide}
+                >
+                  settings
+                </Link>
+              </li>
               <li className=' flex menu-list-item py-2 hover:bg-white hover:text-orange'>
                 {" "}
                 <img
@@ -122,8 +137,8 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
           transition={{ duration: 1.0, ease: [0.04, 0.62, 0.23, 0.98] }}
           className='mobile-menus right-0  h-auto rounded-l fixed h-screen w-full sm:w-1/2 lg:hidden bg-white top-16 z-30'
         >
-          <ul className=' divide-y divide-light-blue-400 menu-list flex flex-col text-xs font-bold'>
-            <li className='flex menu-list-item py-2 hover:bg-white hover:text-blue-700'>
+          <ul className='divide-y divide-light-blue-400 menu-list flex flex-col text-xs font-bold'>
+            <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange'>
               {" "}
               <img
                 src='/logout.svg'
@@ -138,7 +153,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 sign up
               </Link>
             </li>
-            <li className='flex menu-list-item py-2 hover:bg-white hover:text-blue-700'>
+            <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange'>
               {" "}
               <img
                 src='/logout.svg'

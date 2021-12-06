@@ -126,7 +126,7 @@ export const Landing = ({ isLoggedIn }) => {
             </motion.div>
           </div>
 
-          <div className='flex items-center flex-wrap mb-20 border-b-2 border-black dark:border-b-2 dark:border-gray-200'>
+          <div className='flex items-center flex-wrap mb-20 '>
             <motion.div
               ref={ref}
               animate={animation}
@@ -145,16 +145,74 @@ export const Landing = ({ isLoggedIn }) => {
             </div>
           </div>
         </section>
-        <div className='flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden lg:self-center'>
-          <div className='self-center w-1/2 p-10 sm:p-20 md:p-30 '>
-            <img
-              className=' img rounded-full shadow-sm bg-nude'
-              animate={{ scale: 2 }}
-              src='/XYME.png'
-              alt='Syncing'
-            />
+        <section className='bg-white bg-opacity-40 container my-20 p-10 rounded-lg '>
+          <div className='container mx-auto px-6 py-20'>
+            <h2 className=' font-mont fadeIn p-2 md:text-3xl text-2xl font-bold text-center text-gray-800 mb-8 b dark:text-gray-200'>
+              Meet the Team
+            </h2>
+            <div className='flex flex-wrap'>
+              <div className='w-full md:w-1/4 px-2 mb-4'>
+                <div className=' flex flex-col rounded py-2'>
+                  <a className=' self-center' href='https://github.com/zwardb'>
+                    <img
+                      src='/Zack.svg'
+                      className=' self-center w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
+                    />
+                  </a>
+
+                  <p className=' self-center text-gray-500 text-xs md:text-sm px-6 dark:text-gray-200'>
+                    Zack Ward
+                  </p>
+                </div>
+              </div>
+
+              <div className='w-full md:w-1/4 px-2 mb-4'>
+                <div className=' flex flex-col rounded py-2'>
+                  <a className=' self-center' href='https://github.com/zwardb'>
+                    <img
+                      src='/Jordan.svg'
+                      className=' self-center w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
+                    />
+                  </a>
+                  <p className=' self-center text-gray-500 text-xs md:text-sm px-6 dark:text-gray-200'>
+                    Jordan Laguio
+                  </p>
+                </div>
+              </div>
+              <div className='w-full md:w-1/4 px-2 mb-4'>
+                <div className=' flex flex-col rounded py-2'>
+                  <a
+                    className=' self-center'
+                    href='https://github.com/yoshidasala'
+                  >
+                    <img
+                      src='/Sala.svg'
+                      className=' self-center w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
+                    />
+                  </a>
+
+                  <p className=' self-center text-gray-500 text-xs md:text-sm px-6 dark:text-gray-200'>
+                    Sala Yoshida
+                  </p>
+                </div>
+              </div>
+              <div className='w-full md:w-1/4 px-2 mb-4'>
+                <div className=' flex flex-col rounded py-2'>
+                  <a className=' self-center' href='https://github.com/zwardb'>
+                    <img
+                      src='/CJ.svg'
+                      className=' self-center w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
+                    />
+                  </a>
+                  <p className=' self-center text-gray-500 text-xs md:text-sm px-6 dark:text-gray-200'>
+                    CJ Fung
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
+
         <div className=' border-t-2 border-black w-full pt-16 pb-6 text-sm text-center md:text-left fade-in dark:border-t-2 dark:border-gray-200'>
           <a
             className=' text-gray-500 no-underline hover:no-underline'

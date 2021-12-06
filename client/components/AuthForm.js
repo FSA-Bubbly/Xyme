@@ -3,11 +3,14 @@ import { connect } from "react-redux";
 import { authenticate } from "../store";
 import { Link } from "react-router-dom";
 
+import history from "../history";
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
   const [userAvatar, setUserAvatar] = useState("/user1.svg");
 
-  const forgotPassword = () => {};
+  const toReset = () => {
+    history.push("/forgot");
+  };
 
   return (
     <div>
@@ -129,24 +132,24 @@ const AuthForm = (props) => {
             </div>
 
             <div className='py-1'>
-                    <span className='px-1 text-xs text-gray-500 uppercase'>
-                      Do you wish to receive SMS reminders?
-                    </span>
-                    <label htmlFor='sms' />
-                    <input
-                      placeholder=''
-                      name='sms'
-                      type='checkbox'
-                      id='sms'
-                      // value = {toggleNotification}
-                      //  onClick={toggleNotification}
-                      className='sms flex self-center text-md block px-3 py-2  w-full
+              <span className='px-1 text-xs text-gray-500 uppercase'>
+                Do you wish to receive SMS reminders?
+              </span>
+              <label htmlFor='sms' />
+              <input
+                placeholder=''
+                name='sms'
+                type='checkbox'
+                id='sms'
+                // value = {toggleNotification}
+                //  onClick={toggleNotification}
+                className='sms flex self-center text-md block px-3 py-2  w-full
                         bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
-                    />
-                  </div>
+              />
+            </div>
 
-            <div className="py-1">
-              <span className="px-1 text-xs text-gray-500 uppercase">
+            <div className='py-1'>
+              <span className='px-1 text-xs text-gray-500 uppercase'>
                 Phone (optional)
               </span>
               <label htmlFor='phone' />
@@ -247,9 +250,13 @@ const AuthForm = (props) => {
                 {displayName}
               </button>
             </div>
+
             <div className=' mt-5  py-1 flex flex-col '>
-              <button className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
-                <Link to={`/forgot`}> Forgot Password</Link>
+              <button
+                onClick={toReset}
+                className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'
+              >
+                Forgot Password
               </button>
             </div>
           </div>
