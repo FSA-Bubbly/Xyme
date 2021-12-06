@@ -10,7 +10,7 @@ var cron = require("node-cron");
 require("dotenv").config();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-// const client = require('twilio')(accountSid, authToken);
+const client = require("twilio")(accountSid, authToken);
 
 const SALT_ROUNDS = 5;
 
@@ -210,7 +210,7 @@ const sendText = async (user) => {
           client.messages
             .create({
               body: `Hi ${userName}, here are your morning pills for today: ${pillNamesMorning}`,
-              from: "+14325276394",
+              from: "+14324652074",
               to: `+1${userPhone}`,
             })
             .then((message) => console.log(message.body))
@@ -233,8 +233,8 @@ const sendText = async (user) => {
           client.messages
             .create({
               body: `Hi ${userName}, here are your night pills for today: ${pillNamesNight}`,
-              from: "+14325276394",
-              to: `+1${userPhone}`,
+              from: "+14324652074",
+              to: `+81${userPhone}`,
             })
             .then((message) => console.log(message.body))
             .catch((err) => console.log(err));

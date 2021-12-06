@@ -17,14 +17,13 @@ const DailyPillView = () => {
   const filtered = pills.filter((eachpill) => {
     const start = Date.parse(eachpill.wallet.startDate);
 
-    const end = Date.parse(eachpill.wallet.endDate)+(8.64e+7)
-    
+    const end = Date.parse(eachpill.wallet.endDate) + 8.64e7;
 
     if (dateNum >= start && eachpill.wallet.dailyDosage > 0 && dateNum <= end) {
       return eachpill.wallet;
     }
   });
-  console.log('filtered', filtered)
+  console.log("filtered", filtered);
 
   useEffect(() => {
     dispatch(fetchWallet(currentUser));
@@ -55,23 +54,26 @@ const DailyPillView = () => {
         {pills === undefined ? (
           <div className=' my-40 self-center text-center'>
             {" "}
-            <img src='/loading.svg' className=' self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32' />
+            <img
+              src='/loading.svg'
+              className=' self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
+            />
             <h1>Loading...</h1>
           </div>
         ) : (
           <>
             <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>
-              <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
+              <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-wider text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
                 medication for today
               </h1>
               <img
                 className=' self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
-                src='/pill2.svg'
+                src='/pill3.svg'
                 alt='Monitoring'
               />
             </div>
 
-            <div className=' flex -mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-scroll'>
+            <div className=' flex -mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-hidden'>
               <div className='inline-block min-w-full shadow rounded-lg overflow-scroll'>
                 <table className='min-w-full leading-normal'>
                   <thead>

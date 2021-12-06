@@ -21,7 +21,7 @@ const Profile = () => {
       <div className='flex flex-col  '>
         {/* <p>Password: {user.password}</p> need to solve this */}
         <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>
-          <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
+          <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl text-center text-gray-800 dark:text-gray-200 text-gray-800  tracking-wider'>
             profile
           </h1>
         </div>

@@ -78,7 +78,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/profile'
-                  className='text-center w-30 block ml-30  py-2 px-4 text-sm'
+                  className='text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
                   onClick={hide}
                 >
                   profile
@@ -99,7 +99,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                   home
                 </Link>
               </li>
-              <li className=' flex flex-row menu-list-item py-2 hover:bg-white hover:text-orange'>
+              <li className=' flex flex-row menu-list-item py-2 hover:bg-white hover:text-orange  dark:text'>
                 {" "}
                 <img
                   src='/settings.svg'

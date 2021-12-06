@@ -8,11 +8,11 @@ const Interactions = (props) => {
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
   const [pillFilter, setPillFilter] = useState(
-    props.location.state === undefined ?
-    'all' : props.location.state.pillName);
+    props.location.state === undefined ? "all" : props.location.state.pillName
+  );
 
-	const loading = async () =>
-		new Promise((resolve) => setTimeout(() => resolve(), 1500));
+  const loading = async () =>
+    new Promise((resolve) => setTimeout(() => resolve(), 1500));
 
   useEffect(() => {
     (async () => {
@@ -21,15 +21,14 @@ const Interactions = (props) => {
     })();
     if (props.location.state === undefined) {
       dispatch(fetchWallet(user));
-		  dispatch(fetchInteractions(user));
+      dispatch(fetchInteractions(user));
     }
   }, []);
 
-  const filteredInteractions = interactions.filter(int => {
-    if (pillFilter === 'all') return int
-    return int.med1.name === pillFilter || int.med2.name === pillFilter
-  })
-
+  const filteredInteractions = interactions.filter((int) => {
+    if (pillFilter === "all") return int;
+    return int.med1.name === pillFilter || int.med2.name === pillFilter;
+  });
 
   return (
     <div className='flex flex-col'>
@@ -45,7 +44,7 @@ const Interactions = (props) => {
       ) : (
         <>
           <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>
-            <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
+            <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl  text-center text-gray-800 dark:text-gray-200 text-gray-800 tracking-wider'>
               interactions
             </h1>
             <img
@@ -55,28 +54,25 @@ const Interactions = (props) => {
             />
           </div>
           <div className='flex -mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-hidden'>
-            <div className='inline-block min-w-full shadow rounded-lg overflow-scroll'>
-            <div className='filter'>
-              <form>
+            <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
+              <div className='filter'>
+                <form>
                   <label htmlFor='medName'>interactions with:</label>
                   <select
+                    className='self-center w-24 text-sm dark:bg-gray-800 dark:text-gray-200 dark:border-gray-200 border-2 rounded'
                     name='pillName'
                     value={pillFilter}
-                    onChange={e => setPillFilter(e.target.value)}
+                    onChange={(e) => setPillFilter(e.target.value)}
                   >
                     <option value='all'>All</option>
-                    {
-                      pills.map(pill => (
-                        <option
-                        value={pill.name}
-                        key={pill.id}>
-                          {pill.name}
-                        </option>
-                      ))
-                    }
+                    {pills.map((pill) => (
+                      <option value={pill.name} key={pill.id}>
+                        {pill.name}
+                      </option>
+                    ))}
                   </select>
-              </form>
-            </div>
+                </form>
+              </div>
               <table className='min-w-full leading-normal'>
                 <thead>
                   <tr className=''>
@@ -106,13 +102,13 @@ const Interactions = (props) => {
                         key={interaction.id}
                         className='shadow rounded-full border-b-10 border-t-8 border-nude  space-y-6 mt-30 px-5 py-5 bg-white text-sm'
                       >
-                        <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'>
+                        <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm text-gray-900'>
                           {interaction.med1.name}
                         </td>
-                        <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'>
+                        <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm text-gray-900'>
                           {interaction.med2.name}
                         </td>
-                        <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'>
+                        <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm text-gray-900'>
                           {interaction.interactionDesc}
                         </td>
                       </tr>

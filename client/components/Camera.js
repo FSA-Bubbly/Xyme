@@ -39,20 +39,15 @@ const Camera = ({ walletCallBack }) => {
       />
       {showModal ? (
         <Modal
+          className=' my-16 w-auto'
           isOpen={showModal}
           onRequestClose={toggleModal}
           contentLabel='Test'
         >
           <div>
             <div className='flex flex-col  '>
-              <div className='flex self-center flex-col fadeIn w-full    sm:p-10 md:p-10 overflow-hidden'>
-                <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl  text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
-                  PILL SCAN
-                </h1>
-              </div>
-
               <div className='flex justify-center '>
-                <div className='bg-white w-full  xs:1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 mt-10 rounded-lg dark:bg-gray-200'>
+                <div className='bg-white w-full  m-10 rounded-lg dark:bg-gray-200'>
                   <div className='flex self-center  pt-10 flex-col'>
                     <p className=' text-center px-1 text-xs text-gray-500 uppercase'>
                       {" "}
@@ -60,17 +55,17 @@ const Camera = ({ walletCallBack }) => {
                     </p>
 
                     {selectedImage && (
-                      <div className='rounded-mg py-20'>
+                      <div className='flex justify-center self-center rounded-mg py-20'>
                         <img
                           alt='No Image'
-                          width={"250px"}
+                          className='self-center w-1/2'
                           src={URL.createObjectURL(selectedImage)}
                         />
                         <br />
                       </div>
                     )}
 
-                    <p className=' self-center px-1 text-sm text-gray-500 uppercase'>
+                    <p className=' self-center px-1 text-xs sm:text-sm text-gray-500 uppercase'>
                       {" "}
                       Name: {imageDetails}
                     </p>
