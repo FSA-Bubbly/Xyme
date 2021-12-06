@@ -54,17 +54,17 @@ const DailyPillView = () => {
         {pills === undefined ? (
           <div className=' my-40 self-center text-center'>
             {" "}
-            <img src='/loading.svg' className=' w-32' />
+            <img src='/loading.svg' className=' self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32' />
             <h1>Loading...</h1>
           </div>
         ) : (
           <>
-            <div className='flex flex-col self-center fadeIn w-full sm:1/2 md:w-1/3 overflow-scroll '>
-              <h1 className=' font-sans uppercase fadeIn p-2 md:text-2xl pt-3 md:pt-28 text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800'>
+            <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>
+              <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
                 medication for today
               </h1>
               <img
-                className=' object-scale-down p-20  md:p-30 lg:p-10 '
+                className=' self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
                 src='/pill2.svg'
                 alt='Monitoring'
               />
