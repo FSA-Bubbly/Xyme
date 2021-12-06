@@ -146,6 +146,7 @@ const AddPillForm = () => {
                     id='frequencyPerDay'
                     className='text-center w-10 dark:bg-gray-200 dark:text-gray-800'
                   >
+                    <option value='0'>0</option>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
                     <option value='3'>3</option>
