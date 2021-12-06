@@ -36,10 +36,27 @@ const ForgotPassword = (props) => {
         </div>
       </div>
       <form className='mt-8'>
-        {/* ---- form for log in  ---- */}
         {emailSent ? (
           <div>
-            <span>An email with reset instructions is on its way</span>
+            <div className='flex flex-col  '>
+              <div className='flex items-center justify-center '>
+                <div className=' w-full  xs:1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 mt-5 rounded-sm dark:bg-gray-200'>
+                  <div className='flex items-center justify-center pt-10 flex-col'>
+                    <img src='/user9.svg' className=' w-32' />
+
+                    <h1 className='text-gray-500 text-sm'></h1>
+                  </div>
+                  <div className='flex justify-center p-6'>
+                    <Link to='/login'>
+                      <div className=' rounded-sm text-center dark:border-gray-300 text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800 hover:bg-orange border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
+                        A link was sent to your email to reset your password ,
+                        you may want to check your spam folder
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         ) : (
           <div className='mx-auto max-w-sm '>

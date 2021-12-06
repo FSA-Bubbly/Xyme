@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWallet } from "../store/wallet";
 import { removePills } from "../store/wallet";
+import { fetchInteractions } from "../store/interactions";
 import { removeInteractions } from "../store/interactions";
 
+
 const Wallet = () => {
-  const { auth: user, wallet: pills } = useSelector((s) => s);
+  const { auth: user, interactions, wallet: pills } = useSelector((s) => s);
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
 
@@ -15,10 +17,11 @@ const Wallet = () => {
 
   useEffect(() => {
     (async () => {
-      await loading();
+			await loading();
       setLoading(!isLoading);
     })();
-    dispatch(fetchWallet(user));
+		dispatch(fetchWallet(user));
+		dispatch(fetchInteractions(user));
   }, []);
 
   let pillsToRemove = [];
@@ -42,28 +45,33 @@ const Wallet = () => {
     }
   };
 
+	const interactionNames = [...new Set(interactions.map(int => [int.med1.name, int.med2.name]).flat())];
+
   return (
     <div className='flex flex-col'>
       {isLoading ? (
         <div className=' my-40 self-center text-center'>
           {" "}
-          <img src='/loading.svg' className=' w-32' />
+          <img
+            src='/loading.svg'
+            className=' self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
+          />
           <h1>Loading...</h1>
         </div>
       ) : (
         <>
-          <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-scroll '>
-            <h1 className=' font-sans uppercase fadeIn p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
+          <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>
+            <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
               personal wallet
             </h1>
 
             <img
               src='/wallet.svg'
               alt='Monitoring'
-              className='object-scale-down'
+              className=' self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
             />
           </div>
-          <div className='flex  sm:-mx-8 px-4 sm:px-8 py-4 overflow-scroll'>
+          <div className='flex  sm:-mx-8 px-4 sm:px-8 py-4 overflow-hidden'>
             <div className='inline-block min-w-full shadow rounded-lg overflow-scroll'>
               {pills.length < 1 ? (
                 <table className='min-w-full leading-normal'>
@@ -145,6 +153,19 @@ const Wallet = () => {
                             >
                               <p className='dark:bg-gray-200 text-center text-gray-900 '>
                                 {pill.name}
+																{
+																	interactionNames.includes(pill.name) ? (
+																		<Link
+																		to={{
+																			pathname: `/interactions`,
+																			state: { pillName: pill.name}
+																		}}>
+																			!!!
+																		</Link>
+																	) : (
+																		null
+																	)
+																}
                               </p>
                             </Link>
                           </td>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from "../history";
 import { getToken } from './auth';
 
 const GET_INTERACTIONS = 'GET_INTERACTIONS';
@@ -40,7 +41,7 @@ export const fetchInteractions = (user) => {
 	};
 };
 
-export const addInteractions = (user) => {
+export const addInteractions = (user, history) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem('token');
@@ -48,6 +49,7 @@ export const addInteractions = (user) => {
         headers: { authorization: token }
       });
       dispatch(_addInteractions(data));
+      history.push('/wallet');
     } catch (error) {
       console.error(error);
     }
@@ -79,7 +81,7 @@ export default function (state = [], action) {
     case ADD_INTERACTIONS:
       return state
     case REMOVE_INTERACTIONS:
-      return state
+      return state.filter((interaction) => !action.interactions.includes(interaction.id));
     default:
       return state;
   }
