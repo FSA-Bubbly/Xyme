@@ -2,7 +2,7 @@ const { ProcessCredentials } = require("aws-sdk");
 var AWS = require("aws-sdk");
 
 const config = new AWS.Config({
-  region: "us-east-1",
+  region: "us-east-2",
   accessKeyId: process.env.AWS_ACCESS_KEY,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
@@ -18,7 +18,7 @@ module.exports = function sendResetLink(email, id) {
       Body: {
         Text: {
           Charset: "UTF-8",
-          Data: `To reset your password , click on this link: http://localhost:8080/reset/${id} `,
+          Data: `To reset your password , click on this link: https://fsa-xyme.herokuapp.com/reset/${id} `,
         },
       },
       Subject: {
@@ -26,7 +26,7 @@ module.exports = function sendResetLink(email, id) {
         Data: `Xyme, Reset Password `,
       },
     },
-    Source: "yoshidasala@gmail.com",
+    Source: "cj@fungtechs.com",
   };
   ses.sendEmail(params, (err) => {
     if (err) {

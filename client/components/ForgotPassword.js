@@ -7,7 +7,7 @@ import { sendResetLink } from "../store/auth";
 
 const ForgotPassword = (props) => {
   const [email, setEmail] = useState("");
-  const [emailSent, setEmailSent] = useState(true);
+  const [emailSent, setEmailSent] = useState(false);
 
   const dispatch = useDispatch();
 
