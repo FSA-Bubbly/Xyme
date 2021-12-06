@@ -49,7 +49,6 @@ const Wallet = () => {
 
   return (
     <div className='flex flex-col'>
-			{console.log(interactionNames)}
       {isLoading ? (
         <div className=' my-40 self-center text-center'>
           {" "}

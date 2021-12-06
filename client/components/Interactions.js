@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchWallet } from "../store/wallet";
+import { fetchInteractions } from "../store/interactions";
 
 const Interactions = (props) => {
   const { auth: user, interactions, wallet: pills } = useSelector((s) => s);
+  const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
   const [pillFilter, setPillFilter] = useState(
     props.location.state === undefined ?
     'all' : props.location.state.pillName);
 
-  const loading = async () =>
-    new Promise((resolve) => setTimeout(() => resolve(), 1500));
+	const loading = async () =>
+		new Promise((resolve) => setTimeout(() => resolve(), 1500));
 
   useEffect(() => {
     (async () => {
       await loading();
       setLoading(!isLoading);
     })();
+    if (props.location.state === undefined) {
+      dispatch(fetchWallet(user));
+		  dispatch(fetchInteractions(user));
+    }
   }, []);
 
   const filteredInteractions = interactions.filter(int => {
