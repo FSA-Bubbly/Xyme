@@ -194,7 +194,7 @@ const ProfileEdit = () => {
 									</div>
 									<div className='py-1'>
 										<span className='px-1 text-xs text-gray-500 uppercase'>
-											Height(ft)
+											Height(in)
 										</span>
 										<label htmlFor='height' />
 										<input

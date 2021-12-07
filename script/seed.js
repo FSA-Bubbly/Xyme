@@ -8,7 +8,7 @@ const {
 const users = [
 	{
 		email: 'zack@gmail.com',
-		password: '123',
+		password: 'test1234',
 		firstName: 'Zack',
 		lastName: 'Ward',
 		age: 23,
@@ -19,7 +19,7 @@ const users = [
 	},
 	{
 		email: 'cj@gmail.com',
-		password: '123',
+		password: 'test1234',
 		firstName: 'Cj',
 		lastName: 'Fung',
 		age: 30,
@@ -28,7 +28,7 @@ const users = [
 	},
 	{
 		email: 'jordan@gmail.com',
-		password: '123',
+		password: 'test1234',
 		firstName: 'Jordan',
 		lastName: 'Broderson',
 		age: 28,
@@ -37,7 +37,7 @@ const users = [
 	},
 	{
 		email: 'sala@gmail.com',
-		password: '123',
+		password: 'test1234',
 		firstName: 'Sala',
 		lastName: 'Yoshida',
 		age: 28,
