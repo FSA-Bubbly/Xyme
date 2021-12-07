@@ -240,22 +240,6 @@ const ProfileEdit = () => {
 
 									<div className='py-1'>
 										<span className='px-1 text-xs text-gray-500 uppercase'>
-											Do you wish to receive SMS reminders?
-										</span>
-										<label htmlFor='sms' />
-										<input
-											placeholder=''
-											value={sms}
-											onChange={(e) => setSms(e.target.value)}
-											name='sms'
-											type='checkbox'
-											className='flex self-center text-md block px-3 py-2  w-full
-                        bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
-										/>
-									</div>
-
-									<div className='py-1'>
-										<span className='px-1 text-xs text-gray-500 uppercase'>
 											Phone
 										</span>
 										<label htmlFor='phone' />
