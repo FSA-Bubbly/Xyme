@@ -47,12 +47,7 @@ const User = db.define('user', {
 		type: Sequelize.STRING,
 		validate: {
 			notEmpty: true,
-			len: [8, 16],
-			isNumWithChar(value) {
-				if (!/\d/.test(value)) {
-					throw new Error('Must include number');
-				}
-			},
+			len: [8, 32],
 		},
 	},
 	firstName: {
@@ -60,7 +55,6 @@ const User = db.define('user', {
 		validate: {
 			notEmpty: true,
 			isAlpha: true,
-			len: [2],
 		},
 	},
 	lastName: {
@@ -68,6 +62,7 @@ const User = db.define('user', {
 		validate: {
 			notEmpty: true,
 			isAlpha: true,
+			len: [2],
 		},
 	},
 	age: {
