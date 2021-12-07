@@ -28,7 +28,7 @@ export const Home = () => {
 							</h2>
 							<div className='flex items-center justify-center pt-10 flex-col'>
 								<Link to='/profile'>
-									<h1 className='  self font-sans uppercase p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800'>
+									<h1 className='self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-wider text-center text-gray-800 dark:text-gray-200 text-gray-800'>
 										profile
 									</h1>
 									<img src={user.avatar} alt='Avatar' className=' w-32' />
@@ -40,7 +40,7 @@ export const Home = () => {
 									<div className='w-full md:w-1/3 px-2 mb-4'>
 										<Link to='/dailypill'>
 											<div className=' flex flex-col rounded py-2'>
-												<h1 className='  self font-sans uppercase p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
+												<h1 className='self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-wider text-center text-gray-800 dark:text-gray-200 text-gray-800'>
 													medication tracker
 												</h1>
 												<img
@@ -55,7 +55,7 @@ export const Home = () => {
 									<div className='w-full md:w-1/3 px-2 mb-4'>
 										<Link to='/wallet'>
 											<div className=' flex flex-col rounded py-2'>
-												<h1 className='  self font-sans uppercase p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
+												<h1 className='self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-wider text-center text-gray-800 dark:text-gray-200 text-gray-800'>
 										my wallet
 												</h1>
 
@@ -71,7 +71,7 @@ export const Home = () => {
 									<div className='w-full md:w-1/3 px-2 mb-4'>
 										<Link to='/interactions'>
 											<div className=' flex flex-col rounded py-2'>
-												<h1 className='  self font-sans uppercase p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
+												<h1 className='self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-wider text-center text-gray-800 dark:text-gray-200 text-gray-800'>
 													interactions
 												</h1>
 												<img

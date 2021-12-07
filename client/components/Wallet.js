@@ -89,7 +89,7 @@ const Wallet = () => {
               alt='Monitoring'
               className=' animate-pulse object-scale-down w-10 sm:w-10 md:w-10 lg:w-10 xl:w-10 hover:scale-125 cursor-pointer'
               />
-              
+
           </div>
           {showModal ? (
             <Modal
@@ -237,16 +237,6 @@ const Wallet = () => {
                             >
                               <p className='dark:bg-gray-200 text-center text-gray-900 '>
                                 {pill.name}
-                                {interactionNames.includes(pill.name) ? (
-                                  <Link
-                                    to={{
-                                      pathname: `/interactions`,
-                                      state: { pillName: pill.name },
-                                    }}
-                                  >
-                                    !!!
-                                  </Link>
-                                ) : null}
                               </p>
                             </Link>
                           </td>
