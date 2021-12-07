@@ -58,16 +58,13 @@ export const removeInteractions = (userId, pills) => {
 	return async (dispatch) => {
 		try {
 			const token = window.localStorage.getItem('token');
-			const { data } = await axios.delete(
-				`/api/interactions/remove`,
-				{
-					data: {
-						userId,
-						pills,
-					},
+			const { data } = await axios.delete(`/api/interactions/remove`, {
+				headers: { authorization: token },
+				data: {
+					userId,
+					pills,
 				},
-				{ headers: { authorization: token } }
-			);
+			});
 			dispatch(_removeInteractions(data));
 		} catch (error) {
 			console.error(error);
