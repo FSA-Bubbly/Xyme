@@ -75,7 +75,7 @@ export const removePills = (userId, pills) => {
 					data: {
 						pills,
 					},
-				},
+				}
 			);
 			const asNums = removedPills.map((pillId) => parseInt(pillId));
 			dispatch(_removePills(asNums));

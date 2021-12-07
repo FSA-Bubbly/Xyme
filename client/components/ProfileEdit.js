@@ -20,7 +20,7 @@ const ProfileEdit = () => {
 	const [nighttimeReminder, setNighttimeReminder] = useState(
 		`${user.nighttimeReminder}`
 	);
-	const [password, setPassword] = useState(`${user.password}`);
+	const [password, setPassword] = useState(``);
 	const [avatar, setAvatar] = useState(`${user.avatar}`);
 	const dispatch = useDispatch();
 
@@ -267,7 +267,7 @@ const ProfileEdit = () => {
 										<label htmlFor='password'></label>
 										<input
 											onChange={(e) => setPassword(e.target.value)}
-											value=''
+											value={password}
 											name='password'
 											placeholder='  '
 											type='password'

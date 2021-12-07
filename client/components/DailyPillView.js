@@ -29,7 +29,7 @@ const DailyPillView = () => {
 	let pillsToUpdate = [];
 	const handleTakenPills = () => {
 		dispatch(decreaseDosage(currentUser.id, pillsToUpdate));
-		// dispatch(fetchWallet(currentUser));
+		dispatch(fetchWallet(currentUser));
 		// document
 		//   .getElementById("checkbox1")
 		//   .map((singlecheck) => (singlecheck.checked = false));

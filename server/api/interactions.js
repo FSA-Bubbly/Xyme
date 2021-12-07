@@ -120,7 +120,6 @@ router.delete(`/remove`, requireToken, async (req, res, next) => {
 				})
 			);
 		} else {
-			console.log(req.body.userId);
 			interactions = await Interaction.findAll({
 				where: {
 					[Op.or]: [{ med1Id: req.body.pills }, { med2Id: req.body.pills }],
