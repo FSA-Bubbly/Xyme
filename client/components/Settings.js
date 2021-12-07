@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Settings = () => {
   const user = useSelector((state) => state.auth);
-  // const updatedUser = useSelector((state) => state.user);
+  const updatedUser = useSelector((state) => state.user);
   const checkbox = document.getElementsByClassName("checkbox");
   const theme = window.localStorage.getItem("theme");
   const html = document.querySelector("html");

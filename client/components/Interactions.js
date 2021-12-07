@@ -49,11 +49,16 @@ const Interactions = (props) => {
           </div>
           <div className='flex -mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-hidden'>
             <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
-              <div className='filter'>
-                <form>
-                  <label htmlFor='medName'>interactions with:</label>
+              <div className='filter  '>
+                <form className='flex flex-row justify-end'>
+                  <label
+                    className='text-center px-5 py-3  dark:text-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider'
+                    htmlFor='medName'
+                  >
+                    show interactions with:
+                  </label>
                   <select
-                    className='self-center w-24 text-sm dark:bg-gray-800 dark:text-gray-200 dark:border-gray-200 border-2 rounded'
+                    className='self-center w-20 text-sm  mr-5 -bg-nude self-end w-10 dark:bg-gray-800 dark:text-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-200 border-2 rounded'
                     name='pillName'
                     value={pillFilter}
                     onChange={(e) => setPillFilter(e.target.value)}
@@ -70,39 +75,39 @@ const Interactions = (props) => {
               <table className='min-w-full leading-normal'>
                 <thead>
                   <tr className=''>
-                    <th className='text-center px-5 py-3 border-b-2 border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider '>
+                    <th className='dark:bg-gray-500 text-center px-5 py-3   bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300 '>
                       Medication 1
                     </th>
-                    <th className='text-center px-5 py-3 border-b-2 border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider'>
+                    <th className='dark:bg-gray-500 text-center px-5 py-3   bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300 '>
                       Medication 2
                     </th>
-                    <th className='text-center px-5 py-3 border-b-2 border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider'>
+                    <th className='dark:bg-gray-500 text-center px-5 py-3   bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300 '>
                       Interactions
                     </th>
                   </tr>
                 </thead>
-                <tbody className=' border-green space-y-6 mt-30 px-5 py-8 bg-white text-sm'>
+                <tbody className=' dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-8 bg-white text-sm text-center w-full '>
                   {filteredInteractions.length < 1 ? (
-                    <tr className='shadow rounded-full border-b-10 border-t-8 border-nude  space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
-                      <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'></td>
-                      <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'>
+                    <tr className=' col-span-3 justify-center dark:bg-gray-200 shadow rounded-full border-b-10 border-t-8 border-nude dark:border-gray-800 space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
+                      <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'></td>
+                      <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm dark:text-gray-600'>
                         <h1>Your medications have no interactions!</h1>
                       </td>
-                      <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'></td>
+                      <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'></td>
                     </tr>
                   ) : (
                     filteredInteractions.map((interaction) => (
                       <tr
                         key={interaction.id}
-                        className='shadow rounded-full border-b-10 border-t-8 border-nude  space-y-6 mt-30 px-5 py-5 bg-white text-sm'
+                        className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'
                       >
-                        <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm text-gray-900'>
+                        <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm dark:text-gray-600'>
                           {interaction.med1.name}
                         </td>
-                        <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm text-gray-900'>
+                        <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm dark:text-gray-600'>
                           {interaction.med2.name}
                         </td>
-                        <td className='text-center border-b-7 border-gray-200 px-5 py-5  bg-white text-sm text-gray-900'>
+                        <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm dark:text-gray-600'>
                           {interaction.interactionDesc}
                         </td>
                       </tr>

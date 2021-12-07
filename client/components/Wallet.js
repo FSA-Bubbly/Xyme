@@ -75,16 +75,7 @@ const Wallet = () => {
               className=' self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32 '
             />
           </div>
-          <div className='flex justify-end sm:-mx-4 sm:-mx-4 py-4 px-4 sm:px-8  '>
-            {" "}
-            <img
-              onClick={toggleModal}
-              src='/medical.svg'
-              alt='Monitoring'
-              className=' animate-pulse object-scale-down w-10 sm:w-10 md:w-10 lg:w-10 xl:w-10 hover:scale-125 cursor-pointer'
-              />
 
-          </div>
           {showModal ? (
             <Modal
               isOpen={showModal}
@@ -136,18 +127,27 @@ const Wallet = () => {
 
           <div className='flex  sm:-mx-8 px-4 sm:px-8 py-4 overflow-hidden'>
             <div className='inline-block min-w-full shadow rounded-lg overflow-scroll'>
+              <div className=' dark:bg-gray-500 flex justify-end sm:-mx-4 sm:-mx-4 py-4 px-4 sm:px-8  '>
+                {" "}
+                <img
+                  onClick={toggleModal}
+                  src='/medical.svg'
+                  alt='Monitoring'
+                  className=' animate-pulse object-scale-down w-10 sm:w-10 md:w-10 lg:w-10 xl:w-10 hover:scale-125 cursor-pointer'
+                />
+              </div>
               {pills.length < 1 ? (
                 <table className='min-w-full leading-normal'>
                   <thead>
                     <tr className=''>
-                      <th className=' dark:bg-gray-500 text-center px-5 py-3 border-b-2 border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
+                      <th className='rounded-top dark:bg-gray-500 text-center px-5 py-3   bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
                         Pill
                       </th>
-                      <th className='  dark:bg-gray-500 text-center px-5 py-3 border-b-2 border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
+                      <th className=' dark:bg-gray-500 text-center px-5 py-3   bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
                         Name
                       </th>
 
-                      <th className='  dark:bg-gray-500 text-center px-5 py-3 border-b-2 border-gray-200 bg-nude dark:border-gray-800 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
+                      <th className=' dark:bg-gray-500 text-center px-5 py-3   bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300'>
                         Remove
                       </th>
                     </tr>
