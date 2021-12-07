@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../store/user";
+import { fetchUpdateUser } from "../store/user";
 import history from "../history";
 import { Link } from "react-router-dom";
 
 const ProfileEdit = () => {
-	const { user } = useSelector((s) => s);
+	const {auth, user} = useSelector((s) => s);
 	const [firstName, setFirstName] = useState(`${user.firstName}`);
 	const [lastName, setLastName] = useState(`${user.lastName}`);
 	const [age, setAge] = useState(`${user.age}`);
@@ -24,10 +25,28 @@ const ProfileEdit = () => {
 	const [avatar, setAvatar] = useState(`${user.avatar}`);
 	const dispatch = useDispatch();
 
-  console.log(password);
+  useEffect(() => {
+    dispatch(fetchUpdateUser(auth.id));
+  }, [])
+
+  useEffect(() => {
+    setFirstName(`${user.firstName}`)
+    setLastName(`${user.lastName}`)
+    setAge(`${user.age}`)
+    setHeight(`${user.height}`)
+    setWeight(`${user.weight}`)
+    setEmail(`${user.email}`)
+    setSms(`${user.sms}`)
+    setPhone(`${user.phone}`)
+    setMorningReminder(`${user.morningReminder}`)
+    setNighttimeReminder(`${user.nighttimeReminder}`)
+    setPassword(``)
+    setAvatar(`${user.avatar}`)
+  }, [user])
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const id = user.id;
+    const id = auth.id;
     const editedUser = {
       id,
       firstName,
@@ -61,14 +80,12 @@ const ProfileEdit = () => {
       3,
       6
     )}-${phoneNumber.slice(6, 10)}`;
-
-    // const phoneNumber = value.replace(/[])
   };
 
   return (
     <div>
-      <form classNameName='mt-8' onSubmit={handleSubmit}>
-        <div classNameName='flex flex-col'>
+      <form className='mt-8' onSubmit={handleSubmit}>
+        <div className='flex flex-col'>
           <div className='flex self-center fadeIn w-full sm:full md:w-full p-20 sm:p-20 md:p-20 overflow-hidden '>
             <h1 className=' w-full self-center font-sans uppercase fadeIn p-2 md:text-2xl pt-3  text-xl tracking-wider text-center text-gray-800  dark:text-gray-200 text-gray-800'>
               Edit Profile
