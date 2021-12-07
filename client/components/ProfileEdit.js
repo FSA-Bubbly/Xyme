@@ -23,18 +23,15 @@ const ProfileEdit = () => {
 	const [nighttimeReminder, setNighttimeReminder] = useState(
 		`${user.nighttimeReminder}`
 	);
-	const [password, setPassword] = useState(`${user.password}`);
+	const [password, setPassword] = useState('');
 	const [avatar, setAvatar] = useState(`${user.avatar}`);
 	const [errors, setErrors] = useState({});
 
 	// for persisting state
 	useEffect(() => {
-		console.log('use1');
 		dispatch(fetchUpdateUser(auth.id));
 	}, [auth.id]);
 	useEffect(() => {
-		console.log('use2');
-
 		setFirstName(`${user.firstName}`);
 		setLastName(`${user.lastName}`);
 		setAge(`${user.age}`);
@@ -46,6 +43,7 @@ const ProfileEdit = () => {
 		setMorningReminder(`${user.morningReminder}`);
 		setNighttimeReminder(`${user.nighttimeReminder}`);
 		setAvatar(`${user.avatar}`);
+		setPassword(``);
 	}, [user]);
 
 	const handleSubmit = (e) => {
@@ -290,7 +288,7 @@ const ProfileEdit = () => {
 
 									<div className='py-1'>
 										<span className='px-1 text-xs text-gray-500 uppercase'>
-											Phone
+											Phone (Optional)
 										</span>
 										<label htmlFor='phone' />
 										<input
