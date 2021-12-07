@@ -14,76 +14,94 @@ const client = require("twilio")(accountSid, authToken);
 
 const SALT_ROUNDS = 5;
 
-const User = db.define("user", {
-  email: {
-    type: Sequelize.STRING,
-    unique: true,
-    allowNull: false,
-    validate: {
-      isEmail: true,
-    },
-  },
-  sms: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-  },
-  phone: {
-    type: Sequelize.STRING,
-    unique: false,
-    defaultValue: "",
-    validation: {
-      len: [12],
-    },
-  },
-  morningReminder: {
-    type: Sequelize.STRING,
-    defaultValue: "08:00",
-  },
-  nighttimeReminder: {
-    type: Sequelize.STRING,
-    defaultValue: "17:00",
-  },
-  password: {
-    type: Sequelize.STRING,
-  },
-  firstName: {
-    type: Sequelize.STRING,
-    validate: {
-      notEmpty: true,
-      isAlpha: true,
-      len: [2],
-    },
-  },
-  lastName: {
-    type: Sequelize.STRING,
-    validate: {
-      notEmpty: true,
-      isAlpha: true,
-    },
-  },
-  age: {
-    type: Sequelize.INTEGER,
-    validate: {
-      min: 5,
-      max: 110,
-    },
-  },
-  height: {
-    type: Sequelize.INTEGER,
-    validate: {
-      isNumeric: true,
-    },
-  },
-  weight: {
-    type: Sequelize.INTEGER,
-    validate: {
-      isNumeric: true,
-    },
-  },
-  avatar: {
-    type: Sequelize.STRING,
-    defaultValue: "/user1.svg",
-  },
+
+const User = db.define('user', {
+	email: {
+		type: Sequelize.STRING,
+		unique: true,
+		allowNull: false,
+		validate: {
+			isEmail: true,
+		},
+	},
+	sms: {
+		type: Sequelize.BOOLEAN,
+		defaultValue: false,
+	},
+	phone: {
+		type: Sequelize.STRING,
+		unique: false,
+		defaultValue: '',
+		validation: {
+			len: [12],
+		},
+	},
+	morningReminder: {
+		type: Sequelize.STRING,
+		defaultValue: '08:00',
+	},
+	nighttimeReminder: {
+		type: Sequelize.STRING,
+		defaultValue: '17:00',
+	},
+	password: {
+		type: Sequelize.STRING,
+		validate: {
+			notEmpty: true,
+			len: [8, 16],
+			isNumWithChar(value) {
+				if (!/\d/.test(value)) {
+					throw new Error('Must include number');
+				}
+			},
+		},
+	},
+	firstName: {
+		type: Sequelize.STRING,
+		validate: {
+			notEmpty: true,
+			isAlpha: true,
+			len: [2],
+		},
+	},
+	lastName: {
+		type: Sequelize.STRING,
+		validate: {
+			notEmpty: true,
+			isAlpha: true,
+		},
+	},
+	age: {
+		type: Sequelize.INTEGER,
+		validate: {
+			notEmpty: true,
+			min: 18,
+			max: 110,
+		},
+	},
+	height: {
+		type: Sequelize.INTEGER,
+		validate: {
+			notEmpty: true,
+			isNumeric: true,
+			min: 20,
+			max: 120,
+		},
+	},
+	weight: {
+		type: Sequelize.INTEGER,
+		validate: {
+			notEmpty: true,
+			isNumeric: true,
+			min: 10,
+			max: 500,
+		},
+	},
+	avatar: {
+		type: Sequelize.STRING,
+		defaultValue: '/user1.svg',
+	},
+
 });
 
 module.exports = User;
@@ -180,6 +198,7 @@ const callCronTask = (user) => {
 };
 
 const sendText = async (user) => {
+
   const twilioPhone = "+14324652074";
   const userName = await user.firstName;
   const userPhone = await user.phone;
