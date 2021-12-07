@@ -29,8 +29,6 @@ export const updateUser = (user, history) => {
 			dispatch(_updateUser(data));
 			history.push('/profile');
 		} catch (error) {
-			console.log(error.response);
-			alert(error.response.data);
 			console.error(error);
 		}
 	};
