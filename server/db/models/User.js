@@ -37,9 +37,11 @@ const User = db.define("user", {
   },
   morningReminder: {
     type: Sequelize.STRING,
+    defaultValue: '08:00'
   },
   nighttimeReminder: {
     type: Sequelize.STRING,
+    defaultValue: '17:00'
   },
   password: {
     type: Sequelize.STRING,
