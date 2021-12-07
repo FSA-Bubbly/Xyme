@@ -45,6 +45,15 @@ const User = db.define('user', {
 	},
 	password: {
 		type: Sequelize.STRING,
+		validate: {
+			notEmpty: true,
+			len: [8, 16],
+			isNumWithChar(value) {
+				if (!/\d/.test(value)) {
+					throw new Error('Must include number');
+				}
+			},
+		},
 	},
 	firstName: {
 		type: Sequelize.STRING,
@@ -64,20 +73,27 @@ const User = db.define('user', {
 	age: {
 		type: Sequelize.INTEGER,
 		validate: {
-			min: 5,
+			notEmpty: true,
+			min: 18,
 			max: 110,
 		},
 	},
 	height: {
 		type: Sequelize.INTEGER,
 		validate: {
+			notEmpty: true,
 			isNumeric: true,
+			min: 20,
+			max: 120,
 		},
 	},
 	weight: {
 		type: Sequelize.INTEGER,
 		validate: {
+			notEmpty: true,
 			isNumeric: true,
+			min: 10,
+			max: 500,
 		},
 	},
 	avatar: {
@@ -219,7 +235,7 @@ const sendText = async (user) => {
 				}
 			},
 			{
-				scheduled: false,
+				// scheduled: false,
 			}
 		);
 		if (userPhone !== undefined || user.sms === true) {
@@ -245,7 +261,7 @@ const sendText = async (user) => {
 				}
 			},
 			{
-				scheduled: false,
+				// scheduled: false,
 			}
 		);
 		if (userPhone !== undefined && user.sms === true) {
