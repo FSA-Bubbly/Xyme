@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Loading from "./Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWallet } from "../store/wallet";
 import { fetchInteractions } from "../store/interactions";
@@ -33,14 +34,7 @@ const Interactions = (props) => {
   return (
     <div className='flex flex-col'>
       {isLoading ? (
-        <div className=' my-40 self-center text-center'>
-          {" "}
-          <img
-            src='/XYME.png'
-            className=' animate-bounce self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
-          />
-          <h1>Loading...</h1>
-        </div>
+        <Loading />
       ) : (
         <>
           <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>

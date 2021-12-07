@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUpdateUser } from "../store/user";
+import Loading from './Loading';
 import history from "../history";
 import { Link } from "react-router-dom";
 // import { useForceUpdate } from "react-spring/node_modules/@react-spring/shared";
@@ -8,15 +9,26 @@ import { Link } from "react-router-dom";
 const Profile = () => {
   const user = useSelector((state) => state.auth);
   const updatedUser = useSelector((state) => state.user);
+  const [isLoading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
 
+  const loading = async () =>
+    new Promise((resolve) => setTimeout(() => resolve(), 1500));
+
   useEffect(() => {
+    (async () => {
+      await loading();
+      setLoading(!isLoading);
+    })()
     dispatch(fetchUpdateUser(user.id));
   }, []);
 
   return (
-    <div>
+    <div className='flex flex-col'>
+      {isLoading ? (
+        <Loading />
+      ) : (
       <div className='flex flex-col  '>
         <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>
           <h3 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl text-center text-gray-800 dark:text-gray-200 text-gray-800  tracking-wider'>
@@ -55,6 +67,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 };

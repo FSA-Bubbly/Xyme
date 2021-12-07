@@ -28,7 +28,6 @@ class Routes extends Component {
 
 	render() {
 		const { isLoggedIn } = this.props;
-		console.log('Route', isLoggedIn);
 
 		return (
 			<div className=' dark:bg-gray-800 dark:text-gray-100 p-4 flex-grow bg-nude font-mont text-black'>
