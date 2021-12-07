@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import Loading from './Loading';
 import { decreaseDosage } from '../store/wallet';
 import { fetchWallet } from '../store/wallet';
 
 const DailyPillView = () => {
 	const { wallet: pills } = useSelector((s) => s);
 	const currentUser = useSelector((state) => state.auth);
+  const [isLoading, setLoading] = useState(true);
 
 	const dispatch = useDispatch();
 
@@ -22,7 +24,14 @@ const DailyPillView = () => {
 		}
 	});
 
-	useEffect(() => {
+  const loading = async () =>
+    new Promise((resolve) => setTimeout(() => resolve(), 1500));
+
+  useEffect(() => {
+    (async () => {
+      await loading();
+      setLoading(!isLoading);
+    })()
 		dispatch(fetchWallet(currentUser));
 	}, []);
 
@@ -45,8 +54,10 @@ const DailyPillView = () => {
 	};
 
   return (
-    <div>
-      {console.log("pills", pills)}
+    <div className='flex flex-col'>
+      {isLoading ? (
+        <Loading />
+      ) : (
       <div className='flex flex-col'>
         {pills === undefined ? (
           <div className=' my-40 self-center text-center'>
@@ -162,6 +173,7 @@ const DailyPillView = () => {
 					</>
 				)}
 			</div>
+      )}
 		</div>
 	);
 };

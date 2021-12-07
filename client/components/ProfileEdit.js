@@ -69,7 +69,6 @@ const ProfileEdit = () => {
     <div>
       <form classNameName='mt-8' onSubmit={handleSubmit}>
         <div classNameName='flex flex-col'>
-          {/* <p>Password: {user.password}</p> need to solve this */}
           <div className='flex self-center fadeIn w-full sm:full md:w-full p-20 sm:p-20 md:p-20 overflow-hidden '>
             <h1 className=' w-full self-center font-sans uppercase fadeIn p-2 md:text-2xl pt-3  text-xl tracking-wider text-center text-gray-800  dark:text-gray-200 text-gray-800'>
               Edit Profile

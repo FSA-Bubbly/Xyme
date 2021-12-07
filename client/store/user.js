@@ -54,7 +54,7 @@ export const updateSms = (statusObj) => {
 	};
 };
 
-export const fetchUpdateUser = (userId, history) => {
+export const fetchUpdateUser = (userId) => {
 	return async (dispatch) => {
 		try {
 			const token = window.localStorage.getItem('token');
@@ -62,7 +62,6 @@ export const fetchUpdateUser = (userId, history) => {
 				headers: { authorization: token },
 			});
 			dispatch(_fetchUpdateUser(data));
-			history.push('/profile');
 		} catch (error) {
 			console.error(error);
 		}

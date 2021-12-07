@@ -90,17 +90,13 @@ export const decreaseDosage = (userId, pills) => {
 		try {
 			const token = window.localStorage.getItem('token');
 			console.log('decrease', token);
-			const { data: updatedPills } = await axios.put(
-				'/api/dailypill',
-				{
-					data: {
-						pills,
-						userId,
-					},
+			const { data: updatedPills } = await axios.put('/api/dailypill', {
+				headers: { authorization: token },
+				data: {
+					pills,
+					userId,
 				},
-
-				{ headers: { authorization: token } }
-			);
+			});
 			const asNums = updatedPills.map((pillId) => parseInt(pillId));
 			dispatch(_decreaseDosage(asNums));
 		} catch (error) {

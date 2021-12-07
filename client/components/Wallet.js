@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "./Loading";
 import { fetchWallet } from "../store/wallet";
 import { removePills } from "../store/wallet";
 import { fetchInteractions } from "../store/interactions";
@@ -60,14 +61,7 @@ const Wallet = () => {
   return (
     <div className='flex flex-col'>
       {isLoading ? (
-        <div className=' my-40 self-center text-center'>
-          {" "}
-          <img
-            src='/XYME.png'
-            className=' animate-bounce self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
-          />
-          <h1>Loading...</h1>
-        </div>
+        <Loading />
       ) : (
         <>
           <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>
@@ -89,7 +83,7 @@ const Wallet = () => {
               alt='Monitoring'
               className=' animate-pulse object-scale-down w-10 sm:w-10 md:w-10 lg:w-10 xl:w-10 hover:scale-125 cursor-pointer'
               />
-              
+
           </div>
           {showModal ? (
             <Modal
@@ -237,16 +231,6 @@ const Wallet = () => {
                             >
                               <p className='dark:bg-gray-200 text-center text-gray-900 '>
                                 {pill.name}
-                                {interactionNames.includes(pill.name) ? (
-                                  <Link
-                                    to={{
-                                      pathname: `/interactions`,
-                                      state: { pillName: pill.name },
-                                    }}
-                                  >
-                                    !!!
-                                  </Link>
-                                ) : null}
                               </p>
                             </Link>
                           </td>
