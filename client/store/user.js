@@ -26,7 +26,6 @@ export const updateUser = (user, history) => {
 			const { data } = await axios.put(`/api/users/${user.id}`, user, {
 				headers: { authorization: token },
 			});
-			console.log('user route', data);
 			dispatch(_updateUser(data));
 			history.push('/profile');
 		} catch (error) {

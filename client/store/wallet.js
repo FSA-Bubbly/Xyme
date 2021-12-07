@@ -71,11 +71,11 @@ export const removePills = (userId, pills) => {
 			const { data: removedPills } = await axios.delete(
 				`/api/wallet/${userId}/remove`,
 				{
+					headers: { authorization: token },
 					data: {
 						pills,
 					},
-				},
-				{ headers: { authorization: token } }
+				}
 			);
 			const asNums = removedPills.map((pillId) => parseInt(pillId));
 			dispatch(_removePills(asNums));
