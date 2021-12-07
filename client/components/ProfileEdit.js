@@ -9,7 +9,6 @@ const ProfileEdit = () => {
 	const { auth } = useSelector((s) => s);
 	const { user } = useSelector((s) => s);
 	const dispatch = useDispatch();
-
 	const [firstName, setFirstName] = useState(`${user.firstName}`);
 	const [lastName, setLastName] = useState(`${user.lastName}`);
 	const [age, setAge] = useState(`${user.age}`);
@@ -24,18 +23,15 @@ const ProfileEdit = () => {
 	const [nighttimeReminder, setNighttimeReminder] = useState(
 		`${user.nighttimeReminder}`
 	);
-	const [password, setPassword] = useState(``);
+	const [password, setPassword] = useState('');
 	const [avatar, setAvatar] = useState(`${user.avatar}`);
 	const [errors, setErrors] = useState({});
 
 	// for persisting state
 	useEffect(() => {
-		console.log('use1');
 		dispatch(fetchUpdateUser(auth.id));
 	}, [auth.id]);
 	useEffect(() => {
-		console.log('use2');
-
 		setFirstName(`${user.firstName}`);
 		setLastName(`${user.lastName}`);
 		setAge(`${user.age}`);
@@ -47,6 +43,7 @@ const ProfileEdit = () => {
 		setMorningReminder(`${user.morningReminder}`);
 		setNighttimeReminder(`${user.nighttimeReminder}`);
 		setAvatar(`${user.avatar}`);
+		setPassword(``);
 	}, [user]);
 
 	const handleSubmit = (e) => {
@@ -73,11 +70,14 @@ const ProfileEdit = () => {
 		}
 	};
 
+	const formatDigitOnly = (value) => {
+		return value.replace(/[^\d]/g, '');
+	};
+
 	const formatPhoneNumber = (value) => {
 		if (!value) return value;
 
-		const phoneNumber = value.replace(/[^\d]/g, '');
-
+		const phoneNumber = formatDigitOnly(value);
 		if (phoneNumber.length < 4) return phoneNumber;
 
 		if (phoneNumber.length < 7) {
@@ -91,12 +91,31 @@ const ProfileEdit = () => {
 	};
 
 	//Error Checking -> Adds text under labels
-	const checkError = (user) => {
+	const checkError = (userObj) => {
 		const formErrors = {};
-		for (const [key, value] of Object.entries(user)) {
-			switch (key) {
-				case 'firstName':
-					value.length < 2 ? (formErrors[key] = 'too short') : null;
+		for (const [key, value] of Object.entries(userObj)) {
+			if (key === 'firstName') {
+				if (value.length < 2)
+					formErrors[key] = 'Please enter a valid First Name';
+			} else if (key === 'lastName') {
+				if (value.length < 2)
+					formErrors[key] = 'Please enter a valid Last Name';
+			} else if (key === 'age') {
+				if (value < 18 || value > 110)
+					formErrors[key] = 'Users must be over 18';
+			} else if (key === 'height') {
+				if (value > 120 || value < 20)
+					formErrors[key] = 'Please enter a valid Height';
+			} else if (key === 'weight') {
+				if (value < 10 || value > 500)
+					formErrors[key] = 'Please enter a valid Weight';
+			} else if (key === 'email') {
+				if (!validator.isEmail(value))
+					formErrors[key] = 'Please enter a valid Email Address';
+			} else if (key === 'password') {
+				if (value.length < 7 && /\d/.test(value))
+					formErrors[key] =
+						'Passwords must be at least 8 characters long and must include a number';
 			}
 		}
 		setErrors(formErrors);
@@ -159,7 +178,9 @@ const ProfileEdit = () => {
                       bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
 										{errors.firstName && (
-											<p className='error'>{errors.firstName}</p>
+											<p className='px-1 text-xs text-red-500'>
+												{errors.firstName}
+											</p>
 										)}
 									</div>
 									<div className='py-1'>
@@ -175,7 +196,12 @@ const ProfileEdit = () => {
 											type='text'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                       bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
-										/>
+										/>{' '}
+										{errors.lastName && (
+											<p className='px-1 text-xs text-red-500'>
+												{errors.lastName}
+											</p>
+										)}
 									</div>
 									<div className='py-1'>
 										<span className='px-1 text-xs text-gray-500 uppercase'>
@@ -185,12 +211,15 @@ const ProfileEdit = () => {
 										<input
 											placeholder=''
 											value={age}
-											onChange={(e) => setAge(e.target.value)}
+											onChange={(e) => setAge(formatDigitOnly(e.target.value))}
 											name='age'
 											type='text'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                       bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
+										{errors.age && (
+											<p className='px-1 text-xs text-red-500'>{errors.age}</p>
+										)}
 									</div>
 									<div className='py-1'>
 										<span className='px-1 text-xs text-gray-500 uppercase'>
@@ -200,12 +229,19 @@ const ProfileEdit = () => {
 										<input
 											placeholder=''
 											value={height}
-											onChange={(e) => setHeight(e.target.value)}
+											onChange={(e) =>
+												setHeight(formatDigitOnly(e.target.value))
+											}
 											name='height'
 											type='text'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                       bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
+										{errors.height && (
+											<p className='px-1 text-xs text-red-500'>
+												{errors.height}
+											</p>
+										)}
 									</div>
 									<div className='py-1'>
 										<span className='px-1 text-xs text-gray-500 uppercase'>
@@ -215,12 +251,19 @@ const ProfileEdit = () => {
 										<input
 											placeholder=''
 											value={weight}
-											onChange={(e) => setWeight(e.target.value)}
+											onChange={(e) =>
+												setWeight(formatDigitOnly(e.target.value))
+											}
 											name='weight'
 											type='text'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                       bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
+										{errors.weight && (
+											<p className='px-1 text-xs text-red-500'>
+												{errors.weight}
+											</p>
+										)}
 									</div>
 									<div className='py-1'>
 										<span className='px-1 text-xs text-gray-500 uppercase'>
@@ -236,11 +279,16 @@ const ProfileEdit = () => {
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                       bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
+										{errors.email && (
+											<p className='px-1 text-xs text-red-500'>
+												{errors.email}
+											</p>
+										)}
 									</div>
 
 									<div className='py-1'>
 										<span className='px-1 text-xs text-gray-500 uppercase'>
-											Phone
+											Phone (Optional)
 										</span>
 										<label htmlFor='phone' />
 										<input
@@ -294,11 +342,16 @@ const ProfileEdit = () => {
 											onChange={(e) => setPassword(e.target.value)}
 											value={password}
 											name='password'
-											placeholder='  '
+											placeholder=''
 											type='password'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                       bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 										/>
+										{errors.password && (
+											<p className='px-1 text-xs text-red-500'>
+												{errors.password}
+											</p>
+										)}
 									</div>
 									<div className='flex justify-evenly py-4'>
 										<Link
