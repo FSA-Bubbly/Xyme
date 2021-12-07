@@ -26,7 +26,7 @@ module.exports = function sendResetLink(email, id) {
 				Data: `Xyme, Reset Password `,
 			},
 		},
-		Source: 'cj@fungtechs.com',
+		Source: 'Xyme@fungtechs.com',
 	};
 	ses.sendEmail(params, (err) => {
 		if (err) {
