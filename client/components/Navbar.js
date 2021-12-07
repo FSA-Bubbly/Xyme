@@ -22,7 +22,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
         <nav className=''>
           <div className=' mx-auto px-4 py-4'>
             <div className='flex justify-between'>
-              <div className='flex space-x-4'>
+              <div className='flex space-x-4 mt-4'>
                 <div>
                   <Link
                     to='/'

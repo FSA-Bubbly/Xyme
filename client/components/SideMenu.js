@@ -22,7 +22,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
             style={style}
           >
             <ul className='divide-y divide-light-blue-400 menu-list flex flex-col text-xs font-bold'>
-              <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange'>
+              <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange dark:text-gray-400'>
                 {" "}
                 <img
                   src='/dailypills.svg'
@@ -31,13 +31,13 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/dailypill'
-                  className='text-center w-30 block py-2 px-4 text-sm '
+                  className='text-center w-30 block py-2 px-4  hover:text-orange text-sm hover:text-orange'
                   onClick={hide}
                 >
                   daily pills
                 </Link>
               </li>
-              <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange'>
+              <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange hover:text-orange dark:text-gray-400'>
                 {" "}
                 <img
                   src='/walleticon.svg'
@@ -46,14 +46,14 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/wallet'
-                  className='text-center w-30 block py-2 px-4 text-sm '
+                  className='text-center w-30 block py-2 px-4 text-sm hover:text-orange'
                   onClick={hide}
                 >
                   wallet
                 </Link>
               </li>
 
-              <li className=' flex menu-list-item py-2 hover:bg-white hover:text-orange'>
+              <li className=' flex menu-list-item py-2 hover:bg-white hover:text-orange hover:text-orange dark:text-gray-400'>
                 {" "}
                 <img
                   src='/interactionsicon.svg'
@@ -62,14 +62,14 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/interactions'
-                  className='text-center w-30 block ml-30  py-2 px-4 text-sm'
+                  className='text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
                   onClick={hide}
                 >
                   interactions
                 </Link>
               </li>
 
-              <li className=' flex menu-list-item py-2 hover:bg-white hover:text-orange'>
+              <li className=' flex menu-list-item py-2 hover:bg-white hover:text-orange dark:text-gray-400'>
                 {" "}
                 <img
                   src='/profile.svg'
@@ -84,7 +84,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                   profile
                 </Link>
               </li>
-              <li className=' flex flex-row menu-list-item py-2 hover:bg-white hover:text-orange'>
+              <li className=' flex flex-row menu-list-item py-2 hover:bg-white hover:text-orange  dark:text-gray-400'>
                 {" "}
                 <img
                   src='/homeicon.svg'
@@ -93,13 +93,13 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/'
-                  className=' text-center w-30 block ml-30  py-2 px-4 text-sm'
+                  className=' text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
                   onClick={hide}
                 >
                   home
                 </Link>
               </li>
-              <li className=' flex flex-row menu-list-item py-2 hover:bg-white hover:text-orange  dark:text'>
+              <li className=' flex flex-row menu-list-item py-2 hover:bg-white hover:text-orange  dark:text  dark:text-gray-400'>
                 {" "}
                 <img
                   src='/settings.svg'
@@ -108,13 +108,13 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/settings'
-                  className=' text-center w-30 block ml-30  py-2 px-4 text-sm'
+                  className=' text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
                   onClick={hide}
                 >
                   settings
                 </Link>
               </li>
-              <li className=' flex menu-list-item py-2 hover:bg-white hover:text-orange'>
+              <li className=' flex menu-list-item py-2 hover:bg-white hover:text-orange  dark:text-gray-400'>
                 {" "}
                 <img
                   src='/logout.svg'
@@ -123,7 +123,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/'
-                  className='text-center w-30 block ml-30  py-2 px-4 text-sm'
+                  className='text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
                   onClick={handleClick}
                 >
                   log out
