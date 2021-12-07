@@ -41,21 +41,17 @@ router.put('/:id', requireToken, async (req, res, next) => {
 		res.send(await user.update(req.body));
 	} catch (error) {
 		next(error);
-		// errorObj.forEach((err) => console.log(err));
-		// console.dir(Object.entries(error));
-		// next(error);
 	}
 });
 
-router.put("/:id/updatesms", async (req, res, next) => {
-  try {
-     console.log(req.body.status);
-    const user = await User.findByPk(req.body.userId);
-    await user.update({
-      sms: req.body.status,
-    });
-    res.send(user);
-  } catch (error) {
-    console.error(error);
-  }
+router.put('/:id/updatesms', async (req, res, next) => {
+	try {
+		const user = await User.findByPk(req.body.userId);
+		await user.update({
+			sms: req.body.status,
+		});
+		res.send(user);
+	} catch (error) {
+		console.error(error);
+	}
 });

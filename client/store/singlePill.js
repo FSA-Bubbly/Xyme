@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { getToken } from './auth';
 
 const GET_SINGLE_PILL = 'GET_SINGLE_PILL';
 

@@ -1,7 +1,4 @@
 import axios from 'axios';
-import history from '../history';
-import { getToken } from './auth';
-const token = getToken();
 
 const UPDATE_USER = 'UPDATE_USER';
 const FETCH_UPDATE_USER = 'FETCH_UPDATE_USER';
@@ -43,7 +40,7 @@ export const updateUser = (user, history) => {
 export const updateSms = (statusObj) => {
 	return async (dispatch) => {
 		try {
-			console.log(statusObj);
+			const token = window.localStorage.getItem('token');
 			const { data } = await axios.put(
 				`/api/users/${statusObj.userId}/updatesms`,
 				statusObj,
