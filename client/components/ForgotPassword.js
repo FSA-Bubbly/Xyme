@@ -80,10 +80,7 @@ const ForgotPassword = (props) => {
               onClick={forgotPassword}
               className=' mt-5  py-1 flex flex-col '
             >
-              <button
-                onClick={forgotPassword}
-                className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'
-              >
+              <button className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
                 Get Reset link
               </button>
             </div>
