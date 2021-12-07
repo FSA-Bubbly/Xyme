@@ -23,7 +23,7 @@ const ProfileEdit = () => {
 	const [nighttimeReminder, setNighttimeReminder] = useState(
 		`${user.nighttimeReminder}`
 	);
-	const [password, setPassword] = useState('');
+	const [password, setPassword] = useState(`${user.password}`);
 	const [avatar, setAvatar] = useState(`${user.avatar}`);
 	const [errors, setErrors] = useState({});
 
@@ -43,13 +43,13 @@ const ProfileEdit = () => {
 		setMorningReminder(`${user.morningReminder}`);
 		setNighttimeReminder(`${user.nighttimeReminder}`);
 		setAvatar(`${user.avatar}`);
-		setPassword(``);
+		setPassword(`${user.password}`);
 	}, [user]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const id = user.id;
-		const editedUser = {
+		let editedUser = {
 			id,
 			firstName,
 			lastName,
@@ -64,8 +64,8 @@ const ProfileEdit = () => {
 			password,
 			avatar,
 		};
-		checkError(editedUser);
-		if (Object.keys(errors).length == 0) {
+		let formErrors = checkError(editedUser);
+		if (Object.keys(formErrors).length == 0) {
 			dispatch(updateUser(editedUser, history));
 		}
 	};
@@ -113,17 +113,18 @@ const ProfileEdit = () => {
 				if (!validator.isEmail(value))
 					formErrors[key] = 'Please enter a valid Email Address';
 			} else if (key === 'password') {
-				if (value.length < 7 && /\d/.test(value))
+				if (value.length < 8 || !/\d/.test(value) || !/[a-zA-z]/g.test(value))
 					formErrors[key] =
 						'Passwords must be at least 8 characters long and must include a number';
 			}
 		}
 		setErrors(formErrors);
+		return formErrors;
 	};
 
 	return (
 		<div>
-			<form className='mt-8' onSubmit={handleSubmit}>
+			<form className='mt-8' onSubmit={(e) => handleSubmit(e)}>
 				<div className='flex flex-col'>
 					<div className='flex self-center fadeIn w-full sm:full md:w-full p-20 sm:p-20 md:p-20 overflow-hidden '>
 						<h1 className=' w-full self-center font-sans uppercase fadeIn p-2 md:text-2xl pt-3  text-xl tracking-wider text-center text-gray-800  dark:text-gray-200 text-gray-800'>
