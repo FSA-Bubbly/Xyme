@@ -39,15 +39,8 @@ export const Landing = ({ isLoggedIn }) => {
       <div className='rounded-lg justify-center overflow-auto container pt-15 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center xl:mt-20 xl:pt-0'>
         <div className='flex flex-col w-1/2 xl:w-full self-center lg:items-start overflow-y-hidden lg:self-center'>
           <div className='self-center xs:mt- p-10 sm:p-20 md:p-20  xl:pt-0  '>
-            <motion.img
-              className='object-scale-down img rounded-full shadow-sm bg-nude'
-              initial={{ y: -80 }}
-              animate={{
-                type: "bounce",
-                duration: 8,
-                y: 40,
-                transitionDelay: 50,
-              }}
+            <img
+              className=' animate-bounce object-scale-down img rounded-full shadow-sm bg-nude'
               src='/XYME.png'
               alt='Syncing'
             />
@@ -55,7 +48,7 @@ export const Landing = ({ isLoggedIn }) => {
           <h1 className='self-center font-mont h-full my-5 text-3xl md:text-5xl  font-bold leading-tight text-center md:text-center slide-in-bottom-h1 '>
             xyme
           </h1>
-          <p className=' self-center mt-10 opacity-0 xl:opacity-1 leading-normal text-base md:text-2xl mb-8 text-center md:text-center slide-in-bottom-subtitle '>
+          <p className=' self-center mt-20 opacity-0 xl:opacity-1 leading-normal text-base md:text-2xl mb-8 text-center md:text-center slide-in-bottom-subtitle '>
             Your personalized medication and supplementation tracker.
           </p>
           {isLoggedIn ? (
@@ -71,7 +64,7 @@ export const Landing = ({ isLoggedIn }) => {
           ) : (
             <Link
               to='/login'
-              className='m-8 self-center w-10 h-full text-3xl md:text-5xl text-black'
+              className='m-8 self-center w-10 h-full text-3xl md:text-5xl '
             >
               <img src='/starticon.svg'></img>
             </Link>
@@ -147,12 +140,12 @@ export const Landing = ({ isLoggedIn }) => {
         </section>
         <section className='bg-white bg-opacity-40 container my-20 p-10 rounded-lg '>
           <div className='container mx-auto px-6 py-20'>
-            <h2 className=' font-mont fadeIn p-2 md:text-3xl text-2xl font-bold text-center text-gray-800 mb-8 b dark:text-gray-200'>
+            <p className=' font-sans fadeIn p-2 md:text-3xl text-2xl text-center text-gray-800 mb-8 b dark:text-gray-200'>
               Meet the Team
-            </h2>
+            </p>
             <div className='flex flex-wrap'>
               <div className='w-full md:w-1/4 px-2 mb-4'>
-                <div className=' flex flex-col rounded py-2'>
+                <div className='  transform transition duration-500 hover:scale-125  flex flex-col rounded py-2'>
                   <a className=' self-center' href='https://github.com/zwardb'>
                     <img
                       src='/Zack.svg'
@@ -166,9 +159,12 @@ export const Landing = ({ isLoggedIn }) => {
                 </div>
               </div>
 
-              <div className='w-full md:w-1/4 px-2 mb-4'>
+              <div className=' transform transition duration-500 hover:scale-125 w-full md:w-1/4 px-2 mb-4'>
                 <div className=' flex flex-col rounded py-2'>
-                  <a className=' self-center' href='https://github.com/zwardb'>
+                  <a
+                    className=' self-center'
+                    href='https://github.com/jlaguio97'
+                  >
                     <img
                       src='/Jordan.svg'
                       className=' self-center w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
@@ -179,7 +175,7 @@ export const Landing = ({ isLoggedIn }) => {
                   </p>
                 </div>
               </div>
-              <div className='w-full md:w-1/4 px-2 mb-4'>
+              <div className=' transform transition duration-500 hover:scale-125 w-full md:w-1/4 px-2 mb-4'>
                 <div className=' flex flex-col rounded py-2'>
                   <a
                     className=' self-center'
@@ -196,9 +192,12 @@ export const Landing = ({ isLoggedIn }) => {
                   </p>
                 </div>
               </div>
-              <div className='w-full md:w-1/4 px-2 mb-4'>
+              <div className=' transform transition duration-500 hover:scale-125 w-full md:w-1/4 px-2 mb-4'>
                 <div className=' flex flex-col rounded py-2'>
-                  <a className=' self-center' href='https://github.com/zwardb'>
+                  <a
+                    className=' self-center'
+                    href='https://github.com/cjfung94'
+                  >
                     <img
                       src='/CJ.svg'
                       className=' self-center w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'

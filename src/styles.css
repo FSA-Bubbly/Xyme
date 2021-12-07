@@ -6,7 +6,7 @@
   transition: transform 0.3s linear;
 }
 
-#nofitication:checked + label .nofitication {
+#notification:checked + label .notificationball {
   background-color: bg-gray-500;
   transform: translateX(24px);
   transition: transform 0.3s linear;

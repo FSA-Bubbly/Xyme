@@ -5,23 +5,24 @@ import { fetchWallet } from "../store/wallet";
 import { removePills } from "../store/wallet";
 import { fetchInteractions } from "../store/interactions";
 import { removeInteractions } from "../store/interactions";
-
+import Modal from "react-modal";
 
 const Wallet = () => {
   const { auth: user, interactions, wallet: pills } = useSelector((s) => s);
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const loading = async () =>
     new Promise((resolve) => setTimeout(() => resolve(), 1500));
 
   useEffect(() => {
     (async () => {
-			await loading();
+      await loading();
       setLoading(!isLoading);
     })();
-		dispatch(fetchWallet(user));
-		dispatch(fetchInteractions(user));
+    dispatch(fetchWallet(user));
+    dispatch(fetchInteractions(user));
   }, []);
 
   let pillsToRemove = [];
@@ -45,7 +46,16 @@ const Wallet = () => {
     }
   };
 
-	const interactionNames = [...new Set(interactions.map(int => [int.med1.name, int.med2.name]).flat())];
+  const interactionNames = [
+    ...new Set(
+      interactions.map((int) => [int.med1.name, int.med2.name]).flat()
+    ),
+  ];
+
+  const toggleModal = () => {
+    console.log("hello");
+    setShowModal(!showModal);
+  };
 
   return (
     <div className='flex flex-col'>
@@ -53,24 +63,83 @@ const Wallet = () => {
         <div className=' my-40 self-center text-center'>
           {" "}
           <img
-            src='/loading.svg'
-            className=' self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
+            src='/XYME.png'
+            className=' animate-bounce self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
           />
           <h1>Loading...</h1>
         </div>
       ) : (
         <>
           <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>
-            <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl font-bold text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
+            <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-wider text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
               personal wallet
             </h1>
 
             <img
               src='/wallet.svg'
               alt='Monitoring'
-              className=' self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
+              className=' self-center object-scale-down w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32 '
             />
           </div>
+          <div className='flex justify-end sm:-mx-4 sm:-mx-4 py-4 px-4 sm:px-8  '>
+            {" "}
+            <img
+              onClick={toggleModal}
+              src='/medical.svg'
+              alt='Monitoring'
+              className=' animate-pulse object-scale-down w-10 sm:w-10 md:w-10 lg:w-10 xl:w-10 hover:scale-125 cursor-pointer'
+              />
+              
+          </div>
+          {showModal ? (
+            <Modal
+              isOpen={showModal}
+              onRequestClose={toggleModal}
+              className=' my-16 w-auto'
+            >
+              <div>
+                <div className='flex flex-col  '>
+                  <div className='flex justify-center '>
+                    <div className='bg-white w-full m-10 rounded-lg dark:bg-gray-200'>
+                      <div className=' flex justify-center pt-10 flex-row'>
+                        <img
+                          onClick={toggleModal}
+                          src='/pill3.svg'
+                          alt='Monitoring'
+                          className='  mx-10  object-scale-down w-10 sm:w-10 md:w-10 lg:w-10 xl:w-10 hover:scale-125 cursor-pointer'
+                        />{" "}
+                        <p className=' text-center py-5 text-xs text-gray-500 uppercase'>
+                          {" "}
+                          = Pill has no interactions
+                        </p>
+                      </div>
+                      <div className=' flex justify-center  pt-10 flex-row'>
+                        <img
+                          onClick={toggleModal}
+                          src='/pill2.svg'
+                          alt='Monitoring'
+                          className='  mx-10 object-scale-down w-10 sm:w-10 md:w-10 lg:w-10 xl:w-10 hover:scale-125 cursor-pointer'
+                        />{" "}
+                        <p className=' text-center py-5 text-xs text-gray-500 uppercase'>
+                          {" "}
+                          = Pill has interactions
+                        </p>
+                      </div>
+                      <div className='flex justify-between p-6'>
+                        <button
+                          onClick={toggleModal}
+                          className=' dark:border-gray-300 text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800 hover:bg-orange hover:border-orange hover:text-white '
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Modal>
+          ) : null}
+
           <div className='flex  sm:-mx-8 px-4 sm:px-8 py-4 overflow-hidden'>
             <div className='inline-block min-w-full shadow rounded-lg overflow-scroll'>
               {pills.length < 1 ? (
@@ -134,11 +203,26 @@ const Wallet = () => {
                           <td className='  rounded-l-lg dark:bg-gray-200 border-green mt-30 px-5 py-5 bg-white text-sm'>
                             <div className='flex justify-center'>
                               <div className='flex w-10 h-10'>
-                                <img
-                                  className='w-full h-full '
-                                  src='/pill2.svg'
-                                  alt=''
-                                />
+                                {interactionNames.includes(pill.name) ? (
+                                  <Link
+                                    to={{
+                                      pathname: `/interactions`,
+                                      state: { pillName: pill.name },
+                                    }}
+                                  >
+                                    <img
+                                      className='w-full h-full '
+                                      src='/pill2.svg'
+                                      alt=''
+                                    />
+                                  </Link>
+                                ) : (
+                                  <img
+                                    className='w-full h-full '
+                                    src='/pill3.svg'
+                                    alt=''
+                                  />
+                                )}
                               </div>
                               <div className='ml-3'>
                                 <p className='text-gray-900 whitespace-no-wrap'></p>
@@ -153,19 +237,16 @@ const Wallet = () => {
                             >
                               <p className='dark:bg-gray-200 text-center text-gray-900 '>
                                 {pill.name}
-																{
-																	interactionNames.includes(pill.name) ? (
-																		<Link
-																		to={{
-																			pathname: `/interactions`,
-																			state: { pillName: pill.name}
-																		}}>
-																			!!!
-																		</Link>
-																	) : (
-																		null
-																	)
-																}
+                                {interactionNames.includes(pill.name) ? (
+                                  <Link
+                                    to={{
+                                      pathname: `/interactions`,
+                                      state: { pillName: pill.name },
+                                    }}
+                                  >
+                                    !!!
+                                  </Link>
+                                ) : null}
                               </p>
                             </Link>
                           </td>
