@@ -213,6 +213,7 @@ const AuthForm = (props) => {
 							)}
 						</div>
 
+
 						<div className='py-1'>
 							<span className='px-1 text-xs text-gray-500 uppercase'>
 								Do you wish to receive SMS reminders?
@@ -229,6 +230,7 @@ const AuthForm = (props) => {
                         bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-white '
 							/>
 						</div>
+
 
 						<div className='py-1'>
 							<span className='px-1 text-xs text-gray-500 uppercase'>
@@ -285,11 +287,30 @@ const AuthForm = (props) => {
 								x-model='password'
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
+
+              />
+            </div>
+            <div className='py-1 flex flex-row justify-between my-5'>
+              <span className=' self-start px-1 text-xs text-gray-500 uppercase'>
+                Do you wish to receive SMS reminders?
+              </span>
+              <label htmlFor='sms' />
+              <input
+                placeholder=''
+                name='sms'
+                type='checkbox'
+                id='sms'
+                className=' sms flex self-center text-md block
+                       form-checkbox rounded focus:outline-none text-orange w-4 h-4 text-center '
+              />
+            </div>
+
 							/>
 							{errors.password && (
 								<p className='px-1 text-xs text-red-500'>{errors.password}</p>
 							)}
 						</div>
+
 
 						<div className='mt-10 py-1 flex flex-col '>
 							<button className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-200 dark:border-orange hover:bg-orange hover:border-orange hover:text-grey-800 text-gray-800'>
