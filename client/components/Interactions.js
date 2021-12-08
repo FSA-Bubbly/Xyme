@@ -47,10 +47,10 @@ const Interactions = (props) => {
               alt='Monitoring'
             />
           </div>
-          <div className='flex -mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-hidden'>
-            <div className='inline-block min-w-full shadow rounded-lg overflow-hidden'>
+          <div className=' flex -mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-hidden'>
+            <div className=' dark:bg-gray-500 inline-block min-w-full shadow rounded-lg overflow-scroll'>
               <div className='filter  '>
-                <form className='flex flex-row justify-end'>
+                <form className='flex flex-row justify-end dark:bg-gray-500'>
                   <label
                     className='text-center px-5 py-3  dark:text-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider font-normal'
                     htmlFor='medName'
@@ -86,7 +86,7 @@ const Interactions = (props) => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className=' dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-8 bg-white text-sm text-center w-full '>
+                <tbody className='overflow-scroll dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-8 bg-white text-sm text-center w-full '>
                   {filteredInteractions.length < 1 ? (
                     <tr className=' col-span-3 justify-center dark:bg-gray-200 shadow rounded-full border-b-10 border-t-8 border-nude dark:border-gray-800 space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                       <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'></td>
@@ -99,7 +99,7 @@ const Interactions = (props) => {
                     filteredInteractions.map((interaction) => (
                       <tr
                         key={interaction.id}
-                        className=' dark:bg-gray-200 shadow rounded-full border-b-10 border-t-8 border-nude dark:border-gray-800 space-y-6 mt-30 px-5 py-5 bg-white text-sm'
+                        className=' dark:bg-gray-200 shadow rounded-full border-b-10 border-t-8 border-nude dark:border-gray-800 space-y-6 mt-30 px-5 py-5 bg-white text-sm '
                       >
                         <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm dark:text-gray-600'>
                           {interaction.med1.name}

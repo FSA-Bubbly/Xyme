@@ -98,7 +98,6 @@ export const Landing = ({ isLoggedIn }) => {
             </div>
           </div>
 
-
           <div className='flex items-center flex-wrap mb-20'>
             <div className=' flex justify-center w-full md:w-1/2 p-10 sm:p-20 md:p-30'>
               <img src='/wallet.svg' alt='Reporting' />
@@ -112,10 +111,10 @@ export const Landing = ({ isLoggedIn }) => {
                 Manage your Medication
               </h4>
               <p className='text-gray-600 mb-8'>
-								Keeping track of all your meds can be difficult. Our user
-								friendly app will kindly send you SMS notifcations straight to
-								your phone morning and night. This way you never forget to
-								take your daily pills .
+                Keeping track of all your meds can be difficult. Our user
+                friendly app will kindly send you SMS notifcations straight to
+                your phone morning and night. This way you never forget to take
+                your daily pills .
               </p>
             </motion.div>
           </div>
@@ -140,7 +139,7 @@ export const Landing = ({ isLoggedIn }) => {
           </div>
         </section>
         <section className=' bg-white bg-opacity-40 container my-5 mb-20 p-10 rounded-lg '>
-          <div className='container mx-10 px-6 py-20'>
+          <div className='container py-20'>
             <p className=' font-sans fadeIn p-2 md:text-3xl text-2xl text-center text-gray-800 mb-8 b dark:text-gray-200 tracking-widest'>
               Meet the Team
             </p>
@@ -149,7 +148,8 @@ export const Landing = ({ isLoggedIn }) => {
                 <div className='  transform transition duration-500 hover:scale-125  flex flex-col rounded py-2'>
                   <a className=' self-center' href='https://github.com/zwardb'>
                     <img
-                      src='/Zack.svg'git
+                      src='/Zack.svg'
+                      git
                       className=' self-center w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
                     />
                   </a>
