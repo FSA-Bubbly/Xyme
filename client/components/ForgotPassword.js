@@ -48,7 +48,7 @@ const ForgotPassword = (props) => {
                   </div>
                   <div className='flex justify-center p-6'>
                     <Link to='/login'>
-                      <div className=' rounded-sm text-center dark:border-gray-300 text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800 hover:bg-orange border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
+                      <div className=' rounded-sm text-center text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800 hover:bg-orange border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500  hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
                         A link was sent to your email to reset your password ,
                         you may want to check your spam folder
                       </div>
@@ -80,7 +80,7 @@ const ForgotPassword = (props) => {
               onClick={forgotPassword}
               className=' mt-5  py-1 flex flex-col '
             >
-              <button className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
+              <button className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500  hover:bg-orange hover:border-orange hover:text-white text-gray-800  dark:text-gray-200 '>
                 Get Reset link
               </button>
             </div>

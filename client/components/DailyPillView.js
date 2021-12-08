@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
 import { decreaseDosage } from "../store/wallet";
 import { fetchWallet } from "../store/wallet";
+import { fetchInteractions } from "../store/interactions";
 
 const DailyPillView = () => {
-  const { wallet: pills } = useSelector((s) => s);
+  const { auth: user, wallet: pills, interactions } = useSelector((s) => s);
   const currentUser = useSelector((state) => state.auth);
   const [isLoading, setLoading] = useState(true);
 
@@ -33,7 +34,14 @@ const DailyPillView = () => {
       setLoading(!isLoading);
     })();
     dispatch(fetchWallet(currentUser));
+    dispatch(fetchInteractions(user));
   }, []);
+
+  const interactionNames = [
+    ...new Set(
+      interactions.map((int) => [int.med1.name, int.med2.name]).flat()
+    ),
+  ];
 
   let pillsToUpdate = [];
   const handleTakenPills = () => {
@@ -71,7 +79,7 @@ const DailyPillView = () => {
           ) : (
             <>
               <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>
-                <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-wider text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
+                <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-widest text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
                   medication for today
                 </h1>
                 <img
@@ -111,11 +119,26 @@ const DailyPillView = () => {
                             <td className='  dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                               <div className='text-center'>
                                 <div className=' flex justify-center flex-shrink-0 w-10 h-10'>
-                                  <img
-                                    className='w-full h-full '
-                                    src='/pill2.svg'
-                                    alt=''
-                                  />
+                                  {interactionNames.includes(pill.name) ? (
+                                    <Link
+                                      to={{
+                                        pathname: `/interactions`,
+                                        state: { pillName: pill.name },
+                                      }}
+                                    >
+                                      <img
+                                        className='w-full h-full '
+                                        src='/pill2.svg'
+                                        alt=''
+                                      />
+                                    </Link>
+                                  ) : (
+                                    <img
+                                      className='w-full h-full '
+                                      src='/pill3.svg'
+                                      alt=''
+                                    />
+                                  )}
                                 </div>
                                 <div className='ml-3'>
                                   <p className='text-gray-900 whitespace-no-wrap dark:text-gray-600'></p>
@@ -148,7 +171,7 @@ const DailyPillView = () => {
                                 ></span>
                                 <span className='relative'>
                                   <input
-                                    className=' dark:border-2 dark:border-gray-200 text-center'
+                                    className=' form-checkbox  rounded focus:outline-none text-orange w-4 h-4 text-center'
                                     id='checkbox1'
                                     type='checkbox'
                                     value={pill.id}
@@ -161,7 +184,7 @@ const DailyPillView = () => {
                         ))}
                     </tbody>
                   </table>
-                  <div className='px-5 py-5  border-t flex flex-col xs:flex-row items-center xs:justify-between   '>
+                  <div className='px-5 py-5   flex flex-col xs:flex-row items-center xs:justify-between   '>
                     <div className='inline-flex mt-2 xs:mt-0'>
                       <button
                         className='text-xs text-green-300 border-2  border-orange   text-orange mx-5  rounded-full w-full self-center text-xs text-green-300 border-2 py-1 px-2  dark:text-gray-500 dark:border-orange hover:bg-orange hover:border-orange hover:text-white text-gray-800 '

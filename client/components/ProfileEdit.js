@@ -362,12 +362,12 @@ const ProfileEdit = () => {
                   <div className='flex justify-evenly py-4'>
                     <Link
                       to={`/profile`}
-                      className='text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800 dark:border-gray-300'
+                      className='text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800 dark:border-gray-300 hover:bg-orange hover:text-white hover:border-orange'
                     >
                       Cancel
                     </Link>
                     <button
-                      className='text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 dark:border-gray-300 text-gray-800'
+                      className='text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 dark:border-gray-300 text-gray-800 hover:bg-orange hover:text-white hover:border-orange '
                       value='submit'
                       type='submit'
                       onClick={handleSubmit}

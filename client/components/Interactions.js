@@ -38,7 +38,7 @@ const Interactions = (props) => {
       ) : (
         <>
           <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>
-            <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl  text-center text-gray-800 dark:text-gray-200 text-gray-800 tracking-wider'>
+            <h1 className=' tracking-widest self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl  text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
               interactions
             </h1>
             <img
@@ -52,13 +52,13 @@ const Interactions = (props) => {
               <div className='filter  '>
                 <form className='flex flex-row justify-end'>
                   <label
-                    className='text-center px-5 py-3  dark:text-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider'
+                    className='text-center px-5 py-3  dark:text-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider font-normal'
                     htmlFor='medName'
                   >
                     show interactions with:
                   </label>
                   <select
-                    className='self-center w-20 text-sm  mr-5 -bg-nude self-end w-10 dark:bg-gray-800 dark:text-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-200 border-2 rounded'
+                    className='self-center border-white w-20 text-xs  mr-5 -bg-nude self-end w-10 dark:bg-gray-800 dark:text-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-200 border-2 rounded'
                     name='pillName'
                     value={pillFilter}
                     onChange={(e) => setPillFilter(e.target.value)}
@@ -99,7 +99,7 @@ const Interactions = (props) => {
                     filteredInteractions.map((interaction) => (
                       <tr
                         key={interaction.id}
-                        className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'
+                        className=' dark:bg-gray-200 shadow rounded-full border-b-10 border-t-8 border-nude dark:border-gray-800 space-y-6 mt-30 px-5 py-5 bg-white text-sm'
                       >
                         <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm dark:text-gray-600'>
                           {interaction.med1.name}
