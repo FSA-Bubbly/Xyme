@@ -56,7 +56,10 @@ const AuthForm = (props) => {
 				if (value < 10 || value > 500)
 					formErrors[key] = 'Please enter a valid Weight';
 			} else if (key === 'email') {
-				if (!validator.isEmail(value) || checkEmail == 'exists') {
+				if (
+					!validator.isEmail(value) ||
+					(checkEmail == 'exists' && userObj.formName == 'signup')
+				) {
 					formErrors[key] = 'Please enter a valid Email Address';
 				}
 			} else if (key === 'password') {
@@ -415,6 +418,7 @@ const mapDispatch = (dispatch) => {
 				let emailCheck = await dispatch(checkUserExists(user.email));
 
 				let userError = checkError(user, emailCheck);
+				console.log(userError);
 				if (Object.keys(userError).length == 0) {
 					dispatch(authenticate(user));
 				}
