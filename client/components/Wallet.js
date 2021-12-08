@@ -16,7 +16,7 @@ const Wallet = () => {
   const [showModal, setShowModal] = useState(false);
 
   const loading = async () =>
-    new Promise((resolve) => setTimeout(() => resolve(), 1500));
+    new Promise((resolve) => setTimeout(() => resolve(), 1200));
 
   useEffect(() => {
     (async () => {
@@ -55,6 +55,8 @@ const Wallet = () => {
   ];
 
   const toggleModal = () => {
+    //console.log("hello");
+
     setShowModal(!showModal);
   };
 
