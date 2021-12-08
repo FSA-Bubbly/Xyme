@@ -229,7 +229,8 @@ const AuthForm = (props) => {
 							</span>
 							<label htmlFor='phone' />
 							<input
-								onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
+								onChange={(e) => formatPhoneNumber(e.target.value)}
+								value={phone}
 								placeholder=''
 								name='phone'
 								type='text'
