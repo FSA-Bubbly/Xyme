@@ -56,11 +56,18 @@ const AuthForm = (props) => {
 				if (value < 10 || value > 500)
 					formErrors[key] = 'Please enter a valid Weight';
 			} else if (key === 'email') {
-				if (
-					!validator.isEmail(value) ||
-					(checkEmail == 'exists' && userObj.formName == 'signup')
-				) {
+				//If not valid email address
+				if (!validator.isEmail(value)) {
 					formErrors[key] = 'Please enter a valid Email Address';
+				}
+				//If it is an email and email already exists => signup
+				else if (checkEmail == 'exists' && userObj.formName == 'signup') {
+					formErrors[key] = 'Email Address is already in use';
+				}
+				//Is an email and doesn't exist in our db
+				else if (checkEmail != 'exists' && userObj.formName == 'login') {
+					console.log(checkEmail, userObj.formName);
+					formErrors[key] = 'Email Address does not exist';
 				}
 			} else if (key === 'password') {
 				if (value.length < 8 || !/\d/.test(value) || !/[a-zA-z]/g.test(value))
@@ -416,9 +423,7 @@ const mapDispatch = (dispatch) => {
 					password: evt.target.password.value,
 				};
 				let emailCheck = await dispatch(checkUserExists(user.email));
-
 				let userError = checkError(user, emailCheck);
-				console.log(userError);
 				if (Object.keys(userError).length == 0) {
 					dispatch(authenticate(user));
 				}
