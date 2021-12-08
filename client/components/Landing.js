@@ -107,7 +107,7 @@ export const Landing = ({ isLoggedIn }) => {
 							<p className='text-gray-600 mb-8'>
 								Keeping track of all your meds can be difficult. Our user
 								friendly app will kindly send you SMS notifcations straight to
-								your phone morning and night. This way you never ever forget to
+								your phone morning and night. This way you never forget to
 								take your daily pills .
 							</p>
 						</motion.div>

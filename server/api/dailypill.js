@@ -13,8 +13,8 @@ router.put('/', requireToken, async (req, res, next) => {
 	try {
 		const walletPillsToDecrement = await Wallet.findAll({
 			where: {
-				userId: req.body.data.userId,
-				pillId: req.body.data.pills,
+				userId: req.body.userId,
+				pillId: req.body.pills,
 			},
 		});
 

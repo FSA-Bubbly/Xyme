@@ -1,8 +1,10 @@
 import axios from 'axios';
+import history from '../history';
 
 //action types
 const GET_WALLET = 'GET_WALLET';
 const ADD_PILL_TO_WALLET = 'ADD_PILL_TO_WALLET';
+const EDIT_PILL = 'EDIT_PILL';
 const REMOVE_PILLS = 'REMOVE_PILL';
 const DECREASE_DOSAGE = 'DECREASE_DOSAGE';
 
@@ -18,6 +20,13 @@ const _addPillToWallet = (pill) => {
 	return {
 		type: ADD_PILL_TO_WALLET,
 		pill,
+	};
+};
+
+const _editPill = (pill) => {
+	return {
+		type: EDIT_PILL,
+		pill
 	};
 };
 
@@ -58,11 +67,31 @@ export const addPillToWallet = (pill) => {
 			});
 			dispatch(_addPillToWallet(data));
 		} catch (error) {
+			console.error(error);
 			const errMsg = error.response.data.error;
 			alert(errMsg);
 		}
 	};
 };
+
+export const editPill = (pill) => {
+	return async (dispatch) => {
+		try {
+			const token = window.localStorage.getItem('token');
+			const { data: editedPill } = await axios.put(
+				`/api/wallet/pill/edit`,
+				{
+					pill
+				},
+				{ headers: { authorization: token } }
+			);
+			dispatch(_editPill(editedPill));
+			history.push(`/wallet`)
+		} catch (error) {
+			console.error(error);
+		}
+	}
+}
 
 export const removePills = (userId, pills) => {
 	return async (dispatch) => {
@@ -89,14 +118,11 @@ export const decreaseDosage = (userId, pills) => {
 	return async (dispatch) => {
 		try {
 			const token = window.localStorage.getItem('token');
-			console.log('decrease', token);
 			const { data: updatedPills } = await axios.put(
 				'/api/dailypill',
 				{
-					data: {
-						pills,
-						userId,
-					},
+					pills,
+					userId,
 				},
 				{ headers: { authorization: token } }
 			);
@@ -116,6 +142,9 @@ export default function (state = [], action) {
 			return [...state, action.pill];
 		case REMOVE_PILLS:
 			return state.filter((pill) => !action.pills.includes(pill.id));
+		case EDIT_PILL:
+			return state.map(pill =>
+        (pill.id === action.pill.id ? action.pill : pill));
 		default:
 			return state;
 	}
