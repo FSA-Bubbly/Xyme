@@ -43,14 +43,11 @@ const DailyPillView = () => {
 
 	let pillsToUpdate = [];
 
-	const handleTakenPills = (e) => {
+	const handleTakenPills = () => {
 		dispatch(decreaseDosage(user.id, pillsToUpdate));
-		console.log('Pills To Update', pillsToUpdate);
-		console.log('Pills To Update', pillsToUpdate);
 	};
 
 	const handlePillCheck = (evt) => {
-		console.log(ref.current.checked);
 		if (evt.target.checked) {
 			pillsToUpdate.push(evt.target.value);
 		} else {
@@ -173,6 +170,7 @@ const DailyPillView = () => {
 																		id='checkbox1'
 																		type='checkbox'
 																		value={pill.id}
+																		key={Math.random()}
 																		onChange={handlePillCheck}></input>
 																</span>
 															</span>
