@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSinglePill } from "../store/singlePill";
 
 const SinglePill = (props) => {
-  // const singlePill = useSelector((s) => s.singlePill);
-
-  // const dispatch = useDispatch();
-
-  // const [pill, setPill] = useState([]);
-
+  const [isLoading, setLoading] = useState(true);
   const pill = props.location.state.pill;
 
-  // useEffect(() => {
-  //   const singlePill = dispatch(fetchSinglePill(props.match.params.pillId));
-  //   setPill(singlePill);
-  // }, []);
+  const loading = async () =>
+    new Promise((resolve) => setTimeout(() => resolve(), 400));
+
+  useEffect(() => {
+    (async () => {
+      await loading();
+      setLoading(!isLoading);
+    })();
+  }, [])
 
   return (
-      <div>
+    <div className='flex flex-col'>
+      {isLoading ? (
+        <Loading />
+      ) : (
         <div className='flex flex-col  '>
           <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>
             <h3 className='tracking-widest self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl text-center text-gray-800 dark:text-gray-200 text-gray-800  '></h3>
@@ -26,12 +30,12 @@ const SinglePill = (props) => {
           <div className='flex items-center justify-center '>
             <div className='bg-white w-full  xs:1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 mt-10 rounded-lg dark:bg-gray-200'>
               <div className='flex items-center justify-center pt-10 flex-col'>
-                <h1 className=' tracking-widest self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
-                {pill.name}
-              </h1>
+                <h1 className='tracking-widest self font-sans uppercase fadeIn p-10 md:text-2xl  text-xl text-center text-gray-800 dark:text-gray-800 text-gray-800 '>
+                  {pill.name}
+                </h1>
                 <div>
                   <img
-                    src={singlePill.image}
+                    src={pill.image}
                     className=' p-10 rounded-md object-scale-down'
                   />
                 </div>
@@ -68,8 +72,9 @@ const SinglePill = (props) => {
           </div>
         </div>
       </div>
+      )}
     </div>
-  );
+  )
 };
 
 export default SinglePill;

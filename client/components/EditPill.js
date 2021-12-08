@@ -81,7 +81,7 @@ const EditPill = (props) => {
 									</select>{' '}
 									<div className='flex justify-evenly py-4'>
 										<Link
-											to={`/wallet/select/${props.location.state.pill.id}`}
+											to={`/wallet`}
 											className='text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800 dark:border-gray-300'>
 											Cancel
 										</Link>

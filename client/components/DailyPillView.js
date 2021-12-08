@@ -111,7 +111,7 @@ const DailyPillView = () => {
 														key={pill.id}
 														className=' dark:bg-gray-200 shadow rounded-full border-b-10 border-t-8 border-nude dark:border-gray-800  space-y-6 mt-30 px-5 py-5 bg-white text-sm dark:text-gray-600'>
 														<td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
-															<div className='text-center'>
+															<div className='flex justify-center'>
 																<div className=' flex justify-center flex-shrink-0 w-10 h-10'>
 																	{interactionNames.includes(pill.name) ? (
 																		<Link
@@ -120,7 +120,7 @@ const DailyPillView = () => {
 																				state: { pillName: pill.name },
 																			}}>
 																			<img
-																				className='w-full h-full '
+																				className='w-full h-full self-center'
 																				src='/pill2.svg'
 																				alt=''
 																			/>

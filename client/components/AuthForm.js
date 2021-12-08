@@ -176,7 +176,7 @@ const AuthForm = (props) => {
 						</div>
 						<div className='py-1'>
 							<span className='px-1 text-xs text-gray-600 uppercase'>
-								Height(ft)
+								Height(in)
 							</span>
 							<label htmlFor='height' />
 							<input
@@ -301,7 +301,7 @@ const AuthForm = (props) => {
 					</div>
 
 					<div className='mt-10 py-1 flex flex-col '>
-						<button className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-200 dark:border-orange hover:bg-orange hover:border-orange hover:text-grey-800 text-gray-800'>
+						<button className='rounded-full w-1/3 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-200 dark:border-orange hover:bg-orange hover:border-orange hover:text-grey-800 text-gray-800'>
 							{displayName}
 						</button>
 					</div>
