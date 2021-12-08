@@ -66,6 +66,17 @@ export const fetchUpdateUser = (userId) => {
 	};
 };
 
+export const checkUserExists = (userEmail) => {
+	return async (dispatch) => {
+		try {
+			const { data } = await axios.get(`/api/email/${userEmail}`);
+			return data;
+		} catch (error) {
+			console.error(error);
+		}
+	};
+};
+
 export default function (state = {}, action) {
 	switch (action.type) {
 		case UPDATE_USER:
