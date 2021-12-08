@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from './Loading';
@@ -8,7 +8,6 @@ import { fetchInteractions } from '../store/interactions';
 const DailyPillView = () => {
 	const { auth: user, wallet: pills, interactions } = useSelector((s) => s);
 	const [isLoading, setLoading] = useState(true);
-	const ref = useRef();
 	const dispatch = useDispatch();
 
 	const dateNum = Date.now();
@@ -165,7 +164,6 @@ const DailyPillView = () => {
 																	className='absolute inset-0 bg-green-200  rounded-full'></span>
 																<span className='relative'>
 																	<input
-																		ref={ref}
 																		className=' form-checkbox  rounded focus:outline-none text-orange w-4 h-4 text-center'
 																		id='checkbox1'
 																		type='checkbox'
