@@ -9,6 +9,9 @@ const AuthForm = (props) => {
 	const { name, displayName, handleSubmit, error } = props;
 	const [errors, setErrors] = useState({});
 	const [phone, setPhone] = useState('');
+	const [age, setAge] = useState('');
+	const [weight, setWeight] = useState('');
+	const [height, setHeight] = useState('');
 
 	const [userAvatar, setUserAvatar] = useState('/user1.svg');
 
@@ -72,7 +75,7 @@ const AuthForm = (props) => {
 			} else if (key === 'password') {
 				if (value.length < 8 || !/\d/.test(value) || !/[a-zA-z]/g.test(value))
 					formErrors[key] =
-						'Passwords must be at least 8 characters long and must include a number';
+						'Passwords must be at least 8 characters long consisting of numbers & letters';
 			}
 		}
 		setErrors(formErrors);
@@ -165,6 +168,8 @@ const AuthForm = (props) => {
 							<label htmlFor='age' />
 							<input
 								placeholder=''
+								onChange={(e) => setAge(formatDigitOnly(e.target.value))}
+								value={age}
 								name='age'
 								type='text'
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
@@ -176,11 +181,13 @@ const AuthForm = (props) => {
 						</div>
 						<div className='py-1'>
 							<span className='px-1 text-xs text-gray-600 uppercase'>
-								Height(ft)
+								Height(in)
 							</span>
 							<label htmlFor='height' />
 							<input
 								placeholder=''
+								value={height}
+								onChange={(e) => setHeight(formatDigitOnly(e.target.value))}
 								name='height'
 								type='text'
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
@@ -197,6 +204,8 @@ const AuthForm = (props) => {
 							<label htmlFor='weight' />
 							<input
 								placeholder=''
+								onChange={(e) => setWeight(formatDigitOnly(e.target.value))}
+								value={weight}
 								name='weight'
 								type='text'
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
@@ -229,7 +238,7 @@ const AuthForm = (props) => {
 							</span>
 							<label htmlFor='phone' />
 							<input
-								onChange={(e) => formatPhoneNumber(e.target.value)}
+								onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
 								value={phone}
 								placeholder=''
 								name='phone'
@@ -280,7 +289,11 @@ const AuthForm = (props) => {
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 							/>
+							{errors.password && (
+								<p className='px-1 text-xs text-red-500'>{errors.password}</p>
+							)}
 						</div>
+
 						<div className='py-1 flex flex-row justify-between my-5'>
 							<span className=' self-start px-1 text-xs text-gray-500 uppercase'>
 								Do you wish to receive SMS reminders?
@@ -295,14 +308,10 @@ const AuthForm = (props) => {
                        form-checkbox rounded focus:outline-none text-orange w-4 h-4 text-center '
 							/>
 						</div>
-
-						{errors.password && (
-							<p className='px-1 text-xs text-red-500'>{errors.password}</p>
-						)}
 					</div>
 
 					<div className='mt-10 py-1 flex flex-col '>
-						<button className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-200 dark:border-orange hover:bg-orange hover:border-orange hover:text-grey-800 text-gray-800'>
+						<button className='rounded-full w-1/3 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-200 dark:border-orange hover:bg-orange hover:border-orange hover:text-grey-800 text-gray-800'>
 							{displayName}
 						</button>
 					</div>
@@ -407,7 +416,7 @@ const mapDispatch = (dispatch) => {
 					nighttimeReminder: evt.target.nighttimeReminder.value,
 					height: evt.target.height.value,
 					weight: evt.target.weight.value,
-					email: evt.target.email.value,
+					email: evt.target.email.value.toLowerCase(),
 					password: evt.target.password.value,
 					avatar: evt.target.avatar.value,
 				};
@@ -420,7 +429,7 @@ const mapDispatch = (dispatch) => {
 			} else {
 				const user = {
 					formName: evt.target.name,
-					email: evt.target.email.value,
+					email: evt.target.email.value.toLowerCase(),
 					password: evt.target.password.value,
 				};
 				let emailCheck = await dispatch(checkUserExists(user.email));
