@@ -136,7 +136,7 @@ export function Navbar({ handleClick, isLoggedIn }) {
       ) : (
         <nav className=''>
           {/* ---- if user is not logged in---- */}
-          <div className='max-w-6xl mx-auto px-4 py-4'>
+          <div className='max-w-6xl mx-auto px-4 py-5'>
             <div className='flex justify-between'>
               <div className='flex space-x-4'>
                 <div>
@@ -179,14 +179,14 @@ export function Navbar({ handleClick, isLoggedIn }) {
                 onClick={() => {
                   showSideMenu();
                 }}
-                className='md:hidden lg:hidden menu-button fixed right-0 p-5'
+                className='md:hidden lg:hidden menu-button fixed right-0 p-4 top-0'
               >
                 <svg
                   className='w-8 h-6'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
                   viewBox='0 0 24 24'
-                  stroke='black'
+                  stroke='orange'
                 >
                   <path
                     strokeLinecap='round'

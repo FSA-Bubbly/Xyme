@@ -38,7 +38,7 @@ export const Landing = ({ isLoggedIn }) => {
     <div className=' mx-auto '>
       <div className='rounded-lg justify-center overflow-auto container pt-15 md:pt-48 px-6 mx-auto flex flex-wrap flex-col md:flex-row items-center xl:mt-20 xl:pt-0'>
         <div className='flex flex-col w-1/2 h-full xl:w-full self-center lg:items-start  lg:self-center'>
-          <div className='self-center xs:mt- p-10 sm:p-20 md:p-20 xl:pt-20  '>
+          <div className='self-center mt-5 p-10 sm:p-20 md:p-20 xl:pt-20  '>
             <img
               className=' animate-bounce object-scale-down img rounded-full shadow-sm bg-nude'
               src='/XYME.png'
