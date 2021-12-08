@@ -207,7 +207,7 @@ const Wallet = () => {
                                     }}
                                   >
                                     <img
-                                      className='w-full h-full '
+                                      className='w-full h-full'
                                       src='/pill2.svg'
                                       alt=''
                                     />
