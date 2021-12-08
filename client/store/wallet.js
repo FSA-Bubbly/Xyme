@@ -126,7 +126,11 @@ export const decreaseDosage = (userId, pills) => {
 				},
 				{ headers: { authorization: token } }
 			);
-			dispatch(_decreaseDosage(updatedPills));
+			const reducedPills = updatedPills.reduce((accumulator, currentVal) => {
+				accumulator[currentVal.pillId] = currentVal;
+				return accumulator;
+			}, {});
+			dispatch(_decreaseDosage(reducedPills));
 		} catch (error) {
 			console.error(error);
 		}
@@ -147,8 +151,8 @@ export default function (state = [], action) {
 			return state.filter((pill) => !action.pills.includes(pill.id));
 		case DECREASE_DOSAGE:
 			return state.map((pill) => {
-				if (action.pills.includes(pill)) {
-					pill.dailyDosage--;
+				if (pill.id in action.pills && pill.wallet.dailyDosage > 0) {
+					pill.wallet.dailyDosage--;
 				}
 				return pill;
 			});

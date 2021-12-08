@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from './Loading';
-import { decreaseDosage } from '../store/wallet';
-import { fetchWallet } from '../store/wallet';
+import { decreaseDosage, fetchWallet } from '../store/wallet';
 import { fetchInteractions } from '../store/interactions';
 
 const DailyPillView = () => {
 	const { auth: user, wallet: pills, interactions } = useSelector((s) => s);
-	const currentUser = useSelector((state) => state.auth);
 	const [isLoading, setLoading] = useState(true);
-
+	const ref = useRef();
 	const dispatch = useDispatch();
 
 	const dateNum = Date.now();
@@ -33,7 +31,7 @@ const DailyPillView = () => {
 			await loading();
 			setLoading(!isLoading);
 		})();
-		dispatch(fetchWallet(currentUser));
+		dispatch(fetchWallet(user));
 		dispatch(fetchInteractions(user));
 	}, []);
 
@@ -45,12 +43,14 @@ const DailyPillView = () => {
 
 	let pillsToUpdate = [];
 
-	const handleTakenPills = () => {
-		dispatch(decreaseDosage(currentUser.id, pillsToUpdate));
-		dispatch(fetchWallet(currentUser));
+	const handleTakenPills = (e) => {
+		dispatch(decreaseDosage(user.id, pillsToUpdate));
+		console.log('Pills To Update', pillsToUpdate);
+		console.log('Pills To Update', pillsToUpdate);
 	};
 
 	const handlePillCheck = (evt) => {
+		console.log(ref.current.checked);
 		if (evt.target.checked) {
 			pillsToUpdate.push(evt.target.value);
 		} else {
@@ -168,6 +168,7 @@ const DailyPillView = () => {
 																	className='absolute inset-0 bg-green-200  rounded-full'></span>
 																<span className='relative'>
 																	<input
+																		ref={ref}
 																		className=' form-checkbox  rounded focus:outline-none text-orange w-4 h-4 text-center'
 																		id='checkbox1'
 																		type='checkbox'
