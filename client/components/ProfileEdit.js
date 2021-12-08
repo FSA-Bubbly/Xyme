@@ -161,10 +161,9 @@ const ProfileEdit = () => {
 											<option value='/user7.svg'>7</option>
 											<option value='/user8.svg'>8</option>
 											<option value='/user9.svg'>9</option>
-											<option value='/user10.svg'>10</option>
-											<option value='/user11.svg'>11</option>
-											<option value='/user12.svg'>12</option>
-											<option value='/user13.svg'>13</option>
+											<option value='/user11.svg'>10</option>
+											<option value='/user12.svg'>11</option>
+											<option value='/user13.svg'>12</option>
 										</select>{' '}
 									</div>
 									<div className=' py-1'>
