@@ -55,7 +55,6 @@ const Wallet = () => {
   ];
 
   const toggleModal = () => {
-    console.log("hello");
     setShowModal(!showModal);
   };
 
@@ -228,7 +227,7 @@ const Wallet = () => {
                             <Link
                               to={{
 																		pathname: `/wallet/select/${pill.id}`,
-																		state: { pill: pill },
+																		state: { pill: pill }
 																	}}
                               key={pill.id}
                             >

@@ -122,7 +122,10 @@ const DailyPillView = () => {
                             </td>
                             <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                               <Link
-                                to={`/wallet/select/${pill.id}`}
+                                to={{
+																		pathname: `/wallet/select/${pill.id}`,
+																		state: { pill: pill }
+																	}}
                                 key={pill.id}
                                 pill={pill}
                               >
