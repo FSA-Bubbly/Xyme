@@ -26,7 +26,7 @@ const _addPillToWallet = (pill) => {
 const _editPill = (pill) => {
 	return {
 		type: EDIT_PILL,
-		pill
+		pill,
 	};
 };
 
@@ -81,17 +81,17 @@ export const editPill = (pill) => {
 			const { data: editedPill } = await axios.put(
 				`/api/wallet/pill/edit`,
 				{
-					pill
+					pill,
 				},
 				{ headers: { authorization: token } }
 			);
 			dispatch(_editPill(editedPill));
-			history.push(`/wallet`)
+			history.push(`/wallet`);
 		} catch (error) {
 			console.error(error);
 		}
-	}
-}
+	};
+};
 
 export const removePills = (userId, pills) => {
 	return async (dispatch) => {
@@ -126,8 +126,7 @@ export const decreaseDosage = (userId, pills) => {
 				},
 				{ headers: { authorization: token } }
 			);
-			console.log('lul', pills)
-			dispatch(_decreaseDosage(pills.map(pill => parseInt(pill))));
+			dispatch(_decreaseDosage(updatedPills));
 		} catch (error) {
 			console.error(error);
 		}
@@ -141,16 +140,25 @@ export default function (state = [], action) {
 		case ADD_PILL_TO_WALLET:
 			return [...state, action.pill];
 		case EDIT_PILL:
-			return state.map(pill =>
-				(pill.id === action.pill.id ? action.pill : pill));
+			return state.map((pill) =>
+				pill.id === action.pill.id ? action.pill : pill
+			);
 		case REMOVE_PILLS:
 			return state.filter((pill) => !action.pills.includes(pill.id));
 		case DECREASE_DOSAGE:
-			return state.map(pill => {
-				if (action.pills.includes(pill.id)) {
-					pill.wallet.dailyDosage--
+			return state.map((pill) => {
+				if (action.pills.includes(pill)) {
+					pill.dailyDosage--;
 				}
-			}).filter(pill => pill.wallet.dailyDosage > 0)
+				return pill;
+			});
+		// state
+		// 	.map((pill) => {
+		// 		if (action.pills.includes(pill.id)) {
+		// 			pill.wallet.dailyDosage--;
+		// 		}
+		// 	})
+		// 	.filter((pill) => pill.wallet.dailyDosage > 0);
 		default:
 			return state;
 	}

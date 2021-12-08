@@ -18,12 +18,13 @@ router.put('/', requireToken, async (req, res, next) => {
 			},
 		});
 
-		const decreaseDosage = await walletPillsToDecrement.map((singlePill) => {
-			return singlePill.decrement({
+		const reducedDosage = await walletPillsToDecrement.map((singlePill) => {
+			singlePill.decrement({
 				dailyDosage: 1,
 			});
+			return singlePill;
 		});
-		res.send(decreaseDosage);
+		res.send(reducedDosage);
 	} catch (error) {
 		next(error);
 	}
