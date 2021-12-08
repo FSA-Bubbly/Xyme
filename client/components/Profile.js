@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUpdateUser } from "../store/user";
-import Loading from "./Loading";
-import history from "../history";
-import { Link } from "react-router-dom";
+
+
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUpdateUser } from '../store/user';
+import Loading from './Loading';
+import history from '../history';
+import { Link } from 'react-router-dom';
+
 // import { useForceUpdate } from "react-spring/node_modules/@react-spring/shared";
 
 const Profile = () => {
-  const user = useSelector((state) => state.auth);
-  const updatedUser = useSelector((state) => state.user);
-  const [isLoading, setLoading] = useState(true);
+	const user = useSelector((state) => state.auth);
+	const updatedUser = useSelector((state) => state.user);
+	const [isLoading, setLoading] = useState(true);
 
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  const loading = async () =>
-    new Promise((resolve) => setTimeout(() => resolve(), 1500));
+	const loading = async () =>
+		new Promise((resolve) => setTimeout(() => resolve(), 1500));
 
   useEffect(() => {
     (async () => {
@@ -70,6 +73,9 @@ const Profile = () => {
       )}
     </div>
   );
+
+
+
 };
 
 export default Profile;

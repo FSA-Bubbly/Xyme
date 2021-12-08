@@ -47,7 +47,7 @@ const User = db.define('user', {
 		type: Sequelize.STRING,
 		validate: {
 			notEmpty: true,
-			len: [8, 32],
+			len: [8, 200],
 		},
 	},
 	firstName: {

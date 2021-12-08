@@ -23,11 +23,9 @@ const Settings = () => {
 
   useEffect(() => {
     if (user.sms) {
-      console.log("user sms is true");
       const notif = document.getElementsByClassName("notification");
       notif[0].checked = true;
     } else {
-      console.log("user sms is false");
       const notif = document.getElementsByClassName("notification");
       notif[0].checked = false;
     }
