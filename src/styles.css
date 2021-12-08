@@ -1,4 +1,6 @@
 @import "tailwindcss/base";
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
+
 
 #checkbox:checked + label .switch-ball {
   background-color: bg-gray-500;

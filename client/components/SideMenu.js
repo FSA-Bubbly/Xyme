@@ -31,7 +31,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/dailypill'
-                  className='text-center w-30 block py-2 px-4  hover:text-orange text-sm hover:text-orange'
+                  className=' font-light tracking-wider text-center w-30 block py-2 px-4  hover:text-orange text-sm hover:text-orange'
                   onClick={hide}
                 >
                   daily pills
@@ -46,7 +46,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/wallet'
-                  className='text-center w-30 block py-2 px-4 text-sm hover:text-orange'
+                  className=' font-light tracking-wider text-center w-30 block py-2 px-4 text-sm hover:text-orange'
                   onClick={hide}
                 >
                   wallet
@@ -62,7 +62,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/interactions'
-                  className='text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
+                  className=' font-light tracking-wider text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
                   onClick={hide}
                 >
                   interactions
@@ -78,7 +78,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/profile'
-                  className='text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
+                  className=' font-light tracking-wider text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
                   onClick={hide}
                 >
                   profile
@@ -93,7 +93,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/'
-                  className=' text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
+                  className=' font-light tracking-wider text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
                   onClick={hide}
                 >
                   home
@@ -108,7 +108,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 />
                 <Link
                   to='/settings'
-                  className=' text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
+                  className='  font-light tracking-wider text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
                   onClick={hide}
                 >
                   settings
@@ -119,11 +119,11 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
                 <img
                   src='/logout.svg'
                   alt='Monitoring'
-                  className=' mx-4 w-6 self-center transform transition duration-500 hover:scale-125'
+                  className='  mx-4 w-6 self-center transform transition duration-500 hover:scale-125'
                 />
                 <Link
                   to='/'
-                  className='text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
+                  className=' font-light tracking-wider text-center w-30 block ml-30  py-2 px-4 text-sm hover:text-orange'
                   onClick={handleClick}
                 >
                   log out
@@ -147,7 +147,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
               />
               <Link
                 to='/signup'
-                className='text-center w-30 block py-2 px-4 text-sm hover:bg-gray-200'
+                className=' font-light tracking-wider text-center w-30 block py-2 px-4 text-sm hover:bg-gray-200'
                 onClick={hide}
               >
                 sign up
@@ -162,7 +162,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
               />
               <Link
                 to='/login'
-                className='text-center w-30 block ml-30  py-2 px-4 text-sm'
+                className='font-light tracking-wider w-30 block ml-30  py-2 px-4 text-sm'
                 onClick={hide}
               >
                 log in

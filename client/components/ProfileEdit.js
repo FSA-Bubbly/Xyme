@@ -351,35 +351,39 @@ const ProfileEdit = () => {
 											type='password'
 											className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                       bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
-										/>
-										{errors.password && (
-											<p className='px-1 text-xs text-red-500'>
-												{errors.password}
-											</p>
-										)}
-									</div>
-									<div className='flex justify-evenly py-4'>
-										<Link
-											to={`/profile`}
-											className='text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800 dark:border-gray-300'>
-											Cancel
-										</Link>
-										<button
-											className='text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 dark:border-gray-300 text-gray-800'
-											value='submit'
-											type='submit'
-											onClick={handleSubmit}>
-											Save Changes
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	);
+
+                    />
+                    {errors.password && (
+                      <p className='px-1 text-xs text-red-500'>
+                        {errors.password}
+                      </p>
+                    )}
+                  </div>
+                  <div className='flex justify-evenly py-4'>
+                    <Link
+                      to={`/profile`}
+                      className='text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800 dark:border-gray-300 hover:bg-orange hover:text-white hover:border-orange'
+                    >
+                      Cancel
+                    </Link>
+                    <button
+                      className='text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 dark:border-gray-300 text-gray-800 hover:bg-orange hover:text-white hover:border-orange '
+                      value='submit'
+                      type='submit'
+                      onClick={handleSubmit}
+                    >
+                      Save Changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+
 };
 
 export default ProfileEdit;

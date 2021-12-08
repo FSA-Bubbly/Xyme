@@ -65,7 +65,7 @@ const Wallet = () => {
       ) : (
         <>
           <div className='flex self-center flex-col fadeIn w-full sm:1/2 md:w-1/2 p-20 sm:p-10 md:p-10 overflow-hidden'>
-            <h1 className='  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-wider text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
+            <h1 className='  tracking-widest self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-widest text-center text-gray-800 dark:text-gray-200 text-gray-800 '>
               personal wallet
             </h1>
 
@@ -242,7 +242,7 @@ const Wallet = () => {
                               <input
                                 type='checkbox'
                                 value={pill.id}
-                                className=' dark:border-2 dark:border-gray-200 text-center'
+                                className='form-checkbox  rounded focus:outline-none text-orange w-4 h-4 text-center'
                                 onChange={handleCheck}
                               ></input>
                             </span>
@@ -253,6 +253,7 @@ const Wallet = () => {
                   </tbody>
                 </table>
               )}
+
               <div className='  py-5  border-t flex flex-row xs:flex-row justify-center xs:justify-between   dark:border-gray-800 p-5 border-t  min-w-20 '>
                 <div className='inline-flex mt-2 xs:mt-0'>
                   <button className='text-xs text-green-300 border-2  border-orange   text-orange mx-2  rounded-full w-full self-center text-xs text-green-300 border-2 py-1  px-1 xs:px-3 sm:px-4 md:px-5 dark:text-gray-500 dark:border-orange hover:bg-orange hover:border-orange hover:text-white text-gray-800 '>

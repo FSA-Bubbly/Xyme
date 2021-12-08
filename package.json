@@ -25,6 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "@tailwindcss/forms": "^0.3.4",
     "@zach.codes/react-calendar": "^0.3.1",
     "aws-sdk": "^2.1043.0",
     "axios": "^0.21.1",
@@ -46,6 +47,7 @@
     "node-fetch": "^2.6.1",
     "node-fetch-retry": "^2.0.0",
     "pg": "^8.5.1",
+    "pretty-checkbox": "^3.0.3",
     "react-big-calendar": "^0.38.1",
     "react-datepicker": "^4.4.0",
     "react-file-base64": "^1.0.3",

@@ -42,50 +42,55 @@ const ForgotPassword = (props) => {
 									<div className='flex items-center justify-center pt-10 flex-col'>
 										<img src='/user9.svg' className=' w-32' />
 
-										<h1 className='text-gray-500 text-sm'></h1>
-									</div>
-									<div className='flex justify-center p-6'>
-										<Link to='/login'>
-											<div className=' rounded-sm text-center dark:border-gray-300 text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800 hover:bg-orange border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
-												A link was sent to your email to reset your password ,
-												you may want to check your spam folder
-											</div>
-										</Link>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				) : (
-					<div className='mx-auto max-w-sm '>
-						<div className='py-1'>
-							<span className='px-1 text-xs text-gray-600 uppercase'>
-								Email
-							</span>
-							<label htmlFor='email' />
-							<input
-								placeholder=''
-								name='email'
-								type='text'
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+                    <h1 className='text-gray-500 text-sm'></h1>
+                  </div>
+                  <div className='flex justify-center p-6'>
+                    <Link to='/login'>
+                      <div className=' rounded-sm text-center text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800 hover:bg-orange border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500  hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
+                        A link was sent to your email to reset your password ,
+                        you may want to check your spam folder
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className='mx-auto max-w-sm '>
+            <div className='py-1'>
+              <span className='px-1 text-xs text-gray-600 uppercase'>
+                Email
+              </span>
+              <label htmlFor='email' />
+              <input
+                placeholder=''
+                name='email'
+                type='text'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
+
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 							/>
 						</div>
 
-						<div
-							onClick={forgotPassword}
-							className=' mt-5  py-1 flex flex-col '>
-							<button className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'>
-								Get Reset link
-							</button>
-						</div>
-					</div>
-				)}
-			</form>
-		</div>
-	);
+
+            <div
+              onClick={forgotPassword}
+              className=' mt-5  py-1 flex flex-col '
+            >
+              <button className='rounded-full w-1/2 self-center text-xs border-grey-500 border-2 py-1 px-2 border-gray-500 dark:text-gray-500  hover:bg-orange hover:border-orange hover:text-white text-gray-800  dark:text-gray-200 '>
+                Get Reset link
+              </button>
+            </div>
+          </div>
+        )}
+      </form>
+    </div>
+  );
+
+
 };
 
 /**
