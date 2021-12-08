@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
 import { fetchWallet } from "../store/wallet";
-import { removePills } from "../store/wallet";
 import { fetchInteractions } from "../store/interactions";
+import { fetchUpdateUser } from "../store/user";
+import { removePills } from "../store/wallet";
 import { removeInteractions } from "../store/interactions";
 import Modal from "react-modal";
 
@@ -54,7 +55,6 @@ const Wallet = () => {
   ];
 
   const toggleModal = () => {
-    console.log("hello");
     setShowModal(!showModal);
   };
 
@@ -225,9 +225,11 @@ const Wallet = () => {
                           </td>
                           <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                             <Link
-                              to={`/wallet/select/${pill.id}`}
+                              to={{
+																		pathname: `/wallet/select/${pill.id}`,
+																		state: { pill: pill }
+																	}}
                               key={pill.id}
-                              pill={pill}
                             >
                               <p className='dark:bg-gray-200 text-center text-gray-900 '>
                                 {pill.name}

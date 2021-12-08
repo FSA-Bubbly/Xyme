@@ -44,12 +44,10 @@ const DailyPillView = () => {
   ];
 
   let pillsToUpdate = [];
+
   const handleTakenPills = () => {
     dispatch(decreaseDosage(currentUser.id, pillsToUpdate));
     dispatch(fetchWallet(currentUser));
-    // document
-    //   .getElementById("checkbox1")
-    //   .map((singlecheck) => (singlecheck.checked = false));
   };
 
   const handlePillCheck = (evt) => {
@@ -116,7 +114,7 @@ const DailyPillView = () => {
                             key={pill.id}
                             className=' dark:bg-gray-200 shadow rounded-full border-b-10 border-t-8 border-nude dark:border-gray-800  space-y-6 mt-30 px-5 py-5 bg-white text-sm dark:text-gray-600'
                           >
-                            <td className='  dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
+                            <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                               <div className='text-center'>
                                 <div className=' flex justify-center flex-shrink-0 w-10 h-10'>
                                   {interactionNames.includes(pill.name) ? (
@@ -145,9 +143,12 @@ const DailyPillView = () => {
                                 </div>
                               </div>
                             </td>
-                            <td className=' border-b-7 border-gray-200 px-5 py-5  bg-white text-sm'>
+                            <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
                               <Link
-                                to={`/wallet/select/${pill.id}`}
+                                to={{
+																		pathname: `/wallet/select/${pill.id}`,
+																		state: { pill: pill }
+																	}}
                                 key={pill.id}
                                 pill={pill}
                               >

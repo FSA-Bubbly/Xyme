@@ -98,6 +98,7 @@ export const Landing = ({ isLoggedIn }) => {
             </div>
           </div>
 
+
           <div className='flex items-center flex-wrap mb-20'>
             <div className=' flex justify-center w-full md:w-1/2 p-10 sm:p-20 md:p-30'>
               <img src='/wallet.svg' alt='Reporting' />
@@ -111,10 +112,10 @@ export const Landing = ({ isLoggedIn }) => {
                 Manage your Medication
               </h4>
               <p className='text-gray-600 mb-8'>
-                Keeping track of all your meds can be difficult. Our user
-                friendly app will kindly send you SMS notifcations straight to
-                your phone morning and night. This way you never ever forget to
-                take your daily pills .
+								Keeping track of all your meds can be difficult. Our user
+								friendly app will kindly send you SMS notifcations straight to
+								your phone morning and night. This way you never forget to
+								take your daily pills .
               </p>
             </motion.div>
           </div>

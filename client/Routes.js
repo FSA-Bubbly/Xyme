@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Landing from './components/Landing';
 import Wallet from './components/Wallet';
 import AddPillForm from './components/AddPillForm';
+import EditPill from './components/EditPill';
 import Profile from './components/Profile';
 import ProfileEdit from './components/ProfileEdit';
 import SinglePill from './components/SinglePill';
@@ -18,9 +19,6 @@ import DailyPillView from './components/DailyPillView';
 import ResetPassword from './components/ResetPassword';
 import ForgotPassword from './components/ForgotPassword';
 
-/**
- * COMPONENT
- */
 class Routes extends Component {
 	componentDidMount() {
 		this.props.loadInitialData();
@@ -36,8 +34,9 @@ class Routes extends Component {
 						<Route exact path='/' component={Home} />
 						<Route exact path='/wallet' component={Wallet} />
 						<Route exact path='/wallet/add-pill' component={AddPillForm} />
-
 						<Route exact path='/wallet/select/:pillId' component={SinglePill} />
+						<Route exact path='/wallet/select/:pillId/edit' component={EditPill} />
+
 						<Route exact path='/profile' component={Profile} />
 						<Route exact path='/profile/edit' component={ProfileEdit} />
 						<Route exact path='/interactions' component={Interactions} />
