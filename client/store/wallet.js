@@ -156,13 +156,6 @@ export default function (state = [], action) {
 				}
 				return pill;
 			});
-		// state
-		// 	.map((pill) => {
-		// 		if (action.pills.includes(pill.id)) {
-		// 			pill.wallet.dailyDosage--;
-		// 		}
-		// 	})
-		// 	.filter((pill) => pill.wallet.dailyDosage > 0);
 		default:
 			return state;
 	}

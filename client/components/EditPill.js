@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { editPill } from '../store/wallet';
 
 const EditPill = (props) => {
-  const { auth: user} = useSelector(s => s);
-  const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(new Date());
-	const [endDate, setEndDate] = useState(new Date());
-	const [frequencyPerDay, setFrequencyPerDay] = useState(1);
+	const { auth: user } = useSelector((s) => s);
+	const dispatch = useDispatch();
+	const [startDate, setStartDate] = useState(
+		new Date(props.location.state.pill.wallet.startDate)
+	);
+	const [endDate, setEndDate] = useState(
+		new Date(props.location.state.pill.wallet.endDate)
+	);
+	const [frequencyPerDay, setFrequencyPerDay] = useState(
+		props.location.state.pill.wallet.frequencyPerDay
+	);
+
+	console.log(frequencyPerDay);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const editedPill = {
 			userId: user.id,
-      pillId: props.location.state.pill.id,
+			pillId: props.location.state.pill.id,
 			startDate,
 			endDate,
 			frequencyPerDay,
@@ -23,8 +31,8 @@ const EditPill = (props) => {
 		dispatch(editPill(editedPill));
 	};
 
-  return (
-    <div>
+	return (
+		<div>
 			<form id='edit-pill m-t-8' onSubmit={handleSubmit}>
 				<div className='flex flex-col'>
 					<div className='flex self-center fadeIn w-full sm:full md:w-full lg:w-full xl:w-full p-20 sm:p-20 md:p-20 overflow-hidden '>
@@ -74,7 +82,7 @@ const EditPill = (props) => {
 										onChange={(e) => setFrequencyPerDay(e.target.value)}
 										name='frequencyPerDay'
 										id='frequencyPerDay'
-                    defaultValue='1'
+										defaultValue={frequencyPerDay}
 										className='text-center w-10 dark:bg-gray-200 dark:text-gray-800'>
 										<option value='1'>1</option>
 										<option value='2'>2</option>
@@ -98,7 +106,7 @@ const EditPill = (props) => {
 				</div>
 			</form>
 		</div>
-  )
+	);
 };
 
 export default EditPill;
