@@ -88,13 +88,11 @@ router.post('/forgot', async (req, res, next) => {
 
 router.put('/reset/:id', async (req, res, next) => {
 	try {
-		console.log(req.body.password);
 		const thisRequest = await Request.getResetRequest(req.body.id);
 		if (thisRequest) {
 			const user = await User.hasAccount({ email: thisRequest.email });
 
 			user.update({ password: req.body.password });
-			console.log(user.password);
 
 			res.status(204).json();
 		} else {

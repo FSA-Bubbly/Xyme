@@ -1,14 +1,76 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { authenticate } from '../store';
+import { checkUserExists } from '../store/user';
+import validator from 'validator';
 
 import history from '../history';
 const AuthForm = (props) => {
 	const { name, displayName, handleSubmit, error } = props;
+	const [errors, setErrors] = useState({});
+	const [phone, setPhone] = useState('');
+
 	const [userAvatar, setUserAvatar] = useState('/user1.svg');
 
 	const toReset = () => {
 		history.push('/forgot');
+	};
+
+	const formatDigitOnly = (value) => {
+		return value.replace(/[^\d]/g, '');
+	};
+
+	const formatPhoneNumber = (value) => {
+		if (!value) return value;
+
+		const phoneNumber = formatDigitOnly(value);
+		if (phoneNumber.length < 4) return phoneNumber;
+
+		if (phoneNumber.length < 7) {
+			return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+		}
+
+		return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+			3,
+			6
+		)}-${phoneNumber.slice(6, 10)}`;
+	};
+
+	//Error Checking -> Adds text under labels
+	const checkError = (userObj, checkEmail) => {
+		const formErrors = {};
+		for (const [key, value] of Object.entries(userObj)) {
+			if (key === 'first') {
+				if (value.length < 2)
+					formErrors[key] = 'Please enter a valid First Name';
+			} else if (key === 'last') {
+				if (value.length < 2)
+					formErrors[key] = 'Please enter a valid Last Name';
+			} else if (key === 'age') {
+				if (value < 18 || value > 110)
+					formErrors[key] = 'Users must be over 18';
+			} else if (key === 'height') {
+				if (value > 120 || value < 20)
+					formErrors[key] = 'Please enter a valid Height';
+			} else if (key === 'weight') {
+				if (value < 10 || value > 500)
+					formErrors[key] = 'Please enter a valid Weight';
+			} else if (key === 'email') {
+				if (!validator.isEmail(value) || checkEmail == 'exists') {
+					formErrors[key] = 'Please enter a valid Email Address';
+				}
+			} else if (key === 'password') {
+				if (value.length < 8 || !/\d/.test(value) || !/[a-zA-z]/g.test(value))
+					formErrors[key] =
+						'Passwords must be at least 8 characters long and must include a number';
+			}
+		}
+		setErrors(formErrors);
+		return formErrors;
+	};
+
+	const handleAuth = (event) => {
+		handleSubmit(event, checkError);
 	};
 
 	return (
@@ -28,7 +90,7 @@ const AuthForm = (props) => {
 				</div>
 			</div>
 			{displayName === 'Sign Up' ? (
-				<form onSubmit={handleSubmit} name={name} className='mt-8'>
+				<form onSubmit={handleAuth} name={name} className='mt-8'>
 					<div className=' mx-auto max-w-sm '>
 						<div className='py-1 flex flex-col'>
 							<label
@@ -67,6 +129,9 @@ const AuthForm = (props) => {
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent focus:outline-0 hover:border-orange'
 							/>
+							{errors.first && (
+								<p className='px-1 text-xs text-red-500'>{errors.first}</p>
+							)}
 						</div>
 
 						<div className='py-1'>
@@ -81,6 +146,9 @@ const AuthForm = (props) => {
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 							/>
+							{errors.last && (
+								<p className='px-1 text-xs text-red-500'>{errors.last}</p>
+							)}
 						</div>
 						<div className='py-1'>
 							<span className='px-1 text-xs text-gray-600 uppercase'>Age</span>
@@ -92,6 +160,9 @@ const AuthForm = (props) => {
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 							/>
+							{errors.age && (
+								<p className='px-1 text-xs text-red-500'>{errors.age}</p>
+							)}
 						</div>
 						<div className='py-1'>
 							<span className='px-1 text-xs text-gray-600 uppercase'>
@@ -104,7 +175,10 @@ const AuthForm = (props) => {
 								type='text'
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
-							/>
+							/>{' '}
+							{errors.height && (
+								<p className='px-1 text-xs text-red-500'>{errors.height}</p>
+							)}
 						</div>
 						<div className='py-1'>
 							<span className='px-1 text-xs text-gray-500 uppercase'>
@@ -118,6 +192,9 @@ const AuthForm = (props) => {
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 							/>
+							{errors.weight && (
+								<p className='px-1 text-xs text-red-500'>{errors.weight}</p>
+							)}
 						</div>
 						<div className='py-1'>
 							<span className='px-1 text-xs text-gray-500 uppercase'>
@@ -131,6 +208,9 @@ const AuthForm = (props) => {
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 							/>
+							{errors.email && (
+								<p className='px-1 text-xs text-red-500'>{errors.email}</p>
+							)}
 						</div>
 
 						<div className='py-1'>
@@ -156,6 +236,7 @@ const AuthForm = (props) => {
 							</span>
 							<label htmlFor='phone' />
 							<input
+								onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
 								placeholder=''
 								name='phone'
 								type='text'
@@ -205,6 +286,9 @@ const AuthForm = (props) => {
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 							/>
+							{errors.password && (
+								<p className='px-1 text-xs text-red-500'>{errors.password}</p>
+							)}
 						</div>
 
 						<div className='mt-10 py-1 flex flex-col '>
@@ -215,7 +299,7 @@ const AuthForm = (props) => {
 					</div>
 				</form>
 			) : (
-				<form onSubmit={handleSubmit} name={name} className='mt-8'>
+				<form onSubmit={handleAuth} name={name} className='mt-8'>
 					{/* ---- form for log in  ---- */}
 					<div className='mx-auto max-w-sm '>
 						<div className='py-1'>
@@ -230,6 +314,9 @@ const AuthForm = (props) => {
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent hover:border-orange'
 							/>
+							{errors.email && (
+								<p className='px-1 text-xs text-red-500'>{errors.email}</p>
+							)}
 						</div>
 
 						<div className='py-1'>
@@ -244,7 +331,10 @@ const AuthForm = (props) => {
 								x-model='password'
 								className='text-gray-500 flex self-center text-md block px-3 py-2  w-full
                 bg-transparent border-b-2 border-gray-500 focus:border-gray-600 focus:bg-transparent focus:border-green  hover:border-orange '
-							/>
+							/>{' '}
+							{errors.password && (
+								<p className='px-1 text-xs text-red-500'>{errors.password}</p>
+							)}
 						</div>
 
 						<div className=' mt-20  py-1 flex flex-col '>
@@ -293,61 +383,43 @@ const mapSignup = (state) => {
 const mapDispatch = (dispatch) => {
 	const checkbox = document.getElementsByClassName('sms');
 	return {
-		handleSubmit(evt) {
+		async handleSubmit(evt, checkError) {
 			evt.preventDefault();
 
 			if (evt.target.name === 'signup') {
-				const formName = evt.target.name;
-				const first = evt.target.firstName.value;
-				const last = evt.target.lastName.value;
-				const age = evt.target.age.value;
-				const sms = checkbox[0].checked;
-				const phone = evt.target.phone.value;
-				const morningReminder = evt.target.morningReminder.value;
-				const nighttimeReminder = evt.target.nighttimeReminder.value;
-				const height = evt.target.height.value;
-				const weight = evt.target.weight.value;
-				const email = evt.target.email.value;
-				const password = evt.target.password.value;
-				const avatar = evt.target.avatar.value;
-				dispatch(
-					authenticate(
-						first,
-						last,
-						age,
-						height,
-						weight,
-						email,
-						sms,
-						phone,
-						morningReminder,
-						nighttimeReminder,
-						password,
-						avatar,
-						formName
-					)
-				);
+				const user = {
+					formName: evt.target.name,
+					first: evt.target.firstName.value,
+					last: evt.target.lastName.value,
+					age: evt.target.age.value,
+					sms: checkbox[0].checked,
+					phone: evt.target.phone.value,
+					morningReminder: evt.target.morningReminder.value,
+					nighttimeReminder: evt.target.nighttimeReminder.value,
+					height: evt.target.height.value,
+					weight: evt.target.weight.value,
+					email: evt.target.email.value,
+					password: evt.target.password.value,
+					avatar: evt.target.avatar.value,
+				};
+				let emailCheck = await dispatch(checkUserExists(user.email));
+
+				let userError = checkError(user, emailCheck);
+				if (Object.keys(userError).length == 0) {
+					dispatch(authenticate(user));
+				}
 			} else {
-				const formName = evt.target.name;
-				const email = evt.target.email.value;
-				const password = evt.target.password.value;
-				dispatch(
-					authenticate(
-						null,
-						null,
-						null,
-						null,
-						null,
-						email,
-						null,
-						null,
-						null,
-						null,
-						password,
-						null,
-						formName
-					)
-				);
+				const user = {
+					formName: evt.target.name,
+					email: evt.target.email.value,
+					password: evt.target.password.value,
+				};
+				let emailCheck = await dispatch(checkUserExists(user.email));
+
+				let userError = checkError(user, emailCheck);
+				if (Object.keys(userError).length == 0) {
+					dispatch(authenticate(user));
+				}
 			}
 		},
 	};
