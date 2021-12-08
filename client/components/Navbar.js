@@ -152,13 +152,13 @@ export function Navbar({ handleClick, isLoggedIn }) {
               <div className=' hover:border-b-6 hover:border-orange  hidden md:flex items-center space-x-2 mr-0'>
                 <Link
                   to='/signup'
-                  className=' p-20 flex flex-col px-1 text-xs text-gray-500 uppercase rounded-full  self-center text-xs text-green-300  py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'
+                  className=' p-20 flex flex-col px-1 text-xs text-gray-500 uppercase rounded-full  self-center text-xs text-green-300  py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800 tracking-wide'
                 >
                   sign up
                 </Link>
 
                 <Link
-                  className=' p-20 flex flex-col px-1 text-xs text-gray-500 uppercase rounded-full  self-center text-xs text-green-300  py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800'
+                  className=' p-20 flex flex-col px-1 text-xs text-gray-500 uppercase rounded-full  self-center text-xs text-green-300  py-1 px-2 border-gray-500 dark:text-gray-500 dark:border-gray-300 hover:bg-orange hover:border-orange hover:text-white text-gray-800 tracking-wide'
                   to='/login'
                 >
                   log in

@@ -13,7 +13,7 @@ const AddPillForm = () => {
 	const [pillName, setPillName] = useState('');
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
-	const [frequencyPerDay, setFrequencyPerDay] = useState(0);
+	const [frequencyPerDay, setFrequencyPerDay] = useState(1);
 	const nameRef = useRef();
 
 	const handleSubmit = (e) => {
@@ -120,12 +120,10 @@ const AddPillForm = () => {
 										onChange={(e) => setFrequencyPerDay(e.target.value)}
 										name='frequencyPerDay'
 										id='frequencyPerDay'
+                    defaultValue='1'
 										className='text-center w-10 dark:bg-gray-200 dark:text-gray-800'>
-										<option value='0'>0</option>
 										<option value='1'>1</option>
 										<option value='2'>2</option>
-										<option value='3'>3</option>
-										<option value='4'>4</option>
 									</select>{' '}
 									<div className='flex justify-evenly py-4'>
 										<Link

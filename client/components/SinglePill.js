@@ -5,8 +5,7 @@ import { fetchSinglePill } from "../store/singlePill";
 import Loading from "./Loading";
 
 const SinglePill = (props) => {
-  const singlePill = useSelector((s) => s.singlePill);
-
+  // const singlePill = useSelector((s) => s.singlePill);
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
   const [pill, setPill] = useState([]);
@@ -55,11 +54,40 @@ const SinglePill = (props) => {
                     </Link>
                   </div>
                 </div>
+
+                <h1 className='text-gray-500 text-sm p-4 text-center font-bold'>
+                Generic drug description (may not refer to your substance by
+                brand name):
+              </h1>
+              <h2 className="text-gray-500 text-sm p-4 text-left">
+                {pill.description}
+              </h2>
+            </div>
+            <div className="flex justify-evenly py-4">
+              <div>
+                <Link
+                  to={`/wallet`}
+                    className='text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 dark:border-gray-300 text-gray-800 hover:bg-orange hover:text-white hover:border-orange'
+                >
+                  Return to Wallet
+                </Link>
+              </div>
+              <div>
+                <Link
+                  to={{
+                    pathname: `/wallet/select/${pill.id}/edit`,
+                    state: { pill: pill },
+                  }}
+                  className=" dark:border-gray-300 text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800"
+                >
+                  Edit Pill
+                </Link>
               </div>
             </div>
           </div>
         )}
       </div>
+
     );
   }
 };

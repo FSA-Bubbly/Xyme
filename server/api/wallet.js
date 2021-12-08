@@ -118,6 +118,26 @@ router.post('/add-pill', requireToken, async (req, res, next) => {
 	}
 });
 
+router.put(`/pill/edit`, requireToken, async (req, res, next) => {
+	try {
+		const { userId, pillId, startDate, endDate, frequencyPerDay } = req.body.pill;
+		const pillToEdit = await Wallet.findOne({
+			where: {
+				userId,
+				pillId
+			}
+		})
+		res.send(await pillToEdit.update({
+			startDate,
+			endDate,
+			frequencyPerDay,
+			dailyDosage: frequencyPerDay
+		}))
+	} catch (error) {
+		next(error)
+	}
+})
+
 router.delete(`/:userId/remove`, requireToken, async (req, res, next) => {
 	try {
 		const user = await User.findByPk(req.params.userId);
