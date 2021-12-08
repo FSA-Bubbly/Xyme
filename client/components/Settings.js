@@ -30,6 +30,15 @@ const Settings = () => {
       notif[0].checked = false;
     }
   }, [user]);
+  useEffect(() => {
+    if (user.sms) {
+      const notif = document.getElementsByClassName("notification");
+      notif[0].checked = true;
+    } else {
+      const notif = document.getElementsByClassName("notification");
+      notif[0].checked = false;
+    }
+  }, [user]);
 
   const toggleDarkMode = function () {
     if (checkbox[0].checked) {

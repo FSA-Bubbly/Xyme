@@ -75,7 +75,7 @@ export const Landing = ({ isLoggedIn }) => {
           ref={ref}
           className=' mt-20  bg-opacity-20 container mx-auto px-6 p-10 rounded-t'
         >
-          <h2 className='font-serif fadeIn p-2 md:text-3xl  pt-5 md:pt-28 text-2xl font-bold text-center text-gray-800 mb-10 b dark:text-gray-200 tracking-widest'>
+          <h2 className='font-serif fadeIn p-2 md:text-3xl  pt-5 md:pt-28 text-2xl font-bold text-center text-gray-800 mb-10 b dark:text-gray-200 tracking-wider'>
             Features
           </h2>
 
