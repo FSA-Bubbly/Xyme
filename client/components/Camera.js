@@ -37,14 +37,14 @@ const Camera = ({ walletCallBack }) => {
 			/>
 			{showModal ? (
 				<Modal
-					className=' my-16 w-auto'
+					className=' my-16 w-auto mx-10'
 					isOpen={showModal}
 					onRequestClose={toggleModal}
 					contentLabel='Test'>
 					<div>
 						<div className='flex flex-col  '>
 							<div className='flex justify-center '>
-								<div className='bg-white w-full  m-10 rounded-lg dark:bg-gray-200'>
+								<div className='bg-white w-1/2  m-10 rounded-lg dark:bg-gray-200'>
 									<div className='flex self-center  pt-10 flex-col'>
 										<p className=' text-center px-1 text-xs text-gray-500 uppercase'>
 											{' '}
@@ -53,12 +53,13 @@ const Camera = ({ walletCallBack }) => {
 
 										{selectedImage && (
 											<div className='flex justify-center self-center rounded-mg py-20'>
-												<img
-													alt='No Image'
-													className='self-center w-1/2'
-													src={URL.createObjectURL(selectedImage)}
-												/>
-												<br />
+												<div className='flex w-1/3 justify-center'>
+													<img
+														alt='No Image'
+														className='self-center object-contain'
+														src={URL.createObjectURL(selectedImage)}
+													/>
+												</div>
 											</div>
 										)}
 
