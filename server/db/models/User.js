@@ -226,7 +226,9 @@ const sendText = async (user) => {
 							to: `+1${userPhone}`,
 						})
 						.then((message) => console.log(message.body))
-						.catch((err) => console.log(err));
+						.catch((err) => {
+							console.error(err.code, e.message);
+						});
 				} catch (error) {
 					next(error);
 				}
