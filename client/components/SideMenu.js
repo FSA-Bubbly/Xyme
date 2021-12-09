@@ -138,7 +138,7 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
           className='mobile-menus right-0  h-auto rounded-l fixed h-screen w-full sm:w-1/2 lg:hidden bg-white top-16 z-30'
         >
           <ul className='divide-y divide-light-blue-400 menu-list flex flex-col text-xs font-bold'>
-            <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange'>
+            <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange dark:text-gray-400'>
               {" "}
               <img
                 src='/logout.svg'
@@ -147,13 +147,13 @@ export function SideMenu({ handleClick, isLoggedIn, style }) {
               />
               <Link
                 to='/signup'
-                className=' font-light tracking-wider text-center w-30 block py-2 px-4 text-sm hover:bg-gray-200'
+                className=' font-light tracking-wider text-center w-30 block py-2 px-4 text-sm '
                 onClick={hide}
               >
                 sign up
               </Link>
             </li>
-            <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange'>
+            <li className='flex menu-list-item py-2 hover:bg-white hover:text-orange dark:text-gray-400'>
               {" "}
               <img
                 src='/logout.svg'

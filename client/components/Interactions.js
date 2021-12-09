@@ -58,7 +58,7 @@ const Interactions = (props) => {
                     show interactions with:
                   </label>
                   <select
-                    className='self-center border-white w-20 text-xs  mr-5 -bg-nude self-end w-10 dark:bg-gray-800 dark:text-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-200 border-2 rounded'
+                    className='self-center border-white w-20 text-xs  mr-5 -bg-nude self-end w-10  dark:text-gray-200 dark:bg-gray-500 dark:text-gray-200 dark:border-gray-200 border-2 rounded'
                     name='pillName'
                     value={pillFilter}
                     onChange={(e) => setPillFilter(e.target.value)}
