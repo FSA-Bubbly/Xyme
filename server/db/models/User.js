@@ -10,6 +10,7 @@ var cron = require('node-cron');
 require('dotenv').config();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
+const twilioNumber = process.env.TWILIO_NUMBER;
 const client = require('twilio')(accountSid, authToken);
 
 const SALT_ROUNDS = 5;
@@ -191,7 +192,7 @@ const callCronTask = (user) => {
 };
 
 const sendText = async (user) => {
-	const twilioPhone = '+14324652074';
+	const twilioPhone = twilioNumber;
 	const userName = await user.firstName;
 	const userPhone = await user.phone;
 	const userPills = await user.getPills();
