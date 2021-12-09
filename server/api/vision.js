@@ -1,15 +1,13 @@
 const router = require('express').Router();
-process.env.GOOGLE_APPLICATION_CREDENTIALS = 'APIKey.json';
-const fs = require('fs').promises;
 const axios = require('axios');
-const key = 'AIzaSyC45clx_xZgEuF5gCSn9_ZQ8lhtRm0_R74';
+const key = process.env.GOOGLE_KEY;
 const multer = require('multer');
 const fetch = require('node-fetch-retry');
 const requireToken = require('./auth');
+const upload = multer();
 
 module.exports = router;
 
-const upload = multer();
 router.post(
 	'/',
 	requireToken,

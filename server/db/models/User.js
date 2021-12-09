@@ -3,9 +3,6 @@ const db = require('../db');
 const Pill = require('./Pill');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
-// const Wallet = require("./Wallet");
-
 var cron = require('node-cron');
 require('dotenv').config();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -213,6 +210,7 @@ const sendText = async (user) => {
 			}
 		})
 		.map((pill) => pill.name);
+
 	if (user.morningReminder !== null) {
 		const userMorning = await user.morningReminder.split(':');
 		const message = cron.schedule(
