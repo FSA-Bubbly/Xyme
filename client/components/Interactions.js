@@ -88,12 +88,10 @@ const Interactions = (props) => {
                 </thead>
                 <tbody className='overflow-scroll dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-8 bg-white text-sm text-center w-full '>
                   {filteredInteractions.length < 1 ? (
-                    <tr className=' col-span-3 justify-center dark:bg-gray-200 shadow rounded-full border-b-10 border-t-8 border-nude dark:border-gray-800 space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
-                      <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'></td>
-                      <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm dark:text-gray-600'>
+                    <tr className='justify-center dark:bg-gray-200 shadow rounded-full border-b-10 border-t-8 border-nude dark:border-gray-800 space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
+                      <td colSpan='4' className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm dark:text-gray-600'>
                         <h1>Your medications have no interactions!</h1>
                       </td>
-                      <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'></td>
                     </tr>
                   ) : (
                     filteredInteractions.map((interaction) => (
