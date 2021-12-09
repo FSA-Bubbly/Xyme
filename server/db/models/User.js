@@ -3,9 +3,6 @@ const db = require('../db');
 const Pill = require('./Pill');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
-// const Wallet = require("./Wallet");
-
 var cron = require('node-cron');
 require('dotenv').config();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -228,9 +225,7 @@ const sendText = async (user) => {
 							to: `+1${userPhone}`,
 						})
 						.then((message) => console.log(message.body))
-						.catch((err) => {
-							console.error(err.code, e.message);
-						});
+						.catch((err) => console.log(err));
 				} catch (error) {
 					next(error);
 				}
