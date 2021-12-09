@@ -149,7 +149,6 @@ export const Landing = ({ isLoggedIn }) => {
                   <a className=' self-center' href='https://github.com/zwardb'>
                     <img
                       src='/Zack.svg'
-                      git
                       className=' self-center w-20 sm:w-32 md:w-32 lg:w-32 xl:w-32'
                     />
                   </a>
