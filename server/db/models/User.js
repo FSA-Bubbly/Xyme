@@ -213,7 +213,9 @@ const sendText = async (user) => {
 			}
 		})
 		.map((pill) => pill.name);
+
 	if (user.morningReminder !== null) {
+		console.log('inside user morning reminder');
 		const userMorning = await user.morningReminder.split(':');
 		const message = cron.schedule(
 			`${userMorning[1]} ${userMorning[0]} * * * `,
