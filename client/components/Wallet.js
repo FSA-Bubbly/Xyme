@@ -156,17 +156,11 @@ const Wallet = () => {
                   </thead>
 
                   <tbody className=' dark:bg-gray-300 border-green space-y-6 mt-30 px-5 py-8 bg-white text-sm text-center w-full '>
-                    <tr className=' col-span-3 justify-center dark:bg-gray-200 shadow rounded-full border-b-10 border-nude dark:border-gray-800 space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
-                      <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
-                        <p className='dark:bg-gray-200 text-center text-gray-900 '></p>
-                      </td>
-                      <td className='dark:bg-gray-200 border-green space-y-6 mt-30 py-5 bg-white text-sm'>
+                    <tr className='justify-center dark:bg-gray-200 shadow rounded-full border-b-10 border-nude dark:border-gray-800 space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
+                      <td colSpan='4' className='dark:bg-gray-200 border-green space-y-6 mt-30 py-5 bg-white text-sm'>
                         <p className='  dark:bg-gray-200 text-center text-gray-900 '>
                           your wallet is empty...
                         </p>
-                      </td>
-                      <td className='dark:bg-gray-200 border-green space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
-                        <p className='dark:bg-gray-200 text-center text-gray-900 '></p>
                       </td>
                     </tr>
                   </tbody>

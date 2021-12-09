@@ -102,6 +102,18 @@ const DailyPillView = () => {
                         </th>
                       </tr>
                     </thead>
+                    {
+                      filtered.length < 1 ? (
+                      <tbody>
+                      <tr className='justify-center dark:bg-gray-200 shadow rounded-full border-b-10 border-nude dark:border-gray-800 space-y-6 mt-30 px-5 py-5 bg-white text-sm'>
+                      <td colSpan='4' className='dark:bg-gray-200 border-green space-y-6 mt-30 py-5 bg-white text-sm col-span-4'>
+                        <p className='  dark:bg-gray-200 text-center text-gray-900 '>
+                          you have no medications left to take today
+                        </p>
+                      </td>
+                    </tr>
+                    </tbody>
+                      ) : (
                     <tbody className='dark:bg-gray-300 border-green px-5 py-8 bg-white text-sm'>
                       {filtered
                         .sort((a, b) => (a.name > b.name ? 1 : -1))
@@ -181,6 +193,8 @@ const DailyPillView = () => {
                           </tr>
                         ))}
                     </tbody>
+                      )
+                    }
                   </table>
                   <div className=' mt-2 flex justify-evenly py-4 border-nude dark:bg-gray-200 dark:border-t-4 dark:border-gray-100 border-2 '>
                     <div className='inline-flex mt-2 xs:mt-0'>
