@@ -19,7 +19,7 @@ const Timer = (props) => {
 
   return (
     <div>
-      <h1 className="  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-widest text-center text-gray-800 text-gray-200 text-gray-800 ">
+      <h1 className="self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-widest text-center text-gray-800 dark:text-gray-200 text-gray-800 ">
         Current Time:
       </h1>
       <div className="border-8 border-yellow-0 rounded shadow-2x1 font-mono text-9x1  text-white grid grid-cols-3 gap-x-px">
