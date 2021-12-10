@@ -22,7 +22,7 @@ const Timer = (props) => {
       <h1 className="  self font-sans uppercase fadeIn p-2 md:text-2xl  text-xl tracking-widest text-center text-gray-800 text-gray-200 text-gray-800 ">
         Current Time:
       </h1>
-      <div className="border-8 border-yellow-0 rounded shadow-2x1 fount-mono text-9x1  text-white grid grid-cols-3 gap-x-px">
+      <div className="border-8 border-yellow-0 rounded shadow-2x1 font-mono text-9x1  text-white grid grid-cols-3 gap-x-px">
         {/* left side */}
         <div className="relative bg-black p-8">
           {/* background grid of black squares */}
@@ -31,7 +31,7 @@ const Timer = (props) => {
             <div className="bg-gradient-to-br from-gray-700 to-gray-900"></div>
           </div>
           {/* time numbers */}
-          <span className="relative">{hours}</span>
+          <span className="relative">{("0" + hours).slice(-2)}</span>
           {/* line across the middle */}
           <div className="absolute inset-0 flex items-center">
             <div className="h-px w-full bg-black"></div>
@@ -45,7 +45,7 @@ const Timer = (props) => {
             <div className="bg-gradient-to-br from-gray-700 to-gray-900"></div>
           </div>
           {/* time numbers */}
-          <span className="relative"> {minutes}</span>
+          <span className="relative"> {("0" + minutes).slice(-2)}</span>
           {/* line across the middle */}
           <div className="absolute inset-0 flex items-center">
             <div className="h-px w-full bg-black"></div>
@@ -58,7 +58,7 @@ const Timer = (props) => {
             <div className="bg-gradient-to-br from-gray-700 to-gray-900"></div>
           </div>
           {/* time numbers */}
-          <span className="relative"> {seconds}</span>
+          <span className="relative"> {("0" + seconds).slice(-2)}</span>
           {/* line across the middle */}
           <div className="absolute inset-0 flex items-center">
             <div className="h-px w-full bg-black"></div>
