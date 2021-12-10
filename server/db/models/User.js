@@ -234,10 +234,8 @@ const sendText = async (user) => {
 			}
 		);
 		if (userPhone !== undefined && user.sms === true) {
-			console.log('started sms');
 			message.start();
 		} else if (user.sms === false) {
-			console.log('stopped sms');
 			message.stop();
 		}
 	}
@@ -264,10 +262,8 @@ const sendText = async (user) => {
 			}
 		);
 		if (userPhone !== undefined && user.sms === true) {
-			console.log('started sms');
 			message.start();
 		} else if (user.sms === false) {
-			console.log('stopped sms');
 			message.stop();
 		}
 	}
