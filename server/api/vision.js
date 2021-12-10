@@ -4,9 +4,10 @@ const key = process.env.GOOGLE_KEY;
 const multer = require('multer');
 const fetch = require('node-fetch-retry');
 const requireToken = require('./auth');
+const upload = multer();
+
 module.exports = router;
 
-const upload = multer();
 router.post(
 	'/',
 	requireToken,
