@@ -5,6 +5,10 @@ const app = express();
 const cron = require('node-cron');
 module.exports = app;
 
+// //run every day at 12:00am
+// cron.schedule("0 0 0 * * *", () => {
+//   console.log("it's midnight pills dosage resets");
+// });
 
 // logging middleware
 app.use(morgan('dev'));

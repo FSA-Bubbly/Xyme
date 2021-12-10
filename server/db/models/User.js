@@ -219,7 +219,7 @@ const sendText = async (user) => {
 				try {
 					client.messages
 						.create({
-							body: `Hi ${userName}, here are your morning pills for today: ${pillNamesMorning}. Before you start your day, log into your account at http://xyme.xyz/ to record your taken pills!`,
+							body: `Hi ${userName}, here are your morning pills for today: ${pillNamesMorning}. Before you start your day, log into your account at https://fsa-xyme.herokuapp.com/ to record your taken pills!`,
 							from: twilioPhone,
 							to: `+1${userPhone}`,
 						})
@@ -247,7 +247,7 @@ const sendText = async (user) => {
 				try {
 					client.messages
 						.create({
-							body: `Hi ${userName}, here are your night pills for today: ${pillNamesNight}. Before you go to bed, log into your account at http://xyme.xyz/ to record your taken pills!`,
+							body: `Hi ${userName}, here are your night pills for today: ${pillNamesNight}. Before you go to bed, log into your account at https://fsa-xyme.herokuapp.com/ to record your taken pills!`,
 							from: twilioPhone,
 							to: `+1${userPhone}`,
 						})
