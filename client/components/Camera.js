@@ -27,7 +27,6 @@ const Camera = ({ walletCallBack }) => {
 				className='bg-yellow'
 				type='file'
 				accept='image/*'
-				capture='environment'
 				ref={ref}
 				onChange={(event) => {
 					setSelectedImage(event.target.files[0]);
@@ -42,11 +41,11 @@ const Camera = ({ walletCallBack }) => {
 					onRequestClose={toggleModal}
 					ariaHideApp={false}
 					contentLabel='Test'>
-					<div>
-						<div className='flex flex-col  '>
+					<div className='flex justify-center'>
+						<div className='flex flex-col max-w-lg'>
 							<div className='flex justify-center '>
 								<div className='bg-white w-full rounded-lg dark:bg-gray-200'>
-									<div className='flex self-center  pt-5 flex-col'>
+									<div className='flex self-center pt-5 flex-col'>
 										<p className=' text-center px-1 text-xs text-gray-500 uppercase'>
 											{' '}
 											Does the result match your prescription?
@@ -57,7 +56,7 @@ const Camera = ({ walletCallBack }) => {
 												<div className='flex justify-center'>
 													<img
 														alt='No Image'
-														className='self-center p-5'
+														className='self-center p-10'
 														src={URL.createObjectURL(selectedImage)}
 													/>
 												</div>
