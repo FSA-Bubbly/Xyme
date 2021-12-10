@@ -27,7 +27,6 @@ const Camera = ({ walletCallBack }) => {
 				className='bg-yellow'
 				type='file'
 				accept='image/*'
-				capture='environment'
 				ref={ref}
 				onChange={(event) => {
 					setSelectedImage(event.target.files[0]);
@@ -40,23 +39,24 @@ const Camera = ({ walletCallBack }) => {
 					className=' my-16 w-auto mx-10'
 					isOpen={showModal}
 					onRequestClose={toggleModal}
+					ariaHideApp={false}
 					contentLabel='Test'>
-					<div>
-						<div className='flex flex-col  '>
+					<div className='flex justify-center'>
+						<div className='flex flex-col max-w-lg'>
 							<div className='flex justify-center '>
-								<div className='bg-white w-1/2  m-10 rounded-lg dark:bg-gray-200'>
-									<div className='flex self-center  pt-10 flex-col'>
+								<div className='bg-white w-full rounded-lg dark:bg-gray-200'>
+									<div className='flex self-center pt-5 flex-col'>
 										<p className=' text-center px-1 text-xs text-gray-500 uppercase'>
 											{' '}
 											Does the result match your prescription?
 										</p>
 
 										{selectedImage && (
-											<div className='flex justify-center self-center rounded-mg py-20'>
-												<div className='flex w-1/3 justify-center'>
+											<div className='flex justify-center self-center rounded-mg'>
+												<div className='flex justify-center'>
 													<img
 														alt='No Image'
-														className='self-center object-contain'
+														className='self-center p-10'
 														src={URL.createObjectURL(selectedImage)}
 													/>
 												</div>
@@ -69,9 +69,9 @@ const Camera = ({ walletCallBack }) => {
 										</p>
 
 										<h1 className='text-gray-500 text-sm'></h1>
-										<h1 className='text-gray-500 text-sm p-4 text-left'></h1>
+										<h1 className='text-gray-500 text-sm text-left'></h1>
 									</div>
-									<div className='flex justify-between p-6'>
+									<div className='flex justify-between p-5'>
 										<button
 											className=' dark:border-gray-300 text-xs text-green-300 border-2 py-1 px-2 border-green-300 dark:text-gray-500 text-gray-800'
 											onClick={() => reset()}>
