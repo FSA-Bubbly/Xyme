@@ -4,29 +4,15 @@ const key = process.env.GOOGLE_KEY;
 const multer = require('multer');
 const fetch = require('node-fetch-retry');
 const requireToken = require('./auth');
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const myNum = process.env.MY_NUMBER;
-const twilioNumber = process.env.TWILIO_NUMBER;
-const client = require('twilio')(accountSid, authToken);
-const upload = multer();
-
 module.exports = router;
 
+const upload = multer();
 router.post(
 	'/',
 	requireToken,
 	upload.single('file'),
 	async (req, res, next) => {
 		try {
-			client.messages
-				.create({
-					to: myNum,
-					from: twilioNumber,
-					body: 'Test',
-				})
-				.then((message) => console.log(message));
-
 			const { file } = req;
 			const pills = [];
 

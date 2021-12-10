@@ -18,7 +18,7 @@ module.exports = function sendResetLink(email, id) {
 			Body: {
 				Text: {
 					Charset: 'UTF-8',
-					Data: `To reset your password , click on this link: https://fsa-xyme.herokuapp.com/reset/${id} `,
+					Data: `To reset your password , click on this link: http://www.xyme.xyz/reset/${id} `,
 				},
 			},
 			Subject: {
@@ -26,7 +26,7 @@ module.exports = function sendResetLink(email, id) {
 				Data: `Xyme, Reset Password `,
 			},
 		},
-		Source: 'Xyme@fungtechs.com',
+		Source: 'Xyme <Xyme@xyme.xyz>',
 	};
 	ses.sendEmail(params, (err) => {
 		if (err) {
