@@ -87,32 +87,23 @@ const DailyPillView = () => {
               <Timer />
 
               {/* flip clock container */}
-              <h1 className='rounded-top dark:bg-gray-500 text-center px-5 py-3 bg-nude text-left text-md font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300 '>
+              <h1 className='rounded-top dark:bg-gray-500 text-center px-5 py-3 bg-nude text-left text-md font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300 rounded  shadow'>
                 Dosage Times:
               </h1>
-              <div className='border-yellow-0 rounded shadow-2x1 fount-mono text-9x1 text-white grid grid-cols-2 gap-x-px'>
+
+              <div className=' flex flex-row justify-evenly border-yellow-0 rounded shadow-2x1 fount-mono text-9x1 text-white grid grid-cols-2 gap-x-px'>
                 {/* left side */}
-                <div className='relative bg-nude p-8'>
-                  {/* background grid of black squares */}
-                  <div className='absolute inset-0 bg-red-400 grid grid-rows-2'>
-                    <div className='bg-gradient-to-br from-nude to-nude'></div>
-                    <div className='bg-gradient-to-br from-nude to-nude'></div>
-                  </div>
+                <div className=' flex w-full  justify-center relative  p-8'>
                   {/* time numbers */}
-                  <span className='  self-center dark:bg-gray-500 text-center px-5 py-5  border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300 text-sm relative text-gray-700 relative text-gray-700'>
+                  <span className=' self-center dark:bg-gray-800 text-center px-5 py-5  border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300 text-sm relative text-gray-700 relative text-gray-700 hover:line-through'>
                     {" "}
                     Morning: {user.morningReminder} AM
                   </span>
                 </div>
                 {/* right side */}
-                <div className='relative bg-nude p-8'>
-                  {/* background grid of black squares */}
-                  <div className='absolute inset-0 bg-red-400 grid grid-rows-2'>
-                    <div className='bg-gradient-to-br from-nude to-nude'></div>
-                    <div className='bg-gradient-to-br from-nude to-nude'></div>
-                  </div>
+                <div className=' flex w-full justify-center relative  p-8'>
                   {/* time numbers */}
-                  <span className=' dark:bg-gray-500 text-center px-5 py-5  border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300 text-sm relative text-gray-700'>
+                  <span className='  dark:bg-gray-800 text-center px-5 py-5  border-gray-200 bg-nude text-left text-xs font-semibold text-gray-600 uppercase tracking-wider dark:text-gray-300 text-sm relative text-gray-700 hover:line-through'>
                     {" "}
                     Night: {user.nighttimeReminder} PM
                   </span>
